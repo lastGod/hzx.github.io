@@ -408,7 +408,8 @@ contract B{
 <li>上述示例中的addr变量，隶属于Address类型，指的是被调用的智能合约的地址。</li>
 <li>和第一种调用函数方法相比，使用address.call(),<strong>即使被调用函数失败，也不会引起交易回滚</strong>。</li>
 </ul>
-<p>实际上，还有另外一种智能合约调用方式，即使用delegatecall方法，而delegatecall则类似于我们的函数调用，delegatecall函数中使用的所有上下文参数，均来自于调用发起合约，而不是被调用的合约。<br>调用智能合约更多详细信息，参考<a href="https://solidity-cn.readthedocs.io/zh/develop/types.html#members-of-addresses" target="_blank" rel="noopener">solidity中文文档</a></p>
+<p>实际上，还有另外一种智能合约调用方式，即使用delegatecall方法，而delegatecall则类似于我们的函数调用，delegatecall函数中使用的所有上下文参数，均来自于调用发起合约，而不是被调用的合约。</p>
+<p>调用智能合约更多详细信息，参考<a href="https://solidity-cn.readthedocs.io/zh/develop/types.html#members-of-addresses" target="_blank" rel="noopener">solidity中文文档</a></p>
 <p>至此，调用智能合约的方法基本叙述完毕，而伴随着智能合约另外一些特征，本文也会予以介绍。</p>
 <h2 id="智能合约中的fallback-函数"><a href="#智能合约中的fallback-函数" class="headerlink" title="智能合约中的fallback()函数"></a><strong>智能合约中的fallback()函数</strong></h2><p>fallback()是一个很特殊的函数。它是智能合约中的一个<strong>匿名</strong>函数，这个函数没有名称、没有参数，也没有返回值，只有访问类型和函数体。其形式如下：</p>
 <pre><code>funcion() public [payable]{...}
