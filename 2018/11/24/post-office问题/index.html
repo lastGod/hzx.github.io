@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next pisces use-motion" lang="">
+<html class="theme-next mist use-motion" lang="简体中文">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="162:Post Office 修建问题。地址： http://noi.openjudge.cn/ch0206/162/ 解题思路设置F[p][v]表示V个village中修建p个邮局使得所有村庄到最近邮局的距离最近。得到了如下递推公式：F[p][v] = min{F[p][v], F[p-1][k-1]+ dis[k][v]};为什么这样进行递推？这是因为本题目中以最后一个邮局所属的村庄进行划分">
+<meta name="description" content="#####首页显示内容">
 <meta property="og:type" content="article">
 <meta property="og:title" content="162:post_office问题">
 <meta property="og:url" content="https://lastgod.github.io/2018/11/24/post-office问题/index.html">
-<meta property="og:site_name" content="hzx’s Blog">
-<meta property="og:description" content="162:Post Office 修建问题。地址： http://noi.openjudge.cn/ch0206/162/ 解题思路设置F[p][v]表示V个village中修建p个邮局使得所有村庄到最近邮局的距离最近。得到了如下递推公式：F[p][v] = min{F[p][v], F[p-1][k-1]+ dis[k][v]};为什么这样进行递推？这是因为本题目中以最后一个邮局所属的村庄进行划分">
-<meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-24T12:01:02.999Z">
+<meta property="og:site_name" content="萌虎下山~">
+<meta property="og:description" content="#####首页显示内容">
+<meta property="og:locale" content="简体中文">
+<meta property="og:updated_time" content="2018-11-29T02:52:32.662Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="162:post_office问题">
-<meta name="twitter:description" content="162:Post Office 修建问题。地址： http://noi.openjudge.cn/ch0206/162/ 解题思路设置F[p][v]表示V个village中修建p个邮局使得所有村庄到最近邮局的距离最近。得到了如下递推公式：F[p][v] = min{F[p][v], F[p-1][k-1]+ dis[k][v]};为什么这样进行递推？这是因为本题目中以最后一个邮局所属的村庄进行划分">
+<meta name="twitter:description" content="#####首页显示内容">
 
 
 
@@ -97,7 +97,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Pisces',
+    scheme: 'Mist',
     version: '5.1.4',
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
@@ -125,7 +125,7 @@
 
 
 
-  <title>162:post_office问题 | hzx’s Blog</title>
+  <title>162:post_office问题 | 萌虎下山~</title>
   
 
 
@@ -137,7 +137,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="简体中文">
 
   
   
@@ -155,7 +155,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">hzx’s Blog</span>
+        <span class="site-title">萌虎下山~</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -241,7 +241,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="hzx’s Blog">
+      <meta itemprop="name" content="萌虎下山~">
     </span>
 
     
@@ -299,7 +299,9 @@
       
 
       
-        <h1 id="162-Post-Office-修建问题。"><a href="#162-Post-Office-修建问题。" class="headerlink" title="162:Post Office 修建问题。"></a>162:Post Office 修建问题。</h1><p>地址： <a href="http://noi.openjudge.cn/ch0206/162/" target="_blank" rel="noopener">http://noi.openjudge.cn/ch0206/162/</a></p>
+        <p>#####首页显示内容<br><a id="more"></a></p>
+<p>#####隐藏内容</p>
+<h1 id="162-Post-Office-修建问题。"><a href="#162-Post-Office-修建问题。" class="headerlink" title="162:Post Office 修建问题。"></a>162:Post Office 修建问题。</h1><p>地址： <a href="http://noi.openjudge.cn/ch0206/162/" target="_blank" rel="noopener">http://noi.openjudge.cn/ch0206/162/</a></p>
 <h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>设置F[p][v]表示V个village中修建p个邮局使得所有村庄到最近邮局的距离最近。<br>得到了如下递推公式：<br>F[p][v] = min{F[p][v], F[p-1][k-1]+ dis[k][v]};<br>为什么这样进行递推？这是因为本题目中以最后一个邮局所属的村庄进行划分，因为总有一些village到最后一个邮局的距离是最近的，但是这些村子的数量不知道，我们需要知道到底多少village划归到最后一个post office的时候是最优的。</p>
 <p>但是我们知道，能够划分到最后一个post office的village，至少是第p个，修建之前的p-1个post office，至少需要p-1个village。因此有如下等式：</p>
 <center>p-1&lt;=k-1&lt;=v</center>
@@ -426,7 +428,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -501,7 +503,7 @@
 
 
 
-  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
 
 
 
@@ -600,13 +602,6 @@
 
   
   
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
 
   
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
