@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="萌虎下山~">
 <meta property="og:description" content="162:Post Office 修建问题。地址： http://noi.openjudge.cn/ch0206/162/">
 <meta property="og:locale" content="简体中文">
-<meta property="og:updated_time" content="2018-11-29T03:04:34.000Z">
+<meta property="og:updated_time" content="2018-11-30T17:08:03.446Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="162:post_office问题">
 <meta name="twitter:description" content="162:Post Office 修建问题。地址： http://noi.openjudge.cn/ch0206/162/">
@@ -307,8 +307,8 @@
         <h6 id="162-Post-Office-修建问题。"><a href="#162-Post-Office-修建问题。" class="headerlink" title="162:Post Office 修建问题。"></a>162:Post Office 修建问题。</h6><p>地址： <a href="http://noi.openjudge.cn/ch0206/162/" target="_blank" rel="noopener">http://noi.openjudge.cn/ch0206/162/</a><br><a id="more"></a></p>
 <p>#####隐藏内容</p>
 <h1 id="162-Post-Office-修建问题。-1"><a href="#162-Post-Office-修建问题。-1" class="headerlink" title="162:Post Office 修建问题。"></a>162:Post Office 修建问题。</h1><p>地址： <a href="http://noi.openjudge.cn/ch0206/162/" target="_blank" rel="noopener">http://noi.openjudge.cn/ch0206/162/</a></p>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>设置F[p][v]表示V个village中修建p个邮局使得所有村庄到最近邮局的距离最近。<br>得到了如下递推公式：<br>F[p][v] = min{F[p][v], F[p-1][k-1]+ dis[k][v]};<br>为什么这样进行递推？这是因为本题目中以最后一个邮局所属的村庄进行划分，因为总有一些village到最后一个邮局的距离是最近的，但是这些村子的数量不知道，我们需要知道到底多少village划归到最后一个post office的时候是最优的。</p>
-<p>但是我们知道，能够划分到最后一个post office的village，至少是第p个，修建之前的p-1个post office，至少需要p-1个village。因此有如下等式：</p>
+<h2 id="创建智能合约"><a href="#创建智能合约" class="headerlink" title="创建智能合约"></a><strong>创建智能合约</strong></h2><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>设置F[p][v]表示V个village中修建p个邮局使得所有村庄到最近邮局的距离最近。<br>得到了如下递推公式：<br>F[p][v] = min{F[p][v], F[p-1][k-1]+ dis[k][v]};<br>为什么这样进行递推？这是因为本题目中以最后一个邮局所属的村庄进行划分，因为总有一些village到最后一个邮局的距离是最近的，但是这些村子的数量不知道，我们需要知道到底多少village划归到最后一个post office的时候是最优的。<br><!-- more --></p>
+<p>#####隐藏内容<br>但是我们知道，能够划分到最后一个post office的village，至少是第p个，修建之前的p-1个post office，至少需要p-1个village。因此有如下等式：</p>
 <center>p-1&lt;=k-1&lt;=v</center>
 
 
@@ -470,7 +470,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#162-Post-Office-修建问题。"><span class="nav-number">1.</span> <span class="nav-text">162:Post Office 修建问题。</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#162-Post-Office-修建问题。-1"><span class="nav-number"></span> <span class="nav-text">162:Post Office 修建问题。</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#解题思路"><span class="nav-number"></span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#源代码"><span class="nav-number"></span> <span class="nav-text">源代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#时间复杂度"><span class="nav-number"></span> <span class="nav-text">时间复杂度</span></a></li></ol></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-6"><a class="nav-link" href="#162-Post-Office-修建问题。"><span class="nav-number">1.</span> <span class="nav-text">162:Post Office 修建问题。</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#162-Post-Office-修建问题。-1"><span class="nav-number"></span> <span class="nav-text">162:Post Office 修建问题。</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建智能合约"><span class="nav-number"></span> <span class="nav-text">创建智能合约</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解题思路"><span class="nav-number"></span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#源代码"><span class="nav-number"></span> <span class="nav-text">源代码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#时间复杂度"><span class="nav-number"></span> <span class="nav-text">时间复杂度</span></a></li></ol></li></div>
             
 
           </div>
