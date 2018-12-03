@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+
+
+<script type="text/javascript" color="0,0,255" opacity="0.7" zindex="-2" count="99" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="简体中文">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="以太坊中的智能合约">
+<meta property="og:type" content="article">
+<meta property="og:title" content="以太坊中的智能合约">
+<meta property="og:url" content="https://lastgod.github.io/2018/11/24/以太坊中的智能合约/index.html">
+<meta property="og:site_name" content="hzx&#39;s Home">
+<meta property="og:description" content="以太坊中的智能合约">
+<meta property="og:locale" content="简体中文">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20181124194719817.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70.png">
+<meta property="og:updated_time" content="2018-11-30T17:25:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="以太坊中的智能合约">
+<meta name="twitter:description" content="以太坊中的智能合约">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20181124194719817.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://lastgod.github.io/2018/11/24/以太坊中的智能合约/">
+
+
+
+
+
+  <title>以太坊中的智能合约 | hzx's Home</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="简体中文">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">hzx's Home</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lastgod.github.io/2018/11/24/以太坊中的智能合约/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="hzx">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hzx's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">以太坊中的智能合约</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-24T19:59:14+08:00">
+                2018-11-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h5 id="以太坊中的智能合约"><a href="#以太坊中的智能合约" class="headerlink" title="以太坊中的智能合约"></a>以太坊中的智能合约</h5><a id="more"></a>
+<p>#####隐藏内容</p>
+<h1 id="以太坊中的智能合约（Smart-Coantract）"><a href="#以太坊中的智能合约（Smart-Coantract）" class="headerlink" title="以太坊中的智能合约（Smart Coantract）"></a>以太坊中的智能合约（Smart Coantract）</h1><h2 id="创建智能合约"><a href="#创建智能合约" class="headerlink" title="创建智能合约"></a><strong>创建智能合约</strong></h2><p>以太坊中的智能合约是运行在区块链上的一段代码，代码的逻辑定义了合约的内容。合约的账户保存了合约当前的运行状态，主要包含了4部分内容。</p>
+<ul>
+<li>balance：当前余额</li>
+<li>nonce：  交易次数</li>
+<li>code：   合约代码</li>
+<li>storge： 存储，是一棵MPT</li>
+</ul>
+<p>智能合约一般使用Solidity语言进行编写，语法上与JavaScript相似。如下是一段Solidity编写的智能合约的代码,这段代码是一个商品拍卖的智能合约。所有参与拍卖的人员对商品进行竞价，每次竞价时都会将相应的价格发送到智能合约中，合约会自动记录竞价人的报价，拍卖结束时，出价最高者获得拍卖品，同时出价最高者的钱会发送给受益人。其他人可以使用withDraw函数拿回自己的钱。代码详细内容见注释。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">pragma solididity ^<span class="number">0.4</span><span class="number">.21</span>               <span class="comment">// 声明使用的solidity版本</span></span><br><span class="line"></span><br><span class="line">contract SimpleAuction&#123;                 <span class="comment">// 声明一个SimplaAuction的合约类</span></span><br><span class="line">    address <span class="keyword">public</span> beneficiary;         <span class="comment">// 拍卖受益人</span></span><br><span class="line">    uint <span class="keyword">public</span> auctionEnd;             <span class="comment">// 拍卖截止日期</span></span><br><span class="line">    address <span class="keyword">public</span> highestBidder;       <span class="comment">// 当前的最高出价人</span></span><br><span class="line">    mapping(address =&gt; uint) bids;      <span class="comment">// 所有竞拍者的出价，map结构</span></span><br><span class="line">    address[] bidders;                  <span class="comment">// 所有竞拍者数组</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 需要记录的事件,event主要用来记录日志</span></span><br><span class="line">    <span class="function">event <span class="title">HighestBidIncreased</span><span class="params">(address bidder, uint amount)</span></span>; <span class="comment">// 出价最高的人发生变动</span></span><br><span class="line">    <span class="function">event <span class="title">Pay2Beneficiary</span><span class="params">(address winner, uint amount)</span></span>;     <span class="comment">// 竞拍成功者的钱发送给受益人</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/// constructor是构造函数</span></span><br><span class="line">    <span class="comment">/// _biddingTime 表示拍卖时长</span></span><br><span class="line">    <span class="comment">/// _beneficiary 表示拍卖受益人</span></span><br><span class="line">    constructor(uint _biddingTime, address _beneficiary) <span class="keyword">public</span></span><br><span class="line">    &#123;</span><br><span class="line">        beneficiary = _beneficiary;</span><br><span class="line">        auctionEnd = now + _biddingTime;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// 对拍卖进行竞价，如果之前出过价，就会把之前的价格与当前价格求和作为竞价</span></span><br><span class="line">    <span class="function">function <span class="title">bid</span><span class="params">()</span> <span class="keyword">public</span> payable</span>&#123;...&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">/// 参与投标的人在拍卖结束后取回自己的钱</span></span><br><span class="line">    <span class="function">function <span class="title">withdraw</span><span class="params">()</span> <span class="keyword">public</span> <span class="title">returns</span><span class="params">(<span class="keyword">bool</span>)</span></span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/// 结束拍卖，将最高出价的钱发送给受益人</span></span><br><span class="line">    <span class="function">function <span class="title">pay2Beneficiary</span><span class="params">()</span> <span class="keyword">public</span> <span class="title">returns</span><span class="params">(bools)</span></span>&#123;&#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>智能合约的构造函数名，最新版本使用constructor关键字，不推荐使用类名命名构造函数。构造函数只能有<strong>1</strong>个。构造函数仅仅在合约创建的时候调用一次。</p>
+</li>
+<li><p>bid()函数中，可以看到有一个 <strong>payable</strong> 关键字。如果一个函数添加了关键字payable，表明该函数接受转账，如果一个函数不写payable关键字，表明该函数不接受转账。</p>
+</li>
+<li><p>bid()函数， withdraw()函数，pay2Beneficiary()函数是成员函数，他们有public修饰，表示可供外部调用。</p>
+</li>
+<li><p>solidity中的map，其结构不支持遍历，这就意味着需要手动记录map中的元素。一般使用数组进行记录。上述代码中使用bidders记录参与竞拍的人。solidity中的数组元素既可以是定长数组，也可以是可变数组。</p>
+</li>
+</ul>
+<p>编写好智能合约之后，如何将该智能合约发布到区块链上呢？在以太坊中，发布一个智能合约，只需要将该合约的内容写入到一笔交易即可。具体过程如下：</p>
+<ol>
+<li>利用一个外部帐户发起一个转账交易，这笔交易的收款地址为<strong>0x0</strong>，转账金额设置为0。</li>
+<li>将智能合约代码编译为二进制字节码，并将这些二进制字节码写入交易的<strong>data</strong>域。</li>
+<li>填写交易其他部分内容。</li>
+<li>发布交易，交易执行完毕后会返回智能合约的地址。</li>
+</ol>
+<p>通过上述步骤就可以创建一个智能合约，以后调用智能合约时就将交易的收款地址写为智能合约的地址即可。</p>
+<h2 id="调用智能合约"><a href="#调用智能合约" class="headerlink" title="调用智能合约"></a><strong>调用智能合约</strong></h2><p>智能合约无法主动执行，因此智能合约要么是被外部帐户调用，要么被其他智能合约调用，外部账户调用智能合约和内部账户调用智能合约的方法有所不同，下文将分别予以说明。</p>
+<h3 id="外部账户调用智能合约"><a href="#外部账户调用智能合约" class="headerlink" title="外部账户调用智能合约"></a><strong>外部账户调用智能合约</strong></h3><p>外部账户调用智能合约时，具体步骤如下：</p>
+<ul>
+<li>创建一笔交易，交易的收款地址为要调用的智能合约的地址。</li>
+<li>把要调用的函数名称和以及该函数需要的参数进行编码，随后填入data域中。</li>
+<li>如果调用的函数有关键字payable修饰，即该合约接收转账，那么该函数中用到的转账金额则放在交易的value域中。</li>
+<li>填写其他交易内容，发布交易。</li>
+<li>矿工收到该交易后，本地执行该交易，将执行结果打包到区块中，发布区块。</li>
+</ul>
+<p>下图中的接收地址中填入了调用的智能合约地址，data域中填入了要调用的函数和参数的编码值，value为0。</p>
+<div align="center"><br><br><img src="https://img-blog.csdnimg.cn/20181124194719817.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70.png" alt="Alt text" title="optional title"><br><br></div>
+
+<h3 id="智能合约账户调用智能合约"><a href="#智能合约账户调用智能合约" class="headerlink" title="智能合约账户调用智能合约"></a><strong>智能合约账户调用智能合约</strong></h3><p>智能合约之间的调用则不需要通过发布交易进行，而是直接使用代码进行交互，调用的方法一般分为2种：</p>
+<ol>
+<li>创建被调用合约对象后直接调用相关成员函数。</li>
+<li>使用address类型的call()函数。</li>
+</ol>
+<p>创建对象后直接使用的示例代码如下。</p>
+<pre><code>contract A{
+    event LogCallFoo(string str);               // 定义一个事件
+    function constructor(address addr) public{} // 构造函数 
+    function foo(string str) return (uint){     
+        emit LogCallFoo(str);                   // 写日志操作
+        return 123;
+    }
+}
+
+contract B{
+    uint ua;
+    // 在合约B中创建合约A的对象，然后调用A中的foo()函数，返回结果存在ua中
+    function callAFooDirectly(address addr) public {
+        A a = A(addr);
+        ua = a.foo(&quot;call foo directly&quot;);
+    }
+}
+</code></pre><p>在上述示例代码中，合约B中构建了智能合约A的对象，然后调用了A中的foo函数。如果使用这种调用方式，如果在执行a.foo()的过程中出现了异常，那么callAFooDirectly()函数也会抛出异常。出现这种情况，会直接导致所在的交易回滚，而矿工不会退回执行中收取的交易费。</p>
+<p>使用address类型的call()函数的示例代码如下。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">contract C&#123;</span><br><span class="line">    <span class="function">function <span class="title">callAFooByCall</span><span class="params">(address addr)</span> <span class="keyword">public</span> <span class="title">return</span> <span class="params">(<span class="keyword">bool</span>)</span></span>&#123;</span><br><span class="line">        bytes4 funcsig = bytes4(keccak256(<span class="string">"foo(string)"</span>));      <span class="comment">// 将要调用的函数编码成为4字节 </span></span><br><span class="line">        <span class="keyword">if</span>(addr.call(funcsig, <span class="string">"call foo by func call"</span>))         <span class="comment">// address.call形式调用</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>上述addr.call(funcsig,”call foo by func call”)中，funcsig表示被调用函数的签名，funcsig是一个4字节大小的参数。而”call foo by func call”则是被调用函数的参数。被调用函数的参数会被扩展成为32字节。</li>
+<li>如果函数执行成功，则会返回true，执行失败或者引发异常，则会返回false。</li>
+<li>上述示例中的addr变量，隶属于Address类型，指的是被调用的智能合约的地址。</li>
+<li>和第一种调用函数方法相比，使用address.call(),<strong>即使被调用函数失败，也不会引起交易回滚</strong>。</li>
+</ul>
+<p>实际上，还有另外一种智能合约调用方式，即使用delegatecall方法，而delegatecall则类似于我们的函数调用，delegatecall函数中使用的所有上下文参数，均来自于调用发起合约，而不是被调用的合约。</p>
+<p>调用智能合约更多详细信息，参考<a href="https://solidity-cn.readthedocs.io/zh/develop/types.html#members-of-addresses" target="_blank" rel="noopener">solidity中文文档</a></p>
+<p>至此，调用智能合约的方法基本叙述完毕，而伴随着智能合约另外一些特征，本文也会予以介绍。</p>
+<h2 id="智能合约中的fallback-函数"><a href="#智能合约中的fallback-函数" class="headerlink" title="智能合约中的fallback()函数"></a><strong>智能合约中的fallback()函数</strong></h2><p>fallback()是一个很特殊的函数。它是智能合约中的一个<strong>匿名</strong>函数，这个函数没有名称、没有参数，也没有返回值，只有访问类型和函数体。其形式如下：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">funcion() <span class="keyword">public</span> [payable]&#123;...&#125;</span><br></pre></td></tr></table></figure></p>
+<p>匿名函数只有如下两种情况下才会被调用：</p>
+<ol>
+<li>向某个合约地址转账，data域为空时。</li>
+<li>向某个合约地址转账，data域中填写函数在智能合约中不存在时</li>
+</ol>
+<p>用一句话总结，就是data域中的数据被解析后找不到一个可以匹配的函数，就会调用fallback()函数。</p>
+<p>fallback()函数仍然可以用payable修饰，添加了payable函数之后表明匿名函数接收转账，如果没有payable，表明该函数不接收转账。如果匿名函数没有payable的情况下转账金额不是0，此时执行fallback()函数就会抛出异常。</p>
+<h2 id="汽油费-gas-fee"><a href="#汽油费-gas-fee" class="headerlink" title="汽油费(gas fee)"></a><strong>汽油费(gas fee)</strong></h2><p>智能合约的设计语言solidity是图灵完备语言，这就意味着智能合约中可以包括循环。随之而来的问题是，如果智能合约中出现死循环怎么办？而程序在执行之前无法判断是否会出现死循环。因此，智能合约中引入了汽油费。智能合约执行在EVM中，EVM对执行指令进行了标价，每执行一条指令，就需要消耗相应的汽油，不同的指令因为复杂程度不同，消耗的汽油量会有所不同。</p>
+<p>回想一下以太坊中一笔交易的结构：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">type txdata <span class="class"><span class="keyword">struct</span>&#123;</span></span><br><span class="line">    AccountNonce    uint;                   <span class="comment">// 交易次数</span></span><br><span class="line">    GasPrice        *bit.Int;               <span class="comment">// 单位汽油价格</span></span><br><span class="line">    GasLimit        uint64;                 <span class="comment">// 本交易愿意支付的最大汽油量</span></span><br><span class="line">    Recipient       *common.Address         <span class="comment">// 接收账户地址</span></span><br><span class="line">    Amount          *big.Int                <span class="comment">// 转账金额</span></span><br><span class="line">    Payload         []byte                  <span class="comment">// data域</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>每个交易中都有一个gas limit字段，表明发起交易方最多支出的汽油量，另外，交易中的gas price字段表明交易发起方对每单位的汽油出的价格，gas price*gas limit就是这笔交易消耗的最大汽油费。</li>
+<li>如果执行中出现了死循环，执行所需要的gas fee就会超额，此时EVM就会强行停止智能合约的执行，并且回滚之前的所有操作，但之前执行消耗的汽油费不会退回给交易发起方，这样就能有效的防止死循环，同时避免以太坊中的节点收到Denial of Service攻击。</li>
+</ul>
+<h3 id="智能合约中的条件判断"><a href="#智能合约中的条件判断" class="headerlink" title="智能合约中的条件判断"></a><strong>智能合约中的条件判断</strong></h3><p>以太坊中的交易进行执行，可以看作是一个原子操作，要么全部执行完毕，完成转账；如果执行抛出异常，则执行中的操作全部回滚。所以智能合约在执行时有如下条件判断的语句，在执行前会判断条件，说明如下：</p>
+<ul>
+<li>智能合约中不存在自定义的try-catch的结构。</li>
+<li>智能合约执行过程中遇到异常，除非特殊情况，否则本次的执行操作会全部回滚。</li>
+<li>solidity中可以抛出错误的语句有：<ul>
+<li>assert(bool condition):如果条件不满足就会抛出错误，用于抛出内部错误，和c++中的assert相同，可以用于Debug。</li>
+<li>require(bool condition):如果条件不满足，也抛出错误，用于检测外部输入条件是否合法。</li>
+<li>revert():无条件抛出异常，终止运行并且回滚状态变动。</li>
+</ul>
+</li>
+</ul>
+<h3 id="智能合约执行中可以调用的变量"><a href="#智能合约执行中可以调用的变量" class="headerlink" title="智能合约执行中可以调用的变量"></a><strong>智能合约执行中可以调用的变量</strong></h3> <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 获取给定区块的哈希值，只能获取最近的256个区块，不包括当前区块。   </span></span><br><span class="line">block.blockhash(uint blockNumber) returns (bytes32)                                                  </span><br><span class="line">block.coinbase(address)                 <span class="comment">// 挖出当前区块的矿工地址                 </span></span><br><span class="line">block.difficulty(uint)                  <span class="comment">// 当前区块的难度</span></span><br><span class="line">block.gaslimit(uint)                    <span class="comment">// 当前区块的gas限额</span></span><br><span class="line">block.number(uint)                      <span class="comment">// 当前区块号</span></span><br><span class="line">block.timestamp(uint)                   <span class="comment">// 当前区块以秒计数的时间戳</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 如下是智能合约可以获得的调用信息</span></span><br><span class="line">msg.data        (bytes)                 <span class="comment">// 完整的调用信息(calldata)</span></span><br><span class="line">mas.gas         ( uint)                 <span class="comment">// 剩余的gas</span></span><br><span class="line">mas.sender      (address)               <span class="comment">// 消息发送者(当前调用)</span></span><br><span class="line">msg.sig         (bytes4)                <span class="comment">// calldata的前4字节（即函数标识符）</span></span><br><span class="line">msg.value       (uint)                  <span class="comment">// 随消息发送的wei的数量</span></span><br><span class="line">now             (uint)                  <span class="comment">// 目前区块的时间戳(和前面的block.timestamp相同)</span></span><br><span class="line">tx.gasprice     (uint)                  <span class="comment">// 交易的gas价格</span></span><br><span class="line">tx.origin       (address)               <span class="comment">// 交易发起者</span></span><br></pre></td></tr></table></figure>
+<p>需要说明的有如下两点：</p>
+<ul>
+<li>智能合约调用的信息，全部是变量，而不是函数调用，括号中的类型，是这些变量的返回类型。</li>
+<li>msg.sender和tx.origin是有区别的，msg.sender表示调用当前合约的地址，不一定是交易的发起者。因为一笔交易中发起的合约A可以调用合约B，此时对于B来说，msg.sender是A，tx.origin是交易发起者。</li>
+</ul>
+<h3 id="智能合约中的地址类型"><a href="#智能合约中的地址类型" class="headerlink" title="智能合约中的地址类型"></a><strong>智能合约中的地址类型</strong></h3><table>
+<thead>
+<tr>
+<th>变量</th>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>address.balance</td>
+<td>成员<strong>变量</strong>，uint256类型</td>
+<td>返回uint256类型，返回address中以Wei计量的余额</td>
+<td></td>
+</tr>
+<tr>
+<td>address.transfer(uint256 amount)</td>
+<td>成员<strong>函数</strong>，</td>
+<td>向address所在的地址发送amount数量的Wei，失败时抛出异常，发送2300gas矿工费，该矿工费不可调节。</td>
+<td></td>
+</tr>
+<tr>
+<td>address.send(uint256 amount)</td>
+<td>成员<strong>函数</strong>，return (bool)</td>
+<td>向address发送amount书来那个的Wei，失败时返回false，调用时发送2300的gas矿工费，该矿工费不可调节。</td>
+<td></td>
+</tr>
+<tr>
+<td>address.call(…)</td>
+<td>成员<strong>函数</strong>，return (bool)</td>
+<td>发出底层CALL,失败返回false,发送所有可用的gas进行调用,发送的gas不可调节。</td>
+<td></td>
+</tr>
+<tr>
+<td>address.callcode(…)</td>
+<td>成员<strong>函数</strong>，return (bool)</td>
+<td>发出底层CallCODE,失败时返回false，发送所有可用的gas，发送的gas不可调节。</td>
+<td></td>
+</tr>
+<tr>
+<td>address.delegatecall(…)</td>
+<td>成员<strong>函数</strong>，return (bool)</td>
+<td>调用底层DELEGATECALL，失败返回false，发送所有可用gas发送的gas不可调节</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>注意：所有智能合约都可以显式的转换称地址类型。transfer和send以及call都可以用来进行转账，区别在于发送的汽油费不同。                                         </p>
+<h3 id="智能合约执行中的一些问题"><a href="#智能合约执行中的一些问题" class="headerlink" title="智能合约执行中的一些问题"></a><strong>智能合约执行中的一些问题</strong></h3><ul>
+<li><p>矿工执行某个调用智能合约的交易，执行过程中出错，是否需要发布到区块链上？</p>
+<ul>
+<li>答：需要发布到区块链上，虽然执行失败，但是需要扣掉gas fee，发布到区块链上，其他矿工执行失败时也相应的扣掉汽油费，只不过此时扣掉的汽油费不是转给自己，而是转给发布区块的矿工账户。</li>
+</ul>
+</li>
+<li><p>先执行智能合约再发布区块，还是先发布区块再执行智能合约？</p>
+<ul>
+<li>答：先执行智能合约，再发布到区块。每一个新发布区块中最新的三个状态树、交易树、收据树的哈希值，都是执行完智能合约之后才能得到。挖到区块的矿工发布区块之后，其他矿工随之执行新区块中的交易，同步更新本地存储的状态树、交易树和收据树，以此维持数据同步。</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>智能合约支持多线程吗？<ul>
+<li>智能合约的solidity不支持多线程。以太坊是一个交易驱动的状态机，因此面对同一种输入，必须到达一个确定的状态。但是多线程的问题在于多核对内存访问顺序不一样，就会引起状态变化，这不利于维护区块链中状态的一致性。同时，其他可能造成不一致的操作，智能合约也不支持。最明显的例子就是以太坊中的智能合约没办法产生真正意义下的随机数。</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/24/post-office问题/" rel="next" title="162:post_office问题">
+                <i class="fa fa-chevron-left"></i> 162:post_office问题
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/29/网络所19晚会/" rel="prev" title="北京大学计算机系网络所2018～2019年年会筹备事宜">
+                北京大学计算机系网络所2018～2019年年会筹备事宜 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">hzx</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#以太坊中的智能合约"><span class="nav-number">1.</span> <span class="nav-text">以太坊中的智能合约</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#以太坊中的智能合约（Smart-Coantract）"><span class="nav-number"></span> <span class="nav-text">以太坊中的智能合约（Smart Coantract）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建智能合约"><span class="nav-number"></span> <span class="nav-text">创建智能合约</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#调用智能合约"><span class="nav-number"></span> <span class="nav-text">调用智能合约</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#外部账户调用智能合约"><span class="nav-number"></span> <span class="nav-text">外部账户调用智能合约</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#智能合约账户调用智能合约"><span class="nav-number"></span> <span class="nav-text">智能合约账户调用智能合约</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#智能合约中的fallback-函数"><span class="nav-number"></span> <span class="nav-text">智能合约中的fallback()函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#汽油费-gas-fee"><span class="nav-number"></span> <span class="nav-text">汽油费(gas fee)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#智能合约中的条件判断"><span class="nav-number"></span> <span class="nav-text">智能合约中的条件判断</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#智能合约执行中可以调用的变量"><span class="nav-number"></span> <span class="nav-text">智能合约执行中可以调用的变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#智能合约中的地址类型"><span class="nav-number"></span> <span class="nav-text">智能合约中的地址类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#智能合约执行中的一些问题"><span class="nav-number"></span> <span class="nav-text">智能合约执行中的一些问题</span></a></li></ol></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hzx</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="true"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+  <script type="text/javascript" src="//cdn.bootcss.com/canvas-nest.js/1.0.0/canvas-nest.min.js"></script>
+  
+</body>
+</html>
