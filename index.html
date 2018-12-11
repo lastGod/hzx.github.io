@@ -228,7 +228,7 @@
 
     
 
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Startseite</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
 
   </li>
         
@@ -245,7 +245,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archiv</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
 
   </li>
 
@@ -281,6 +281,149 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lastgod.github.io/2018/12/11/优先级队列-邻接矩阵-Dijkstra算法/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Author">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hzx's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/12/11/优先级队列-邻接矩阵-Dijkstra算法/" class="post-title-link" itemprop="https://lastgod.github.io/index.html">优先级队列+邻接矩阵+Dijkstra算法</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-12-11 19:09:13 / Modified: 19:09:58" itemprop="dateCreated datePublished" datetime="2018-12-11T19:09:13+08:00">2018-12-11</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="优先级队列-邻接矩阵-Dijkstra算法"><a href="#优先级队列-邻接矩阵-Dijkstra算法" class="headerlink" title="优先级队列+邻接矩阵+Dijkstra算法"></a>优先级队列+邻接矩阵+Dijkstra算法</h1><h3 id="DijkStra算法代码"><a href="#DijkStra算法代码" class="headerlink" title="DijkStra算法代码"></a>DijkStra算法代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义Edge表示每一条边，from是始点，to是汇点，distance表示距离</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> from, to, distance;</span><br><span class="line">	Edge(<span class="keyword">int</span> f, <span class="keyword">int</span> t, <span class="keyword">int</span> d) :from(f), to(t), distance(d) &#123;&#125;;</span><br><span class="line">	<span class="keyword">bool</span> <span class="keyword">operator</span> &lt;(<span class="keyword">const</span> Edge&amp; e)<span class="keyword">const</span> &#123; <span class="keyword">return</span> <span class="keyword">this</span>-&gt;distance &gt; e.distance; &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// graph 表示图，以邻接矩阵形式表示，其中0编号顶点不算在图中。</span></span><br><span class="line"><span class="comment">// source表示源点</span></span><br><span class="line"><span class="comment">// distance表示从source到其他顶点的距离数组</span></span><br><span class="line"><span class="comment">// visit[i]表示顶点i是否在源点所在的集合中</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dijkstra</span><span class="params">(<span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; graph, <span class="keyword">const</span> <span class="keyword">int</span> source, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; distance)</span> </span>&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; visit(graph.size(), <span class="number">0</span>);</span><br><span class="line">	priority_queue&lt;Edge&gt; myQueue;</span><br><span class="line">	visit[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">	visit[source] = <span class="number">1</span>;</span><br><span class="line">	<span class="comment">// 初始时往优先级队列中加入从源点发出的所有的边</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; graph.size(); ++i)</span><br><span class="line">		<span class="keyword">if</span>(visit[i]==<span class="number">0</span>)</span><br><span class="line">			myQueue.emplace(source, i, distance[i]);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">while</span> (!myQueue.empty()) &#123;</span><br><span class="line">		Edge e = myQueue.top();</span><br><span class="line">		myQueue.pop();</span><br><span class="line">		<span class="keyword">if</span> (visit[e.to] == <span class="number">1</span>)</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		visit[e.to] = <span class="number">1</span>;</span><br><span class="line">		distance[e.to] = e.distance;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; graph.size(); ++j) &#123;</span><br><span class="line">			<span class="keyword">if</span> (visit[j] == <span class="number">0</span> &amp;&amp; distance[e.to] + graph[e.to][j] &lt; distance[j])&#123;</span><br><span class="line">				myQueue.emplace(e.to, j, distance[e.to] + graph[e.to][j]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><p>最多每条边都进入优先级队列，每次进入后队列调整用时logm，所以复杂度为O(mlogn)</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -335,19 +478,31 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
 
               
                 
               
 
-              <time title="Post created: 2018-12-04 19:19:37 / Updated at: 23:41:46" itemprop="dateCreated datePublished" datetime="2018-12-04T19:19:37+08:00">2018-12-04</time>
+              <time title="Created: 2018-12-04 19:19:37" itemprop="dateCreated datePublished" datetime="2018-12-04T19:19:37+08:00">2018-12-04</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-12-06 10:02:38" itemprop="dateModified" datetime="2018-12-06T10:02:38+08:00">2018-12-06</time>
               
             
           </span>
@@ -389,7 +544,7 @@
 <li><strong>Blockchain Science</strong>：将区块链科学部署到区块链科技应用的第一线中。由于当前的数字货币和合约依赖于启发式设计，至今都没有一个能够保证合约和数字货币足够安全属性的设计标准，建立一套高效的，可面向大规模、高安全性的区块链解决方案是IC3亟待解决的问题。</li>
 <li><strong>Blockchain Code</strong>：在坚实的科学基础的支持下，提供代码中的区块链创新。IC3合作开发并验证众多开源区块链工具和解决方案以满足金融行业在成本、安全、隐私和性能方面的需求。其区块链试验台Miniature World可以大规模模拟真实世界场景; 例如比特币运营系统规模的15％的实验，比较了比特币和Bitcoin-NG，一种由IC3开创的新型高性能区块链协议。</li>
 </ul>
-<h2 id="IC3研究院的研究目标。"><a href="#IC3研究院的研究目标。" class="headerlink" title="IC3研究院的研究目标。"></a>IC3研究院的研究目标。</h2><p>IC3研究院的研究项目涉及到了6大挑战：</p>
+<h2 id="IC3研究院的研究目标"><a href="#IC3研究院的研究目标" class="headerlink" title="IC3研究院的研究目标"></a>IC3研究院的研究目标</h2><p>IC3研究院的研究项目涉及到了6大挑战：</p>
 <ul>
 <li><strong>区块链扩展能力和性能</strong>：扩展区块链以使得公链和联盟连可以处理密集的全局工作，以及支持每秒可以处理100,000事务的能力。</li>
 <li><strong>设计和构建的正确性</strong>：通过编程语言方面的技术构建正确的代码和具有安全性证明的加密协议使得区块链开发人员能够设计安全的协议、编写正确的代码。</li>
@@ -410,7 +565,8 @@
 <li><p><strong>Fruitchain</strong>：一种新的激励兼容区块链的方法。今天的大部分区块链，比如比特币，都不是“激励兼容”，这意味着他们很容易受到不诚实对手的战略游戏的影响。 IC3已经证明，比特币区块链可以被矿工或采矿池所破坏，其采集散列功率远低于50％。 Fruitchain是一种创新的区块链方法，它可以阻止不诚实的游戏，使其对于具有低于50％的散列能力的对手来说极其无利可图，实现了ε-均衡或近纳什均衡。（在机制设计理论中，一个程序称为是激励相容的，若所有的参与者若依机制在诚实地揭示任何被要求的私有资讯时，会得到最好的成果。）</p>
 </li>
 <li><strong><a href=" http://www.falcon-net.org." target="_blank" rel="noopener">Falcon Network</a></strong>：用于区块链的高性能广域互连网，Falcon Network通过最少的验证和直通路由实现了超越当前方法的收益。 客户端不需要特殊软件，它基本上比所有其他已知技术更快。</li>
-<li><strong>FLAC</strong>：实际应用程序通常根据动态计算做出授权决策。 如果攻击者可能不正确地影响授权计算，则系统的完整性可能会受到影响。 由于授权决策通常基于敏感数据（如成员列表和密码），因此授权也可能会影响机密性。 Flow-Limited Authorization Calculus（FLAC）既是用于推理动态授权的简单，富有表现力的模型，也是用于安全地实现各种授权机制的语言。 即使对于包含并实现丰富的动态授权机制的程序，FLAC也提供了强大的端到端信息安全保障。<br>– <strong>去中心化理论与研究</strong>：这项工作探索了开放去中心化系统的安全性和稳定性的理论基础。 去中心化的好处包括抵抗多种攻击，多样性和权力分散。 比特币的新颖性和鼓舞人心的成功提供了新的证据，证明安全的去中心化系统比以前想象的更可行。  IC3和合作者刚刚发布了一份研究论文，分析了数字自治组织（DAO）及其投票机制。 本文确定了DAO机制设计中存在的问题，即激励投资者采取战略行为;这与他们的偏好真实投票不一致。<br>–<strong><a href="http://oblivm.com/hawk" target="_blank" rel="noopener">Hawk</a></strong>：隐私保护区块链和智能合约。现有的基于区块链的加密货币（如比特币和以太坊）将所有金融交易存储在区块链中。 这牺牲了金融交易的隐私，这在许多应用程序中都是必不可少的。 Hawk是一种基于区块链的智能合约系统，它在区块链上存储加密交易，并依靠加密技术来保留加密货币的安全性。</li>
+<li><strong>FLAC</strong>：实际应用程序通常根据动态计算做出授权决策。 如果攻击者可能不正确地影响授权计算，则系统的完整性可能会受到影响。 由于授权决策通常基于敏感数据（如成员列表和密码），因此授权也可能会影响机密性。 Flow-Limited Authorization Calculus（FLAC）既是用于推理动态授权的简单，富有表现力的模型，也是用于安全地实现各种授权机制的语言。 即使对于包含并实现丰富的动态授权机制的程序，FLAC也提供了强大的端到端信息安全保障。</li>
+<li><strong>去中心化理论与研究</strong>：这项工作探索了开放去中心化系统的安全性和稳定性的理论基础。 去中心化的好处包括抵抗多种攻击，多样性和权力分散。 比特币的新颖性和鼓舞人心的成功提供了新的证据，证明安全的去中心化系统比以前想象的更可行。  IC3和合作者刚刚发布了一份研究论文，分析了数字自治组织（DAO）及其投票机制。 本文确定了DAO机制设计中存在的问题，即激励投资者采取战略行为;这与他们的偏好真实投票不一致。<br>–<strong><a href="http://oblivm.com/hawk" target="_blank" rel="noopener">Hawk</a></strong>：隐私保护区块链和智能合约。现有的基于区块链的加密货币（如比特币和以太坊）将所有金融交易存储在区块链中。 这牺牲了金融交易的隐私，这在许多应用程序中都是必不可少的。 Hawk是一种基于区块链的智能合约系统，它在区块链上存储加密交易，并依靠加密技术来保留加密货币的安全性。</li>
 <li><p><strong><a href="http://www.initc3.org/files/tc.pdf" target="_blank" rel="noopener">Town Crier</a></strong>：智能合约的认证数据源。为了推理现实世界，加密货币系统中的智能合约将依赖于我们称之为认证数据馈送（ADF）的信息输入; 此类信息可包括股票价格，气象报告，新闻和其他当前事件。 因此，在提供安全性以防止试图影响合同结果的攻击者操纵的意义上，重要的是ADF是值得信赖的。 通过利用可信硬件为客户合同提供可靠，数字签名的数据证明，Town Crier系统可以在对其运营商的最小信任假设下充当值得信赖的ADF。</p>
 </li>
 <li><p><strong><a href="http://virtual-notary.org" target="_blank" rel="noopener">虚拟公证</a></strong>：免费安全的电子证明服务。虚拟公证是一种证明网上事实的服务。虚拟公证人在比特币块链上发行独立证书和不可变记录。它已运行超过3年，并认证超过600000个事实。</p>
@@ -517,14 +673,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
 
               
                 
               
 
-              <time title="Post created: 2018-12-02 10:49:53" itemprop="dateCreated datePublished" datetime="2018-12-02T10:49:53+08:00">2018-12-02</time>
+              <time title="Created: 2018-12-02 10:49:53" itemprop="dateCreated datePublished" datetime="2018-12-02T10:49:53+08:00">2018-12-02</time>
             
 
             
@@ -541,7 +697,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2018-12-03 13:30:40" itemprop="dateModified" datetime="2018-12-03T13:30:40+08:00">2018-12-03</time>
+                <time title="Modified: 2018-12-03 13:30:40" itemprop="dateModified" datetime="2018-12-03T13:30:40+08:00">2018-12-03</time>
               
             
           </span>
@@ -684,14 +840,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
 
               
                 
               
 
-              <time title="Post created: 2018-11-30 15:00:40" itemprop="dateCreated datePublished" datetime="2018-11-30T15:00:40+08:00">2018-11-30</time>
+              <time title="Created: 2018-11-30 15:00:40" itemprop="dateCreated datePublished" datetime="2018-11-30T15:00:40+08:00">2018-11-30</time>
             
 
             
@@ -708,7 +864,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2018-12-03 10:17:17" itemprop="dateModified" datetime="2018-12-03T10:17:17+08:00">2018-12-03</time>
+                <time title="Modified: 2018-12-03 10:17:17" itemprop="dateModified" datetime="2018-12-03T10:17:17+08:00">2018-12-03</time>
               
             
           </span>
@@ -849,14 +1005,14 @@ F[i] = max(F[i], F[t]+profit[i]); 其中1&lt;t&lt;i 同时t和i之间的距离�
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
 
               
                 
               
 
-              <time title="Post created: 2018-11-29 10:46:00" itemprop="dateCreated datePublished" datetime="2018-11-29T10:46:00+08:00">2018-11-29</time>
+              <time title="Created: 2018-11-29 10:46:00" itemprop="dateCreated datePublished" datetime="2018-11-29T10:46:00+08:00">2018-11-29</time>
             
 
             
@@ -873,7 +1029,7 @@ F[i] = max(F[i], F[t]+profit[i]); 其中1&lt;t&lt;i 同时t和i之间的距离�
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2018-12-03 10:17:25" itemprop="dateModified" datetime="2018-12-03T10:17:25+08:00">2018-12-03</time>
+                <time title="Modified: 2018-12-03 10:17:25" itemprop="dateModified" datetime="2018-12-03T10:17:25+08:00">2018-12-03</time>
               
             
           </span>
@@ -1066,14 +1222,14 @@ F[i] = max(F[i], F[t]+profit[i]); 其中1&lt;t&lt;i 同时t和i之间的距离�
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
 
               
                 
               
 
-              <time title="Post created: 2018-11-24 19:59:14" itemprop="dateCreated datePublished" datetime="2018-11-24T19:59:14+08:00">2018-11-24</time>
+              <time title="Created: 2018-11-24 19:59:14" itemprop="dateCreated datePublished" datetime="2018-11-24T19:59:14+08:00">2018-11-24</time>
             
 
             
@@ -1090,7 +1246,7 @@ F[i] = max(F[i], F[t]+profit[i]); 其中1&lt;t&lt;i 同时t和i之间的距离�
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2018-12-03 10:17:09" itemprop="dateModified" datetime="2018-12-03T10:17:09+08:00">2018-12-03</time>
+                <time title="Modified: 2018-12-03 10:17:09" itemprop="dateModified" datetime="2018-12-03T10:17:09+08:00">2018-12-03</time>
               
             
           </span>
@@ -1391,14 +1547,14 @@ contract B{
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
 
               
                 
               
 
-              <time title="Post created: 2018-11-24 19:58:45" itemprop="dateCreated datePublished" datetime="2018-11-24T19:58:45+08:00">2018-11-24</time>
+              <time title="Created: 2018-11-24 19:58:45" itemprop="dateCreated datePublished" datetime="2018-11-24T19:58:45+08:00">2018-11-24</time>
             
 
             
@@ -1415,7 +1571,7 @@ contract B{
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Updated at: 2018-12-03 10:15:17" itemprop="dateModified" datetime="2018-12-03T10:15:17+08:00">2018-12-03</time>
+                <time title="Modified: 2018-12-03 10:15:17" itemprop="dateModified" datetime="2018-12-03T10:15:17+08:00">2018-12-03</time>
               
             
           </span>
@@ -1553,8 +1709,8 @@ contract B{
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">6</span>
-                    <span class="site-state-item-name">Artikel</span>
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">posts</span>
                   </a>
                 </div>
               
@@ -1608,7 +1764,7 @@ contract B{
 </div>
 
 
-  <div class="powered-by">Erstellt mit  <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
 
 
 
