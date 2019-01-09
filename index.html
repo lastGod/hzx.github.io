@@ -318,6 +318,174 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lastgod.github.io/2019/01/09/最小路径覆盖/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hzx's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/09/最小路径覆盖/" class="post-title-link" itemprop="https://lastgod.github.io/index.html">最小路径覆盖</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2019-01-09 22:34:30 / 更新于：22:43:43" itemprop="dateCreated datePublished" datetime="2019-01-09T22:34:30+08:00">2019-01-09</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法设计与分析/" itemprop="url" rel="index"><span itemprop="name">算法设计与分析</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="题目来源：http-algorithm-openjudge-cn-2017mock-H"><a href="#题目来源：http-algorithm-openjudge-cn-2017mock-H" class="headerlink" title="题目来源：http://algorithm.openjudge.cn/2017mock/H/"></a>题目来源：<a href="http://algorithm.openjudge.cn/2017mock/H/" target="_blank" rel="noopener">http://algorithm.openjudge.cn/2017mock/H/</a></h2><h2 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h2><ul>
+<li>对于图G = （V，E）来说使用最少的路径，使得这些路径中的顶点互不相交并且这些路径中顶点的集合恰好时这个图的顶点。</li>
+<li>假设一条路径都没有，此时覆盖原图需要|V|条路径（每个顶点算作一个路径）。</li>
+<li>一旦两个顶点之间存在1条路径，那么需要的路径就会减少1条，因为1条边可以覆盖2个顶点。因此如果有K条这样的路径，那么就能够减少K条路径（1条路径可以减少额外的1个用于覆盖的顶点）。</li>
+<li>网上大神特别巧妙的思路，将一个定点划分为两部分，V划分为V1和V2， 将V1视作出边，V2视作入边。假如顶点U和V之间有连边，则连接U1和V2，将所有的出边和超级源点S连接，容量为1，将所有的入边和超级汇点T连接，容量为1，求该网络流的最大流，最后用|V|-maxFlow即为最小的路径覆盖数。</li>
+</ul>
+<h2 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* Dinic algo for max flow</span></span><br><span class="line"><span class="comment">*</span></span><br><span class="line"><span class="comment">* This implementation assumes that #nodes, #edges, and capacity on each edge &lt;= INT_MAX,</span></span><br><span class="line"><span class="comment">* which means INT_MAX is the best approximation of INF on edge capacity.</span></span><br><span class="line"><span class="comment">* The total amount of max flow computed can be up to LLONG_MAX (not defined in this file),</span></span><br><span class="line"><span class="comment">* but each 'dfs' call in 'dinic' can return &lt;= INT_MAX flow value.</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;limits.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;assert.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unordered_map&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N (1000+2)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> M (2*N*N+4*N)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> LL;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; VI;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span>&lt;VI&gt; VVI;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">const</span> <span class="keyword">int</span> CI;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">edge</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> v, cap, next;</span><br><span class="line">&#125;;</span><br><span class="line">edge e[M];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> head[N], level[N], cur[N];</span><br><span class="line"><span class="keyword">int</span> num_of_edges;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* When there are multiple test sets, you need to re-initialize before each</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dinic_init</span><span class="params">(<span class="keyword">void</span>)</span> </span>&#123;</span><br><span class="line">	num_of_edges = <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">memset</span>(head, <span class="number">-1</span>, <span class="keyword">sizeof</span>(head));</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">add_edge</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> v, <span class="keyword">int</span> c1, <span class="keyword">int</span> c2)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span>&amp; i = num_of_edges;</span><br><span class="line"></span><br><span class="line">	assert(c1 &gt;= <span class="number">0</span> &amp;&amp; c2 &gt;= <span class="number">0</span> &amp;&amp; c1 + c2 &gt;= <span class="number">0</span>); <span class="comment">// check for possibility of overflow</span></span><br><span class="line">	e[i].v = v;</span><br><span class="line">	e[i].cap = c1;</span><br><span class="line">	e[i].next = head[u];</span><br><span class="line">	head[u] = i++;</span><br><span class="line"></span><br><span class="line">	e[i].v = u;</span><br><span class="line">	e[i].cap = c2;</span><br><span class="line">	e[i].next = head[v];</span><br><span class="line">	head[v] = i++;</span><br><span class="line">	<span class="keyword">return</span> i;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">print_graph</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> u = <span class="number">0</span>; u &lt; n; u++) &#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d: "</span>, u);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = head[u]; i &gt;= <span class="number">0</span>; i = e[i].next) &#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%d(%d)"</span>, e[i].v, e[i].cap);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* Find all augmentation paths in the current level graph</span></span><br><span class="line"><span class="comment">* This is the recursive version</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> t, <span class="keyword">int</span> bn)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (u == t) <span class="keyword">return</span> bn;</span><br><span class="line">	<span class="keyword">int</span> left = bn;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> &amp;i = cur[u]; i &gt;= <span class="number">0</span>; i = e[i].next) &#123;</span><br><span class="line">		<span class="keyword">int</span> v = e[i].v;</span><br><span class="line">		<span class="keyword">int</span> c = e[i].cap;</span><br><span class="line">		<span class="keyword">if</span> (c &gt; <span class="number">0</span> &amp;&amp; level[u] + <span class="number">1</span> == level[v]) &#123;</span><br><span class="line">			<span class="keyword">int</span> flow = dfs(v, t, min(left, c));</span><br><span class="line">			<span class="keyword">if</span> (flow &gt; <span class="number">0</span>) &#123;</span><br><span class="line">				e[i].cap -= flow;</span><br><span class="line">				e[i ^ <span class="number">1</span>].cap += flow;</span><br><span class="line">				cur[u] = i;</span><br><span class="line">				left -= flow;</span><br><span class="line">				<span class="keyword">if</span> (!left) <span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (left &gt; <span class="number">0</span>) level[u] = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">return</span> bn - left;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">bfs</span><span class="params">(<span class="keyword">int</span> s, <span class="keyword">int</span> t)</span> </span>&#123;</span><br><span class="line">	<span class="built_in">memset</span>(level, <span class="number">0</span>, <span class="keyword">sizeof</span>(level));</span><br><span class="line">	level[s] = <span class="number">1</span>;</span><br><span class="line">	<span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line">	q.push(s);</span><br><span class="line">	<span class="keyword">while</span> (!q.empty()) &#123;</span><br><span class="line">		<span class="keyword">int</span> u = q.front();</span><br><span class="line">		q.pop();</span><br><span class="line">		<span class="keyword">if</span> (u == t) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = head[u]; i &gt;= <span class="number">0</span>; i = e[i].next) &#123;</span><br><span class="line">			<span class="keyword">int</span> v = e[i].v;</span><br><span class="line">			<span class="keyword">if</span> (!level[v] &amp;&amp; e[i].cap &gt; <span class="number">0</span>) &#123;</span><br><span class="line">				level[v] = level[u] + <span class="number">1</span>;</span><br><span class="line">				q.push(v);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">LL <span class="title">dinic</span><span class="params">(<span class="keyword">int</span> s, <span class="keyword">int</span> t)</span> </span>&#123;</span><br><span class="line">	LL max_flow = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">while</span> (bfs(s, t)) &#123;</span><br><span class="line">		<span class="built_in">memcpy</span>(cur, head, <span class="keyword">sizeof</span>(head));</span><br><span class="line">		max_flow += dfs(s, t, INT_MAX);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> max_flow;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">upstream</span><span class="params">(<span class="keyword">int</span> s, <span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> cnt = <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; visited(n);</span><br><span class="line">	<span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line">	visited[s] = <span class="literal">true</span>;</span><br><span class="line">	q.push(s);</span><br><span class="line">	<span class="keyword">while</span> (!q.empty()) &#123;</span><br><span class="line">		<span class="keyword">int</span> u = q.front();</span><br><span class="line">		q.pop();</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = head[u]; i &gt;= <span class="number">0</span>; i = e[i].next) &#123;</span><br><span class="line">			<span class="keyword">int</span> v = e[i].v;</span><br><span class="line">			<span class="keyword">if</span> (e[i].cap &gt; <span class="number">0</span> &amp;&amp; !visited[v]) &#123;</span><br><span class="line">				visited[v] = <span class="literal">true</span>;</span><br><span class="line">				q.push(v);</span><br><span class="line">				cnt++;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> cnt; <span class="comment">// excluding s</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">	<span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">int</span> m, n;</span><br><span class="line">	<span class="built_in">cin</span> &gt;&gt; m &gt;&gt; n;</span><br><span class="line">	<span class="keyword">int</span> s = <span class="number">0</span>, t = <span class="number">2</span> * n + <span class="number">1</span>;</span><br><span class="line">	dinic_init();</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; ++i) &#123;</span><br><span class="line">		<span class="keyword">int</span> a, b; <span class="built_in">cin</span> &gt;&gt; a &gt;&gt; b;</span><br><span class="line">		add_edge(a, b + n, <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">		add_edge(s, i + <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">		add_edge(i + n + <span class="number">1</span>, t, <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	LL maxFlow = dinic(s, t);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,n - maxFlow);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 参考：https://blog.csdn.net/pengwill97/article/details/82765383</span></span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://lastgod.github.io/2019/01/09/昂贵的聘礼/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1607,7 +1775,7 @@ F[i] = max(F[i], F[t]+profit[i]); 其中1&lt;t&lt;i 同时t和i之间的距离�
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2019-01-09 22:28:22" itemprop="dateModified" datetime="2019-01-09T22:28:22+08:00">2019-01-09</time>
+                <time title="更新于：2019-01-09 22:31:48" itemprop="dateModified" datetime="2019-01-09T22:31:48+08:00">2019-01-09</time>
               
             
           </span>
@@ -2352,7 +2520,7 @@ contract B{
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-count">10</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
