@@ -318,193 +318,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lastgod.github.io/2019/01/10/Regression/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar2.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="hzx's Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/10/Regression/" class="post-title-link" itemprop="https://lastgod.github.io/index.html">逻辑回归的理解</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建于：2019-01-10 15:11:03 / 更新于：15:13:07" itemprop="dateCreated datePublished" datetime="2019-01-10T15:11:03+08:00">2019-01-10</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/机器学习/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p></p><h2>逻辑回归(Logistic Regression)<h2><p></p>
-<h3>1. 回归(Regression)<h3><br><br>- 回归，我的理解来说，其直观的理解就是拟合的意思。我们以线性回归为例子，在二维平面上有一系列红色的点，我们想用一条直线来尽量拟合这些红色的点，这就是线性回归。回归的本质就是我们的预测结果尽量贴近实际观测的结果，或者说我们的求得一些参数，经过计算之后的预测结果尽可能接近真实值。<br><center> <image src="https://i.imgur.com/la7bDLS.jpg" width="50%"></image><br><br><h3>2. 逻辑回归的由来<h3><br><br>- 对于二类线性可分的数据集，使用线性感知器就可以很好的分类。如下图中红色和蓝色的点，我们使用一条直线$x_1 +x_2 = 3$就可以区分两种数据集，在直线上方的属于红色类，直线下方的属于蓝色类。<br><center> <image src="https://i.imgur.com/uPQ0xxk.jpg"></image></center><br><br>- 但是如果二类线性不可分的数据集，我们无法找到一条直线能够将两种类别很好的区分，即线性回归的分类法对于线性不可分的数据无法有效分类。例如下图中的红色点和蓝色点，我们无法使用一条直线很好的区分这两类，但是我们可以使用非线性分类器，如果我们使用${x_1}^2+{x_2}^2 = 1$，在圆外面的为红色类，在圆里面的一类为蓝色类。<br><br><center> <image src="https://i.imgur.com/TdJn8NO.jpg"></image></center><br><br>- 诚然，数据线性可分可以使用线性分类器，如果数据线性不可分，可以使用非线性分类器，这里似乎没有逻辑回归什么事情。但是如果我们想知道对于一个二类分类问题，对于具体的一个样例，我们不仅想知道该类属于某一类，而且还想知道该类属于某一类的概率多大,有什么办法呢？<br><br>- 线性回归和非线性回归的分类问题都不能给予解答，因为线性回归和非线性回归的问题，假设其分类函数如下：<br>                              $$y = wx+b$$<br><br>- y的阈值处于$（-\infty，+\infty）$，此时不能很好的给出属于某一类的概率，因为概率的范围是[0,1],我们需要一个更好的映射函数，能够将分类的结果很好的映射成为[0,1]之间的概率，并且这个函数能够具有很好的可微分性。在这种需求下，人们找到了这个映射函数，即逻辑斯谛函数，也就是我们常说的sigmoid函数，其形式如下：<br><br><br>   $$\frac{1}{1+e^{-z}}$$<br><br><br><br>- sigmoid函数图像如下图所示<br><br><center> <image src="https://i.imgur.com/T53inQT.png" width="50%"></image></center><br><br><br>- sigmoid函数完美的解决了上述需求，而且sigmoid函数连续可微分。<br>- 假设数据离散二类可分，分为0类和1类,如果概率值大于1/2，我们就将该类划分为1类，如果概率值低于1/2,我们就将该类划分为0类。当z取值为0的时候，概率值为1/2，这时候需要人为规定划分为哪一类。<br><br><br><h3>3. 逻辑回归的损失函数(Loss Function)和成本函数(Cost Function)<h3><br><br>- 在二类分类中，我们假定sigmoid输出结果表示属于1类的概率值，我们很容易想到用平方损失函数，即<br><center><br><image src="https://i.imgur.com/3C1RzcD.jpg " widh="50%" height="80"></image><br></center><br><br>- 在这种情况下，我们φ(z(i))表示sigmoid对第i个值的预测结果，我们将sigmoid函数带入上述成本函数中，绘制其图像，发现这个成本函数的函数图像是一个非凸函数，如下图所示，这个函数里面有很多极小值，如果采用梯度下降法，则会导致陷入局部最优解中,有没有一个凸函数的成本函数呢？<br><center><br><image src="https://i.imgur.com/R5r6LvC.jpg " width="50%"></image><br></center><br><br>- 假设sigmoid函数φ(z)表示属于1类的概率，于是做出如下的定义：<br><center><image src=" https://i.imgur.com/IBlS1zQ.jpg"></image></center><br><br><br>- 将两个式子综合来，可以改写为下式：<br><center><br><image src="https://i.imgur.com/KdpNVpf.jpg"></image><br><br>- 上式将分类为0和分类和1的概率计算公式合二为一。假设分类器分类足够准确，此时对于一个样本，如果它是属于1类，分类器求出的属于1类的概率应该尽可能大，即p(y=1lx)尽可能接近1；如果它是0类，分类器求出的属于0类的概率应该尽可能大，即p(y=0lx)尽可能接近1。<br><br>- 通过上述公式对二类分类的情况分析，可知我们的目的是求取参数w和b，使得p(ylx)对0类和1类的分类结果尽可能取最大值，然而实际上我们定义的损失函数的是求最小值，于是，很自然的，我们想到对p(ylx)式子加一个负号，就变成了求最小值的问题，这就得到了逻辑回归中的损失函数。<br><br>- 不过，为了计算方便，我们通常对上述式子取log，因而得到下式：<br><br><center><br><image src="https://i.imgur.com/Swgjn66.jpg " width="50%"></image><br><br>- 公式(1)是对概率公式取log，公式(2)是对公式(1)取相反数。上述公式的函数图像如下图所示。这是一个凸函数（斜率是非单调递减的函数即凸函数），因此可以用梯度下降法求其最小值。<br><center><br><image src="https://i.imgur.com/CAHBRdg.jpg "></image><br></center><br><br>- 根据损失函数是单个样本的预测值和实际值的误差，而成本函数是全部样本的预测值和实际值之间的误差，于是对所有样本的损失值取平均数，得到我们的成本函数：<br><center><br><image src="https://i.imgur.com/cNXT1Ev.jpg"></image><br></center><br><br>- 损失函数是凸函数，m个损失函数的和仍然是凸函数，因而可以用梯度下降法求最小值。<br><br><br><h3>4. 极大似然法求解逻辑回归</h3>
-
-<ul>
-<li><p>还可以用我们熟知的统计学知识——极大似然法估计逻辑回归中的参数w和b，上述得到的logp(y|w,x),假设目前有m组样本，分别为$(x_1,y_1),(x_2,y_2)…(x_m,y_m)$，其中xi表示第i个样本的特征，yi表示第i个样本的类别，yi = 0或者1，利用极大似然法的原则，假设所有训练样本独立同分布，则联合概率为所有样本概率的乘积，即：</p>
-<center><br><image src="https://i.imgur.com/kaGRRZc.jpg"></image><br></center>
-</li>
-<li><p>对上述公式两边取对数，得到下述公式，是不是对这个公式优点熟悉呢？这个公式就是我们的成本函数的和，对于这个公式和成本函数来说，取平均值和不取平均值没有影响。</p>
-<center><br><image src="https://i.imgur.com/zHLnJJc.jpg"></image><br></center>
-</li>
-<li><p>按照极大似然法求极值的方法，分别对w的每个参数求偏导数使其为0，得到对数似然方程组，求解该方程，便可以到的w的参数。只是如果参数很多，求解方程组就会很复杂，此时可以考虑梯度下降法来求解。</p>
-</li>
-</ul>
-<p></p><h3>5. 总结</h3><p></p>
-<ul>
-<li><p>逻辑回归最大的优势在于它的输出结果不仅可以用于分类，还可以表征某个样本属于某类别的概率。</p>
-</li>
-<li><p>逻辑斯谛函数将原本输出结果从范围$（-\infty，+\infty）$ 映射到(0,1)，从而完成概率的估测。</p>
-</li>
-<li><p>逻辑回归得判定的阈值能够映射为平面的一条判定边界，随着特征的复杂化，判定边界可能是多种多样的样貌，但是它能够较好地把两类样本点分隔开，解决分类问题。</p>
-</li>
-<li><p>求解逻辑回归参数的传统方法是梯度下降，构造为凸函数的代价函数后，每次沿着偏导方向(下降速度最快方向)迈进一小部分，直至N次迭代后到达最低点。</p>
-</li>
-</ul>
-<p>参考：<br><a href="http://blog.csdn.net/han_xiaoyang/article/details/49123419" target="_blank" rel="noopener">http://blog.csdn.net/han_xiaoyang/article/details/49123419</a><br><a href="http://blog.csdn.net/zjuPeco/article/details/77165974" target="_blank" rel="noopener">http://blog.csdn.net/zjuPeco/article/details/77165974</a><br><a href="http://blog.csdn.net/star_liux/article/details/39666737" target="_blank" rel="noopener">http://blog.csdn.net/star_liux/article/details/39666737</a></p>
-</center></center></h3></h3></h3></h3></center></h3></h3></h2></h2>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://lastgod.github.io/2019/01/10/逻辑回归的理解/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -2245,6 +2058,244 @@ F[i] = max(F[i], F[t]+profit[i]); 其中1&lt;t&lt;i 同时t和i之间的距离�
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lastgod.github.io/2018/11/29/网络所19晚会/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hzx's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/11/29/网络所19晚会/" class="post-title-link" itemprop="https://lastgod.github.io/index.html">北京大学计算机系网络所2018～2019年年会筹备事宜</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2018-11-29 10:46:00" itemprop="dateCreated datePublished" datetime="2018-11-29T10:46:00+08:00">2018-11-29</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2019-01-09 22:31:48" itemprop="dateModified" datetime="2019-01-09T22:31:48+08:00">2019-01-09</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/班级事务/" itemprop="url" rel="index"><span itemprop="name">班级事务</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a>
+<ul>
+<li><p>DB2 P2P 云计算 移动</p>
+</li>
+<li><p>各组需要通知：</p>
+<ul>
+<li>学术报告：6篇，报名</li>
+<li>poster：10篇，每组一篇</li>
+<li>2周时间：确定人选、题目</li>
+</ul>
+</li>
+</ul>
+<h1 id="北京大学计算机系网络所2018～2019年年会筹备事宜"><a href="#北京大学计算机系网络所2018～2019年年会筹备事宜" class="headerlink" title="北京大学计算机系网络所2018～2019年年会筹备事宜"></a>北京大学计算机系网络所2018～2019年年会筹备事宜</h1><h2 id="学术报告"><a href="#学术报告" class="headerlink" title="学术报告"></a>学术报告</h2><ul>
+<li><p>==DB2 P2P 云计算 移动==</p>
+</li>
+<li><p>各组需要通知：</p>
+<ul>
+<li>学术报告：6篇，报名</li>
+<li>poster：10篇，每组一篇</li>
+<li>2周时间：确定人选、题目</li>
+</ul>
+</li>
+<li><p>活动：</p>
+<ul>
+<li>签到、抽奖：DB2（2周）<ul>
+<li>问卷星</li>
+<li>签到</li>
+<li>抽奖</li>
+</ul>
+</li>
+<li>茶歇食品：P2P（3周）</li>
+<li>poster奖品、学术报告奖品：云计算、移动（3周）</li>
+<li>主持人一个：关玉烁</li>
+<li>poster统一打印、自己布置</li>
+</ul>
+<h2 id="嘉年华"><a href="#嘉年华" class="headerlink" title="嘉年华"></a>嘉年华</h2></li>
+<li><p>==天网==</p>
+</li>
+<li><p>活动：（1个月）</p>
+<ul>
+<li>游戏规则、分数设置统计（2周）：各组组长，给体育委员审核</li>
+<li>游戏积分汇总<ul>
+<li>共享表格</li>
+</ul>
+</li>
+<li>食品、奖品</li>
+</ul>
+</li>
+</ul>
+<h2 id="晚会"><a href="#晚会" class="headerlink" title="晚会"></a>晚会</h2><ul>
+<li>==DB1、DB2、DB3、DB4、AI、虚拟化==</li>
+<li>活动：<ul>
+<li>节目报备：2周</li>
+<li>主持人：肖克成、屈笑如</li>
+<li>场地布置、设备调试、奖品保管、颁发统计：DB1</li>
+<li>打扫卫生：DB3</li>
+<li>签到、抽奖、投票：DB2</li>
+<li>ppt播放、ppt制作：AI</li>
+<li>奖品、零食、道具及其他可能采买：DB4（2周）交由班长审核</li>
+<li>全员纪念品、请帖（晚会）、海报：虚拟化，班长验收（一个月）</li>
+<li>摄影：虚拟化</li>
+</ul>
+</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -2294,7 +2345,7 @@ F[i] = max(F[i], F[t]+profit[i]); 其中1&lt;t&lt;i 同时t和i之间的距离�
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
