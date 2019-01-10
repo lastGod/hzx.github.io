@@ -110,7 +110,7 @@
 
   <meta property="og:type" content="website">
 <meta property="og:title" content="hzx&#39;s Home">
-<meta property="og:url" content="https://lastgod.github.io/categories/算法设计与分析/index.html">
+<meta property="og:url" content="https://lastgod.github.io/page/2/index.html">
 <meta property="og:site_name" content="hzx&#39;s Home">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
@@ -121,7 +121,7 @@
 
 
 
-  <link rel="canonical" href="https://lastgod.github.io/categories/算法设计与分析/">
+  <link rel="canonical" href="https://lastgod.github.io/page/2/">
 
 
 
@@ -131,7 +131,7 @@
   };
 </script>
 
-  <title>分类: 算法设计与分析 | hzx's Home</title>
+  <title>hzx's Home</title>
   
 
 
@@ -180,7 +180,8 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -238,7 +239,7 @@
         
         
           
-          <li class="menu-item menu-item-categories menu-item-active">
+          <li class="menu-item menu-item-categories">
 
     
     
@@ -297,254 +298,210 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
 
   
   
   
-  <div class="post-block category">
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>算法设计与分析<small>分类</small>
-        </h1>
-      </div>
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lastgod.github.io/2018/11/24/post-office问题/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hzx's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/11/24/post-office问题/" class="post-title-link" itemprop="https://lastgod.github.io/page/2/index.html">post_office问题</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2018-11-24 19:58:45" itemprop="dateCreated datePublished" datetime="2018-11-24T19:58:45+08:00">2018-11-24</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2019-01-04 16:08:36" itemprop="dateModified" datetime="2019-01-04T16:08:36+08:00">2019-01-04</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法设计与分析/" itemprop="url" rel="index"><span itemprop="name">算法设计与分析</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
 
       
         
+          
+            <a id="more"></a>
+<h1 id="Post-Office-修建问题。"><a href="#Post-Office-修建问题。" class="headerlink" title="Post Office 修建问题。"></a>Post Office 修建问题。</h1><p>地址： <a href="http://noi.openjudge.cn/ch0206/162/" target="_blank" rel="noopener">http://noi.openjudge.cn/ch0206/162/</a></p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>设置F[p][v]表示V个village中修建p个邮局使得所有村庄到最近邮局的距离最近。<br>得到了如下递推公式：<br>F[p][v] = min{F[p][v], F[p-1][k-1]+ dis[k][v]};<br>为什么这样进行递推？这是因为本题目中以最后一个邮局所属的村庄进行划分，因为总有一些village到最后一个邮局的距离是最近的，但是这些村子的数量不知道，我们需要知道到底多少village划归到最后一个post office的时候是最优的。<br><!-- more --></p>
+<p>#####隐藏内容<br>但是我们知道，能够划分到最后一个post office的village，至少是第p个，修建之前的p-1个post office，至少需要p-1个village。因此有如下等式：</p>
+<center>p-1&lt;=k-1&lt;=v</center>
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
 
-      <h2 class="post-title">
+<p>递推式表示在前面k-1个village中修建p-1个post office，随后的第k个village到第v个village，修建最后一个post office， dis[k][v]表示在第k个village和第v个village中修建1个post office时各个village到这个post office的距离之和的最小值。</p>
+<p>现在需要解决如下问题，dis[k][v]如何计算？<br>在k和v之间修建一个post office，同时所有village到该post office的距离最小，该如何计算呢？正确计算方法是将post office修建到这些village的中位数中。</p>
+<p>假设范围是i和j-1之间的中位数中修建了一个post office，最优值为dis[i][j-1],现在当新加入一个village j之后。假设i和j-1之间的中位数是K，新加入j之后选择L作为新的post office 位置。现在分情况讨论：</p>
+<ul>
+<li>如果原本i和j之间有奇数个village，新加入一个j之后，仍然可以取原来的K作为中位数，此时中位数位置不变，所以<br>  <center><br>  dis[i,j] = dis[i,j-1]+village[j] - village[(j+i)/2]  <center></center></center></li>
+<li>如果原本i和j之间有偶数个village，假设此时post office的修建地址设置为中位数中较大的数的位置，此时新加入j后，post office的位置不发生改变，那么仍然由如下计算公式：  <center><br>  dis[i,j] = dis[i,j-1]+village[j] - village[(j+i)/2]<br>  <center><br>综上，可以得出:<br>  <center><br>  dis[i,j] = dis[i,j-1]+village[j] - village[(j+i)/2]<br>  </center>
+
+
+</center></center></li>
+</ul>
+<h2 id="源代码"><a href="#源代码" class="headerlink" title="源代码"></a>源代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;climits&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">solution</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; village, <span class="keyword">int</span> officeCount)</span> </span>&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; F(officeCount + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(village.size(), <span class="number">0</span>));</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; dis(village.size(), <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(village.size(), <span class="number">0</span>));</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; village.size(); ++i)&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = i+<span class="number">1</span>; j &lt; village.size(); ++j) &#123;</span><br><span class="line">			<span class="keyword">int</span> k1 = (i + j - <span class="number">1</span>) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">int</span>  k2 = (i + j) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">			dis[i][j] = dis[i][j - <span class="number">1</span>] + village[j] - village[(i+j)/<span class="number">2</span>];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> v = <span class="number">1</span>; v &lt; village.size(); ++v)</span><br><span class="line">		F[<span class="number">1</span>][v] = dis[<span class="number">1</span>][v];</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> p = <span class="number">2</span>; p &lt;= officeCount; ++p)&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> v = p; v &lt; village.size(); ++v) &#123;</span><br><span class="line">			F[p][v] = INT_MAX;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> k = p; k &lt;=v; ++k)</span><br><span class="line">				F[p][v] = min(F[p][v],F[p<span class="number">-1</span>][k<span class="number">-1</span>]+dis[k][v]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> F[officeCount][village.size() - <span class="number">1</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> V, P;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;V, &amp;P) != EOF) &#123;	</span><br><span class="line">		<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; village(V+<span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= V; ++i)</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;village[i]);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,solution(village, P));</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2><p>上述代码的时间复杂度为O(pV^2)</p>
+
+          
         
-            <a class="post-title-link" href="/2019/01/10/股票买卖/" itemprop="url">
-              
-                <span itemprop="name">股票买卖</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-10T14:16:27+08:00" content="2019-01-10">
-          01-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/01/09/最小路径覆盖/" itemprop="url">
-              
-                <span itemprop="name">最小路径覆盖</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-09T22:34:30+08:00" content="2019-01-09">
-          01-09
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2019/01/09/昂贵的聘礼/" itemprop="url">
-              
-                <span itemprop="name">昂贵的聘礼</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-01-09T21:58:31+08:00" content="2019-01-09">
-          01-09
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/11/测试数据集/" itemprop="url">
-              
-                <span itemprop="name">Checking an Alibi 测试数据集</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-11T19:37:30+08:00" content="2018-12-11">
-          12-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/11/优先级队列-邻接矩阵-Dijkstra算法/" itemprop="url">
-              
-                <span itemprop="name">优先级队列+邻接矩阵+Dijkstra算法</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-11T19:09:13+08:00" content="2018-12-11">
-          12-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/12/02/带通配符的字符串匹配/" itemprop="url">
-              
-                <span itemprop="name">带通配符的字符串匹配</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-12-02T10:49:53+08:00" content="2018-12-02">
-          12-02
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/11/30/开餐馆问题/" itemprop="url">
-              
-                <span itemprop="name">开餐馆问题</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-11-30T15:00:40+08:00" content="2018-11-30">
-          11-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-      
-        
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/11/24/post-office问题/" itemprop="url">
-              
-                <span itemprop="name">post_office问题</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-11-24T19:58:45+08:00" content="2018-11-24">
-          11-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
       
     </div>
 
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
   </div>
   
   
   
+  </article>
+
+
+    
+  </section>
 
   
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+  </nav>
 
 
 

@@ -108,24 +108,24 @@
 
 
 
-  <meta name="description" content="优先级队列+邻接矩阵+Dijkstra算法DijkStra算法代码1234567891011121314151617181920212223242526272829303132333435// 定义Edge表示每一条边，from是始点，to是汇点，distance表示距离struct Edge &amp;#123;	int from, to, distance;	Edge(int f, int t, in">
+  <meta name="description" content="题目来源：http://bailian.openjudge.cn/practice/4121/解题思路 假设股票数组为prices 假设F[k][i]表示到第i天总共买卖k次时的最大利润，可以将其分为两种情况，即第i天发生了买卖和未发生买卖。 假如第i天没有买卖股票，那么F[k][i] = F[k][i-1] 假如第i天参与股票买卖，那么F[k][i] = max{prices[i] - pric">
 <meta property="og:type" content="article">
-<meta property="og:title" content="优先级队列+邻接矩阵+Dijkstra算法">
-<meta property="og:url" content="https://lastgod.github.io/2018/12/11/优先级队列-邻接矩阵-Dijkstra算法/index.html">
+<meta property="og:title" content="股票买卖">
+<meta property="og:url" content="https://lastgod.github.io/2019/01/10/股票买卖/index.html">
 <meta property="og:site_name" content="hzx&#39;s Home">
-<meta property="og:description" content="优先级队列+邻接矩阵+Dijkstra算法DijkStra算法代码1234567891011121314151617181920212223242526272829303132333435// 定义Edge表示每一条边，from是始点，to是汇点，distance表示距离struct Edge &amp;#123;	int from, to, distance;	Edge(int f, int t, in">
+<meta property="og:description" content="题目来源：http://bailian.openjudge.cn/practice/4121/解题思路 假设股票数组为prices 假设F[k][i]表示到第i天总共买卖k次时的最大利润，可以将其分为两种情况，即第i天发生了买卖和未发生买卖。 假如第i天没有买卖股票，那么F[k][i] = F[k][i-1] 假如第i天参与股票买卖，那么F[k][i] = max{prices[i] - pric">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-04T08:08:49.062Z">
+<meta property="og:updated_time" content="2019-01-10T06:50:29.277Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="优先级队列+邻接矩阵+Dijkstra算法">
-<meta name="twitter:description" content="优先级队列+邻接矩阵+Dijkstra算法DijkStra算法代码1234567891011121314151617181920212223242526272829303132333435// 定义Edge表示每一条边，from是始点，to是汇点，distance表示距离struct Edge &amp;#123;	int from, to, distance;	Edge(int f, int t, in">
+<meta name="twitter:title" content="股票买卖">
+<meta name="twitter:description" content="题目来源：http://bailian.openjudge.cn/practice/4121/解题思路 假设股票数组为prices 假设F[k][i]表示到第i天总共买卖k次时的最大利润，可以将其分为两种情况，即第i天发生了买卖和未发生买卖。 假如第i天没有买卖股票，那么F[k][i] = F[k][i-1] 假如第i天参与股票买卖，那么F[k][i] = max{prices[i] - pric">
 
 
 
 
 
 
-  <link rel="canonical" href="https://lastgod.github.io/2018/12/11/优先级队列-邻接矩阵-Dijkstra算法/">
+  <link rel="canonical" href="https://lastgod.github.io/2019/01/10/股票买卖/">
 
 
 
@@ -135,7 +135,7 @@
   };
 </script>
 
-  <title>优先级队列+邻接矩阵+Dijkstra算法 | hzx's Home</title>
+  <title>股票买卖 | hzx's Home</title>
   
 
 
@@ -321,7 +321,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://lastgod.github.io/2018/12/11/优先级队列-邻接矩阵-Dijkstra算法/">
+    <link itemprop="mainEntityOfPage" href="https://lastgod.github.io/2019/01/10/股票买卖/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="博主">
@@ -338,7 +338,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">优先级队列+邻接矩阵+Dijkstra算法
+          <h1 class="post-title" itemprop="name headline">股票买卖
               
             
           </h1>
@@ -363,24 +363,12 @@
                 
               
 
-              <time title="创建于：2018-12-11 19:09:13" itemprop="dateCreated datePublished" datetime="2018-12-11T19:09:13+08:00">2018-12-11</time>
+              <time title="创建于：2019-01-10 14:16:27 / 更新于：14:50:29" itemprop="dateCreated datePublished" datetime="2019-01-10T14:16:27+08:00">2019-01-10</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="更新于：2019-01-04 16:08:49" itemprop="dateModified" datetime="2019-01-04T16:08:49+08:00">2019-01-04</time>
               
             
           </span>
@@ -437,8 +425,14 @@
       
 
       
-        <h1 id="优先级队列-邻接矩阵-Dijkstra算法"><a href="#优先级队列-邻接矩阵-Dijkstra算法" class="headerlink" title="优先级队列+邻接矩阵+Dijkstra算法"></a>优先级队列+邻接矩阵+Dijkstra算法</h1><h3 id="DijkStra算法代码"><a href="#DijkStra算法代码" class="headerlink" title="DijkStra算法代码"></a>DijkStra算法代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 定义Edge表示每一条边，from是始点，to是汇点，distance表示距离</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> from, to, distance;</span><br><span class="line">	Edge(<span class="keyword">int</span> f, <span class="keyword">int</span> t, <span class="keyword">int</span> d) :from(f), to(t), distance(d) &#123;&#125;;</span><br><span class="line">	<span class="keyword">bool</span> <span class="keyword">operator</span> &lt;(<span class="keyword">const</span> Edge&amp; e)<span class="keyword">const</span> &#123; <span class="keyword">return</span> <span class="keyword">this</span>-&gt;distance &gt; e.distance; &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// graph 表示图，以邻接矩阵形式表示，其中0编号顶点不算在图中。</span></span><br><span class="line"><span class="comment">// source表示源点</span></span><br><span class="line"><span class="comment">// distance表示从source到其他顶点的距离数组</span></span><br><span class="line"><span class="comment">// visit[i]表示顶点i是否在源点所在的集合中</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dijkstra</span><span class="params">(<span class="keyword">const</span> <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; graph, <span class="keyword">const</span> <span class="keyword">int</span> source, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; distance)</span> </span>&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; visit(graph.size(), <span class="number">0</span>);</span><br><span class="line">	priority_queue&lt;Edge&gt; myQueue;</span><br><span class="line">	visit[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">	visit[source] = <span class="number">1</span>;</span><br><span class="line">	<span class="comment">// 初始时往优先级队列中加入从源点发出的所有的边</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; graph.size(); ++i)</span><br><span class="line">		<span class="keyword">if</span>(visit[i]==<span class="number">0</span>)</span><br><span class="line">			myQueue.emplace(source, i, distance[i]);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">while</span> (!myQueue.empty()) &#123;</span><br><span class="line">		Edge e = myQueue.top();</span><br><span class="line">		myQueue.pop();</span><br><span class="line">		<span class="keyword">if</span> (visit[e.to] == <span class="number">1</span>)</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		visit[e.to] = <span class="number">1</span>;</span><br><span class="line">		distance[e.to] = e.distance;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; graph.size(); ++j) &#123;</span><br><span class="line">			<span class="keyword">if</span> (visit[j] == <span class="number">0</span> &amp;&amp; distance[e.to] + graph[e.to][j] &lt; distance[j])&#123;</span><br><span class="line">				myQueue.emplace(e.to, j, distance[e.to] + graph[e.to][j]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><p>最多每条边都进入优先级队列，每次进入后队列调整用时logm，所以复杂度为O(mlogn)</p>
+        <h2 id="题目来源：http-bailian-openjudge-cn-practice-4121"><a href="#题目来源：http-bailian-openjudge-cn-practice-4121" class="headerlink" title="题目来源：http://bailian.openjudge.cn/practice/4121/"></a>题目来源：<a href="http://bailian.openjudge.cn/practice/4121/" target="_blank" rel="noopener">http://bailian.openjudge.cn/practice/4121/</a></h2><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><ul>
+<li>假设股票数组为prices</li>
+<li>假设F[k][i]表示到第i天总共买卖k次时的最大利润，可以将其分为两种情况，即第i天发生了买卖和未发生买卖。</li>
+<li>假如第i天没有买卖股票，那么F[k][i] = F[k][i-1]</li>
+<li>假如第i天参与股票买卖，那么F[k][i] = max{prices[i] - prices[t]+F[k-1][t]},即在t天内进行了k-1次买卖，因为同一天可以多次买卖，随后又在第t天买入股票，第i天卖出股票。其中0&lt;=t&lt;=i</li>
+<li>对上述进行优化，max{prices[i] - prices[i] - prices[t]+F[k-1][t]} = prices[i] +max{F[k-1][t]-prices[t]}; (0&lt;=t&lt;=i-1), 对于确定的i和k，每次求max{F[k-1][t]-prices[t]}都需要对t从1到i进行遍历，于是可以在循环中，求解时用一个临时变量tmp记录max{F[k-1][t]-prices[t]},t属于[0,i-1]，每次i增量时比较tmp和F[k-1][i]-prices[i]和tmp的较大值赋给tmp,再进行求解。</li>
+</ul>
+<h2 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h2><p>代码中nums即为解题思路中的prices<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;climits&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; VI;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span>&lt;VI&gt; VVI;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">const</span> <span class="keyword">int</span> CI;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">solution</span><span class="params">(<span class="keyword">const</span> VI&amp; nums, CI K)</span> </span>&#123;</span><br><span class="line">	<span class="function">VVI <span class="title">F</span><span class="params">(K + <span class="number">1</span>, VI(nums.size(), <span class="number">0</span>))</span></span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= K; ++k) &#123;</span><br><span class="line">		<span class="keyword">int</span> tmp = F[k - <span class="number">1</span>][<span class="number">0</span>] - nums[<span class="number">0</span>];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.size(); ++i) &#123;</span><br><span class="line">			tmp = max(F[k<span class="number">-1</span>][i] - nums[i], tmp);</span><br><span class="line">			F[k][i] = max(F[k][i - <span class="number">1</span>], nums[i] + tmp);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> F[K][nums.size() - <span class="number">1</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">	<span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">int</span> castCount; <span class="built_in">cin</span> &gt;&gt; castCount;</span><br><span class="line">	<span class="keyword">while</span> (castCount--) &#123;</span><br><span class="line">		<span class="keyword">int</span> N;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; N;</span><br><span class="line">		<span class="function">VI <span class="title">nums</span><span class="params">(N, <span class="number">0</span>)</span></span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">auto</span>&amp;e : nums)</span><br><span class="line">			<span class="built_in">cin</span> &gt;&gt; e;</span><br><span class="line">		<span class="keyword">int</span> ans = solution(nums,<span class="number">2</span>);</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -469,8 +463,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/04/康奈尔大学IC3实验室研究方向整理/" rel="next" title="康奈尔大学IC3研究院介绍">
-                <i class="fa fa-chevron-left"></i> 康奈尔大学IC3研究院介绍
+              <a href="/2019/01/09/最小路径覆盖/" rel="next" title="最小路径覆盖">
+                <i class="fa fa-chevron-left"></i> 最小路径覆盖
               </a>
             
           </div>
@@ -478,10 +472,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/12/11/测试数据集/" rel="prev" title="Checking an Alibi 测试数据集">
-                Checking an Alibi 测试数据集 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -679,7 +669,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#优先级队列-邻接矩阵-Dijkstra算法"><span class="nav-text">优先级队列+邻接矩阵+Dijkstra算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#DijkStra算法代码"><span class="nav-text">DijkStra算法代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#复杂度分析"><span class="nav-text">复杂度分析</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目来源：http-bailian-openjudge-cn-practice-4121"><span class="nav-text">题目来源：http://bailian.openjudge.cn/practice/4121/</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解题思路"><span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AC代码"><span class="nav-text">AC代码</span></a></li></ol></div>
             
 
           </div>
