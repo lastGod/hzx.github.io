@@ -318,6 +318,192 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://lastgod.github.io/2018/11/30/开餐馆问题/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hzx's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/11/30/开餐馆问题/" class="post-title-link" itemprop="https://lastgod.github.io/page/2/index.html">开餐馆问题</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2018-11-30 15:00:40" itemprop="dateCreated datePublished" datetime="2018-11-30T15:00:40+08:00">2018-11-30</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2019-01-09 22:27:58" itemprop="dateModified" datetime="2019-01-09T22:27:58+08:00">2019-01-09</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法设计与分析/" itemprop="url" rel="index"><span itemprop="name">算法设计与分析</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a>
+<p>北大信息学院的同学小明毕业之后打算创业开餐馆.现在共有n 个地点可供选择。小明打算从中选择合适的位置开设一些餐馆。这 n 个地点排列在同一条直线上。我们用一个整数序列m1, m2, … mn 来表示他们的相对位置。由于地段关系,开餐馆的利润会有所不同。我们用pi 表示在mi 处开餐馆的利润。为了避免自己的餐馆的内部竞争,餐馆之间的距离必须大于k。请你帮助小明选择一个总利润最大的方案。</p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><h3 id="思路一：将问题专为话最长递增子序列的问题。"><a href="#思路一：将问题专为话最长递增子序列的问题。" class="headerlink" title="思路一：将问题专为话最长递增子序列的问题。"></a>思路一：将问题专为话最长递增子序列的问题。</h3><pre><code>- 假设dp[i]表示选定了第i个位置开餐馆的最大收益，此时递推公式为：
+F[i] = max(F[i], F[t]+profit[i]); 其中1&lt;t&lt;i 同时t和i之间的距离大于k
+</code></pre><p>在这种思路下，代码如下:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// pos[i]表示第i个餐馆的位置， profit[j]表示第j个位置开餐馆的利润</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">solution1</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; pos, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; profit, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; F(profit);</span><br><span class="line">	<span class="keyword">int</span> ans = profit[<span class="number">1</span>];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; pos.size(); ++i) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= i - <span class="number">1</span>; ++j) &#123;</span><br><span class="line">			<span class="keyword">if</span> (pos[i] - pos[j] &gt; k)</span><br><span class="line">				F[i] = max(F[i], F[j] + profit[i]);</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">		ans = max(ans, F[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> G;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;G) != EOF) &#123;</span><br><span class="line">		<span class="keyword">while</span> (<span class="number">0</span> &lt; G--) &#123;</span><br><span class="line">			<span class="keyword">int</span> n, k;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;n, &amp;k);</span><br><span class="line">			<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; pos(n + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">				<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;pos[i]);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; profit(n + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">				<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;profit[i]);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, solution1(pos, profit, k));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="思路二：将问题转化为0-1背包问题"><a href="#思路二：将问题转化为0-1背包问题" class="headerlink" title="思路二：将问题转化为0-1背包问题"></a>思路二：将问题转化为0-1背包问题</h3><pre><code>- 假设dp[i][j]在长度为pos[j]的范围内，考虑前i个餐馆的最大利润，此时递推公式如下：
+</code></pre><p>dp[i][j] = max(dp[i-1][j], dp[i-1][pos[i]-k-1]+profit[i]); </p>
+<p>上述递推公式虽然涉及到了i和j，但是对背包问题经过空间优化，可以使用1维的数组保留记录。最终代码如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">solution2</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; pos, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; profit, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">	<span class="comment">// F[i][j] 表示考虑前i个餐馆，前j个位置的最大距离</span></span><br><span class="line">	<span class="comment">// F[i] = max&#123;F[k]+profit[i]&#125;;</span></span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dp(pos.size(), <span class="number">0</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; pos.size(); ++i) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = pos.size()<span class="number">-1</span>; j&gt;=i; --j) &#123;</span><br><span class="line">			<span class="keyword">if</span> (pos[j] &gt;= pos[i])&#123;</span><br><span class="line">				<span class="keyword">int</span> index = i;</span><br><span class="line">				<span class="keyword">while</span>(pos[i] - pos[index] &lt;= k&amp;&amp;index &gt;<span class="number">0</span>)</span><br><span class="line">					--index;</span><br><span class="line">				dp[j] = max(dp[j], dp[index] + profit[i]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> dp[pos.size() - <span class="number">1</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> G;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;G) != EOF) &#123;</span><br><span class="line">		<span class="keyword">while</span> (<span class="number">0</span> &lt; G--) &#123;</span><br><span class="line">			<span class="keyword">int</span> n, k;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;n, &amp;k);</span><br><span class="line">			<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; pos(n + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">				<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;pos[i]);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; profit(n + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">				<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;profit[i]);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, solution2(pos, profit, k));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="时间复杂度分析"><a href="#时间复杂度分析" class="headerlink" title="时间复杂度分析"></a>时间复杂度分析</h2><ul>
+<li>第一种思路的方法，选定一个i的时候，需要向前遍历距离大于k的位置，因此时间复杂度为O(n^2)$。</li>
+<li>第二种思路的方法，看起来有三个循环，但是实际上第二个for循环和while循环加起来总共是O(n)的时间复杂度，所以时间复杂度也是O(n^2)。</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://lastgod.github.io/2018/11/29/网络所19晚会/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -1129,7 +1315,7 @@ contract B{
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-count">14</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1462,6 +1648,8 @@ contract B{
 
   
   
+    
+      
     
       
     
