@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next pisces use-motion" lang="zh-CN">
+<html class="theme-next pisces use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -112,7 +112,7 @@
 <meta property="og:title" content="hzx&#39;s Home">
 <meta property="og:url" content="https://hzxGoForward.github.io/index.html">
 <meta property="og:site_name" content="hzx&#39;s Home">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hzx&#39;s Home">
 
@@ -173,7 +173,7 @@
 
 </head>
 
-<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-CN">
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
 
   
   
@@ -204,7 +204,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="切换导航栏">
+    <button aria-label="Toggle navigation bar">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -318,10 +318,397 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2019/02/22/闪电网络科普/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hzx's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/22/闪电网络科普/" class="post-title-link" itemprop="https://hzxGoForward.github.io/index.html">闪电网络科普</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2019-02-22 21:16:44 / 更新于：21:39:01" itemprop="dateCreated datePublished" datetime="2019-02-22T21:16:44+08:00">2019-02-22</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>文章作者:白鱼</p>
+<h2 id="闪电网络白话版"><a href="#闪电网络白话版" class="headerlink" title="闪电网络白话版"></a>闪电网络白话版</h2><p>很多人说闪电网络是比特币的未来，是趋势。但笔者始终觉得，如果不能理解底层的技术原理，就无以言对上层应用的深刻理解，更不足以谈对未来趋势的判断。接下来，我将在Aaron van Wirdum 编写的《闪电网络三部曲》的基础上，用更加通俗的语言介绍闪电网络。感谢Aaron van Wirdum绘制的交易结构图，这对我们理解闪电网络将会起到莫大的帮助。</p>
+<p>理解闪电网络主要分为两步，一是理解双向支付通道，二是诸多通道扩展成闪电网络。</p>
+<p>闪电网络想要解决的是比特币扩容、交易即时确认和手续费高的问题。举个例子来说明闪电网络整体思路，设想我们的老朋友Alice要给Bob转1个比特币，她该怎么做呢？</p>
+<p>传统做法是Alice可以挑选出其未花费的输出用对应私钥签名，并向比特币网络广播，矿工验证打包，一般来说6个区块之后即可确认交易。这个过程很慢，需要等待一个小时左右，并且还要支付给矿工的手续费。于是呢，天才的程序员们碰撞出了闪电网络的解决方案。</p>
+<p>操作过程是这样的，Alice和Bob先各自把5个BTC转给一个由两人共同控制的多重签名地址。这笔交易和比特币网络上其他普通交易没什么太大区别，只是转出的地址是一个多签地址。这个过程称为开启通道。</p>
+<p>多重签名技术（multisig）是多个用户同时对一个数字资产进行签名。可以简单地理解为，一个账户多个人拥有签名权和支付权。如果一个地址只能由一个私钥签名和支付，表现形式就是1/1；而多重签名的表现形式是m/n，也就是说一共n个私钥可以给一个账户签名，而当m个地址签名时，就可以支付一笔交易。例如，多重签名2/3，表示3个人拥有签名权，而两个人签名就可以支付这个账户里的比特币；多重签名1/2，表示2个人拥有签名权，谁都可以单独来支配这笔资金。</p>
+<p>开启通道后，这个多签地址里面就拥有10个比特币，这是被区块链记录了的，全网承认。接下来就是Alice和Bob私底下的交易了，不广播，不记在链上，正因如此，交易确认速度快，几乎零手续费（其实可能还有较低的路由费，后文会讲），这个过程称为链外交易，在交易通道（channel）中进行。（注意：有很多人问为什么闪电网络很快，我想说，没有第三方记账当然快啊。）</p>
+<ol>
+<li><strong>构建双向支付通道</strong></li>
+</ol>
+<p>什么是通道？怎么在通道进行交易呢？它安全吗？</p>
+<p>简单来说，Alice和Bob都会在各自的小本本上记账，他们都知道对方怎么记的，且有密码学设计保证谁也不能多记耍赖。这当然也是由闪电协议精巧的设计保证的，后文再讲技术细节。</p>
+<p>那么我们就可以想象出这样一个通道：在这个通道中，一开始Alice和Bob各有有5个，如果第一笔记“Alice有4个，Bob有6个”，这就相当于Alice给Bob转了1个比特币。如果，过了几天，Alice又要向Bob支付2个比特币，那么他俩会再记一次账，这次记“Alice有2个，Bob有8个”，同时上次记的“Alice有4个，Bob有6个”在两人共同确认后作废，也就是说，本次记账后，Alice只有2个比特币，她不能再拿出旧账单说“Alice有4个，Bob有6个”。</p>
+<p>注意，在通道关闭之前，这10个比特币只能在Alice和Bob之间使用。也就是说，在不关闭通道的情况下，主网只知道多签地址有10个比特币，并不知道Bob已经拥有了其中的8个比特币，这就是所谓“双向支付通道”。</p>
+<p>关于这个记账过程，EthFans翻译的《用算盘了解闪电网络》可以说很形象了。<br><img src="https://mmbiz.qpic.cn/mmbiz_png/ockBglTNBdSrmo2Cm0MKm0Nf2rXGTlXDtH8GD2tKsiawtuRACV4PqwVLRK62sNF8JF4jK0HMKn9hiaRwsrjuZOLw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt=""></p>
+<p>之后Alice和Bob就可以在通道里过上你来我往的相互转账的愉快生活，远离主链的拥堵与高费用。这就好比俩人结婚了，夫妻们想要私下结算，只要俩人同意，想怎么算就怎么算。</p>
+<p>天有不测风云，突然有一天，Alice不想和Bob这么转来转去了，想取出自己在通道里的钱去外面的花花世界潇洒快活。那么就需要关闭通道了，常有两种方式，一是协议离婚，如下图，这种方式很和平，双方共同从最开始的多签地址签名发起一笔交易分别转到两人各自控制的地址对应数额的比特币，同时将之前记在小本本上的所有旧账一笔勾销。<br><img src="https://mmbiz.qpic.cn/mmbiz_png/ockBglTNBdSrmo2Cm0MKm0Nf2rXGTlXDxE8Cxm9exQREhtupjvyBWU3JbwdkAbrzHicfpLtAINop23dV8VgYb2A/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt=""></p>
+<p>二是起诉离婚，Alice想离而Bob不想离，这时Alice可以单方面强制关闭通道，将小本本最后一笔交易广播出去，只要矿工验证并打包进区块，这婚也算离了，代价是Alice并不能立马得到比特币，需要等待一定时间。本着劝和不劝分的原则，闪电协议设置了哈希时间锁定合约，单方面强制离婚（关闭交易通道）会受到延迟收到退款的惩罚，这是为了保证双方交易的稳定。</p>
+<p>以上最后一个过程是通道关闭。注意，不管是协议离婚还是起诉离婚，这都是要法院受理登记的。关闭通道一定要发起交易并广播到主网，最后矿工记录，所以还是要忍耐一定确认时间和支付手续费的，这与闪电网络无关。</p>
+<p>至此我们已经知道了Alice和Bob链下互相转账的那点事儿了，这就是所谓“双向支付通道”。开启通道需要在主链交易，这是锁定资金，关闭通道也需要在主链交易，这是释放资金。中间可以进行任意多次转账支付，是0确认0手续费的。</p>
+<ol start="2">
+<li><strong>将双向支付通道扩展成闪电网络</strong></li>
+</ol>
+<p>新问题来了，世界上除了这两位，还有Carol、Eric、Diana等等。设想Alice想转给Carol 1个BTC,她该怎么办呢？自然地，她俩可以再重复上述操作建立一个双向通道。但是，如果我们为了应用闪电网络，需要世界上每两个人之间都建立一条通道，这将是非常大的工作量且不切实际的。为了解决这一问题，我们需要将<strong>双向支付通道扩展成闪电网络</strong>。</p>
+<p>假如Bob和Carol之间已经建立了支付通道，而Alice和Bob之间也有支付通道，那么Alice可以先把钱转给Bob再由他转给Carol，即Bob充当了支付的中间人，在网络里他就是一个<strong>路由节点</strong>。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/ockBglTNBdSrmo2Cm0MKm0Nf2rXGTlXDwkYEUtaRhYoh1bXMIW9xIqAsCY3UfybmApEN4AJMRtOWgN2nGoEC0g/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt="如上图，B和C，A和B之间有通道， A和C就通过B来达成交易。更一般地，A和F可以经过B、D来交易。"><br>如上图，B和C，A和B之间有通道， A和C就通过B来达成交易。更一般地，A和F可以经过B、D来交易。</p>
+<p>当很多的节点相互建立通道，最后就会形成闪电网络。<br><img src="https://mmbiz.qpic.cn/mmbiz_png/ockBglTNBdSrmo2Cm0MKm0Nf2rXGTlXDj64MZtibe6n9Gw1qrj4EZIibbvreicL0F7lUAqHxicZexeyWUvxCa4sIKA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt=""></p>
+<h2 id="闪电网络原理技术细节版"><a href="#闪电网络原理技术细节版" class="headerlink" title="闪电网络原理技术细节版"></a>闪电网络原理技术细节版</h2><p>通过上文，我们差不多了解了闪电网路是如何形成的。但是看完大家一定会觉得有哪里不对劲。哪里不对劲呢？</p>
+<p>我们来回顾一下历史。</p>
+<p>如果Alice和Bob完成了一笔交易，他们手头各自都有账本，在没有第三方见证的情况下，他们都可能把账本按照对自己有利的方向进行篡改。银行是怎么解决这个问题的呢？在传统的银行业中，由于Alice和Bob都信任银行，因此银行充当了双方都信任的第三方来进行记账，并且以第三方的账目为准，因此双方不管怎么篡改账本都没用。区块链是怎么解决这个问题的呢？区块链同样引入了第三方来充当记账者，虽然Alice和Bob都不信任记账者，但系统会想尽办法来保证记账者的诚实性。</p>
+<p><strong>但是到了闪电网络，请注意，这里再也没有一个第三方记账者了！Alice和Bob又重新拿回了他们的小本子，各自记起了各自的账本。问题在于怎么保证他们都诚实记账！</strong></p>
+<p>1.<strong>双方支付通道：如何使记账的双方保持诚实？</strong></p>
+<p>这是一个非常有意思的问题，使得我们的第一步——建立“双向支付通道”,变得难以维持了。那么，Alice和Bob这样两个完全不信任对方的陌生人，究竟该如何在没有主链矿工记录的情况下，相互转账交易？</p>
+<p>作为铺垫，我们需要讲解两个概念，哈希时间锁定和哈希密钥锁定。首先是哈希时间锁定，这是在交易脚本里面设置时钟，必须要等设定时间之后，才能用地址的私钥签名解锁地址里的比特币。例如Alice收到了一笔2 BTC转账，但是对方设定了1000个区块之后才能解锁，所以Alice必须等待1000个区块之后才能用自己的私钥签署交易,花费其中的BTC转给Bob。</p>
+<p><img src="https://fs.bitcoinmagazine.com/img/articles/understanding-the-lightning-network-part-building-a-bidirectional-payment-channel-74.jpg" alt=""></p>
+<p>其次是哈希密钥锁定。哈希函数可以把一串输入转换成256位固定长度的输出，计算过程称为一次哈希运算，其中输入称为密文，输出称为密文的哈希值。哈希函数具有单向性，即从密文可以算出哈希值，但是从哈希值反向算出密文几乎是不可行的。计算的办法是暴力破解，逐一输入密文进行哈希运算，验证运算结果是否为要求的哈希值。基于这种特性，可以把一个密文的哈希值放入交易的输出当中充当哈希密文锁，也就是必须得输入该哈希值对应的密文才能解锁脚本中的比特币。例如，例如Alice收到了一笔2BTC转账，但是对方设定了哈希值锁定，所以Alice必须得到交易方的密文，同时配合自己的密钥签名才能签署交易，花费其中的BTC转给Bob。</p>
+<p>!()[<a href="https://fs.bitcoinmagazine.com/img/articles/understanding-the-lightning-network-part-building-a-bidirectional-payment-channel-75.jpg]" target="_blank" rel="noopener">https://fs.bitcoinmagazine.com/img/articles/understanding-the-lightning-network-part-building-a-bidirectional-payment-channel-75.jpg]</a></p>
+<p>有了这两个工具，让我们看看那群程序员天才们是如何构想出一个程序，使得互不相识的双方能够诚实记账的。</p>
+<p>在原理的白话版我们已经讲过了关于通道的三个步骤：开启通道，通道内交易，关闭通道。</p>
+<p>开启通道较为简单，Alice和Bob分别向多签地址1转入5个BTC。这是一个2/2地址，也就是必须两人都签名，此地址的比特币才可以转出去。</p>
+<p>!()[<a href="https://mmbiz.qpic.cn/mmbiz_png/ockBglTNBdSrmo2Cm0MKm0Nf2rXGTlXDR0TcR1ld98UzjmUuPAVgvxGrkmNdMGxGxsTv6kuNnIjyvWmibnAO3Jg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1]" target="_blank" rel="noopener">https://mmbiz.qpic.cn/mmbiz_png/ockBglTNBdSrmo2Cm0MKm0Nf2rXGTlXDR0TcR1ld98UzjmUuPAVgvxGrkmNdMGxGxsTv6kuNnIjyvWmibnAO3Jg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1]</a></p>
+<p>接下来是通道内交易，我们需要讲解Alice和Bob之间的两次交易才能完全明白双向支付通道的巧妙之处。第一次Alice需要向Bob支付1个BTC，第二次Bob需要向Alice支付1个比特币。</p>
+<p>第一次交易的流程是，Bob首先在自己电脑的闪电网络软件上构建交易，如下左图所示。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/ockBglTNBdSrmo2Cm0MKm0Nf2rXGTlXDd4dhf4icEe29vbw0pXibeMe9Mj2QVyOGkZRKiaRBH0tfkN9YdicicTHQNBw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt=""></p>
+<p>Bob在构建交易时需要通过闪电网络软件的通信模块和Alice建立联系，获得Alice创建的密文的哈希值，然后把这个哈希值作为哈希锁放在自己构建的交易里。这笔交易Bob把10个比特币分别转给Bob控制的普通地址6个和另一个“多签地址2”4个BTC。（<strong>通俗来讲，就是A和B的财产放在一起，但是B主动从A那里要了一把锁把A的财产锁住了，没有A的钥匙B也无法打开。</strong>）</p>
+<p>多签地址2是一个1/2地址，也就是两个条件有一个满足即可解锁。具体来说，需要Bob用自己的私钥和Alice的密文（此时Bob只有密文的哈希值，并不知道密文，所以Bob是不可能获得这4个比特币的）同时来解锁；或者Alice等待1000个区块后用私钥来解锁。如下图，这两个条件是双向支付通道的精髓所在，请先记住它，稍后分析中会讲设计的原因。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/ockBglTNBdSrmo2Cm0MKm0Nf2rXGTlXDZOaofqhhibvCKxEiatNlj2B0AYicUEAewu4fyaicsYWPeRvHumGqibLfNYg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt=""></p>
+<p>Bob构建完交易后会签名，然后把这笔未完成的交易以点对点方式发送给Alice，而不是广播到全网。显然，上述交易是对Bob有利的，一旦Alice签名并广播，Bob可以立即获得6个比特币，而Alice需要等到1000个区块之后才能拥有4个比特币。<strong>这也就是上文提到的单方面“起诉离婚”会受到延时惩罚的技术实现细节。然而，这笔对Bob有利的交易的主动控制权却掌握在Alice手里，因为Alice不签名并广播的话，这笔交易暂时不会生效的。</strong></p>
+<p>在Bob创建这笔对自己有利的交易同时，Alice也创建了类似的一笔对自己有利的交易，两者是一种镜像。这个过程相当于是Alice帮Bob在他的小本本上记了一笔账，这10个比特币Bob占6个，Alice占4个，同理Bob也帮Alice记账了。具体来说，就是Alice电脑里保存着Bob创建并签名的未完成交易，Bob保存着Alice创建并签名的未完成交易。两者合在一起，就完成了他们之间第一笔交易的记账过程，完整过程如下图。</p>
+<p><img src="https://fs.bitcoinmagazine.com/img/articles/understanding-the-lightning-network-part-building-a-bidirectional-payment-channel-76.jpg" alt=""></p>
+<p>这个过程并不需要互相信任，只需双方同时在线，建立联系并交换哈希值，再在各自的电脑里创建交易最后发送给对方。整个过程不需要经主链由矿工打包确认，所以非常快速并且没有手续费。也可以看到，任何一方都可以随时强制关闭通道，将自己占主动权的交易签名并广播全网，代价是1000区块延时,如何理解1000区块的延迟呢,Bob写的交易此时在Alice手中,Alice写的交易在Bob手中,假若Bob单方面对Alice写的交易进行签名后广播,这个交易Alice可以立马拿到4BTC,但是Bob需要等待1000个区块之后才能拿到6个BTC,这就是单方面撕毁合约的惩罚.</p>
+<p>但是这里仍然有一个问题，就是外界无法知道通道内的交易次序，因此无法鉴别通道关闭后广播出去的交易，是否为最终交易。例如，如果双方在这个通道里不断发生交易，最后导致Alice手中有9个，Bob手里有1个，但假设最后Bob强制关闭交易通道，并广播出去Alice有5个，Bob有5个，Bob便能凭空赚得4个。（虽然这4个要等到1000个区块后才能获得，但这是值得的。）该怎么解决这个问题呢？</p>
+<p>这次我们就要再次用到上文提到的哈希密钥锁了。</p>
+<p>现在我们考虑过了两天，Bob要向Alice转1个BTC，即双方发生第二笔交易B。类似他们仿照上述第一笔交易操作进行第二次记账，此时应当是Alice 5个，Bob 5个。</p>
+<p><img src="https://fs.bitcoinmagazine.com/img/articles/understanding-the-lightning-network-part-building-a-bidirectional-payment-channel-77.jpg" alt=""></p>
+<p><strong>一个最大的区别是建立第二笔交易B之前，两人会相互交换第一笔交易中的密文，即对方第一把锁的钥匙。</strong>这么做的目的在于作废第一笔交易记录A，使得两人都只能承认最新的交易记录B有效。</p>
+<p>设想Bob在第一笔记录中拥有6个比特币，而第二笔记录变成了5个，那么如果他想作弊去签名并广播第一条记录呢？</p>
+<p><strong>结果是他将失去通道内所有的比特币！</strong></p>
+<p>因为Bob签名并广播了下图交易之后，Alice立马会获得4个BTC，同时Bob则必须等待1000个区块之后才能解锁6个BTC。然而，由于此时Alice已经获得了密文即钥匙1，所以Alice可以赶在Bob之前解锁这6个BTC。综合来看，只要Bob想要广播旧交易记录，他就会一无所有。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/ockBglTNBdSrmo2Cm0MKm0Nf2rXGTlXDGscp6LicKy1euPlx8hibewha2HNZGhBRHzHAS2oOxTT3TQm15pP3LlMw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt=""></p>
+<p>有了能作废旧账的保证，双方就可以在通道内反复任意多次交易，每次交易之后的状态都是资金池资金的划分比例的最新确认状态。</p>
+<p>最后，关闭通道。如本文第二部分所讲，有两种方式关闭通道，一是单方面强制关闭，即某一方将自己控制的最新交易签名后广播出去即可。二是商议后关闭，此时双方再从最开始的多签地址构建一笔交易。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/ockBglTNBdSrmo2Cm0MKm0Nf2rXGTlXDibXibNHKl8mXKjprlWrH91FZn7DPebK9DInHrPhazj2MnqMVlJCF8zsg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt=""></p>
+<p>至此，我们明白了如何在无信任的条件下如何建立双向支付通道。</p>
+<p>2.<strong>闪电网络：如何使路由节点保持诚实？</strong></p>
+<p>同样的，在建立闪电网络的时候，我们同样会遇到信任问题：Alice想转给Carol 1个BTC，需要经过Bob，但Bob会担心自己给Carol转1BTC后，Alice耍赖；同样Alice会担心如果先给Bob转了1BTC，Bob也耍赖不转给Alice。在传统的金融系统中，是由大型知名金融中介机构的信用提供保证的。但闪电网络中，并没有这样一个独立于交易者的第三方去提供信用担保。</p>
+<p>闪电网络采用了一种HTLC(哈希时间锁定合约)完美解决了这个问题。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/ockBglTNBdSrmo2Cm0MKm0Nf2rXGTlXDibltOGOHFibuvoaO6TYTynUEHsbSBGXJrP1GeQbiaiatT31zyXec9YJtlQ/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt=""></p>
+<p>过程是这样的，第一，Carol会选择一个随机密文并运算得到其哈希值，再将此哈希值交给Alice。第二，Alice拿到哈希值后，会构建一笔转账给Bob的交易。这笔交易需要Bob拿到Carol的密文才能解锁，如果Bob在限定的时间内没有解锁成功，这笔钱则退回给Alice。第三，Bob从Alice处拿到哈希值，他也构建一笔转账给Carol的交易，Carol必须拿密文来解锁。第四，当Carol提供密文从Bob处获得1个BTC，Bob立马会拿密文从Alice处获得1个BTC，这就完成了从Alice给Carol转账的任务。</p>
+<p><strong>上述过程可以看作一个智能合约。故事类似于这样：A想经过B转账给C，那么C先给A一把锁，C有钥匙A有钱。A跟B说，你从C那里拿到了钥匙，我的钱就是你的了。B就拿着锁去找C，用钱跟C换钥匙，然后拿钥匙去换A的钱。如此一来，就实现了钱和锁从A到B再到C，钥匙从C到B再到A的一个流转。</strong></p>
+<p>当然，在实际操作过程中，Alice给Bob转账金额需要大于1个BTC，支付必要的路由费以激励Bob充当路由节点。<strong>其次，要注意两笔交易之间的哈希时间长度设置，第二步时间必须长于第三步时间。如果Bob在Alice关闭交易之后拿到Carol的钥匙，他将无法找Alice拿回1个BTC。</strong></p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/ockBglTNBdSrmo2Cm0MKm0Nf2rXGTlXDMnLh7gM1AO9MJq2U7aA3NnJMecK2z81Ut0q1cDHQNTIrS6aibLY5g3w/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt=""></p>
+<p>到这里，我们已经明白了闪电网络中通过路由节点达成交易的技巧，最后一步只需把之前两步整合进交易即可，就不再赘述了。</p>
+<p>原文链接:<a href="https://mp.weixin.qq.com/s/0KeSq2w8VBoeMYALAoVc9g" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/0KeSq2w8VBoeMYALAoVc9g</a></p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2019/02/21/EOS源码阅读/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hzx's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/21/EOS源码阅读/" class="post-title-link" itemprop="https://hzxGoForward.github.io/index.html">EOS源代码阅读</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2019-02-21 18:48:14 / 更新于：19:19:26" itemprop="dateCreated datePublished" datetime="2019-02-21T18:48:14+08:00">2019-02-21</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/区块链技术研究/" itemprop="url" rel="index"><span itemprop="name">区块链技术研究</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a>
+<p>本文用于记录对EOS源代码的阅读记录,对其相关内容从源代码中追踪问迹,希望从源代码入手,对其设计原理有一个深入的认识,也用于本人学习研究之用.<br>如果对EOS不太了解, 还需要对EOS顶层的内容有一些了解.这里推荐<a href="https://github.com/EOSIO/Documentation" target="_blank" rel="noopener">EOS的白皮书</a>进行了解学习. </p>
+<p>对任何区块链相关技术的学习,首先应该从其区块的结构开始学起,因此,本文首先从区块源代码入手开始了解.</p>
+<h1 id="EOS区块链相关数据结构"><a href="#EOS区块链相关数据结构" class="headerlink" title="EOS区块链相关数据结构"></a>EOS区块链相关数据结构</h1><h2 id="block-header"><a href="#block-header" class="headerlink" title="block header"></a><strong>block header</strong></h2><p>block header的定义,来自于”chain\webassembly\block_header.hpp”文件中,其主要结构如下:<br>| 属性        | 大小(Byte)    |  名称  |<br>| :——–   | :—–:   | :—-: |<br>| 时间戳        | 4      |   生产区块的时间    |<br>| 生产者      | 8      |   生产区块的超级节点    |<br>| 确认数        | 2      |   区块的确认数    |<br>| 交易的Merkle Root        | 32      |   区块中全部交易的默克尔数的哈希值    |<br>| action的Merkel Root        | 32      |   区块中全部action的默克尔数的哈希值    |<br>| schedule_version        | 4      |   见证人排序版本号    |<br>| 下一个见证人        | -     |   区块的下一个见证人,可以为空    |<br>| 扩展类型        |   -    |   vector&lt;std::pair&lt;uint16_t,vector<char>&gt;&gt;    |</char></p>
+<hr>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">block_header</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    block_timestamp_type             timestamp;</span><br><span class="line">    account_name                     producer;</span><br><span class="line">    <span class="keyword">uint16_t</span>                         confirmed = <span class="number">1</span>;  </span><br><span class="line">    block_id_type                    previous;</span><br><span class="line">    checksum256_type                 transaction_mroot; <span class="comment">/// mroot of cycles_summary</span></span><br><span class="line">    checksum256_type                 action_mroot; <span class="comment">/// mroot of all delivered action receipts</span></span><br><span class="line">    <span class="comment">/** The producer schedule version that should validate this block, this is used to</span></span><br><span class="line"><span class="comment">    * indicate that the prior block which included new_producers-&gt;version has been marked</span></span><br><span class="line"><span class="comment">    * irreversible and that it the new producer schedule takes effect this block.</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">uint32_t</span>                          schedule_version = <span class="number">0</span>;</span><br><span class="line">    optional&lt;producer_schedule_type&gt;  new_producers;</span><br><span class="line">    extensions_type                   header_extensions;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function">digest_type       <span class="title">digest</span><span class="params">()</span><span class="keyword">const</span></span>;</span><br><span class="line">    <span class="function">block_id_type     <span class="title">id</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line">    <span class="keyword">uint32_t</span>          block_num() <span class="keyword">const</span> &#123; <span class="keyword">return</span> num_from_id(previous) + <span class="number">1</span>; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">static</span> uint32_t   <span class="title">num_from_id</span><span class="params">(<span class="keyword">const</span> block_id_type&amp; id)</span></span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2019/01/21/算法设计模板总结/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Author">
+      <meta itemprop="name" content="博主">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar2.jpg">
     </span>
@@ -363,7 +750,7 @@
                 
               
 
-              <time title="创建时间：2019-01-21 09:48:18" itemprop="dateCreated datePublished" datetime="2019-01-21T09:48:18+08:00">2019-01-21</time>
+              <time title="创建于：2019-01-21 09:48:18" itemprop="dateCreated datePublished" datetime="2019-01-21T09:48:18+08:00">2019-01-21</time>
             
 
             
@@ -378,9 +765,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">更新于</span>
+                  <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="修改时间：2019-01-25 21:50:31" itemprop="dateModified" datetime="2019-01-25T21:50:31+08:00">2019-01-25</time>
+                <time title="更新于：2019-01-25 21:50:31" itemprop="dateModified" datetime="2019-01-25T21:50:31+08:00">2019-01-25</time>
               
             
           </span>
@@ -504,7 +891,7 @@
     <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2019/01/14/POJ题目分类/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Author">
+      <meta itemprop="name" content="博主">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar2.jpg">
     </span>
@@ -546,7 +933,7 @@
                 
               
 
-              <time title="创建时间：2019-01-14 00:47:00" itemprop="dateCreated datePublished" datetime="2019-01-14T00:47:00+08:00">2019-01-14</time>
+              <time title="创建于：2019-01-14 00:47:00" itemprop="dateCreated datePublished" datetime="2019-01-14T00:47:00+08:00">2019-01-14</time>
             
 
             
@@ -561,9 +948,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">更新于</span>
+                  <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="修改时间：2019-01-16 18:12:50" itemprop="dateModified" datetime="2019-01-16T18:12:50+08:00">2019-01-16</time>
+                <time title="更新于：2019-01-16 18:12:50" itemprop="dateModified" datetime="2019-01-16T18:12:50+08:00">2019-01-16</time>
               
             
           </span>
@@ -826,7 +1213,7 @@
     <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2019/01/10/逻辑回归的理解/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Author">
+      <meta itemprop="name" content="博主">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar2.jpg">
     </span>
@@ -868,7 +1255,7 @@
                 
               
 
-              <time title="创建时间：2019-01-10 15:11:03 / 修改时间：15:12:51" itemprop="dateCreated datePublished" datetime="2019-01-10T15:11:03+08:00">2019-01-10</time>
+              <time title="创建于：2019-01-10 15:11:03 / 更新于：15:12:51" itemprop="dateCreated datePublished" datetime="2019-01-10T15:11:03+08:00">2019-01-10</time>
             
 
             
@@ -1013,7 +1400,7 @@
     <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2019/01/10/股票买卖/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Author">
+      <meta itemprop="name" content="博主">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar2.jpg">
     </span>
@@ -1055,12 +1442,24 @@
                 
               
 
-              <time title="创建时间：2019-01-10 14:16:27 / 修改时间：15:01:19" itemprop="dateCreated datePublished" datetime="2019-01-10T14:16:27+08:00">2019-01-10</time>
+              <time title="创建于：2019-01-10 14:16:27" itemprop="dateCreated datePublished" datetime="2019-01-10T14:16:27+08:00">2019-01-10</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2019-01-26 12:44:46" itemprop="dateModified" datetime="2019-01-26T12:44:46+08:00">2019-01-26</time>
               
             
           </span>
@@ -1118,13 +1517,13 @@
           
             <h2 id="题目来源：http-bailian-openjudge-cn-practice-4121"><a href="#题目来源：http-bailian-openjudge-cn-practice-4121" class="headerlink" title="题目来源：http://bailian.openjudge.cn/practice/4121/"></a>题目来源：<a href="http://bailian.openjudge.cn/practice/4121/" target="_blank" rel="noopener">http://bailian.openjudge.cn/practice/4121/</a></h2><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><ul>
 <li>假设股票数组为prices</li>
-<li>假设F[k][i]表示到第i天总共买卖k次时的最大利润，可以将其分为两种情况，即第i天发生了买卖和未发生买卖。</li>
-<li>假如第i天没有买卖股票，那么F[k][i] = F[k][i-1]</li>
-<li>假如第i天参与股票买卖，那么F[k][i] = max{prices[i] - prices[t]+F[k-1][t]},为什么是这个推导公式，因为假如F[k][i]的最优解是，第x天是k-1次的卖出，随后的第y天又买入，第i天卖出，于是F[k][i] = F[k-1][x]+prices[i]- prices<a href="x&lt;= y &lt;=i">y</a>,此时必然有F[k-1][x] =F[k-1][y],证明如下：<ul>
+<li>设F[k][i]表示到第i天总共买卖k次时的最大利润，可以将其分为两种情况，即第i天卖出股票和未卖出股票。</li>
+<li>假如第i天没有卖出股票，F[k][i] = F[k][i-1]</li>
+<li>假如第i天卖出了股票，那么F[k][i] = max{prices[i] - prices[t]+F[k-1][t]},为什么是这个推导公式，因为假如F[k][i]的最优解是，第x天是k-1次的卖出，随后的第y天又买入，第i天卖出，于是F[k][i] = F[k-1][x]+prices[i]- prices<a href="x&lt;= y &lt;=i">y</a>,此时必然有F[k-1][x] =F[k-1][y],证明如下：<ul>
 <li>很显然，F[k-1][y]&gt;=F[k-1][x],假设F[k-1][y]&gt;F[k-1][x],此时必然有F[k-1][y]+prices[i]-prices[y]&gt;F[k][i] = F[k-1][x]+prices[i]- prices[y],这与最优解矛盾，因此必然有F[k-1][x] =F[k-1][y]，因此F[k][i]的推导公式可以写成max{prices[i] - prices[t]+F[k-1][t]}。</li>
 </ul>
 </li>
-<li>对上述进行优化，max{prices[i] - prices[i] - prices[t]+F[k-1][t]} = prices[i] +max{F[k-1][t]-prices[t]}; (0&lt;=t&lt;=i-1), 对于确定的i和k，每次求max{F[k-1][t]-prices[t]}都需要对t从1到i进行遍历，于是可以在循环中，求解时用一个临时变量tmp记录max{F[k-1][t]-prices[t]},t属于[0,i-1]，每次i增量时比较tmp和F[k-1][i]-prices[i]和tmp的较大值赋给tmp,再进行求解。</li>
+<li>对上述进行优化，max{prices[i] - prices[t]+F[k-1][t]} = prices[i] +max{F[k-1][t]-prices[t]}; (0&lt;=t&lt;=i-1), 对于确定的i和k，每次求max{F[k-1][t]-prices[t]}都需要对t从1到i进行遍历，于是可以在循环中，求解时用一个临时变量tmp记录max{F[k-1][t]-prices[t]},t属于[0,i-1]，每次i增量时比较tmp和F[k-1][i]-prices[i]和tmp的较大值赋给tmp,再进行求解。</li>
 </ul>
 <h2 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h2><p>代码中nums即为解题思路中的prices<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;climits&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; VI;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span>&lt;VI&gt; VVI;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">const</span> <span class="keyword">int</span> CI;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">solution</span><span class="params">(<span class="keyword">const</span> VI&amp; nums, CI K)</span> </span>&#123;</span><br><span class="line">	<span class="function">VVI <span class="title">F</span><span class="params">(K + <span class="number">1</span>, VI(nums.size(), <span class="number">0</span>))</span></span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= K; ++k) &#123;</span><br><span class="line">		<span class="keyword">int</span> tmp = F[k - <span class="number">1</span>][<span class="number">0</span>] - nums[<span class="number">0</span>];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.size(); ++i) &#123;</span><br><span class="line">			tmp = max(F[k<span class="number">-1</span>][i] - nums[i], tmp);</span><br><span class="line">			F[k][i] = max(F[k][i - <span class="number">1</span>], nums[i] + tmp);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> F[K][nums.size() - <span class="number">1</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">	<span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">int</span> castCount; <span class="built_in">cin</span> &gt;&gt; castCount;</span><br><span class="line">	<span class="keyword">while</span> (castCount--) &#123;</span><br><span class="line">		<span class="keyword">int</span> N;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; N;</span><br><span class="line">		<span class="function">VI <span class="title">nums</span><span class="params">(N, <span class="number">0</span>)</span></span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">auto</span>&amp;e : nums)</span><br><span class="line">			<span class="built_in">cin</span> &gt;&gt; e;</span><br><span class="line">		<span class="keyword">int</span> ans = solution(nums,<span class="number">2</span>);</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
@@ -1186,7 +1585,7 @@
     <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2019/01/09/最小路径覆盖/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Author">
+      <meta itemprop="name" content="博主">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar2.jpg">
     </span>
@@ -1228,7 +1627,7 @@
                 
               
 
-              <time title="创建时间：2019-01-09 22:34:30 / 修改时间：22:43:43" itemprop="dateCreated datePublished" datetime="2019-01-09T22:34:30+08:00">2019-01-09</time>
+              <time title="创建于：2019-01-09 22:34:30 / 更新于：22:43:43" itemprop="dateCreated datePublished" datetime="2019-01-09T22:34:30+08:00">2019-01-09</time>
             
 
             
@@ -1354,7 +1753,7 @@
     <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2019/01/09/昂贵的聘礼/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Author">
+      <meta itemprop="name" content="博主">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar2.jpg">
     </span>
@@ -1396,7 +1795,7 @@
                 
               
 
-              <time title="创建时间：2019-01-09 21:58:31 / 修改时间：22:31:29" itemprop="dateCreated datePublished" datetime="2019-01-09T21:58:31+08:00">2019-01-09</time>
+              <time title="创建于：2019-01-09 21:58:31 / 更新于：22:31:29" itemprop="dateCreated datePublished" datetime="2019-01-09T21:58:31+08:00">2019-01-09</time>
             
 
             
@@ -1522,7 +1921,7 @@
     <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2018/12/11/测试数据集/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Author">
+      <meta itemprop="name" content="博主">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar2.jpg">
     </span>
@@ -1564,7 +1963,7 @@
                 
               
 
-              <time title="创建时间：2018-12-11 19:37:30" itemprop="dateCreated datePublished" datetime="2018-12-11T19:37:30+08:00">2018-12-11</time>
+              <time title="创建于：2018-12-11 19:37:30" itemprop="dateCreated datePublished" datetime="2018-12-11T19:37:30+08:00">2018-12-11</time>
             
 
             
@@ -1579,9 +1978,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">更新于</span>
+                  <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="修改时间：2019-01-09 22:28:08" itemprop="dateModified" datetime="2019-01-09T22:28:08+08:00">2019-01-09</time>
+                <time title="更新于：2019-01-09 22:28:08" itemprop="dateModified" datetime="2019-01-09T22:28:08+08:00">2019-01-09</time>
               
             
           </span>
@@ -1815,7 +2214,7 @@
     <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2018/12/11/优先级队列-邻接矩阵-Dijkstra算法/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Author">
+      <meta itemprop="name" content="博主">
       <meta itemprop="description" content="">
       <meta itemprop="image" content="/images/avatar2.jpg">
     </span>
@@ -1857,7 +2256,7 @@
                 
               
 
-              <time title="创建时间：2018-12-11 19:09:13" itemprop="dateCreated datePublished" datetime="2018-12-11T19:09:13+08:00">2018-12-11</time>
+              <time title="创建于：2018-12-11 19:09:13" itemprop="dateCreated datePublished" datetime="2018-12-11T19:09:13+08:00">2018-12-11</time>
             
 
             
@@ -1872,9 +2271,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">更新于</span>
+                  <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="修改时间：2019-01-04 16:08:49" itemprop="dateModified" datetime="2019-01-04T16:08:49+08:00">2019-01-04</time>
+                <time title="更新于：2019-01-04 16:08:49" itemprop="dateModified" datetime="2019-01-04T16:08:49+08:00">2019-01-04</time>
               
             
           </span>
@@ -1973,415 +2372,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2018/12/04/康奈尔大学IC3实验室研究方向整理/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Author">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar2.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="hzx's Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/12/04/康奈尔大学IC3实验室研究方向整理/" class="post-title-link" itemprop="https://hzxGoForward.github.io/index.html">康奈尔大学IC3研究院介绍</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-12-04 19:19:37" itemprop="dateCreated datePublished" datetime="2018-12-04T19:19:37+08:00">2018-12-04</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-04 16:08:57" itemprop="dateModified" datetime="2019-01-04T16:08:57+08:00">2019-01-04</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/区块链技术研究/" itemprop="url" rel="index"><span itemprop="name">区块链技术研究</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <a id="more"></a>
-<h2 id="IC3研究院简介"><a href="#IC3研究院简介" class="headerlink" title="IC3研究院简介"></a>IC3研究院简介</h2><p><a href="https://www.initc3.org/projects.html" target="_blank" rel="noopener">康奈尔大学IC3研究院</a>致力于促进区块链技术的研究和应用(Advancing the Science and Applications of Blockchains).由康奈尔大学（Cornell University）、Cornell Tech、加州大学伯克利分校（UC Berkeley）、伊利诺伊大学（University of Illinois）厄巴纳校区和香槟校区以及以色列理工学院（Technion）的联合组成。</p>
-<p>IC3研究院的主要目的：</p>
-<ul>
-<li><strong>Blockchain Science</strong>：将区块链科学部署到区块链科技应用的第一线中。由于当前的数字货币和合约依赖于启发式设计，至今都没有一个能够保证合约和数字货币足够安全属性的设计标准，建立一套高效的，可面向大规模、高安全性的区块链解决方案是IC3亟待解决的问题。</li>
-<li><strong>Blockchain Code</strong>：在坚实的科学基础的支持下，提供代码中的区块链创新。IC3合作开发并验证众多开源区块链工具和解决方案以满足金融行业在成本、安全、隐私和性能方面的需求。其区块链试验台Miniature World可以大规模模拟真实世界场景; 例如比特币运营系统规模的15％的实验，比较了比特币和Bitcoin-NG，一种由IC3开创的新型高性能区块链协议。</li>
-</ul>
-<h2 id="IC3研究院的研究目标"><a href="#IC3研究院的研究目标" class="headerlink" title="IC3研究院的研究目标"></a>IC3研究院的研究目标</h2><p>IC3研究院的研究项目涉及到了6大挑战：</p>
-<ul>
-<li><strong>区块链扩展能力和性能</strong>：扩展区块链以使得公链和联盟连可以处理密集的全局工作，以及支持每秒可以处理100,000事务的能力。</li>
-<li><strong>设计和构建的正确性</strong>：通过编程语言方面的技术构建正确的代码和具有安全性证明的加密协议使得区块链开发人员能够设计安全的协议、编写正确的代码。</li>
-<li><strong>保密性</strong>：利用加密技术和可信的硬件，将透明性和安全性在区块链中结合起来。</li>
-<li><strong>提供可信数据</strong>：为区块链提供可靠的、鲁邦的数据供给系统，贡献高可信的数据提供方案。</li>
-<li><strong>安全和合规性</strong>：通过评估传统合同法和智能合约中的犯罪风险，为区块链的有效监测和有针对性干预提供技术和协议。</li>
-<li><strong>系统兼容</strong>：为区块链部署制定实用的迁移方式，实现新区块链系统与遗留系统的集成。</li>
-</ul>
-<h2 id="IC3的研究项目"><a href="#IC3的研究项目" class="headerlink" title="IC3的研究项目"></a>IC3的研究项目</h2><ul>
-<li><p><strong><a href="https://thehydra.io/" target="_blank" rel="noopener">Hydra</a></strong>：Hydra是一个先进的以太坊合同开发框架，用于去中心化安全和bug赏金，该框架通过严格的加密经济安全保证减轻程序员和编译器错误。</p>
-</li>
-<li><p><strong>Solidus</strong>：Solidus是可供 银行、政府、审计等使用的联盟连，它拥有区块链的去中心化特点的同时，但是相较现有的比特币系统，具有更高性能、提供更有力的监管和控制，许多成功的点对点技术历来被集中式或商用系统取代。Solidus解决了许多金融机构的期望——即数字货币和合约遵循相同的流程。</p>
-</li>
-<li><p><strong>Bitcoin-NG</strong>：由IC3牵头制定的一个行的区块链协议，致力于解决比特币的可扩展性问题，使得比特币网络能够在有限的网络环境下达到最高的吞吐量。不仅能够提高吞吐量，还能减少交易延迟，甚至可以达到秒级的交易确认速度。同时Bitcoin-NG不改变比特币开放性的架构和信任模式。</p>
-</li>
-<li><p><strong>Miniature World</strong>：一个可模拟真实世界区块链的区块链实验平台。由大约1000个节点组成。 该测试平台使我们能够在不同的区块链和各种用例上运行实验，使用现实的互联网延迟来评估真实场景（如上面针对比特币NG所引用的）。 目的是为行业赞助商提供微型世界，以评估各种区块链及其使用案例。看起来并不免费。</p>
-</li>
-<li><p><strong>Fruitchain</strong>：一种新的激励兼容区块链的方法。今天的大部分区块链，比如比特币，都不是“激励兼容”，这意味着他们很容易受到不诚实对手的战略游戏的影响。 IC3已经证明，比特币区块链可以被矿工或采矿池所破坏，其采集散列功率远低于50％。 Fruitchain是一种创新的区块链方法，它可以阻止不诚实的游戏，使其对于具有低于50％的散列能力的对手来说极其无利可图，实现了ε-均衡或近纳什均衡。（在机制设计理论中，一个程序称为是激励相容的，若所有的参与者若依机制在诚实地揭示任何被要求的私有资讯时，会得到最好的成果。）</p>
-</li>
-<li><strong><a href=" http://www.falcon-net.org." target="_blank" rel="noopener">Falcon Network</a></strong>：用于区块链的高性能广域互连网，Falcon Network通过最少的验证和直通路由实现了超越当前方法的收益。 客户端不需要特殊软件，它基本上比所有其他已知技术更快。</li>
-<li><strong>FLAC</strong>：实际应用程序通常根据动态计算做出授权决策。 如果攻击者可能不正确地影响授权计算，则系统的完整性可能会受到影响。 由于授权决策通常基于敏感数据（如成员列表和密码），因此授权也可能会影响机密性。 Flow-Limited Authorization Calculus（FLAC）既是用于推理动态授权的简单，富有表现力的模型，也是用于安全地实现各种授权机制的语言。 即使对于包含并实现丰富的动态授权机制的程序，FLAC也提供了强大的端到端信息安全保障。</li>
-<li><strong>去中心化理论与研究</strong>：这项工作探索了开放去中心化系统的安全性和稳定性的理论基础。 去中心化的好处包括抵抗多种攻击，多样性和权力分散。 比特币的新颖性和鼓舞人心的成功提供了新的证据，证明安全的去中心化系统比以前想象的更可行。  IC3和合作者刚刚发布了一份研究论文，分析了数字自治组织（DAO）及其投票机制。 本文确定了DAO机制设计中存在的问题，即激励投资者采取战略行为;这与他们的偏好真实投票不一致。<br>–<strong><a href="http://oblivm.com/hawk" target="_blank" rel="noopener">Hawk</a></strong>：隐私保护区块链和智能合约。现有的基于区块链的加密货币（如比特币和以太坊）将所有金融交易存储在区块链中。 这牺牲了金融交易的隐私，这在许多应用程序中都是必不可少的。 Hawk是一种基于区块链的智能合约系统，它在区块链上存储加密交易，并依靠加密技术来保留加密货币的安全性。</li>
-<li><p><strong><a href="http://www.initc3.org/files/tc.pdf" target="_blank" rel="noopener">Town Crier</a></strong>：智能合约的认证数据源。为了推理现实世界，加密货币系统中的智能合约将依赖于我们称之为认证数据馈送（ADF）的信息输入; 此类信息可包括股票价格，气象报告，新闻和其他当前事件。 因此，在提供安全性以防止试图影响合同结果的攻击者操纵的意义上，重要的是ADF是值得信赖的。 通过利用可信硬件为客户合同提供可靠，数字签名的数据证明，Town Crier系统可以在对其运营商的最小信任假设下充当值得信赖的ADF。</p>
-</li>
-<li><p><strong><a href="http://virtual-notary.org" target="_blank" rel="noopener">虚拟公证</a></strong>：免费安全的电子证明服务。虚拟公证是一种证明网上事实的服务。虚拟公证人在比特币块链上发行独立证书和不可变记录。它已运行超过3年，并认证超过600000个事实。</p>
-</li>
-<li><p><strong><a href=" http://etherscrape.com" target="_blank" rel="noopener">EtherScrape</a></strong>:以太坊中的智能合约是用高级编程语言（通常是Serpent或Solidity）编写的，然后编译成以太网虚拟机的字节码。 此编译步骤删除了高级源代码中的许多有用信息，例如注释，变量名称等。如果您可以识别合同的高级源代码，则更有可能搞清楚 它能做什么。 EtherScrape使用指纹识别将区块链上的每个智能合约（即编译的字节码）与创建它的高级源代码相匹配。</p>
-</li>
-<li><p><strong><a href=" http://www.initc3.org/files/Gyges.pdf" target="_blank" rel="noopener">Gyges</a></strong>:去中心化智能合约中的犯罪。“比特币2.0”最广泛期望的两个目标是隐私和更具表现力的智能合约。数字货币的许多用途对隐私有着明确和合法的需求（例如，金融服务公司被期望保护其客户交易的隐私）。通用的智能合约编程框架使得修补、打造原型和搜索下一个“杀手级应用程序”数字货币变得容易。这两个方向似乎相互矛盾；然而，通过使用复杂的加密技术（如零知识证明和多方计算），我们探索如何同时实现这两个目标。</p>
-</li>
-<li><p><strong><a href="https://eprint.iacr.org/2016/199.pdf" target="_blank" rel="noopener">HoneyBadgerBFT</a></strong>：HoneyBadgerBFT是第一个实用的异步BFT协议，它可以在不做任何时序假设的情况下保证实时性。 我们的解决方案基于一种新颖的原子广播协议，可实现最佳的渐近效率。 我们提出了一个实现和实验结果，以表明我们的系统可以实现每秒数万个事务的吞吐量，并可扩展到广域网上的一百多个节点。 我们甚至在Tor上进行BFT实验，无需调整任何参数。 与其他选择不同，HoneyBadgerBFT根本不关心底层网络。</p>
-</li>
-<li><strong><a href=" https://www.cs.cornell.edu/People/egs/papers/teechan.pdf" target="_blank" rel="noopener">Teechan</a></strong>：Teechan是一种新的可伸缩性解决方案，IC3最初是为比特币开发的，但是对于允许的块链也有广泛的应用。Teechan使用可信执行环境（TEE）来保护用户凭据。它是一种新的、实用的、高吞吐量的、低延迟的离链事务协议，可以安全地部署在比特币网络上，就像现在存在的那样。</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2018/12/02/带通配符的字符串匹配/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Author">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar2.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="hzx's Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/12/02/带通配符的字符串匹配/" class="post-title-link" itemprop="https://hzxGoForward.github.io/index.html">带通配符的字符串匹配</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建时间：2018-12-02 10:49:53" itemprop="dateCreated datePublished" datetime="2018-12-02T10:49:53+08:00">2018-12-02</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-01-09 22:30:55" itemprop="dateModified" datetime="2019-01-09T22:30:55+08:00">2019-01-09</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法设计与分析/" itemprop="url" rel="index"><span itemprop="name">算法设计与分析</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <a id="more"></a>
-<p>题目来源： <a href="http://noi.openjudge.cn/ch0206/6252/" target="_blank" rel="noopener">http://noi.openjudge.cn/ch0206/6252/</a></p>
-<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>通配符是一类键盘字符，当我们不知道真正字符或者不想键入完整名字时，常常使用通配符代替一个或多个真正字符。通配符有问号(?)和星号(*)等，其中，“?”可以代替一个字符，而“*”可以代替零个或多个字符。 </p>
-<p>你的任务是，给出一个带有通配符的字符串和一个不带通配符的字符串，判断他们是否能够匹配。 </p>
-<p>例如，1?456 可以匹配 12456、13456、1a456，但是却不能够匹配23456、1aa456；<br>2*77?8可以匹配 24457798、237708、27798。</p>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>使用动态规划，即可，但是’*‘可以代表空字符串，一个字符串和多个字符串，所以遇到’*‘的时候需要额外的处理。<br>假设F[i][j]表示长度为i第一个字符串X和长度为j的第二个字符串Y进行匹配，长度为i对应的字符是X[i-1]（字符串下标从0开始计算）,长度为j对应于Y的字符Y[j-1]。</p>
-<ul>
-<li>如果X[i-1]是’?’，那么F[i][j] = F[i-1][j-1], 因为’?’可以匹配任意单个字符。</li>
-<li>如果X[i-1]是‘*’，由于’*‘可以表示任意多个字符，所以此时对应关系为：<ul>
-<li>F[i][j] = F[i-1][j] || F[i-1][j-1]||F[i][j-1]  ;三个关系式分别对应’*‘表示0、1、多个字符。</li>
-</ul>
-</li>
-<li>如果X[i-1]是普通字符，F[i][j] = X[i-1] == Y[j-1];</li>
-</ul>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">match</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; str1, <span class="keyword">const</span> <span class="built_in">string</span>&amp; str2)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;&gt; F(str1.size() + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;(str2.size() + <span class="number">1</span>, <span class="literal">false</span>));</span><br><span class="line">	<span class="comment">// 这里用于初始化，F[0][0] = true;F[i][0]是否为true需要看X[i-1]是否为'\*'</span></span><br><span class="line">	F[<span class="number">0</span>][<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= str1.size(); ++i) &#123;</span><br><span class="line">		<span class="keyword">if</span> (str1[i - <span class="number">1</span>] == <span class="string">'*'</span>)</span><br><span class="line">			F[i][<span class="number">0</span>] = F[i - <span class="number">1</span>][<span class="number">0</span>];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// F[i][j]表示长度为i的str1和长度为j的str2是否匹配</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= str1.size(); ++i) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= str2.size(); ++j) &#123;</span><br><span class="line">			<span class="keyword">if</span> (str1[i - <span class="number">1</span>] == <span class="string">'?'</span> || str1[i - <span class="number">1</span>] == str2[j - <span class="number">1</span>])</span><br><span class="line">				F[i][j] = F[i - <span class="number">1</span>][j - <span class="number">1</span>];</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span> (str1[i - <span class="number">1</span>] == <span class="string">'*'</span>) &#123;</span><br><span class="line">				F[i][j] = F[i - <span class="number">1</span>][j] || F[i][j - <span class="number">1</span>] || F[i - <span class="number">1</span>][j - <span class="number">1</span>];</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				F[i][j] = <span class="literal">false</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (F[str1.size()][str2.size()])</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"matched"</span>;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> <span class="string">"not matched"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 加了下面两句速度反而变慢了？ shit</span></span><br><span class="line">	ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">	<span class="built_in">string</span> str1, str2;</span><br><span class="line">	getline(<span class="built_in">cin</span>, str1);</span><br><span class="line">	getline(<span class="built_in">cin</span>, str2);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; match(str1, str2) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -2413,9 +2408,9 @@
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image" src="/images/avatar2.jpg" alt="Author">
+              <img class="site-author-image" itemprop="image" src="/images/avatar2.jpg" alt="博主">
             
-              <p class="site-author-name" itemprop="name">Author</p>
+              <p class="site-author-name" itemprop="name">博主</p>
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
@@ -2426,7 +2421,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">14</span>
+                    <span class="site-state-item-count">16</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2453,6 +2448,19 @@
                 </div>
               
 
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
               
             </nav>
           
@@ -2570,7 +2578,7 @@
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">Author</span>
+  <span class="author" itemprop="copyrightHolder">博主</span>
 
   
 
@@ -2608,14 +2616,14 @@
   <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   
-    <span class="site-uv" title="总访客量">
+    <span class="site-uv" title="Total Visitors">
       <i class="fa fa-user"></i>
       <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
     </span>
   
 
   
-    <span class="site-pv" title="总访问量">
+    <span class="site-pv" title="Total Views">
       <i class="fa fa-eye"></i>
       <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
     </span>
@@ -2754,6 +2762,8 @@
 
   
 
+
+
   
   
 
@@ -2838,7 +2848,7 @@
     $('.highlight').each(function (i, e) {
       var $wrap = $('<div>').addClass('highlight-wrap')
       $(e).after($wrap)
-      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+      $wrap.append($('<button>').addClass('copy-btn').append('Copy').on('click', function (e) {
         var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
           return $(e).text()
         }).toArray().join('\n')
@@ -2857,7 +2867,7 @@
       })).on('mouseleave', function (e) {
         var $b = $(this).find('.copy-btn')
         setTimeout(function () {
-          $b.text('复制')
+          $b.text('Copy')
         }, 300)
       }).append(e)
     })
