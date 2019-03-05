@@ -599,7 +599,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2019-03-05 22:31:18" itemprop="dateModified" datetime="2019-03-05T22:31:18+08:00">2019-03-05</time>
+                <time title="更新于：2019-03-05 22:36:23" itemprop="dateModified" datetime="2019-03-05T22:36:23+08:00">2019-03-05</time>
               
             
           </span>
@@ -658,8 +658,72 @@
             <a id="more"></a>
 <p>本文用于记录对EOS源代码的阅读记录,对其相关内容从源代码中追踪问迹,希望从源代码入手,对其设计原理有一个深入的认识,也用于本人学习研究之用.<br>如果对EOS不太了解, 还需要对EOS顶层的内容有一些了解.这里推荐<a href="https://github.com/EOSIO/Documentation" target="_blank" rel="noopener">EOS的白皮书</a>进行了解学习. </p>
 <p>对任何区块链相关技术的学习,首先应该从其区块的结构开始学起,因此,本文首先从区块源代码入手开始了解.</p>
-<h1 id="EOS区块链相关数据结构"><a href="#EOS区块链相关数据结构" class="headerlink" title="EOS区块链相关数据结构"></a>EOS区块链相关数据结构</h1><h2 id="block-header"><a href="#block-header" class="headerlink" title="block header"></a><strong>block header</strong></h2><p>block header的定义,来自于”chain\webassembly\block_header.hpp”文件中,其主要结构如下:<br>|字段| 名称| 大小(Byte)    |  含义  |<br>|:——| :——–   | :—–:   | :—-: |<br>|timestamp| 时间戳        | 4      |   生产区块的时间    |<br>|producer| 生产者      | 8      |   生产区块的超级节点    |<br>|confirmed| 确认数        | 2      |   区块的确认数    |<br>|transaction_mroot|交易的Merkle Root        | 32      |   区块中全部交易的默克尔数的哈希值    |<br>|action_mroot| action的Merkle Root        | 32      |   区块中全部action的默克尔数的哈希值    |<br>|schedule_version| 版本号        | 4      |   见证人排序版本号    |<br>|new_producers| 下一个见证人        | -     |   区块的下一个见证人,可以为空    |<br>|header_extensions| 扩展类型        |   -    |   vector&lt;std::pair&lt;uint16_t,vector<char>&gt;&gt;    |</char></p>
-<hr>
+<h1 id="EOS区块链相关数据结构"><a href="#EOS区块链相关数据结构" class="headerlink" title="EOS区块链相关数据结构"></a>EOS区块链相关数据结构</h1><h2 id="block-header"><a href="#block-header" class="headerlink" title="block header"></a><strong>block header</strong></h2><p>block header的定义,来自于”chain\webassembly\block_header.hpp”文件中,其主要结构如下:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段</th>
+<th style="text-align:left">名称</th>
+<th style="text-align:center">大小(Byte)</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">timestamp</td>
+<td style="text-align:left">时间戳</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">生产区块的时间</td>
+</tr>
+<tr>
+<td style="text-align:left">producer</td>
+<td style="text-align:left">生产者</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">生产区块的超级节点</td>
+</tr>
+<tr>
+<td style="text-align:left">confirmed</td>
+<td style="text-align:left">确认数</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">区块的确认数</td>
+</tr>
+<tr>
+<td style="text-align:left">transaction_mroot</td>
+<td style="text-align:left">交易的Merkle Root</td>
+<td style="text-align:center">32</td>
+<td style="text-align:center">区块中全部交易的默克尔数的哈希值</td>
+</tr>
+<tr>
+<td style="text-align:left">action_mroot</td>
+<td style="text-align:left">action的Merkle Root</td>
+<td style="text-align:center">32</td>
+<td style="text-align:center">区块中全部action的默克尔数的哈希值</td>
+</tr>
+<tr>
+<td style="text-align:left">schedule_version</td>
+<td style="text-align:left">版本号</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">见证人排序版本号</td>
+</tr>
+<tr>
+<td style="text-align:left">new_producers</td>
+<td style="text-align:left">下一个见证人</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">区块的下一个见证人,可以为空</td>
+</tr>
+<tr>
+<td style="text-align:left">header_extensions</td>
+<td style="text-align:left">扩展类型</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">vector&lt;std::pair&lt;uint16_t,vector<char>&gt;&gt;</char></td>
+</tr>
+<tr>
+<td style="text-align:left">-</td>
+<td style="text-align:left">-</td>
+<td style="text-align:center">-</td>
+</tr>
+</tbody>
+</table>
 <p>具体对于block_header的结构代码，可以参看下述代码。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">block_header</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    block_timestamp_type             timestamp;</span><br><span class="line">    account_name                     producer;</span><br><span class="line">    <span class="keyword">uint16_t</span>                         confirmed = <span class="number">1</span>;  </span><br><span class="line">    block_id_type                    previous;</span><br><span class="line">    checksum256_type                 transaction_mroot; <span class="comment">/// mroot of cycles_summary</span></span><br><span class="line">    checksum256_type                 action_mroot; <span class="comment">/// mroot of all delivered action receipts</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">uint32_t</span>                          schedule_version = <span class="number">0</span>;</span><br><span class="line">    optional&lt;producer_schedule_type&gt;  new_producers;</span><br><span class="line">    extensions_type                   header_extensions;</span><br><span class="line">    <span class="function">digest_type       <span class="title">digest</span><span class="params">()</span><span class="keyword">const</span></span>;   <span class="comment">// 求区块的摘要</span></span><br><span class="line">    <span class="function">block_id_type     <span class="title">id</span><span class="params">()</span> <span class="keyword">const</span></span>;      <span class="comment">// 获取区块id</span></span><br><span class="line">    <span class="keyword">uint32_t</span>          block_num() <span class="keyword">const</span> &#123; <span class="keyword">return</span> num_from_id(previous) + <span class="number">1</span>; &#125;                  <span class="comment">//当前区块号 = 前一个区块号+1 </span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> uint32_t   <span class="title">num_from_id</span><span class="params">(<span class="keyword">const</span> block_id_type&amp; id)</span></span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>上述区块是没有对区块进行签名的区块，对区块进行签名之后，区块数据结构是signed_block_header，具体代码如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">signed_block_header</span> :</span> <span class="keyword">public</span> block_header</span><br><span class="line">&#123;</span><br><span class="line">   signature_type    producer_signature;<span class="comment">// 区块生产者的签名</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
