@@ -134,7 +134,7 @@
 <meta property="og:image" content="https://img-blog.csdnimg.cn/2019031321532617.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190313221915254.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190313225054124.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-03-14T11:12:58.382Z">
+<meta property="og:updated_time" content="2019-03-14T11:19:55.189Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="An Empirical Analysis of Anonymity in Zcash论文阅读笔记">
 <meta name="twitter:description" content="1. Zcash的相关知识介绍1.1 Zcash的工作原理Zcash是一种从Bitcoin中分叉出来的代币, 其目的在于解决bitcoin中交易在执行过程中可以利用区块追踪交易记录的问题,进而使得交易难以追踪以提高匿名性.Zcash中的地址有两种,一种叫做transparent address,简称t-address,这种地址以t开头. 另外一种地址叫做shielded address, 这种地址">
@@ -383,7 +383,7 @@
                 
               
 
-              <time title="创建于：2019-03-14 18:02:14 / 更新于：19:12:58" itemprop="dateCreated datePublished" datetime="2019-03-14T18:02:14+08:00">2019-03-14</time>
+              <time title="创建于：2019-03-14 18:02:14 / 更新于：19:19:55" itemprop="dateCreated datePublished" datetime="2019-03-14T18:02:14+08:00">2019-03-14</time>
             
 
             
@@ -446,20 +446,24 @@
 
       
         <h1 id="1-Zcash的相关知识介绍"><a href="#1-Zcash的相关知识介绍" class="headerlink" title="1. Zcash的相关知识介绍"></a>1. Zcash的相关知识介绍</h1><h2 id="1-1-Zcash的工作原理"><a href="#1-1-Zcash的工作原理" class="headerlink" title="1.1 Zcash的工作原理"></a>1.1 Zcash的工作原理</h2><p>Zcash是一种从Bitcoin中分叉出来的代币, 其目的在于解决bitcoin中交易在执行过程中可以利用区块追踪交易记录的问题,进而使得交易难以追踪以提高匿名性.<br>Zcash中的地址有两种,一种叫做transparent address,简称t-address,这种地址以t开头. 另外一种地址叫做shielded address, 这种地址以z开头.Zcash中大概有如下4种交易类型,如下图所示:</p>
-<center><br><img src="https://img-blog.csdnimg.cn/20190313141202670.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70"><br></center>
+<center><br><br><img src="https://img-blog.csdnimg.cn/20190313141202670.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70"><br><br></center>
 
 <p>z-address 到z-address的转账称之为Private transactions, z-address 到t-address的转账称之为Deshielding transactions, t-address到z-address的转账叫做Shielded transactions, 而t-address到t-address的转账叫做transparent transactions. </p>
 <ol>
-<li><p><strong>t-to-t transaction</strong><br> 两个t-address之间的交易, 和Bitcoin中的交易完全相同,交易双方的地址, 交易费, 交易金额都是公开并且可以追踪的.一个典型的示例如下:</p>
+<li><p><strong>t-to-t transaction</strong></p>
+<p>两个t-address之间的交易, 和Bitcoin中的交易完全相同,交易双方的地址, 交易费, 交易金额都是公开并且可以追踪的.一个典型的示例如下:</p>
 <p> <br> <img src="https://img-blog.csdnimg.cn/2019031314352632.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70"><br> 这笔交易中, 有一个输入,2个输出,输入和输出的地址都是t开头.</p>
 </li>
-<li><p><strong>t-to-z transaction</strong><br> t-to-z transaction中,可以叫做shielded transaction, 只能看到输入地址, 即以t开头的地址,交易费等信息, 但是输出的具体地址以及地址个数是未知的.<br> <br> <img src="https://img-blog.csdnimg.cn/20190313144006733.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70"></p>
+<li><p><strong>t-to-z transaction</strong></p>
+<p> t-to-z transaction中,可以叫做shielded transaction, 只能看到输入地址, 即以t开头的地址,交易费等信息, 但是输出的具体地址以及地址个数是未知的.<br> <br> <img src="https://img-blog.csdnimg.cn/20190313144006733.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70"></p>
 <p> 这笔交易中,只有1个输入,输入代币总量以及交易费也是已知的,但是输出的地址以及输出地址的个数是未知的, 最终输入的其他ZEC流入了<strong>shielded pool</strong>中.</p>
 </li>
-<li><p><strong>z-to-t transaction</strong><br> z-to-t transaction,又叫做 deshielded transaction,即从shielded pool中的代币转出至某个特定的t-address中.<br> <br> <img src="https://img-blog.csdnimg.cn/20190313144615912.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70"></p>
+<li><p><strong>z-to-t transaction</strong></p>
+<p> z-to-t transaction,又叫做 deshielded transaction,即从shielded pool中的代币转出至某个特定的t-address中.<br> <br> <img src="https://img-blog.csdnimg.cn/20190313144615912.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70"></p>
 <p> 上图中,交易的输入地址和输入地址的个数未知,但是知道输出地址的数量和具体信息,同时输出代币数和交易费用已知.</p>
 </li>
-<li><p><strong>z-to-z transaction</strong><br> z-address 到z-address的转账称之为Private transactions,从z-toz交易中只能得知交易费。但是交易地址、地址数量以及交易的ZEC数目都是未知的。<br> </p>
+<li><p><strong>z-to-z transaction</strong></p>
+<p> z-address 到z-address的转账称之为Private transactions,从z-toz交易中只能得知交易费。但是交易地址、地址数量以及交易的ZEC数目都是未知的。<br> </p>
 <pre><code>&lt;img src=&quot;https://img-blog.csdnimg.cn/20190313145010448.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70&quot; &gt;&lt;/center&gt;
 </code></pre><p> 这笔交易中，输入地址和输出地址的数量以及具体信息都是未知的，唯一能确定的是交易费用。z-to-z地址之间的转换，就相当于在shielded pool中进行持续转账。所有z-address中的ZEC就组成了shielded pool.</p>
 </li>
@@ -468,25 +472,35 @@
 <p>从上述4中交易的介绍中, 可以观察发现,只有t-address和t-address之间的转账中没有JoinSplits, 而凡是涉及到z-addrress的交易,图中都会有一个JoinSplits的字段, JoinSplits字段中指定了交易中ZEC的来源和去向,以及其中的零知识证明,这个证明允许其他人在不揭露交易内容的前提下验证加密交易的真实性. 关于阅读本论文, 我们只需要知道这个就可以了. </p>
 <p>更多关于零知识的证明,感兴趣可以点击<a href="https://z.cash/technology/zksnarks" target="_blank" rel="noopener">zk-SNARKs</a>以及如下几个链接.</p>
 <ul>
-<li>ZCash中的Transaction: <a href="https://z.cash/technology/#viewing-keys" target="_blank" rel="noopener">https://z.cash/technology/#viewing-keys</a> </li>
-<li>ZCash中的Anatomy:  <a href="https://z.cash/blog/anatomy-of-zcash/" target="_blank" rel="noopener">https://z.cash/blog/anatomy-of-zcash/</a> * ZCash协议详解: <a href="https://github.com/zcash/zips/blob/master/protocol/protocol.pdf" target="_blank" rel="noopener">https://github.com/zcash/zips/blob/master/protocol/protocol.pdf</a> (交易细节可以参看3.4节)</li>
-<li>ZCash零知识证明: <a href="https://z.cash/zh/technology/zksnarks/" target="_blank" rel="noopener">https://z.cash/zh/technology/zksnarks/</a> </li>
+<li><p>ZCash中的Transaction: <a href="https://z.cash/technology/#viewing-keys" target="_blank" rel="noopener">https://z.cash/technology/#viewing-keys</a> </p>
+</li>
+<li><p>ZCash中的Anatomy:  <a href="https://z.cash/blog/anatomy-of-zcash/" target="_blank" rel="noopener">https://z.cash/blog/anatomy-of-zcash/</a> * ZCash协议详解: <a href="https://github.com/zcash/zips/blob/master/protocol/protocol.pdf" target="_blank" rel="noopener">https://github.com/zcash/zips/blob/master/protocol/protocol.pdf</a> (交易细节可以参看3.4节)</p>
+</li>
+<li><p>ZCash零知识证明: <a href="https://z.cash/zh/technology/zksnarks/" target="_blank" rel="noopener">https://z.cash/zh/technology/zksnarks/</a> </p>
+</li>
 </ul>
 <h2 id="1-3-Zcash的主要参与者"><a href="#1-3-Zcash的主要参与者" class="headerlink" title="1.3 Zcash的主要参与者"></a>1.3 Zcash的主要参与者</h2><p>Zcash中的参与人主要有4类, </p>
 <ul>
-<li><strong>创始人(Founders)</strong>, </li>
-<li><strong>矿工(Miners)</strong>, </li>
-<li><strong>服务提供商(Services)</strong></li>
-<li><strong>用户(Users).</strong></li>
+<li><p><strong>创始人(Founders)</strong>, </p>
+</li>
+<li><p><strong>矿工(Miners)</strong>, </p>
+</li>
+<li><p><strong>服务提供商(Services)</strong></p>
+</li>
+<li><p><strong>用户(Users).</strong></p>
+</li>
 </ul>
 <p>在Zcash刚开始挖矿的4年中,每次矿工挖出一个区块时,都需要将25%的出块奖励转发给创始人团队, 一个区块的出块奖励为12.5ZEC, 创始人拿到2.5ZEC, 矿工拿到10ZEC. </p>
 <h2 id="2-论文主要内容简要介绍"><a href="#2-论文主要内容简要介绍" class="headerlink" title="2. 论文主要内容简要介绍"></a>2. 论文主要内容简要介绍</h2><h3 id="2-1-主要研究方法和内容介绍"><a href="#2-1-主要研究方法和内容介绍" class="headerlink" title="2.1 主要研究方法和内容介绍"></a>2.1 主要研究方法和内容介绍</h3><p>这篇文章发表于2018年第27届USENIX Security Symposium会议,本论文非常深入的分析了Zcash的匿名程度,文章首先对Zcash区块链中的区块链信息进行了统计说明, 统计结果表明Zcash区块链中, 85%的交易都是transparent 交易, 而匿名的交易仅仅占比25%左右.<br>随后对Zcash中的交易(t-to-t, z-to-t, t-to-z, z-to-z), 使用5种启发式方法进行分析并尝试对其中的地址所对应的用户进行标记.通过文章中的启发式方法的分析,分别发现了创始人和矿工在进行z-to-t和t-to-z交易时的一些明显的特征, 利用这些特征识别出了创始人和矿工的隐匿的地址,同时也对其他一些黑客组织的地址进行了识别. 文章的5个启发式分析方法主要介绍如下:</p>
 <ul>
 <li><p><strong>启发式方法1: Zcash一笔交易中的多个输入地址都由同一个实体控制.</strong></p>
 <ul>
-<li>将Zcash区块链中每一个地址当做1个顶点, 同一笔交易中的多个输入地址之间用无向边连接, 以此完成了对Zcash中所有t-address的聚类, 总共得到560319个簇.</li>
-<li>Zcash中的铸币交易, 一个区块产生12.5个ZEC, 其中10个归属矿工, 2.5个归属创始人, 因此每个区块的铸币交易中可以确定并且准确的标记出创始和矿工的t-address.</li>
-<li>分别从Top10的交易所购买Zcash, 随后在交易所的地址和自己Zcash的地址之间多次转账, 根据转账记录标记出交易所的地址.</li>
+<li><p>将Zcash区块链中每一个地址当做1个顶点, 同一笔交易中的多个输入地址之间用无向边连接, 以此完成了对Zcash中所有t-address的聚类, 总共得到560319个簇.</p>
+</li>
+<li><p>Zcash中的铸币交易, 一个区块产生12.5个ZEC, 其中10个归属矿工, 2.5个归属创始人, 因此每个区块的铸币交易中可以确定并且准确的标记出创始和矿工t-address.</p>
+</li>
+<li><p>分别从Top10的交易所购买Zcash, 随后在交易所的地址和自己Zcash的地址之间多次转账, 根据转账记录标记出交易所的地址.</p>
+</li>
 </ul>
 </li>
 <li><p><strong>启发式方法3: 任何交易值是250.0001ZEC的z-to-t转账交易时由创世团队发起</strong></p>
@@ -530,14 +544,22 @@
 </li>
 <li><p>另外一些研究致力于通过一些方法检验加密货币的匿名性,指出其限制性.这些所有的研究都有共同的方案,就使用一些启发性的方法, 然后对所有的交易地址进行聚类, 再对聚类之后的地址进行标记以识别出这些地址的具体隶属信息. 目前已经有一些论文, 对Dash, Monero, CoinJoin以及Zcash的匿名性都进行了分析, 相关文献如下:</p>
 </li>
-<li>A. Kumar, C. Fischer, S. Tople, and P. Saxena. A traceability analysis of Monero’s blockchain. In Proceedings of ESORICS 2017, pages 153–173, 2017.</li>
-<li>A. Miller, M. Moser, K. Lee, and A. Narayanan. An ¨ empirical analysis of linkability in the Monero blockchain. arXiv:1704.04299, 2017. <a href="https://arxiv.org/pdf/1704.04299.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1704.04299.pdf</a></li>
-<li>P. Moreno-Sanchez, M. B. Zafar, and A. Kate. Listening to whispers of Ripple: Linking wallets and deanonymizing transactions in the Ripple network. Proceedings on Privacy Enhancing Technologies, 2016(4):436–453, 2016</li>
-<li>P. Moreno-Sanchez, M. B. Zafar, and A. Kate. Listening to whispers of Ripple: Linking wallets and deanonymizing transactions in the Ripple network. Proceedings on Privacy Enhancing Technologies, 2016(4):436–453, 2016</li>
-<li>J. Quesnelle. On the linkability of Zcash transactions. arXiv:1712.01210, 2017. <a href="https://arxiv.org/pdf/1712.01210.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1712.01210.pdf</a></li>
+</ul>
+<ul>
+<li><p>A. Kumar, C. Fischer, S. Tople, and P. Saxena. A traceability analysis of Monero’s blockchain. In Proceedings of ESORICS 2017, pages 153–173, 2017.</p>
+</li>
+<li><p>A. Miller, M. Moser, K. Lee, and A. Narayanan. An ¨ empirical analysis of linkability in the Monero blockchain. arXiv:1704.04299, 2017. <a href="https://arxiv.org/pdf/1704.04299.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1704.04299.pdf</a></p>
+</li>
+<li><p>P. Moreno-Sanchez, M. B. Zafar, and A. Kate. Listening to whispers of Ripple: Linking wallets and deanonymizing transactions in the Ripple network. Proceedings on Privacy Enhancing Technologies, 2016(4):436–453, 2016</p>
+</li>
+<li><p>P. Moreno-Sanchez, M. B. Zafar, and A. Kate. Listening to whispers of Ripple: Linking wallets and deanonymizing transactions in the Ripple network. Proceedings on Privacy Enhancing Technologies, 2016(4):436–453, 2016</p>
+</li>
+<li><p>J. Quesnelle. On the linkability of Zcash transactions. arXiv:1712.01210, 2017. <a href="https://arxiv.org/pdf/1712.01210.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1712.01210.pdf</a></p>
+</li>
 </ul>
 <h1 id="4-思考"><a href="#4-思考" class="headerlink" title="4. 思考"></a>4. 思考</h1><ul>
-<li>通过对这篇文章的阅读, 大概对区块链匿名性方面的研究有了一些初步的了解, “An Empirical Analysis of Anonymity in Zcash”这篇文章中的方法比较简单, 但是这些简单的方法应该是基于大量的研究分析工作得来的. 刚开始阅读完这篇文章的时候,我并没有认为这篇文章具有很大的贡献程度.</li>
+<li><p>通过对这篇文章的阅读, 大概对区块链匿名性方面的研究有了一些初步的了解, “An Empirical Analysis of Anonymity in Zcash”这篇文章中的方法比较简单, 但是这些简单的方法应该是基于大量的研究分析工作得来的. 刚开始阅读完这篇文章的时候,我并没有认为这篇文章具有很大的贡献程度.</p>
+</li>
 <li><p>这篇文章能够发表在USENIX上,我觉得原因如下: </p>
 <ol>
 <li>文章的工作量很大, 对Zcash中所有的区块数据和交易都进行了大量的统计分析工作, 使得读者能对Zcash有一个非常直观的认知.</li>
@@ -545,14 +567,15 @@
 <li>该文章是第一个对Zcash的匿名性进行分析的文章, 指出了Zcash的弱点, 这就是对Zcash的匿名性的改进提供了方向.</li>
 </ol>
 </li>
-<li><p>文章通过大量的分析和工作说明了一个问题, 即Zcash的匿名性并不仅仅是由零知识证明技术决定的, Zcash的用户在进行t-to-z交易和z-to-t交易中转换以隐藏自己身份的时候, 应该使用一种更加匿名的方式.一旦Zcash用户不能很好地隐匿自己, 其他用户的隐私性也会受到威胁.</p>
-</li>
+</ul>
+<ul>
+<li>文章通过大量的分析和工作说明了一个问题, 即Zcash的匿名性并不仅仅是由零知识证明技术决定的, Zcash的用户在进行t-to-z交易和z-to-t交易中转换以隐藏自己身份的时候, 应该使用一种更加匿名的方式.一旦Zcash用户不能很好地隐匿自己, 其他用户的隐私性也会受到威胁.</li>
 </ul>
 <h1 id="5-对文章分析方法的详细阅读解析"><a href="#5-对文章分析方法的详细阅读解析" class="headerlink" title="5. 对文章分析方法的详细阅读解析"></a>5. 对文章分析方法的详细阅读解析</h1><h2 id="5-1-Zcash的统计信息"><a href="#5-1-Zcash的统计信息" class="headerlink" title="5.1 Zcash的统计信息"></a>5.1 Zcash的统计信息</h2><p>作者这里所说的所有区块统计信息,都是以2018年1月21日为止.</p>
 <h3 id="5-1-1-区块生产信息"><a href="#5-1-1-区块生产信息" class="headerlink" title="5.1.1 区块生产信息"></a>5.1.1 区块生产信息</h3><p>作者使用zcashd客户端下载Zcash 区块链,将区块链载入Apache Spark中,随后使用pySpark包进行分析.截止2018年1月21日为止, 总共生产了258472个区块, 产生了31,06,043个ZEC, 其中矿工分得2,485,461, 创始人团队获得621,182 ZEC. 这里有个疑问是总共产生258472个区块,如果每个区块的reward为12.5, 那么总共应该产生3,230,900ZEC,但是实际上并没有这么多,这是因为最初的 20,000 个块的奖励很少，从第 1 个块开始到第 20,000 个块的奖励线性增加，在第 20,000 个块处奖励 12.5 个Zcash. 官方解释说这样做的目的是为防止早期的快速挖矿对 Zcash 系统造成伤害。 Zcash 系统每 2.5 分钟一个块，20,000 个块之后，每个块奖励 12.5 个Zcash。</p>
 <h3 id="5-1-2-交易-Transactions"><a href="#5-1-2-交易-Transactions" class="headerlink" title="5.1.2 交易(Transactions)"></a>5.1.2 交易(Transactions)</h3><p>所有区块总共2,242,847笔交易, 交易具体分布信息如Table.1 所示.<br>    <center><br>    <img src="https://img-blog.csdnimg.cn/20190313152246158.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70"><br>    </center><br>Table.1 中transparent指的是t-to-t交易的数量, Coingen指的是铸币交易, Deshielded指的是z-to-t的交易, shielded 指的是t-to-z交易.Mixed指的是混合交易,即一笔交易的输入或者输出中都包含t和z地址的交易. Private指的是z-to-z交易.<br>从表中显然可以看出, t-to-t交易仍然占有很大的比例,它与铸币交易总共占全部交易的85%, 与shielded pool有关的交易仅仅有335,630笔,总共占有14.96%的比例.</p>
 <p>在Fig.2中,展示了随着时间的增长, Zcash区块链中各种交易所占的比例变化趋势,图中可以看出, Coingen, shielded以及deshielded交易都呈现出线性增长的情况,将在后续分析中分析其成因.</p>
-<center><br><img src="https://img-blog.csdnimg.cn/20190313154343132.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70"><br></center><br>    Fig.3图揭示了随着时间增长,各种交易中涉及的ZEC比例变化趋势图. 从Fig.3 和Fig.2 的综合分析中, 可以看出与shielded pool的交易呈现出线性增长的趋势, 但是总ZEC的价值却呈现越来越小的比例, transparent交易的比例越来越高.<br><center><br><img src="https://img-blog.csdnimg.cn/20190313154215741.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70"><br></center>
+<center><br><br><img src="https://img-blog.csdnimg.cn/20190313154343132.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70"><br></center><br>    Fig.3图揭示了随着时间增长,各种交易中涉及的ZEC比例变化趋势图. 从Fig.3 和Fig.2 的综合分析中, 可以看出与shielded pool的交易呈现出线性增长的趋势, 但是总ZEC的价值却呈现越来越小的比例, transparent交易的比例越来越高.<br><br><center><br><img src="https://img-blog.csdnimg.cn/20190313154215741.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70"><br></center>
 
 <h3 id="5-1-3-地址-Addresses-统计信息"><a href="#5-1-3-地址-Addresses-统计信息" class="headerlink" title="5.1.3 地址(Addresses)统计信息"></a>5.1.3 地址(Addresses)统计信息</h3><p>在所有的交易中, 有1,740,378个t-address, 其中8727笔交易时t-to-z trx, 另外330,780笔交易时z-to-t trx. 这两种交易不对称行的原因,是由于矿池的一些操作导致.矿池使用极少数量的地址收集block reward, 但是分配block reward时需要分别转给矿池中的每个矿工.由于shielded pool的存在, 无法探知到具体有多少z-address的存在.</p>
 <p>Fig.4展示了shielded pool中ZEC随着时间增长的变化情况, 在图中有比较明显的震荡点, 而这是由于Zcash创始人的转账操作导致,后续会对这种情况给出更为具体的解释.截止到撰写本文的时间,<strong>shielded pool中总共有112, 235的ZEC.</strong></p>
