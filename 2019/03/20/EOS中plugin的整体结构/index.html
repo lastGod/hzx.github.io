@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="EOS中plugin的整体结构EOS中的插件是非常重要的工具，其中大大小小总共有26个插件，其中比较重要的插件有chain_plugin、producer_plugin、http_plugin、net_plugin等四个插件。这四个插件在EOS服务器端启动后也开始启动进行工作。 abstract_pluginEOS中所有插件继承于plugin类，而plugin类又继承于abstract_plugi">
+<meta name="keywords" content="区块链技术研究">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EOS中plugin的整体结构">
+<meta property="og:url" content="https://hzxGoForward.github.io/2019/03/20/EOS中plugin的整体结构/index.html">
+<meta property="og:site_name" content="hzx&#39;s Home">
+<meta property="og:description" content="EOS中plugin的整体结构EOS中的插件是非常重要的工具，其中大大小小总共有26个插件，其中比较重要的插件有chain_plugin、producer_plugin、http_plugin、net_plugin等四个插件。这四个插件在EOS服务器端启动后也开始启动进行工作。 abstract_pluginEOS中所有插件继承于plugin类，而plugin类又继承于abstract_plugi">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-03-20T11:37:47.867Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="EOS中plugin的整体结构">
+<meta name="twitter:description" content="EOS中plugin的整体结构EOS中的插件是非常重要的工具，其中大大小小总共有26个插件，其中比较重要的插件有chain_plugin、producer_plugin、http_plugin、net_plugin等四个插件。这四个插件在EOS服务器端启动后也开始启动进行工作。 abstract_pluginEOS中所有插件继承于plugin类，而plugin类又继承于abstract_plugi">
+
+
+
+
+
+
+  <link rel="canonical" href="https://hzxGoForward.github.io/2019/03/20/EOS中plugin的整体结构/">
+
+
+
+<script type="text/javascript" id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>EOS中plugin的整体结构 | hzx's Home</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style type="text/css">
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion {
+      .logo-line-before i { left: initial; }
+      .logo-line-after i { right: initial; }
+    }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">hzx's Home</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">Hello World！</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2019/03/20/EOS中plugin的整体结构/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hzx's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">EOS中plugin的整体结构
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2019-03-20 18:29:54 / 更新于：19:37:47" itemprop="dateCreated datePublished" datetime="2019-03-20T18:29:54+08:00">2019-03-20</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span id="busuanzi_value_page_pv"></span>次阅读
+          
+
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="EOS中plugin的整体结构"><a href="#EOS中plugin的整体结构" class="headerlink" title="EOS中plugin的整体结构"></a>EOS中plugin的整体结构</h1><p>EOS中的插件是非常重要的工具，其中大大小小总共有26个插件，其中比较重要的插件有chain_plugin、producer_plugin、http_plugin、net_plugin等四个插件。这四个插件在EOS服务器端启动后也开始启动进行工作。</p>
+<h2 id="abstract-plugin"><a href="#abstract-plugin" class="headerlink" title="abstract_plugin"></a>abstract_plugin</h2><p>EOS中所有插件继承于plugin类，而plugin类又继承于abstract_plugin类。<br>abstract_plugin中规定了每个插件的4个状态，这4个状态依次如下。</p>
+<ul>
+<li>registered，表示插件已经注册， 每个插件初始化后就是注册的状态。</li>
+<li>initialized，表示插件已经初始化，插件之后注册之后才能初始化。</li>
+<li>started， 表示插件正在运行中。</li>
+<li>stopped，表示插件停止运行。</li>
+</ul>
+<p>下面是abstract_plugin的源代码，由于是个抽象类，abstract_plugin定义在appbase\appbase\plugin.hpp中。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">abstract_plugin</span> &#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="comment">// 插件的4个状态。</span></span><br><span class="line">        <span class="keyword">enum</span> state &#123;</span><br><span class="line">        registered, <span class="comment">///&lt; the plugin is constructed but doesn't do anything</span></span><br><span class="line">        initialized, <span class="comment">///&lt; the plugin has initialized any state required but is idle</span></span><br><span class="line">        started, <span class="comment">///&lt; the plugin is actively running</span></span><br><span class="line">        stopped <span class="comment">///&lt; the plugin is no longer running</span></span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">virtual</span> ~abstract_plugin()&#123;&#125;</span><br><span class="line">        <span class="function"><span class="keyword">virtual</span> state <span class="title">get_state</span><span class="params">()</span><span class="keyword">const</span> </span>= <span class="number">0</span>; <span class="comment">// 查询插件当前的状态</span></span><br><span class="line">        <span class="keyword">virtual</span> <span class="keyword">const</span> <span class="built_in">std</span>::<span class="function"><span class="built_in">string</span>&amp; <span class="title">name</span><span class="params">()</span><span class="keyword">const</span>  </span>= <span class="number">0</span>;    <span class="comment">// 获取插件名称</span></span><br><span class="line">        <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">set_program_options</span><span class="params">( options_description&amp; cli, options_description&amp; cfg )</span> </span>= <span class="number">0</span>;                 <span class="comment">// 设置插件参数</span></span><br><span class="line">        <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">initialize</span><span class="params">(<span class="keyword">const</span> variables_map&amp; options)</span> </span>= <span class="number">0</span>;<span class="comment">//初始化插件</span></span><br><span class="line">        <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">handle_sighup</span><span class="params">()</span> </span>= <span class="number">0</span>;               <span class="comment">// 这个干嘛用的不清楚</span></span><br><span class="line">        <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">startup</span><span class="params">()</span> </span>= <span class="number">0</span>;                     <span class="comment">// 启动插件</span></span><br><span class="line">        <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">shutdown</span><span class="params">()</span> </span>= <span class="number">0</span>;                    <span class="comment">// 关闭插件</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="plugin"><a href="#plugin" class="headerlink" title="plugin"></a>plugin</h2><p>plugin这个类继承了abstract_plugin，plugin的代码在appbase\apppbase\apllication.hpp中，这里比较奇怪的是，为什么plugin的定义不再plugin.hpp文件中，而plugin.hpp中定义了abstract_plugin类。</p>
+<p>plugin是一个模板类，在plugin中，除去handle_sighup函数之外，已经实现了abstract_plugin中的全部纯虚函数。handle_sighup函数的含义，目前我不太清楚。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Impl&gt;</span><br><span class="line">   <span class="class"><span class="keyword">class</span> <span class="title">plugin</span> :</span> <span class="keyword">public</span> abstract_plugin &#123;</span><br><span class="line">      <span class="keyword">public</span>:</span><br><span class="line">         plugin():_name(boost::core::demangle(<span class="keyword">typeid</span>(Impl).name()))&#123;&#125;</span><br><span class="line">         <span class="keyword">virtual</span> ~plugin()&#123;&#125;</span><br><span class="line"></span><br><span class="line">         <span class="function"><span class="keyword">virtual</span> state <span class="title">get_state</span><span class="params">()</span><span class="keyword">const</span> override         </span>&#123; <span class="keyword">return</span> _state; &#125;</span><br><span class="line">         <span class="keyword">virtual</span> <span class="keyword">const</span> <span class="built_in">std</span>::<span class="function"><span class="built_in">string</span>&amp; <span class="title">name</span><span class="params">()</span><span class="keyword">const</span> override </span>&#123; <span class="keyword">return</span> _name; &#125;</span><br><span class="line"></span><br><span class="line">         <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">register_dependencies</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">static_cast</span>&lt;Impl*&gt;(<span class="keyword">this</span>)-&gt;plugin_requires([&amp;](<span class="keyword">auto</span>&amp; plug)&#123;&#125;);</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">         <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">initialize</span><span class="params">(<span class="keyword">const</span> variables_map&amp; options)</span> override </span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(_state == registered) &#123;</span><br><span class="line">               _state = initialized;</span><br><span class="line">               <span class="keyword">static_cast</span>&lt;Impl*&gt;(<span class="keyword">this</span>)-&gt;plugin_requires([&amp;](<span class="keyword">auto</span>&amp; plug)&#123; plug.initialize(options); &#125;);</span><br><span class="line">               <span class="keyword">static_cast</span>&lt;Impl*&gt;(<span class="keyword">this</span>)-&gt;plugin_initialize(options);</span><br><span class="line">               <span class="comment">//ilog( "initializing plugin $&#123;name&#125;", ("name",name()) );</span></span><br><span class="line">               app().plugin_initialized(*<span class="keyword">this</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            assert(_state == initialized); <span class="comment">/// if initial state was not registered, final state cannot be initialized</span></span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">         <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">handle_sighup</span><span class="params">()</span> override </span>&#123;</span><br><span class="line">         &#125;</span><br><span class="line">         <span class="comment">// 插件启动函数</span></span><br><span class="line">         <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">startup</span><span class="params">()</span> override </span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(_state == initialized) &#123;</span><br><span class="line">               _state = started;</span><br><span class="line">               <span class="keyword">static_cast</span>&lt;Impl*&gt;(<span class="keyword">this</span>)-&gt;plugin_requires([&amp;](<span class="keyword">auto</span>&amp; plug)&#123; plug.startup(); &#125;);</span><br><span class="line">               <span class="keyword">static_cast</span>&lt;Impl*&gt;(<span class="keyword">this</span>)-&gt;plugin_startup();</span><br><span class="line">               app().plugin_started(*<span class="keyword">this</span>);     <span class="comment">// </span></span><br><span class="line">            &#125;</span><br><span class="line">            assert(_state == started); <span class="comment">// if initial state was not initialized, final state cannot be started</span></span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">         <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">shutdown</span><span class="params">()</span> override </span>&#123;</span><br><span class="line">            <span class="keyword">if</span>(_state == started) &#123;</span><br><span class="line">               _state = stopped;</span><br><span class="line">               <span class="comment">//ilog( "shutting down plugin $&#123;name&#125;", ("name",name()) );</span></span><br><span class="line">               <span class="keyword">static_cast</span>&lt;Impl*&gt;(<span class="keyword">this</span>)-&gt;plugin_shutdown();</span><br><span class="line">            &#125;</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">protected</span>:</span><br><span class="line">         plugin(<span class="keyword">const</span> <span class="built_in">string</span>&amp; name) : _name(name)&#123;&#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">private</span>:</span><br><span class="line">         state _state = abstract_plugin::registered;</span><br><span class="line">         <span class="built_in">std</span>::<span class="built_in">string</span> _name;</span><br><span class="line">   &#125;;</span><br></pre></td></tr></table></figure>
+<p>首先可以看到plugin的初始化函数，由于plugin是一个模板类，在初始化过程中，传入的模板类的名称赋值给了plugin的protected变量_name，里面唯一不太理解的是，为什么这个_name是protected的类型而不是private类型。typeid在头文件typeindex中，主要是获得某个类的名称。</p>
+<p>此外，plugin中实现了插件的startup()、initialized()和shutdown()三个功能。在initialize()函数中，首先判断当前状态是否是registered状态，随后更改状态为initialized状态，然后查询当前插件依赖的其他插件并且将其他插件初始化，随后初始化插件自身。注意到插件启动完成后有如下一句代码：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app().plugin_initialized(*<span class="keyword">this</span>);</span><br></pre></td></tr></table></figure>
+<p>app()函数返回客户端的引用，随后客户端将当前初始化的插件变量放入到当前客户端中已初始化插件的vector中。</p>
+<p>在startup()之前，可以看到，插件启动之前，其状态必须是已经初始化的状态，这表明插件启动之前必须初始化。随后设置状态为启动状态。然后查询当前插件启动需要的其他插件并启动这些插件，随后再启动插件自身，随后客户端将当前已启动的插件变量放入到当前客户端中已启动插件的vector中。</p>
+<p>在shutdown()函数中，特别厉害的一个设计就是关闭插件的调用，因为不同的插件，可能关闭方式不一样，但是在plugin中仍然也实现了这个方法，实在是太巧妙了。最精髓的就是这句代码：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static_cast</span>&lt;Impl*&gt;(<span class="keyword">this</span>)-&gt;plugin_shutdown();</span><br></pre></td></tr></table></figure></p>
+<p>将当前指针转换成模板类初始化时传进的类，然后调用这个类的plugin_shutdown()函数。好像很牛批，可是我仔细一想，最后不还是调用每个类自己的plugin_shutdown()函数了吗，每个类中自己实现这个功能好像也可以，这样设计就是看起来很牛批，但是没什么卵用，奇技淫巧而已~</p>
+<p>现在介绍下EOS具体的插件，producer_plugin。</p>
+<h2 id="producer-plugin"><a href="#producer-plugin" class="headerlink" title="producer_plugin"></a>producer_plugin</h2><p>producer_plugin插件的实现位于plugins\producer_plugin下。producer_plugin类的定义，就很头铁，定义方式如下。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">producer_plugin</span> :</span> <span class="keyword">public</span> appbase::plugin&lt;producer_plugin&gt;&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>在定义的过程中就传入了producer_plugin的类名，这个名称会传给plugin中的_name变量。<br>为什么会有appbase这个玩意儿呢，因为这是一个命名空间，plugin就定义在appbase命名空间中。</p>
+<p>接下来我们看看producer_plugin的头文件，由于头文件比较长，口味略重，非战斗人员请迅速撤离。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line">class producer_plugin : public appbase::plugin&lt;producer_plugin&gt; &#123;</span><br><span class="line">public:</span><br><span class="line">   APPBASE_PLUGIN_REQUIRES((chain_plugin)(http_client_plugin))</span><br><span class="line"></span><br><span class="line">   struct runtime_options &#123;</span><br><span class="line">      fc::optional&lt;int32_t&gt; max_transaction_time;</span><br><span class="line">      fc::optional&lt;int32_t&gt; max_irreversible_block_age;</span><br><span class="line">      fc::optional&lt;int32_t&gt; produce_time_offset_us;</span><br><span class="line">      fc::optional&lt;int32_t&gt; last_block_time_offset_us;</span><br><span class="line">      fc::optional&lt;int32_t&gt; max_scheduled_transaction_time_per_block_ms;</span><br><span class="line">      fc::optional&lt;int32_t&gt; subjective_cpu_leeway_us;</span><br><span class="line">      fc::optional&lt;double&gt;  incoming_defer_ratio;</span><br><span class="line">   &#125;;</span><br><span class="line"></span><br><span class="line">   struct whitelist_blacklist &#123;</span><br><span class="line">      fc::optional&lt; flat_set&lt;account_name&gt; &gt; actor_whitelist;</span><br><span class="line">      fc::optional&lt; flat_set&lt;account_name&gt; &gt; actor_blacklist;</span><br><span class="line">      fc::optional&lt; flat_set&lt;account_name&gt; &gt; contract_whitelist;</span><br><span class="line">      fc::optional&lt; flat_set&lt;account_name&gt; &gt; contract_blacklist;</span><br><span class="line">      fc::optional&lt; flat_set&lt; std::pair&lt;account_name, action_name&gt; &gt; &gt; action_blacklist;</span><br><span class="line">      fc::optional&lt; flat_set&lt;public_key_type&gt; &gt; key_blacklist;</span><br><span class="line">   &#125;;</span><br><span class="line"></span><br><span class="line">   struct greylist_params &#123;</span><br><span class="line">      std::vector&lt;account_name&gt; accounts;</span><br><span class="line">   &#125;;</span><br><span class="line"></span><br><span class="line">   struct integrity_hash_information &#123;</span><br><span class="line">      chain::block_id_type head_block_id;</span><br><span class="line">      chain::digest_type   integrity_hash;</span><br><span class="line">   &#125;;</span><br><span class="line"></span><br><span class="line">   struct snapshot_information &#123;</span><br><span class="line">      chain::block_id_type head_block_id;</span><br><span class="line">      std::string          snapshot_name;</span><br><span class="line">   &#125;;</span><br><span class="line"></span><br><span class="line">   producer_plugin();</span><br><span class="line">   virtual ~producer_plugin();</span><br><span class="line"></span><br><span class="line">   virtual void set_program_options(</span><br><span class="line">      boost::program_options::options_description &amp;command_line_options,</span><br><span class="line">      boost::program_options::options_description &amp;config_file_options</span><br><span class="line">      ) override;</span><br><span class="line"></span><br><span class="line">   bool                   is_producer_key(const chain::public_key_type&amp; key) const;</span><br><span class="line">   chain::signature_type  sign_compact(const chain::public_key_type&amp; key, const fc::sha256&amp; digest) const;</span><br><span class="line"></span><br><span class="line">   virtual void plugin_initialize(const boost::program_options::variables_map&amp; options);</span><br><span class="line">   virtual void plugin_startup();</span><br><span class="line">   virtual void plugin_shutdown();</span><br><span class="line"></span><br><span class="line">   void pause();</span><br><span class="line">   void resume();</span><br><span class="line">   bool paused() const;</span><br><span class="line">   void update_runtime_options(const runtime_options&amp; options);</span><br><span class="line">   runtime_options get_runtime_options() const;</span><br><span class="line"></span><br><span class="line">   void add_greylist_accounts(const greylist_params&amp; params);</span><br><span class="line">   void remove_greylist_accounts(const greylist_params&amp; params);</span><br><span class="line">   greylist_params get_greylist() const;</span><br><span class="line"></span><br><span class="line">   whitelist_blacklist get_whitelist_blacklist() const;</span><br><span class="line">   void set_whitelist_blacklist(const whitelist_blacklist&amp; params);</span><br><span class="line"></span><br><span class="line">   integrity_hash_information get_integrity_hash() const;</span><br><span class="line">   snapshot_information create_snapshot() const;</span><br><span class="line"></span><br><span class="line">   signal&lt;void(const chain::producer_confirmation&amp;)&gt; confirmed_block;</span><br><span class="line">private:</span><br><span class="line">   std::shared_ptr&lt;class producer_plugin_impl&gt; my; // producer_plugin_impl的指针,负责所有任务的执行</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>producer_plugin定义完毕之后第一个public函数就很恶心咯，这是什么鬼!!!仔细看看这些大写字母的定义，转换成小写字母，即appbase_plugin_requires,还记得前面说每个插件初始化或者启动的时候都要初始化或者启动它依赖的插件这个过程吗？这感觉应该是说producer_plugin类启动的时候依赖chain_plugin和http_client_plugin两个插件。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">APPBASE_PLUGIN_REQUIRES((chain_plugin)(http_client_plugin))</span><br></pre></td></tr></table></figure></p>
+<p>大写的显示，应该是说明这一个宏定义，果然，我们翻了一下，宏定义在plugin.hpp文件中，具体定义如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> APPBASE_PLUGIN_REQUIRES( PLUGINS )                               \</span></span><br><span class="line">   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Lambda&gt;                                           \</span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">plugin_requires</span><span class="params">( Lambda&amp;&amp; l )</span> </span>&#123;                                \</span><br><span class="line">      BOOST_PP_SEQ_FOR_EACH( APPBASE_PLUGIN_REQUIRES_VISIT, l, PLUGINS ) \</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> APPBASE_PLUGIN_REQUIRES_VISIT( r, visitor, elem ) \</span></span><br><span class="line">  visitor( appbase::app().register_plugin&lt;elem&gt;() );</span><br></pre></td></tr></table></figure>
+<p>哇~~~，越来越恶心了。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/区块链技术研究/" rel="tag"># 区块链技术研究</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/14/An Empirical Analysis of Anonymity in Zcash论文阅读笔记/" rel="next" title="An Empirical Analysis of Anonymity in Zcash论文阅读笔记">
+                <i class="fa fa-chevron-left"></i> An Empirical Analysis of Anonymity in Zcash论文阅读笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar2.jpg" alt="博主">
+            
+              <p class="site-author-name" itemprop="name">博主</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">19</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                    
+                      
+                    
+                    <span class="site-state-item-count">1</span>
+                    <span class="site-state-item-name">标签</span>
+                  
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/lastGod" title="GitHub &rarr; https://github.com/lastGod" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.zhihu.com/people/wen-ge-hua-49/activities" title="Zhihu &rarr; https://www.zhihu.com/people/wen-ge-hua-49/activities" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>Zhihu</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.youtube.com/channel/UCBtnEPEpvAyEGXNarIPzqaA?view_as=subscriber" title="YouTube &rarr; https://www.youtube.com/channel/UCBtnEPEpvAyEGXNarIPzqaA?view_as=subscriber" rel="noopener" target="_blank"><i class="fa fa-fw fa-youtube"></i>YouTube</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://me.csdn.net/t46414704152abc" title="CSDN &rarr; https://me.csdn.net/t46414704152abc" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>CSDN</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://www.bilibili.com/video/av37065233" title="bilibili &rarr; https://www.bilibili.com/video/av37065233" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>bilibili</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://study.163.com/course/courseMain.htm?share=2&shareId=400000000626083&courseId=1006145002&_trace_c_p_k2_=2f085c5758434a769788a6c7a1c88e11" title="NetCloud &rarr; https://study.163.com/course/courseMain.htm?share=2&shareId=400000000626083&courseId=1006145002&_trace_c_p_k2_=2f085c5758434a769788a6c7a1c88e11" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>NetCloud</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#EOS中plugin的整体结构"><span class="nav-text">EOS中plugin的整体结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#abstract-plugin"><span class="nav-text">abstract_plugin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#plugin"><span class="nav-text">plugin</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#producer-plugin"><span class="nav-text">producer_plugin</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+<!--背景音乐-->
+<!--iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=86 src="//music.163.com/outchain/player?type=2&id=37856454&auto=1&height=66"></iframe> --> 
+<!--<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=556319523&auto=1&height=66"></iframe> -->
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="280" height="86" src="//music.163.com/outchain/player?type=2&id=4341314&auto=1&height=66"></iframe>
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+<div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">博主</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v6.6.0</div>
+
+
+<div>
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!--注释本行<span id="busuanzi_container_site_pv" style='display:none'>-->
+    本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
+    <span class="post-meta-divider">|</span>
+
+<span id="busuanzi_container_site_uv" style="display:none">
+    本站访问<span id="busuanzi_value_site_uv"></span>人次
+</span>
+</div>
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="Total Visitors">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="Total Views">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+	
+    
+
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=6.6.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=6.6.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+  
+
+  
+  
+
+  
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap')
+      $(e).after($wrap)
+      $wrap.append($('<button>').addClass('copy-btn').append('Copy').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text()
+        }).toArray().join('\n')
+        var ta = document.createElement('textarea')
+        document.body.appendChild(ta)
+        ta.style.position = 'absolute'
+        ta.style.top = '0px'
+        ta.style.left = '0px'
+        ta.value = code
+        ta.select()
+        ta.focus()
+        var result = document.execCommand('copy')
+        document.body.removeChild(ta)
+        
+        $(this).blur()
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn')
+        setTimeout(function () {
+          $b.text('Copy')
+        }, 300)
+      }).append(e)
+    })
+  </script>
+
+
+  
+
+</body>
+</html>
