@@ -110,15 +110,15 @@
 
   <meta name="description" content="发表于Financial Cryptography and Data Security 2019的一篇文章。文章链接：http://fc19.ifca.ai/preproceedings/69-preproceedings.pdf  摘要在（PETS’18）会议提出对Monero 不可追踪性的cascade effect 攻击已被开发者使用两个方法规避，其中之一是增加币环形签名(Ring Sign">
 <meta property="og:type" content="article">
-<meta property="og:title" content="New Empirical Traceability Analysis of CryptoNote-Style Blockchains阅读报告">
+<meta property="og:title" content="New Empirical Traceability Analysis of CryptoNote-Style Blockchains">
 <meta property="og:url" content="https://hzxGoForward.github.io/2019/04/08/New Empirical Traceability Analysis of CryptoNote-Style Blockchains/index.html">
 <meta property="og:site_name" content="hzx&#39;s Home">
 <meta property="og:description" content="发表于Financial Cryptography and Data Security 2019的一篇文章。文章链接：http://fc19.ifca.ai/preproceedings/69-preproceedings.pdf  摘要在（PETS’18）会议提出对Monero 不可追踪性的cascade effect 攻击已被开发者使用两个方法规避，其中之一是增加币环形签名(Ring Sign">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190408163804418.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-04-08T09:20:10.935Z">
+<meta property="og:updated_time" content="2019-04-08T14:36:19.761Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="New Empirical Traceability Analysis of CryptoNote-Style Blockchains阅读报告">
+<meta name="twitter:title" content="New Empirical Traceability Analysis of CryptoNote-Style Blockchains">
 <meta name="twitter:description" content="发表于Financial Cryptography and Data Security 2019的一篇文章。文章链接：http://fc19.ifca.ai/preproceedings/69-preproceedings.pdf  摘要在（PETS’18）会议提出对Monero 不可追踪性的cascade effect 攻击已被开发者使用两个方法规避，其中之一是增加币环形签名(Ring Sign">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190408163804418.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70">
 
@@ -137,7 +137,7 @@
   };
 </script>
 
-  <title>New Empirical Traceability Analysis of CryptoNote-Style Blockchains阅读报告 | hzx's Home</title>
+  <title>New Empirical Traceability Analysis of CryptoNote-Style Blockchains | hzx's Home</title>
   
 
 
@@ -340,7 +340,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">New Empirical Traceability Analysis of CryptoNote-Style Blockchains阅读报告
+          <h1 class="post-title" itemprop="name headline">New Empirical Traceability Analysis of CryptoNote-Style Blockchains
               
             
           </h1>
@@ -365,7 +365,7 @@
                 
               
 
-              <time title="创建于：2019-04-08 17:00:14 / 更新于：17:20:10" itemprop="dateCreated datePublished" datetime="2019-04-08T17:00:14+08:00">2019-04-08</time>
+              <time title="创建于：2019-04-08 17:00:14 / 更新于：22:36:19" itemprop="dateCreated datePublished" datetime="2019-04-08T17:00:14+08:00">2019-04-08</time>
             
 
             
@@ -451,8 +451,8 @@
 <li>Dist(R, Clus)  = Dist(R, PK_Clus) = |R| - |PK_Clus∩R|<br>举例说明之，假设Clus = &#123;&#123;pk1, pk2&#125; ,  &#123;pk1, pk3&#125;, &#123;pk2, pk4&#125;&#125;, 那么PK_Clus = &#123;pk1,, pk2, pk3, pk4&#125;，假设某个R = &#123;pk1, pk3, pk5&#125;,  那么Dist(R, Clus) = 3-2 =1.</li>
 </ul>
 <h3 id="closed-set-Attack-Algorithm"><a href="#closed-set-Attack-Algorithm" class="headerlink" title="closed set Attack Algorithm"></a>closed set Attack Algorithm</h3><p>   为了进行closed set Attack，文中使用了一种聚类的方法，这种聚类的方法由两个算法构成，其中第二个算法调用了第1个算法。算法首先对所有的inputs应用Cascade-Effect攻击以减少其匿名集，随后对剩余的inputs集合输入到算法2中，Algorithm 2如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>: Let DataSet be all transaction inputs in the blockchain.</span><br><span class="line"><span class="number">2.</span> Cascade-Effect(Dataset)</span><br><span class="line"><span class="number">3.</span> Flag = <span class="literal">true</span></span><br><span class="line"><span class="number">4.</span> <span class="keyword">while</span> Flag == <span class="literal">true</span> <span class="keyword">do</span></span><br><span class="line"><span class="number">5.</span>     Flag = <span class="literal">false</span></span><br><span class="line"><span class="number">6.</span>     <span class="keyword">for</span> each R ∈ DataSet <span class="keyword">do</span></span><br><span class="line"><span class="number">7.</span>     Clus_Form(R) -&gt; Clus		<span class="comment">// 调用了Algorithm 1</span></span><br><span class="line"><span class="number">8.</span>     <span class="keyword">if</span> Clus is a closed <span class="built_in">set</span> then</span><br><span class="line"><span class="number">9.</span>        Remove(Clus) -&gt;Flag  <span class="comment">// 删除Dataset中的Clus集合</span></span><br><span class="line"><span class="number">10.</span>       <span class="keyword">if</span> Flag == <span class="literal">true</span> then</span><br><span class="line"><span class="number">11.</span>           find traceable inputs</span><br><span class="line"><span class="number">12.</span>           check whether rings inside Clus are traceable</span><br></pre></td></tr></table></figure>
-<p>Algorithm 1算法如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>  Start with an input R, <span class="keyword">and</span> define the cluster as Clus = &amp;#<span class="number">123</span>;R&amp;#<span class="number">125</span>;</span><br><span class="line"><span class="number">2.</span> Let DataSet be all transaction inputs in the blockchain</span><br><span class="line"><span class="number">3.</span> <span class="function"><span class="keyword">for</span> each <span class="title">R1</span><span class="params">(≠ R)</span> 2 DataSet <span class="keyword">do</span></span></span><br><span class="line">4.     if Dist(R1， Clus) ≤ 1 then</span><br><span class="line"><span class="number">4.</span>         Clus = Clus ∪ &amp;#<span class="number">123</span>;R1&amp;#<span class="number">125</span>;</span><br><span class="line"><span class="number">6.</span> <span class="keyword">return</span> Clus</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>: Let DataSet be all transaction inputs in the blockchain.</span><br><span class="line"><span class="number">1.</span> Cascade-Effect(Dataset)</span><br><span class="line"><span class="number">2.</span> Flag = <span class="literal">true</span></span><br><span class="line"><span class="number">3.</span> <span class="keyword">while</span> Flag == <span class="literal">true</span> <span class="keyword">do</span></span><br><span class="line"><span class="number">4.</span>     Flag = <span class="literal">false</span></span><br><span class="line"><span class="number">5.</span>     <span class="keyword">for</span> each R ∈ DataSet <span class="keyword">do</span></span><br><span class="line"><span class="number">6.</span>     Clus_Form(R) -&gt; Clus		<span class="comment">// 调用了Algorithm 1</span></span><br><span class="line"><span class="number">7.</span>     <span class="keyword">if</span> Clus is a closed <span class="built_in">set</span> then</span><br><span class="line"><span class="number">8.</span>        Remove(Clus) -&gt;Flag  <span class="comment">// 删除Dataset中的Clus集合</span></span><br><span class="line"><span class="number">9.</span>        <span class="keyword">if</span> Flag == <span class="literal">true</span> then</span><br><span class="line"><span class="number">10.</span>           find traceable inputs</span><br><span class="line"><span class="number">11.</span>           check whether rings inside Clus are traceable</span><br></pre></td></tr></table></figure>
+<p>Algorithm 1算法如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>  Start with an input R, <span class="keyword">and</span> define the cluster as Clus = &amp;#<span class="number">123</span>;R&amp;#<span class="number">125</span>;</span><br><span class="line"><span class="number">2.</span> Let DataSet be all transaction inputs in the blockchain</span><br><span class="line"><span class="number">3.</span> <span class="function"><span class="keyword">for</span> each <span class="title">R1</span><span class="params">(≠ R)</span> 2 DataSet <span class="keyword">do</span></span></span><br><span class="line">4.     if Dist(R1， Clus) ≤ 1 then</span><br><span class="line"><span class="number">5.</span>         Clus = Clus ∪ &amp;#<span class="number">123</span>;R1&amp;#<span class="number">125</span>;</span><br><span class="line"><span class="number">6.</span> <span class="keyword">return</span> Clus</span><br></pre></td></tr></table></figure></p>
 <p>对于Dataset中的所有inputs，迭代使用Algorithm 2，假设所有inputs个数为N，而每个R的长度为L，那么总的算法复杂度为θ(LN²) 。</p>
 <h2 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a>Experiment</h2><h3 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a>Dataset</h3><p>   本文收集了从Monero区块链创世块(2014年4月18日)到2018年3月30日的区块，总共1541236个区块，工2612070笔非coinbase 交易。</p>
 <h3 id="Experiment-Result"><a href="#Experiment-Result" class="headerlink" title="Experiment Result"></a>Experiment Result</h3><p>将本文方法应用于Monero区块链分析，首先应用Cascade effect attack，发现其中16334967笔交易可追踪，而closed set总工追踪到了5752笔交易，因此总共追踪到70.52%的inputs。追踪结果如下表所示。总共找到3017个closed set，大小从2到55不等，总共包含了7478个public_keys，这些public keys已经被花销了，如果其他输入使用这些inputs作为mix-ins，那么是无效的。</p>
@@ -601,8 +601,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/28/EOS中plugin之chain_plugin/" rel="next" title="EOS中plugin之chain_plugin">
-                <i class="fa fa-chevron-left"></i> EOS中plugin之chain_plugin
+              <a href="/2019/03/28/EOS中plugin之net-plugin/" rel="next" title="EOS中plugin之net_plugin">
+                <i class="fa fa-chevron-left"></i> EOS中plugin之net_plugin
               </a>
             
           </div>
@@ -611,8 +611,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/04/08/A Traceability Analysis of Monero’s Blockchain/" rel="prev" title="2018~2019年上下半学期学习计划">
-                2018~2019年上下半学期学习计划 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/08/A Traceability Analysis of Monero’s Blockchain/" rel="prev" title="A Traceability Analysis of Monero’s Blockchain">
+                A Traceability Analysis of Monero’s Blockchain <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
