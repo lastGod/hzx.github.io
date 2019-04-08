@@ -116,7 +116,7 @@
 <meta property="og:description" content="发表于Financial Cryptography and Data Security 2019的一篇文章。文章链接：http://fc19.ifca.ai/preproceedings/69-preproceedings.pdf  摘要在（PETS’18）会议提出对Monero 不可追踪性的cascade effect 攻击已被开发者使用两个方法规避，其中之一是增加币环形签名(Ring Sign">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20190408163804418.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-04-08T09:17:01.106Z">
+<meta property="og:updated_time" content="2019-04-08T09:20:10.935Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="New Empirical Traceability Analysis of CryptoNote-Style Blockchains阅读报告">
 <meta name="twitter:description" content="发表于Financial Cryptography and Data Security 2019的一篇文章。文章链接：http://fc19.ifca.ai/preproceedings/69-preproceedings.pdf  摘要在（PETS’18）会议提出对Monero 不可追踪性的cascade effect 攻击已被开发者使用两个方法规避，其中之一是增加币环形签名(Ring Sign">
@@ -365,7 +365,7 @@
                 
               
 
-              <time title="创建于：2019-04-08 17:00:14 / 更新于：17:17:01" itemprop="dateCreated datePublished" datetime="2019-04-08T17:00:14+08:00">2019-04-08</time>
+              <time title="创建于：2019-04-08 17:00:14 / 更新于：17:20:10" itemprop="dateCreated datePublished" datetime="2019-04-08T17:00:14+08:00">2019-04-08</time>
             
 
             
@@ -559,7 +559,9 @@
 </tr>
 </tbody>
 </table>
-<p>最后还剩余6829778笔inputs仍然不可追踪，但是这些交易的匿名集已经大大减少，减少情况如下图所示。可以看到，很多之前inputs中地址很多，但是经过closed set分析之后币有多都可以识别，其中inputs你们集合是1的，当下有超过100万，想办法进一步进行分析，或许可以有更多收获。不过作者并没有进一步分析。<br><img src="https://img-blog.csdnimg.cn/20190408163804418.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>此外，作者分别对Bytecoin和DigitalNote进行了同样的分析，分析的结果没有过多需要介绍的，因此这里略过。</p>
+<p>最后还剩余6829778笔inputs仍然不可追踪，但是这些交易的匿名集已经大大减少，减少情况如下图所示。可以看到，很多之前inputs中地址很多，但是经过closed set分析之后币有多都可以识别，其中inputs你们集合是1的，当下有超过100万，想办法进一步进行分析，或许可以有更多收获。不过作者并没有进一步分析。</p>
+<p><img src="https://img-blog.csdnimg.cn/20190408163804418.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
+<p>此外，作者分别对Bytecoin和DigitalNote进行了同样的分析，分析的结果没有过多需要介绍的，因此这里略过。</p>
 <h2 id="Observations-and-Recommendations"><a href="#Observations-and-Recommendations" class="headerlink" title="Observations and Recommendations"></a>Observations and Recommendations</h2><ul>
 <li><strong>Obervation 1：</strong> 区块链中outputs的使用率是匿名性中一个非常重要的因素，因为每个outputs毕竟只能被redeem 1次，因此低的使用量能提升匿名性。</li>
 <li><strong>Obervation 2：</strong> Closed sets与intpus的匿名性息息相关，找到Closed sets有助于减少匿名集和找到real spent，虽然其数量不多，但是仍然会威胁到匿名集。</li>
