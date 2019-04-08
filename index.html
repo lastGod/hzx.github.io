@@ -318,7 +318,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2019/03/26/科研计划/">
+    <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2019/04/08/New Empirical Traceability Analysis of CryptoNote-Style Blockchains/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="博主">
@@ -338,7 +338,465 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/03/26/科研计划/" class="post-title-link" itemprop="https://hzxGoForward.github.io/index.html">2018~2019年上下半学期学习计划</a>
+                <a href="/2019/04/08/New Empirical Traceability Analysis of CryptoNote-Style Blockchains/" class="post-title-link" itemprop="https://hzxGoForward.github.io/index.html">New Empirical Traceability Analysis of CryptoNote-Style Blockchains阅读报告</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2019-04-08 17:00:14 / 更新于：17:15:25" itemprop="dateCreated datePublished" datetime="2019-04-08T17:00:14+08:00">2019-04-08</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/区块链技术研究/" itemprop="url" rel="index"><span itemprop="name">区块链技术研究</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>发表于Financial Cryptography and Data Security 2019的一篇文章。<br>文章链接：<a href="http://fc19.ifca.ai/preproceedings/69-preproceedings.pdf" target="_blank" rel="noopener">http://fc19.ifca.ai/preproceedings/69-preproceedings.pdf</a> </p>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>在（PETS’18）会议提出对Monero 不可追踪性的cascade effect 攻击已被开发者使用两个方法规避，其中之一是增加币环形签名(Ring Signature)中mix-ins的个数，从 0.9.0版本中的3个增加到了0.12.0版本中的7个，同时增加了ring confidential transactions(ringCTs)以提升隐私性。然而，目前并没有人对Monero当前应对的策略的匿名性进行分析。 改论文提出一种统计学分析，对所有CryptoNote类型的加密货币进行closed set attack.随后对Monero、Bytecoin以及DigitalNOte进行这种攻击，实验表明，结合了cascade attack之后的closed set attack能够识别出Monero中70.52%的input、Bytecoin中74.25%的inputs以及DigitalNote中91.56%的input。<br>随后对该种攻击成功的概率进行理论分析，发现成功概率为 2^19，closed set attack近似于statiscal attacks，据此，文中分析认为Monero当前的系统设置可以抵御statiscal attacks，另外文章分析说明了mix-ins不是越大越好，而是其中未被花费的input比例越高越好。</p>
+<h2 id="Intruductioon"><a href="#Intruductioon" class="headerlink" title="Intruductioon"></a>Intruductioon</h2><p>   目前加密货币中用户的匿名性和隐私性都逐渐受到重视，因此出现了很多致力于保护用户隐私的加密货币，例如Monero、Bytecoin、Dash、DigitalNote、Boolberry等货币，这些货币都使用了CryptoNote 协议。在这些货币中，使用了ring signature(环形签名)技术，即在一笔交易的输入中，支付方会将自己的input地址和区块链中其他output地址混合起来形成一个环，这样做的目的是不让外界知道真正的input具体是哪一个，其他没有被花费的input称之为mix-ins。</p>
+<p>   然而实际上Monero区块链中有65%的用户在花销的时候，使用的mix-ins为0，而这些交易很容易被确定真正的input，随后其他一些用户使用了这些被追踪的input作为mix-ins之后也面临着被追踪的危险，也确实有文章进行了相关分析，经过分析后发现其中87%的input都能被追踪到。随后Monero开发团队也对其进行了升级，其中引入了RingCTs技术，RingCTs技术中即使是不同数目的输入也可以作为mix-ins，同时将mix-ins的数量从2提升到了6（2019年3月29日的0.12.0版本）。但是实际上这些货币匿名性如何呢？</p>
+<p>   本文中作者引入了closed set attack方式，简而言之就是如果有X个inputs的集合，其中恰好又有X个不同的地址，那么说明在这X个inputs中，不同的X个地址都已经被花销出去，因为每个inputs至少要消费一个地址。假若其他inputs中包含了这X中的地址，那么其他inputs的匿名集就可以减小，如果减小到1，就能够追踪到其中的交易。</p>
+<h2 id="Preliminary"><a href="#Preliminary" class="headerlink" title="Preliminary"></a>Preliminary</h2><h3 id="CryptoNote-protocol"><a href="#CryptoNote-protocol" class="headerlink" title="CryptoNote protocol"></a>CryptoNote protocol</h3><p>   CryptoNote协议致力于做两件事情：</p>
+<ul>
+<li><strong>Untraceability：</strong> 对于任何交易，真正被花费的地址应该是在一系列outputs中匿名的作为inputs</li>
+<li><p><strong>Unlinkability：</strong> 对于任意两个交易，不可能证明这两笔交易是发送给同一个用户的。</p>
+<p>为了实现unlinkability，CryptoNote中每次转账时使用一个一次性地址，而这个一次性地址来源于接受者的公钥和发送者生成的一个随机数。 为了实现untraceability，CryptoNote中使用了环形签名。</p>
+</li>
+</ul>
+<h2 id="Closed-Set-Attack"><a href="#Closed-Set-Attack" class="headerlink" title="Closed Set Attack"></a>Closed Set Attack</h2><p>   为了说明攻击方法，用txi.in表示每笔交易的输入，假设当前有4笔交易，每笔交易中的inputs分别是：</p>
+<ul>
+<li>tx1.in = &#123;pk1, pk2, pk3&#125;;</li>
+<li>tx2.in = &#123;pk2, pk3&#125;;</li>
+<li>tx3.in = &#123;pk1, pk3&#125;;</li>
+<li>tx4.in = &#123;pk1, pk2, pk3, pk4&#125;.<br>其中pk表示public key， 即公钥。在tx1、tx2以及tx3中分别用到了pk1、pk2和pk3，而每个tx中都会花费一个pk，因此前3个交易必然是吧pk1、pk2和pk3已经花费掉了，在tx4中，很明显可以推出pk4是真正的花费地址。<br>应用理论分析应该是，在一系列交易中，所有的inputs的数量之和恰好等于这些inputs中不同地址的数目，那么其他应用这些不同地址作为mix-ins的交易，其匿名集中可以除去这些地址以减少其匿名集，如果匿名集和数量为1，那么这笔交易就成为可追踪交易了。</li>
+</ul>
+<h3 id="Definition-of-Cluster"><a href="#Definition-of-Cluster" class="headerlink" title="Definition of Cluster"></a>Definition of Cluster</h3><p>   那么这种攻击是如何进行的呢？文中定义一个Clus记为一个inputs的集合，Clus = &#123;R1， R2，…, Rn&#125;，每一个Clusetr中所有不同地址的集合，称之为PK_Clus，一个inputs我们使用R代表。假设已经存在一个Clus，那么一个inputs和Clus之间的差集定义为</p>
+<ul>
+<li>Dist(R, Clus)  = Dist(R, PK_Clus) = |R| - |PK_Clus∩R|<br>举例说明之，假设Clus = &#123;&#123;pk1, pk2&#125; ,  &#123;pk1, pk3&#125;, &#123;pk2, pk4&#125;&#125;, 那么PK_Clus = &#123;pk1,, pk2, pk3, pk4&#125;，假设某个R = &#123;pk1, pk3, pk5&#125;,  那么Dist(R, Clus) = 3-2 =1.</li>
+</ul>
+<h3 id="closed-set-Attack-Algorithm"><a href="#closed-set-Attack-Algorithm" class="headerlink" title="closed set Attack Algorithm"></a>closed set Attack Algorithm</h3><p>   为了进行closed set Attack，文中使用了一种聚类的方法，这种聚类的方法由两个算法构成，其中第二个算法调用了第1个算法。算法首先对所有的inputs应用Cascade-Effect攻击以减少其匿名集，随后对剩余的inputs集合输入到算法2中，Algorithm 2如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>: Let DataSet be all transaction inputs in the blockchain.</span><br><span class="line"><span class="number">2.</span> Cascade-Effect(Dataset)</span><br><span class="line"><span class="number">3.</span> Flag = <span class="literal">true</span></span><br><span class="line"><span class="number">4.</span> <span class="keyword">while</span> Flag == <span class="literal">true</span> <span class="keyword">do</span></span><br><span class="line"><span class="number">5.</span>     Flag = <span class="literal">false</span></span><br><span class="line"><span class="number">6.</span>     <span class="keyword">for</span> each R ∈ DataSet <span class="keyword">do</span></span><br><span class="line"><span class="number">7.</span>     Clus_Form(R) -&gt; Clus		<span class="comment">// 调用了Algorithm 1</span></span><br><span class="line"><span class="number">8.</span>     <span class="keyword">if</span> Clus is a closed <span class="built_in">set</span> then</span><br><span class="line"><span class="number">9.</span>        Remove(Clus) -&gt;Flag  <span class="comment">// 删除Dataset中的Clus集合</span></span><br><span class="line"><span class="number">10.</span>       <span class="keyword">if</span> Flag == <span class="literal">true</span> then</span><br><span class="line"><span class="number">11.</span>           find traceable inputs</span><br><span class="line"><span class="number">12.</span>           check whether rings inside Clus are traceable</span><br></pre></td></tr></table></figure>
+<p>Algorithm 1算法如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>  Start with an input R, <span class="keyword">and</span> define the cluster as Clus = &amp;#<span class="number">123</span>;R&amp;#<span class="number">125</span>;</span><br><span class="line"><span class="number">2.</span> Let DataSet be all transaction inputs in the blockchain</span><br><span class="line"><span class="number">3.</span> <span class="function"><span class="keyword">for</span> each <span class="title">R1</span><span class="params">(≠ R)</span> 2 DataSet <span class="keyword">do</span></span></span><br><span class="line">4.     if Dist(R1， Clus) ≤ 1 then</span><br><span class="line"><span class="number">4.</span>         Clus = Clus ∪ &amp;#<span class="number">123</span>;R1&amp;#<span class="number">125</span>;</span><br><span class="line"><span class="number">6.</span> <span class="keyword">return</span> Clus</span><br></pre></td></tr></table></figure></p>
+<p>对于Dataset中的所有inputs，迭代使用Algorithm 2，假设所有inputs个数为N，而每个R的长度为L，那么总的算法复杂度为θ(LN²) 。</p>
+<h2 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a>Experiment</h2><h3 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a>Dataset</h3><p>   本文收集了从Monero区块链创世块(2014年4月18日)到2018年3月30日的区块，总共1541236个区块，工2612070笔非coinbase 交易。</p>
+<h3 id="Experiment-Result"><a href="#Experiment-Result" class="headerlink" title="Experiment Result"></a>Experiment Result</h3><p>将本文方法应用于Monero区块链分析，首先应用Cascade effect attack，发现其中16334967笔交易可追踪，而closed set总工追踪到了5752笔交易，因此总共追踪到70.52%的inputs。追踪结果如下表所示。总共找到3017个closed set，大小从2到55不等，总共包含了7478个public_keys，这些public keys已经被花销了，如果其他输入使用这些inputs作为mix-ins，那么是无效的。</p>
+<table>
+<thead>
+<tr>
+<th>mix-insg个数</th>
+<th>inputs数</th>
+<th>共可追踪inputs数</th>
+<th>Cascade Effect</th>
+<th>Closed set</th>
+<th>百分比</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>12209675</td>
+<td>12209675</td>
+<td>12209675</td>
+<td>0</td>
+<td>100</td>
+</tr>
+<tr>
+<td>1</td>
+<td>707786</td>
+<td>625641</td>
+<td>625264</td>
+<td>377</td>
+<td>88.39</td>
+</tr>
+<tr>
+<td>2</td>
+<td>4496490</td>
+<td>1779134</td>
+<td>1776192</td>
+<td>2942</td>
+<td>39.57</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1486593</td>
+<td>952855</td>
+<td>951984</td>
+<td>871</td>
+<td>64.10</td>
+</tr>
+<tr>
+<td>4</td>
+<td>3242625</td>
+<td>451959</td>
+<td>451230</td>
+<td>729</td>
+<td>13.94</td>
+</tr>
+<tr>
+<td>5</td>
+<td>319352</td>
+<td>74186</td>
+<td>73980</td>
+<td>206</td>
+<td>23.23</td>
+</tr>
+<tr>
+<td>6</td>
+<td>432875</td>
+<td>202360</td>
+<td>202100</td>
+<td>260</td>
+<td>46.75</td>
+</tr>
+<tr>
+<td>7</td>
+<td>21528</td>
+<td>4296</td>
+<td>4282</td>
+<td>14</td>
+<td>19.96</td>
+</tr>
+<tr>
+<td>8</td>
+<td>30067</td>
+<td>3506</td>
+<td>3490</td>
+<td>16</td>
+<td>11.66</td>
+</tr>
+<tr>
+<td>9</td>
+<td>17724</td>
+<td>2178</td>
+<td>2162</td>
+<td>16</td>
+<td>12.29</td>
+</tr>
+<tr>
+<td>Total</td>
+<td>≥10</td>
+<td>200030</td>
+<td>29177</td>
+<td>28856</td>
+<td>321</td>
+<td>14.59</td>
+</tr>
+</tbody>
+</table>
+<p>最后还剩余6829778笔inputs仍然不可追踪，但是这些交易的匿名集已经大大减少，减少情况如下图所示。可以看到，很多之前inputs中地址很多，但是经过closed set分析之后币有多都可以识别，其中inputs你们集合是1的，当下有超过100万，想办法进一步进行分析，或许可以有更多收获。不过作者并没有进一步分析。<br><img src="https://img-blog.csdnimg.cn/20190408163804418.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"><br>此外，作者分别对Bytecoin和DigitalNote进行了同样的分析，分析的结果没有过多需要介绍的，因此这里略过。</p>
+<h2 id="Observations-and-Recommendations"><a href="#Observations-and-Recommendations" class="headerlink" title="Observations and Recommendations"></a>Observations and Recommendations</h2><ul>
+<li><strong>Obervation 1：</strong> 区块链中outputs的使用率是匿名性中一个非常重要的因素，因为每个outputs毕竟只能被redeem 1次，因此低的使用量能提升匿名性。</li>
+<li><strong>Obervation 2：</strong> Closed sets与intpus的匿名性息息相关，找到Closed sets有助于减少匿名集和找到real spent，虽然其数量不多，但是仍然会威胁到匿名集。</li>
+<li><strong>Recommendation 1：</strong> 为了减少outputs的使用率，应该增加更多的outputs，建议用户增加一些价值为0 的输出。(PS:输出越多，花费的交易费越多，用户愿意吗？)</li>
+<li><strong>Recommendation 2：</strong> 不用使用无效的mix-ins。PS：如果用户知道的话，用户当然不会使用了。</li>
+</ul>
+<h2 id="Thinking"><a href="#Thinking" class="headerlink" title="Thinking"></a>Thinking</h2><p>   这篇文章就提出了1种攻击方式，相比于其他文章来说，在内容和分析展示情况上都显示出比较单一，个人觉得提出的方法很好，但是并没有很好地挖掘这种方法之后的结果，这种方法已经将匿名集降低到1了，此时如果在坚持一下，或者在想想别的分析方法，那么就不是简单的发表在FC上了，可以冲击一下B类会议。</p>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2019/03/28/EOS中plugin之net-plugin/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hzx's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/28/EOS中plugin之net-plugin/" class="post-title-link" itemprop="https://hzxGoForward.github.io/index.html">EOS中plugin之net_plugin</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2019-03-28 14:15:24 / 更新于：15:19:59" itemprop="dateCreated datePublished" datetime="2019-03-28T14:15:24+08:00">2019-03-28</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>这部分重点介绍EOS中的服务器端部分nodeos启动之后开启的另外一个重要的插件——net_plugin，这个插件主要负责服务器在网络中的接入、同步区块信息、断开等功能。对于这个插件，首先从其类的定义开始了解。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">net_plugin</span> :</span> <span class="keyword">public</span> appbase::plugin&lt;net_plugin&gt;</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">    net_plugin();</span><br><span class="line">    <span class="keyword">virtual</span> ~net_plugin();</span><br><span class="line"></span><br><span class="line">    APPBASE_PLUGIN_REQUIRES((chain_plugin))    <span class="comment">// net_plugin这个插件的启动，依赖chain_plugin插件</span></span><br><span class="line">    <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">set_program_options</span><span class="params">(options_description&amp; cli, options_description&amp; cfg)</span> override</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">plugin_initialize</span><span class="params">(<span class="keyword">const</span> variables_map&amp; options)</span></span>;  <span class="comment">// 插件初始化</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">plugin_startup</span><span class="params">()</span></span>;                                 <span class="comment">// 插件的启动</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">plugin_shutdown</span><span class="params">()</span></span>;                                <span class="comment">// 插件关闭</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span>   <span class="title">broadcast_block</span><span class="params">(<span class="keyword">const</span> chain::signed_block &amp;sb)</span></span>; <span class="comment">// 广播区块</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="built_in">string</span>                       <span class="title">connect</span><span class="params">( <span class="keyword">const</span> <span class="built_in">string</span>&amp; endpoint )</span></span>; <span class="comment">// 连接其他端点</span></span><br><span class="line">    <span class="function"><span class="built_in">string</span>                       <span class="title">disconnect</span><span class="params">( <span class="keyword">const</span> <span class="built_in">string</span>&amp; endpoint )</span></span>; <span class="comment">// 断开连接</span></span><br><span class="line">    optional&lt;connection_status&gt;  status( <span class="keyword">const</span> <span class="built_in">string</span>&amp; endpoint )<span class="keyword">const</span>;   <span class="comment">// 查看与某个端点的链接状态</span></span><br><span class="line">    <span class="built_in">vector</span>&lt;connection_status&gt;    connections()<span class="keyword">const</span>;                   <span class="comment">// 查看连接状态</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">size_t</span> num_peers() <span class="keyword">const</span>;                                          <span class="comment">// 查看建立连接的端点个数</span></span><br><span class="line">    <span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">unique_ptr</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">net_plugin_impl</span>&gt; <span class="title">my</span>;</span>   <span class="comment">// 和producer_plugin_imple一样，这个插件负责网络中的具体操作</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>net_plugin插件的代码还是比较容易理解的，net_plugin的初始化函数非常简单，代码如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">net_plugin::net_plugin()</span><br><span class="line">    :my( <span class="keyword">new</span> net_plugin_impl ) &#123;</span><br><span class="line">    my_impl = my.get();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>初始化函数中生成了一阁net_plugin_impl的实例，随后将my的指针赋值给了net_plugin_impl类中的定义的静态指针,这个静态指针的定义如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> net_plugin_impl *my_impl;</span><br></pre></td></tr></table></figure>
+<p>再nodeos的main函数中，net_plugin首先会初始化，随后调用其plugin_initialize函数和<a href="https://hzxgoforward.github.io/2019/03/20/EOS%E4%B8%ADplugin%E7%9A%84%E6%95%B4%E4%BD%93%E7%BB%93%E6%9E%84/">EOS中lugin之producer_plugin</a>的介绍的procuder_plugin类初始化方式时一样的，先寻找这个插件依赖的插件，然后初始化依赖的插件、一些启动参数，设置心跳计时器等。</p>
+<p>nodeos中初始化完毕，随后调用net_plugin的plugin_startup函数，该函数代码如下:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> net_plugin::plugin_startup() &#123;</span><br><span class="line">    my-&gt;producer_plug = app().find_plugin&lt;producer_plugin&gt;();</span><br><span class="line">    <span class="keyword">if</span>( my-&gt;acceptor ) &#123;</span><br><span class="line">        <span class="comment">// 常见的网络服务操作,打开监听服务,设置选项,绑定地址,启动监听</span></span><br><span class="line">        my-&gt;acceptor-&gt;open(my-&gt;listen_endpoint.protocol());</span><br><span class="line">        my-&gt;acceptor-&gt;set_option(tcp::acceptor::reuse_address(<span class="literal">true</span>));</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="comment">// acceptor 来自于boost::asio::ip::tcp，即tcp::acceptor</span></span><br><span class="line">        my-&gt;acceptor-&gt;bind(my-&gt;listen_endpoint);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (<span class="keyword">const</span> <span class="built_in">std</span>::exception&amp; e) &#123;</span><br><span class="line">        ilog(<span class="string">"net_plugin::plugin_startup failed to bind to port $&#123;port&#125;"</span>,</span><br><span class="line">            (<span class="string">"port"</span>, my-&gt;listen_endpoint.port()));</span><br><span class="line">        <span class="keyword">throw</span> e;</span><br><span class="line">        &#125;</span><br><span class="line">        my-&gt;acceptor-&gt;listen();</span><br><span class="line">        ilog(<span class="string">"starting listener, max clients is $&#123;mc&#125;"</span>,(<span class="string">"mc"</span>,my-&gt;max_client_count));</span><br><span class="line">        my-&gt;start_listen_loop();   <span class="comment">// 循环监听函数</span></span><br><span class="line">    &#125;</span><br><span class="line">    chain::controller&amp;cc = my-&gt;chain_plug-&gt;chain();</span><br><span class="line">    &#123;</span><br><span class="line">        cc.accepted_block.connect(  boost::bind(&amp;net_plugin_impl::accepted_block, my.get(), _1));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    my-&gt;incoming_transaction_ack_subscription = app().get_channel&lt;channels::transaction_ack&gt;().subscribe(boost::bind(&amp;net_plugin_impl::transaction_ack, my.get(), _1));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>( cc.get_read_mode() == chain::db_read_mode::READ_ONLY ) &#123;</span><br><span class="line">        my-&gt;max_nodes_per_host = <span class="number">0</span>;</span><br><span class="line">        ilog( <span class="string">"node in read-only mode setting max_nodes_per_host to 0 to prevent connections"</span> );</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 启动连接和交易到期的监视</span></span><br><span class="line">    my-&gt;start_monitors();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>( <span class="keyword">auto</span> seed_node : my-&gt;supplied_peers ) &#123;</span><br><span class="line">        connect( seed_node );<span class="comment">// 连接种子节点,接入p2p网络</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(fc::get_logger_map().find(logger_name) != fc::get_logger_map().end())</span><br><span class="line">        logger = fc::get_logger_map()[logger_name];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>首先打开监听的端口号，设置相关协议，随后绑定端口号，然后开始监听网络中的信息，同时让本端点连接到网络中的种子节点，以此连接EOS中的p2p网络。这里面最重要的2个函数是 my-&gt;start_listen_loop()以及my-&gt;start_monitors()函数,my-&gt;start_listen_loop，通过函数名称可以断定主要用来不断地从网络中监听网络中发送的信息，my-&gt;start_monitors()应该是进行监听，但是到底监听什么，我们还不得而知。</p>
+<p>这里暂时先不对net_plugin_impl进行具体解析，因为这并不影响我们对这两个函数的分析，另外一方面，net_plugin_impl的介绍对于这两个函数的分析，帮助不大。<br>因此，我们直接进入start_listen_loop函数一探究竟。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 该函数循环监听信息</span></span><br><span class="line"><span class="keyword">void</span> net_plugin_impl::start_listen_loop() &#123;</span><br><span class="line">    <span class="keyword">auto</span> socket = <span class="built_in">std</span>::make_shared&lt;tcp::socket&gt;( <span class="built_in">std</span>::ref( app().get_io_service() ) );</span><br><span class="line">    acceptor-&gt;async_accept( *socket, [socket,<span class="keyword">this</span>]( boost::system::error_code ec ) &#123;</span><br><span class="line">        <span class="keyword">if</span>( !ec ) &#123;</span><br><span class="line">            <span class="keyword">uint32_t</span> visitors = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">uint32_t</span> from_addr = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">auto</span> paddr = socket-&gt;remote_endpoint(ec).address();</span><br><span class="line">            <span class="keyword">if</span> (ec) &#123;</span><br><span class="line">                fc_elog(logger,<span class="string">"Error getting remote endpoint: $&#123;m&#125;"</span>,(<span class="string">"m"</span>, ec.message()));</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">auto</span> &amp;conn : connections) &#123;</span><br><span class="line">                    <span class="keyword">if</span>(conn-&gt;socket-&gt;is_open()) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (conn-&gt;peer_addr.empty()) &#123;</span><br><span class="line">                        visitors++;</span><br><span class="line">                        boost::system::error_code ec;</span><br><span class="line">                        <span class="keyword">if</span> (paddr == conn-&gt;socket-&gt;remote_endpoint(ec).address()) &#123;</span><br><span class="line">                            from_addr++;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (num_clients != visitors) &#123;</span><br><span class="line">                    ilog(<span class="string">"checking max client, visitors = $&#123;v&#125; num clients $&#123;n&#125;"</span>,(<span class="string">"v"</span>,visitors)(<span class="string">"n"</span>,num_clients));</span><br><span class="line">                    num_clients = visitors;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>( from_addr &lt; max_nodes_per_host &amp;&amp; (max_client_count == <span class="number">0</span> || num_clients &lt; max_client_count )) &#123;</span><br><span class="line">                    ++num_clients;</span><br><span class="line">                    connection_ptr c = <span class="built_in">std</span>::make_shared&lt;connection&gt;( socket );</span><br><span class="line">                    connections.insert( c );</span><br><span class="line">                    start_session( c );</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">if</span> (from_addr &gt;= max_nodes_per_host) &#123;</span><br><span class="line">                    fc_elog(logger, <span class="string">"Number of connections ($&#123;n&#125;) from $&#123;ra&#125; exceeds limit"</span>,</span><br><span class="line">                            (<span class="string">"n"</span>, from_addr+<span class="number">1</span>)(<span class="string">"ra"</span>,paddr.to_string()));</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> &#123;</span><br><span class="line">                    fc_elog(logger, <span class="string">"Error max_client_count $&#123;m&#125; exceeded"</span>,</span><br><span class="line">                            ( <span class="string">"m"</span>, max_client_count) );</span><br><span class="line">                    &#125;</span><br><span class="line">                    socket-&gt;close();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            elog( <span class="string">"Error accepting connection: $&#123;m&#125;"</span>,( <span class="string">"m"</span>, ec.message() ) );</span><br><span class="line">            <span class="comment">// For the listed error codes below, recall start_listen_loop()</span></span><br><span class="line">            <span class="keyword">switch</span> (ec.value()) &#123;</span><br><span class="line">                <span class="keyword">case</span> ECONNABORTED:</span><br><span class="line">                <span class="keyword">case</span> EMFILE:</span><br><span class="line">                <span class="keyword">case</span> ENFILE:</span><br><span class="line">                <span class="keyword">case</span> ENOBUFS:</span><br><span class="line">                <span class="keyword">case</span> ENOMEM:</span><br><span class="line">                <span class="keyword">case</span> EPROTO:</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">default</span>:</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        start_listen_loop();</span><br><span class="line">        &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2019/03/26/2018~2019年上下半学期学习计划/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hzx's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/26/2018~2019年上下半学期学习计划/" class="post-title-link" itemprop="https://hzxGoForward.github.io/index.html">2018~2019年上下半学期学习计划</a>
               
             
           </h1>
@@ -553,7 +1011,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2019/03/20/EOS中plugin的整体结构/">
+    <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2019/03/26/科研计划/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="博主">
@@ -573,7 +1031,264 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 
-                <a href="/2019/03/20/EOS中plugin的整体结构/" class="post-title-link" itemprop="https://hzxGoForward.github.io/index.html">EOS中plugin的整体结构</a>
+                <a href="/2019/03/26/科研计划/" class="post-title-link" itemprop="https://hzxGoForward.github.io/index.html">2018~2019年上下半学期学习计划</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2019-03-26 16:19:00" itemprop="dateCreated datePublished" datetime="2019-03-26T16:19:00+08:00">2019-03-26</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2019-04-08 17:09:32" itemprop="dateModified" datetime="2019-04-08T17:09:32+08:00">2019-04-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/区块链技术研究/" itemprop="url" rel="index"><span itemprop="name">区块链技术研究</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="研究内容"><a href="#研究内容" class="headerlink" title="研究内容"></a>研究内容</h1><h2 id="1-区块链匿名性方面论文阅读"><a href="#1-区块链匿名性方面论文阅读" class="headerlink" title="1. 区块链匿名性方面论文阅读"></a>1. 区块链匿名性方面论文阅读</h2><h3 id="总目标：对匿名性研究方面有比较深入的了解"><a href="#总目标：对匿名性研究方面有比较深入的了解" class="headerlink" title="总目标：对匿名性研究方面有比较深入的了解"></a>总目标：对匿名性研究方面有比较深入的了解</h3><h3 id="量化方式：总结出匿名性方面的研究给出目前的主要研究方向以及方法，主要发表的期刊"><a href="#量化方式：总结出匿名性方面的研究给出目前的主要研究方向以及方法，主要发表的期刊" class="headerlink" title="量化方式：总结出匿名性方面的研究给出目前的主要研究方向以及方法，主要发表的期刊"></a>量化方式：总结出匿名性方面的研究给出目前的主要研究方向以及方法，主要发表的期刊</h3><h3 id="进度情况"><a href="#进度情况" class="headerlink" title="进度情况"></a>进度情况</h3><table>
+<thead>
+<tr>
+<th>时间</th>
+<th>论文</th>
+<th>理解撰写阅读报告</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2019年3月17日</td>
+<td>An Empirical Analysis of Anonymity in Zcash</td>
+<td>已完成</td>
+</tr>
+<tr>
+<td>2019年3月24日</td>
+<td>Extending the Anonymity of Zcash</td>
+<td>已完成</td>
+</tr>
+<tr>
+<td>2019年3月30日</td>
+<td>A Traceability Analysis of Monero’s Blockchain</td>
+<td>已完成</td>
+</tr>
+<tr>
+<td>2019年4月7日</td>
+<td>New Empirical Traceability Analysis of CryptoNote-Style Blockchains</td>
+<td>已完成</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-日志异常检测工作"><a href="#2-日志异常检测工作" class="headerlink" title="2. 日志异常检测工作"></a>2. 日志异常检测工作</h2><h3 id="总目标：实现系统日志异常检测"><a href="#总目标：实现系统日志异常检测" class="headerlink" title="总目标：实现系统日志异常检测"></a>总目标：实现系统日志异常检测</h3><h3 id="进度情况-1"><a href="#进度情况-1" class="headerlink" title="进度情况"></a>进度情况</h3><table>
+<thead>
+<tr>
+<th>时间</th>
+<th>任务</th>
+<th>完成情况</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2019年3月17日</td>
+<td>DeepLog论文思路理解</td>
+<td>完成</td>
+</tr>
+<tr>
+<td>2019年3月24日</td>
+<td>实现execute path anomaly detection</td>
+<td>完成</td>
+</tr>
+<tr>
+<td>2019年3月30日</td>
+<td>实现 parameters anomaly detection</td>
+<td>进行</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-EOS源码阅读计划"><a href="#3-EOS源码阅读计划" class="headerlink" title="3. EOS源码阅读计划"></a>3. EOS源码阅读计划</h2><h3 id="总目标：本学期结束时需对EOS中区块生产过程、用户交易发起到上链过程等重要过程有深入的理解"><a href="#总目标：本学期结束时需对EOS中区块生产过程、用户交易发起到上链过程等重要过程有深入的理解" class="headerlink" title="总目标：本学期结束时需对EOS中区块生产过程、用户交易发起到上链过程等重要过程有深入的理解"></a>总目标：本学期结束时需对EOS中区块生产过程、用户交易发起到上链过程等重要过程有深入的理解</h3><h3 id="量化方式：阅读源代码并撰写笔记"><a href="#量化方式：阅读源代码并撰写笔记" class="headerlink" title="量化方式：阅读源代码并撰写笔记"></a>量化方式：阅读源代码并撰写笔记</h3><table>
+<thead>
+<tr>
+<th>时间</th>
+<th>源码部分</th>
+<th>完成情况</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3月10日~3月17日</td>
+<td>produccer_plugin类、abstract_plugin类</td>
+<td>已完成</td>
+</tr>
+<tr>
+<td>3月18日~3月30日</td>
+<td>producer_plugin_impl类</td>
+<td>已完成</td>
+</tr>
+<tr>
+<td>3月31日~4月13日</td>
+<td>net_plugin / net_plugin_impl类</td>
+<td>进行中</td>
+</tr>
+</tbody>
+</table>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2019/03/20/EOS中plugin之producer_plugin/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hzx's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/20/EOS中plugin之producer_plugin/" class="post-title-link" itemprop="https://hzxGoForward.github.io/index.html">EOS中plugin之producer_plugin</a>
               
             
           </h1>
@@ -615,7 +1330,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2019-03-28 14:08:18" itemprop="dateModified" datetime="2019-03-28T14:08:18+08:00">2019-03-28</time>
+                <time title="更新于：2019-03-28 14:12:42" itemprop="dateModified" datetime="2019-03-28T14:12:42+08:00">2019-03-28</time>
               
             
           </span>
@@ -653,7 +1368,7 @@
       
         
           
-            <h1 id="EOS中plugin的整体结构"><a href="#EOS中plugin的整体结构" class="headerlink" title="EOS中plugin的整体结构"></a>EOS中plugin的整体结构</h1><p>EOS中的插件是非常重要的工具，其中大大小小总共有26个插件，其中比较重要的插件有chain_plugin、producer_plugin、http_plugin、net_plugin等四个插件。这四个插件在EOS服务器端启动后也开始启动进行工作。</p>
+            <h1 id="EOS中plugin之producer-plugin"><a href="#EOS中plugin之producer-plugin" class="headerlink" title="EOS中plugin之producer_plugin"></a>EOS中plugin之producer_plugin</h1><p>EOS中的插件是非常重要的工具，其中大大小小总共有26个插件，其中比较重要的插件有chain_plugin、producer_plugin、http_plugin、net_plugin等四个插件。这四个插件在EOS服务器端启动后也开始启动进行工作。</p>
 <h2 id="abstract-plugin"><a href="#abstract-plugin" class="headerlink" title="abstract_plugin"></a>abstract_plugin</h2><p>EOS中所有插件继承于plugin类，而plugin类又继承于abstract_plugin类。<br>abstract_plugin中规定了每个插件的4个状态，这4个状态依次如下。</p>
 <ul>
 <li>registered，表示插件已经注册， 每个插件初始化后就是注册的状态。</li>
@@ -741,6 +1456,7 @@
 <p>上来就是一句我不懂的函数：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">auto</span> reschedule = fc::make_scoped_exit(</span><br><span class="line">   [<span class="keyword">this</span>]&#123;</span><br><span class="line">   schedule_production_loop();</span><br><span class="line">&#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure></p>
 <p>也就是说，往里面传了一个lambda函数，函数就是重复生产区块的函数。但是fc::make_scope_exit又是什么意思呢？这里面大概介绍一下，make_scoped_exit函数中传入一个lambda函数，may_produe_block函数结束时reschedule函数只是定义了一下，reschedule隶属于scoped_exit类，这个类的析构函数中调用了schedule_production_loop();表明函数结束之后继续生产区块。<br>随后may_produce_block中有一个重要的函数，即produce_block()函数，我们继续追踪，这个函数代码如下：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span> producer_plugin_impl::produce_block()</span><br><span class="line">&#123;</span><br><span class="line">   <span class="comment">//ilog("produce_block $&#123;t&#125;", ("t", fc::time_point::now())); // for testing _produce_time_offset_us</span></span><br><span class="line">   EOS_ASSERT(_pending_block_mode == pending_block_mode::producing, producer_exception, <span class="string">"called produce_block while not actually producing"</span>);</span><br><span class="line">   </span><br><span class="line">   chain::controller &amp;chain = chain_plug-&gt;chain();</span><br><span class="line">   <span class="comment">// 获取当前打包好的区块的指针</span></span><br><span class="line">   <span class="keyword">const</span> <span class="keyword">auto</span> &amp;pbs = chain.pending_block_state();</span><br><span class="line">   <span class="comment">// 获取打包的区块的区块头</span></span><br><span class="line">   <span class="keyword">const</span> <span class="keyword">auto</span> &amp;hbs = chain.head_block_state();</span><br><span class="line">   EOS_ASSERT(pbs, missing_pending_block_state, <span class="string">"pending_block_state does not exist but it should, another plugin may have corrupted it"</span>);</span><br><span class="line">   <span class="comment">// 寻找BP的私钥</span></span><br><span class="line">   <span class="keyword">auto</span> signature_provider_itr = _signature_providers.find(pbs-&gt;block_signing_key);</span><br><span class="line"></span><br><span class="line">   EOS_ASSERT(signature_provider_itr != _signature_providers.end(), producer_priv_key_not_found, <span class="string">"Attempting to produce a block for which we don't have the private key"</span>);</span><br><span class="line"></span><br><span class="line">   <span class="comment">//idump( (fc::time_point::now() - chain.pending_block_time()) );</span></span><br><span class="line">   <span class="comment">// 将区块内容写入数据库中，确定区块头中的merkel_root等内容</span></span><br><span class="line">   chain.finalize_block();</span><br><span class="line"></span><br><span class="line">   <span class="comment">// 对区块进行签名</span></span><br><span class="line">   chain.sign_block([&amp;](<span class="keyword">const</span> digest_type &amp;d) &#123;</span><br><span class="line">      <span class="keyword">auto</span> debug_logger = maybe_make_debug_time_logger();</span><br><span class="line">      <span class="keyword">return</span> signature_provider_itr-&gt;second(d);</span><br><span class="line">   &#125;);</span><br><span class="line">   <span class="comment">// 往本地的分叉的区块链数据库中提交区块，因为还没有确认</span></span><br><span class="line">   chain.commit_block();</span><br><span class="line">   <span class="comment">// 获取区块时间戳</span></span><br><span class="line">   <span class="keyword">auto</span> hbt = chain.head_block_time();</span><br><span class="line">   <span class="comment">//idump((fc::time_point::now() - hbt));</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">// 获取刚刚添加的最新的区块头状态</span></span><br><span class="line">   block_state_ptr new_bs = chain.head_block_state();</span><br><span class="line">   <span class="comment">// 记录最新的区块生产者和其生产的区块号</span></span><br><span class="line">   _producer_watermarks[new_bs-&gt;header.producer] = chain.head_block_num();</span><br><span class="line"></span><br><span class="line">   ilog(<span class="string">"Produced block $&#123;id&#125;... #$&#123;n&#125; @ $&#123;t&#125; signed by $&#123;p&#125; [trxs: $&#123;count&#125;, lib: $&#123;lib&#125;, confirmed: $&#123;confs&#125;]"</span>,</span><br><span class="line">        (<span class="string">"p"</span>, new_bs-&gt;header.producer)(<span class="string">"id"</span>, fc::variant(new_bs-&gt;id).as_string().substr(<span class="number">0</span>, <span class="number">16</span>))(<span class="string">"n"</span>, new_bs-&gt;block_num)(<span class="string">"t"</span>, new_bs-&gt;header.timestamp)(<span class="string">"count"</span>, new_bs-&gt;block-&gt;transactions.size())(<span class="string">"lib"</span>, chain.last_irreversible_block_num())(<span class="string">"confs"</span>, new_bs-&gt;header.confirmed));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>至此，大致对producer_plugin这个插件的内容以及主要功能有一个大致的了解。<br>这个插件主要负责区块的接收、检验、打包和本地写入功能。</p>
 
           
         
@@ -2004,705 +2720,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2019/01/14/POJ题目分类/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar2.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="hzx's Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/14/POJ题目分类/" class="post-title-link" itemprop="https://hzxGoForward.github.io/index.html">POJ算法题目分类</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建于：2019-01-14 00:47:00" itemprop="dateCreated datePublished" datetime="2019-01-14T00:47:00+08:00">2019-01-14</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="更新于：2019-01-16 18:12:50" itemprop="dateModified" datetime="2019-01-16T18:12:50+08:00">2019-01-16</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法设计与分析/" itemprop="url" rel="index"><span itemprop="name">算法设计与分析</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="分治法"><a href="#分治法" class="headerlink" title="分治法"></a>分治法</h1><ul>
-<li><p><a href="http://bailian.openjudge.cn/practice/2255/" target="_blank" rel="noopener">重建二叉树</a></p>
-</li>
-<li><p><a href="http://algorithm.openjudge.cn/2016finalex/C/" target="_blank" rel="noopener">由中根序列和后根序列重建二叉树</a></p>
-</li>
-<li><p><a href="http://bailian.openjudge.cn/practice/2388/" target="_blank" rel="noopener">寻找中位数</a></p>
-</li>
-<li><p><a href="http://bailian.openjudge.cn/practice/2299/" target="_blank" rel="noopener">Ultra-QuickSort</a></p>
-</li>
-<li><p><a href="http://algorithm.openjudge.cn/betaexam/D/" target="_blank" rel="noopener">逆序对数</a></p>
-</li>
-<li><p><a href="http://algorithm.openjudge.cn/2016final/E/" target="_blank" rel="noopener">重要逆序对</a></p>
-</li>
-<li><p><a href="http://algorithm.openjudge.cn/2018test3/A/" target="_blank" rel="noopener">平面最近点对</a></p>
-</li>
-<li><p><a href="http://algorithm.openjudge.cn/algorithmc/B/" target="_blank" rel="noopener">Raid</a></p>
-</li>
-</ul>
-<h1 id="贪心法"><a href="#贪心法" class="headerlink" title="贪心法"></a>贪心法</h1><ul>
-<li><p><a href="http://bailian.openjudge.cn/practice/4080/" target="_blank" rel="noopener">Huffman编码树</a></p>
-</li>
-<li><p><a href="http://bailian.openjudge.cn/practice/1042/" target="_blank" rel="noopener">Gone Fishing</a></p>
-</li>
-<li><p><a href="http://algorithm.openjudge.cn/2016final/D/" target="_blank" rel="noopener">Agri-Net</a></p>
-</li>
-<li><p><a href="http://bailian.openjudge.cn/practice/1328/" target="_blank" rel="noopener">Radar Installation</a></p>
-</li>
-<li><p><a href="http://algorithm.openjudge.cn/exfinalsim/6/" target="_blank" rel="noopener">Stripies</a></p>
-</li>
-<li><p><a href="http://algorithm.openjudge.cn/exfinalsim/7/" target="_blank" rel="noopener">Arctic Network</a></p>
-</li>
-<li><p><a href="http://algorithm.openjudge.cn/algorithma/C/" target="_blank" rel="noopener">Til the Cows Come Home</a></p>
-</li>
-<li><p><a href="http://algorithm.openjudge.cn/algorithmb/C/" target="_blank" rel="noopener">Yogurt Factory</a></p>
-</li>
-<li><p><a href="http://algorithm.openjudge.cn/algorithmb/D/" target="_blank" rel="noopener">The Unique MST</a></p>
-</li>
-<li><p><a href="http://algorithm.openjudge.cn/algorithmb/E/" target="_blank" rel="noopener">Subway</a></p>
-</li>
-<li><p><a href="http://algorithm.openjudge.cn/2017mock/G/" target="_blank" rel="noopener">昂贵的聘礼</a></p>
-</li>
-<li><p><a href="http://algorithm.openjudge.cn/final2017/E/" target="_blank" rel="noopener">Building an Space Station</a></p>
-</li>
-<li><p><a href="http://algorithm.openjudge.cn/final2017/D/" target="_blank" rel="noopener">Checking An Alibi</a></p>
-</li>
-</ul>
-<h1 id="回溯"><a href="#回溯" class="headerlink" title="回溯"></a>回溯</h1><ul>
-<li><a href="http://bailian.openjudge.cn/practice/1321/" target="_blank" rel="noopener">棋盘问题</a></li>
-</ul>
-<h1 id="拓扑排序"><a href="#拓扑排序" class="headerlink" title="拓扑排序"></a>拓扑排序</h1><ul>
-<li><p><a href="http://bailian.openjudge.cn/practice/1094/" target="_blank" rel="noopener">Sorting It All Out</a></p>
-</li>
-<li><p><a href="http://algorithm.openjudge.cn/algorithmb/F/" target="_blank" rel="noopener">All Discs Considered</a></p>
-</li>
-</ul>
-<h1 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h1><ul>
-<li><p><a href="http://bailian.openjudge.cn/practice/1163/" target="_blank" rel="noopener">The Trangle</a></p>
-</li>
-<li><p><a href="http://bailian.openjudge.cn/practice/1088/" target="_blank" rel="noopener">滑雪</a></p>
-</li>
-<li><p><a href="http://bailian.openjudge.cn/practice/1050/" target="_blank" rel="noopener">To the Max</a></p>
-</li>
-<li><p><a href="http://bailian.openjudge.cn/practice/1952/" target="_blank" rel="noopener">BUY LOW,BUY LOWER</a></p>
-</li>
-<li><p><a href="http://bailian.openjudge.cn/practice/2479/" target="_blank" rel="noopener">Maximum sum</a></p>
-</li>
-<li><p><a href="http://bailian.openjudge.cn/practice/1384/" target="_blank" rel="noopener">Piggy-Bank</a></p>
-</li>
-<li><p><a href="http://bailian.openjudge.cn/practice/1797/" target="_blank" rel="noopener">Heavy Transportation</a></p>
-</li>
-<li><p><a href="http://bailian.openjudge.cn/practice/4121/" target="_blank" rel="noopener">股票买卖</a></p>
-</li>
-<li><p><a href="http://bailian.openjudge.cn/practice/1860/" target="_blank" rel="noopener">Currency Exchange</a></p>
-</li>
-<li><p><a href="http://algorithm.openjudge.cn/2018test3/B/" target="_blank" rel="noopener">合唱队形</a></p>
-</li>
-<li><p><a href="http://algorithm.openjudge.cn/2018test3/C/" target="_blank" rel="noopener">公共子序列</a></p>
-</li>
-<li><p><a href="http://bailian.openjudge.cn/practice/1191/" target="_blank" rel="noopener">棋盘分割</a></p>
-</li>
-<li><p><a href="http://algorithm.openjudge.cn/201804/D/" target="_blank" rel="noopener">Multiplication Puzzle</a></p>
-</li>
-<li><p><a href="http://algorithm.openjudge.cn/exfinalsim/5/" target="_blank" rel="noopener">Arbitrage</a></p>
-</li>
-<li><p><a href="http://algorithm.openjudge.cn/algorithmc/C/" target="_blank" rel="noopener">Longest Ordered Subsequence</a></p>
-</li>
-<li><p><a href="http://algorithm.openjudge.cn/algorithmc/D/" target="_blank" rel="noopener">Common Subsequence</a></p>
-</li>
-<li><p><a href="http://algorithm.openjudge.cn/algorithmc/F/" target="_blank" rel="noopener">LITTLE SHOP OF FLOWERS</a></p>
-</li>
-<li><p><a href="http://algorithm.openjudge.cn/2017mock/A/" target="_blank" rel="noopener">To Europe！To Europe!</a></p>
-</li>
-<li><p><a href="http://algorithm.openjudge.cn/2017mock/D/" target="_blank" rel="noopener">Palindrome</a></p>
-</li>
-<li><p><a href="http://algorithm.openjudge.cn/final2017/C/" target="_blank" rel="noopener">怪盗基德的滑翔翼</a></p>
-</li>
-<li><p><a href="http://algorithm.openjudge.cn/final2017/F/" target="_blank" rel="noopener">Charm Bracelet</a></p>
-</li>
-</ul>
-<h1 id="深搜、广搜"><a href="#深搜、广搜" class="headerlink" title="深搜、广搜"></a>深搜、广搜</h1><ul>
-<li><p><a href="http://bailian.openjudge.cn/practice/1979/" target="_blank" rel="noopener">Red and Black</a></p>
-</li>
-<li><p><a href="http://bailian.openjudge.cn/practice/2251/" target="_blank" rel="noopener">Dungeon Master</a></p>
-</li>
-<li><p><a href="http://algorithm.openjudge.cn/algorithma/D/" target="_blank" rel="noopener">仙岛求药</a></p>
-</li>
-<li><p><a href="http://algorithm.openjudge.cn/final2017/B/" target="_blank" rel="noopener">抓住那头牛</a></p>
-</li>
-</ul>
-<h1 id="二分匹配"><a href="#二分匹配" class="headerlink" title="二分匹配"></a>二分匹配</h1><ul>
-<li><a href="http://algorithm.openjudge.cn/betaexam/B/" target="_blank" rel="noopener">Butterfly</a></li>
-</ul>
-<h1 id="堆考察"><a href="#堆考察" class="headerlink" title="堆考察"></a>堆考察</h1><ul>
-<li><a href="http://algorithm.openjudge.cn/betaexam/C/" target="_blank" rel="noopener">Dynamic Median</a></li>
-</ul>
-<h1 id="并查集"><a href="#并查集" class="headerlink" title="并查集"></a>并查集</h1><ul>
-<li><a href="http://algorithm.openjudge.cn/201802/C/" target="_blank" rel="noopener">Percolation</a></li>
-</ul>
-<h1 id="网络流"><a href="#网络流" class="headerlink" title="网络流"></a>网络流</h1><ul>
-<li><p><a href="http://algorithm.openjudge.cn/201804/A/" target="_blank" rel="noopener">Drainage Ditches</a></p>
-</li>
-<li><p><a href="http://algorithm.openjudge.cn/201804/B/" target="_blank" rel="noopener">Dining</a></p>
-</li>
-<li><p><a href="http://algorithm.openjudge.cn/201804/C/" target="_blank" rel="noopener">Dual Core CPU</a></p>
-</li>
-<li><p><a href="http://algorithm.openjudge.cn/201804/F/" target="_blank" rel="noopener">Destroying the bus stations</a></p>
-</li>
-<li><p><a href="http://algorithm.openjudge.cn/exfinalsim/8/" target="_blank" rel="noopener">Firing</a></p>
-</li>
-<li><p><a href="http://algorithm.openjudge.cn/algorithmd/D/" target="_blank" rel="noopener">The Perfect Stall</a></p>
-</li>
-<li><p><a href="http://algorithm.openjudge.cn/2017mock/F/" target="_blank" rel="noopener">Jamie’s Contact Groups</a></p>
-</li>
-<li><p><a href="http://algorithm.openjudge.cn/2017mock/H/" target="_blank" rel="noopener">最小路径覆盖</a></p>
-</li>
-<li><p><a href="http://algorithm.openjudge.cn/final2017/G/" target="_blank" rel="noopener">Gopher II</a></p>
-</li>
-<li><p><a href="http://algorithm.openjudge.cn/final2017/H/" target="_blank" rel="noopener">Secret Milking Machine</a></p>
-</li>
-</ul>
-<h1 id="最大值最小问题"><a href="#最大值最小问题" class="headerlink" title="最大值最小问题"></a>最大值最小问题</h1><ul>
-<li><p><a href="http://algorithm.openjudge.cn/exfinalsim/3/" target="_blank" rel="noopener">月度开销</a></p>
-</li>
-<li><p><a href="http://algorithm.openjudge.cn/2017mock/F/" target="_blank" rel="noopener">Jamie’s Contact Groups</a></p>
-</li>
-<li><p><a href="http://algorithm.openjudge.cn/final2017/H/" target="_blank" rel="noopener">Secret Milking Machine</a></p>
-</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2019/01/10/逻辑回归的理解/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar2.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="hzx's Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/10/逻辑回归的理解/" class="post-title-link" itemprop="https://hzxGoForward.github.io/index.html">逻辑回归的理解</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建于：2019-01-10 15:11:03 / 更新于：15:12:51" itemprop="dateCreated datePublished" datetime="2019-01-10T15:11:03+08:00">2019-01-10</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/机器学习/" itemprop="url" rel="index"><span itemprop="name">机器学习</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p></p><h2>逻辑回归(Logistic Regression)<h2><p></p>
-<h3>1. 回归(Regression)<h3><br><br>- 回归，我的理解来说，其直观的理解就是拟合的意思。我们以线性回归为例子，在二维平面上有一系列红色的点，我们想用一条直线来尽量拟合这些红色的点，这就是线性回归。回归的本质就是我们的预测结果尽量贴近实际观测的结果，或者说我们的求得一些参数，经过计算之后的预测结果尽可能接近真实值。<br><center> <image src="https://i.imgur.com/la7bDLS.jpg" width="50%"></image><br><br><h3>2. 逻辑回归的由来<h3><br><br>- 对于二类线性可分的数据集，使用线性感知器就可以很好的分类。如下图中红色和蓝色的点，我们使用一条直线$x_1 +x_2 = 3$就可以区分两种数据集，在直线上方的属于红色类，直线下方的属于蓝色类。<br><center> <image src="https://i.imgur.com/uPQ0xxk.jpg"></image></center><br><br>- 但是如果二类线性不可分的数据集，我们无法找到一条直线能够将两种类别很好的区分，即线性回归的分类法对于线性不可分的数据无法有效分类。例如下图中的红色点和蓝色点，我们无法使用一条直线很好的区分这两类，但是我们可以使用非线性分类器，如果我们使用${x_1}^2+{x_2}^2 = 1$，在圆外面的为红色类，在圆里面的一类为蓝色类。<br><br><center> <image src="https://i.imgur.com/TdJn8NO.jpg"></image></center><br><br>- 诚然，数据线性可分可以使用线性分类器，如果数据线性不可分，可以使用非线性分类器，这里似乎没有逻辑回归什么事情。但是如果我们想知道对于一个二类分类问题，对于具体的一个样例，我们不仅想知道该类属于某一类，而且还想知道该类属于某一类的概率多大,有什么办法呢？<br><br>- 线性回归和非线性回归的分类问题都不能给予解答，因为线性回归和非线性回归的问题，假设其分类函数如下：<br>                              $$y = wx+b$$<br><br>- y的阈值处于$（-\infty，+\infty）$，此时不能很好的给出属于某一类的概率，因为概率的范围是[0,1],我们需要一个更好的映射函数，能够将分类的结果很好的映射成为[0,1]之间的概率，并且这个函数能够具有很好的可微分性。在这种需求下，人们找到了这个映射函数，即逻辑斯谛函数，也就是我们常说的sigmoid函数，其形式如下：<br><br><br>   $$\frac{1}{1+e^{-z}}$$<br><br><br><br>- sigmoid函数图像如下图所示<br><br><center> <image src="https://i.imgur.com/T53inQT.png" width="50%"></image></center><br><br><br>- sigmoid函数完美的解决了上述需求，而且sigmoid函数连续可微分。<br>- 假设数据离散二类可分，分为0类和1类,如果概率值大于1/2，我们就将该类划分为1类，如果概率值低于1/2,我们就将该类划分为0类。当z取值为0的时候，概率值为1/2，这时候需要人为规定划分为哪一类。<br><br><br><h3>3. 逻辑回归的损失函数(Loss Function)和成本函数(Cost Function)<h3><br><br>- 在二类分类中，我们假定sigmoid输出结果表示属于1类的概率值，我们很容易想到用平方损失函数，即<br><center><br><image src="https://i.imgur.com/3C1RzcD.jpg " widh="50%" height="80"></image><br></center><br><br>- 在这种情况下，我们φ(z(i))表示sigmoid对第i个值的预测结果，我们将sigmoid函数带入上述成本函数中，绘制其图像，发现这个成本函数的函数图像是一个非凸函数，如下图所示，这个函数里面有很多极小值，如果采用梯度下降法，则会导致陷入局部最优解中,有没有一个凸函数的成本函数呢？<br><center><br><image src="https://i.imgur.com/R5r6LvC.jpg " width="50%"></image><br></center><br><br>- 假设sigmoid函数φ(z)表示属于1类的概率，于是做出如下的定义：<br><center><image src=" https://i.imgur.com/IBlS1zQ.jpg"></image></center><br><br><br>- 将两个式子综合来，可以改写为下式：<br><center><br><image src="https://i.imgur.com/KdpNVpf.jpg"></image><br><br>- 上式将分类为0和分类和1的概率计算公式合二为一。假设分类器分类足够准确，此时对于一个样本，如果它是属于1类，分类器求出的属于1类的概率应该尽可能大，即p(y=1lx)尽可能接近1；如果它是0类，分类器求出的属于0类的概率应该尽可能大，即p(y=0lx)尽可能接近1。<br><br>- 通过上述公式对二类分类的情况分析，可知我们的目的是求取参数w和b，使得p(ylx)对0类和1类的分类结果尽可能取最大值，然而实际上我们定义的损失函数的是求最小值，于是，很自然的，我们想到对p(ylx)式子加一个负号，就变成了求最小值的问题，这就得到了逻辑回归中的损失函数。<br><br>- 不过，为了计算方便，我们通常对上述式子取log，因而得到下式：<br><br><center><br><image src="https://i.imgur.com/Swgjn66.jpg " width="50%"></image><br><br>- 公式(1)是对概率公式取log，公式(2)是对公式(1)取相反数。上述公式的函数图像如下图所示。这是一个凸函数（斜率是非单调递减的函数即凸函数），因此可以用梯度下降法求其最小值。<br><center><br><image src="https://i.imgur.com/CAHBRdg.jpg "></image><br></center><br><br>- 根据损失函数是单个样本的预测值和实际值的误差，而成本函数是全部样本的预测值和实际值之间的误差，于是对所有样本的损失值取平均数，得到我们的成本函数：<br><center><br><image src="https://i.imgur.com/cNXT1Ev.jpg"></image><br></center><br><br>- 损失函数是凸函数，m个损失函数的和仍然是凸函数，因而可以用梯度下降法求最小值。<br><br><br><h3>4. 极大似然法求解逻辑回归</h3>
-
-<ul>
-<li><p>还可以用我们熟知的统计学知识——极大似然法估计逻辑回归中的参数w和b，上述得到的logp(y|w,x),假设目前有m组样本，分别为$(x_1,y_1),(x_2,y_2)…(x_m,y_m)$，其中xi表示第i个样本的特征，yi表示第i个样本的类别，yi = 0或者1，利用极大似然法的原则，假设所有训练样本独立同分布，则联合概率为所有样本概率的乘积，即：</p>
-<center><br><image src="https://i.imgur.com/kaGRRZc.jpg"></image><br></center>
-</li>
-<li><p>对上述公式两边取对数，得到下述公式，是不是对这个公式优点熟悉呢？这个公式就是我们的成本函数的和，对于这个公式和成本函数来说，取平均值和不取平均值没有影响。</p>
-<center><br><image src="https://i.imgur.com/zHLnJJc.jpg"></image><br></center>
-</li>
-<li><p>按照极大似然法求极值的方法，分别对w的每个参数求偏导数使其为0，得到对数似然方程组，求解该方程，便可以到的w的参数。只是如果参数很多，求解方程组就会很复杂，此时可以考虑梯度下降法来求解。</p>
-</li>
-</ul>
-<p></p><h3>5. 总结</h3><p></p>
-<ul>
-<li><p>逻辑回归最大的优势在于它的输出结果不仅可以用于分类，还可以表征某个样本属于某类别的概率。</p>
-</li>
-<li><p>逻辑斯谛函数将原本输出结果从范围$（-\infty，+\infty）$ 映射到(0,1)，从而完成概率的估测。</p>
-</li>
-<li><p>逻辑回归得判定的阈值能够映射为平面的一条判定边界，随着特征的复杂化，判定边界可能是多种多样的样貌，但是它能够较好地把两类样本点分隔开，解决分类问题。</p>
-</li>
-<li><p>求解逻辑回归参数的传统方法是梯度下降，构造为凸函数的代价函数后，每次沿着偏导方向(下降速度最快方向)迈进一小部分，直至N次迭代后到达最低点。</p>
-</li>
-</ul>
-<p>参考：<br><a href="http://blog.csdn.net/han_xiaoyang/article/details/49123419" target="_blank" rel="noopener">http://blog.csdn.net/han_xiaoyang/article/details/49123419</a><br><a href="http://blog.csdn.net/zjuPeco/article/details/77165974" target="_blank" rel="noopener">http://blog.csdn.net/zjuPeco/article/details/77165974</a><br><a href="http://blog.csdn.net/star_liux/article/details/39666737" target="_blank" rel="noopener">http://blog.csdn.net/star_liux/article/details/39666737</a></p>
-</center></center></h3></h3></h3></h3></center></h3></h3></h2></h2>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2019/01/10/股票买卖/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar2.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="hzx's Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/10/股票买卖/" class="post-title-link" itemprop="https://hzxGoForward.github.io/index.html">股票买卖</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建于：2019-01-10 14:16:27" itemprop="dateCreated datePublished" datetime="2019-01-10T14:16:27+08:00">2019-01-10</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="更新于：2019-01-26 12:44:46" itemprop="dateModified" datetime="2019-01-26T12:44:46+08:00">2019-01-26</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法设计与分析/" itemprop="url" rel="index"><span itemprop="name">算法设计与分析</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="题目来源：http-bailian-openjudge-cn-practice-4121"><a href="#题目来源：http-bailian-openjudge-cn-practice-4121" class="headerlink" title="题目来源：http://bailian.openjudge.cn/practice/4121/"></a>题目来源：<a href="http://bailian.openjudge.cn/practice/4121/" target="_blank" rel="noopener">http://bailian.openjudge.cn/practice/4121/</a></h2><h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><ul>
-<li>假设股票数组为prices</li>
-<li>设F[k][i]表示到第i天总共买卖k次时的最大利润，可以将其分为两种情况，即第i天卖出股票和未卖出股票。</li>
-<li>假如第i天没有卖出股票，F[k][i] = F[k][i-1]</li>
-<li>假如第i天卖出了股票，那么F[k][i] = max{prices[i] - prices[t]+F[k-1][t]},为什么是这个推导公式，因为假如F[k][i]的最优解是，第x天是k-1次的卖出，随后的第y天又买入，第i天卖出，于是F[k][i] = F[k-1][x]+prices[i]- prices<a href="x&lt;= y &lt;=i">y</a>,此时必然有F[k-1][x] =F[k-1][y],证明如下：<ul>
-<li>很显然，F[k-1][y]&gt;=F[k-1][x],假设F[k-1][y]&gt;F[k-1][x],此时必然有F[k-1][y]+prices[i]-prices[y]&gt;F[k][i] = F[k-1][x]+prices[i]- prices[y],这与最优解矛盾，因此必然有F[k-1][x] =F[k-1][y]，因此F[k][i]的推导公式可以写成max{prices[i] - prices[t]+F[k-1][t]}。</li>
-</ul>
-</li>
-<li>对上述进行优化，max{prices[i] - prices[t]+F[k-1][t]} = prices[i] +max{F[k-1][t]-prices[t]}; (0&lt;=t&lt;=i-1), 对于确定的i和k，每次求max{F[k-1][t]-prices[t]}都需要对t从1到i进行遍历，于是可以在循环中，求解时用一个临时变量tmp记录max{F[k-1][t]-prices[t]},t属于[0,i-1]，每次i增量时比较tmp和F[k-1][i]-prices[i]和tmp的较大值赋给tmp,再进行求解。</li>
-</ul>
-<h2 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h2><p>代码中nums即为解题思路中的prices<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;climits&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; VI;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span>&lt;VI&gt; VVI;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">const</span> <span class="keyword">int</span> CI;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">solution</span><span class="params">(<span class="keyword">const</span> VI&amp; nums, CI K)</span> </span>&#123;</span><br><span class="line">	<span class="function">VVI <span class="title">F</span><span class="params">(K + <span class="number">1</span>, VI(nums.size(), <span class="number">0</span>))</span></span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">1</span>; k &lt;= K; ++k) &#123;</span><br><span class="line">		<span class="keyword">int</span> tmp = F[k - <span class="number">1</span>][<span class="number">0</span>] - nums[<span class="number">0</span>];</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; nums.size(); ++i) &#123;</span><br><span class="line">			tmp = max(F[k<span class="number">-1</span>][i] - nums[i], tmp);</span><br><span class="line">			F[k][i] = max(F[k][i - <span class="number">1</span>], nums[i] + tmp);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> F[K][nums.size() - <span class="number">1</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">	<span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">int</span> castCount; <span class="built_in">cin</span> &gt;&gt; castCount;</span><br><span class="line">	<span class="keyword">while</span> (castCount--) &#123;</span><br><span class="line">		<span class="keyword">int</span> N;</span><br><span class="line">		<span class="built_in">cin</span> &gt;&gt; N;</span><br><span class="line">		<span class="function">VI <span class="title">nums</span><span class="params">(N, <span class="number">0</span>)</span></span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">auto</span>&amp;e : nums)</span><br><span class="line">			<span class="built_in">cin</span> &gt;&gt; e;</span><br><span class="line">		<span class="keyword">int</span> ans = solution(nums,<span class="number">2</span>);</span><br><span class="line">		<span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
   </nav>
 
 
@@ -2747,7 +2769,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">20</span>
+                    <span class="site-state-item-count">23</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
