@@ -363,7 +363,7 @@
                 
               
 
-              <time title="创建于：2019-04-08 17:00:14 / 更新于：17:15:25" itemprop="dateCreated datePublished" datetime="2019-04-08T17:00:14+08:00">2019-04-08</time>
+              <time title="创建于：2019-04-08 17:00:14 / 更新于：17:17:01" itemprop="dateCreated datePublished" datetime="2019-04-08T17:00:14+08:00">2019-04-08</time>
             
 
             
@@ -563,7 +563,7 @@
 <li><strong>Recommendation 1：</strong> 为了减少outputs的使用率，应该增加更多的outputs，建议用户增加一些价值为0 的输出。(PS:输出越多，花费的交易费越多，用户愿意吗？)</li>
 <li><strong>Recommendation 2：</strong> 不用使用无效的mix-ins。PS：如果用户知道的话，用户当然不会使用了。</li>
 </ul>
-<h2 id="Thinking"><a href="#Thinking" class="headerlink" title="Thinking"></a>Thinking</h2><p>   这篇文章就提出了1种攻击方式，相比于其他文章来说，在内容和分析展示情况上都显示出比较单一，个人觉得提出的方法很好，但是并没有很好地挖掘这种方法之后的结果，这种方法已经将匿名集降低到1了，此时如果在坚持一下，或者在想想别的分析方法，那么就不是简单的发表在FC上了，可以冲击一下B类会议。</p>
+<h2 id="Thinking"><a href="#Thinking" class="headerlink" title="Thinking"></a>Thinking</h2><p>这篇文章就提出了1种攻击方式，相比于其他文章来说，在内容和分析展示情况上都显示出比较单一，个人觉得提出的方法很好，但是并没有很好地挖掘这种方法之后的结果，这种方法已经将匿名集降低到1了，此时如果在坚持一下，或者在想想别的分析方法，那么就不是简单的发表在FC上了，可以冲击一下B类会议。</p>
 
           
         
@@ -720,241 +720,6 @@
 <p>首先打开监听的端口号，设置相关协议，随后绑定端口号，然后开始监听网络中的信息，同时让本端点连接到网络中的种子节点，以此连接EOS中的p2p网络。这里面最重要的2个函数是 my-&gt;start_listen_loop()以及my-&gt;start_monitors()函数,my-&gt;start_listen_loop，通过函数名称可以断定主要用来不断地从网络中监听网络中发送的信息，my-&gt;start_monitors()应该是进行监听，但是到底监听什么，我们还不得而知。</p>
 <p>这里暂时先不对net_plugin_impl进行具体解析，因为这并不影响我们对这两个函数的分析，另外一方面，net_plugin_impl的介绍对于这两个函数的分析，帮助不大。<br>因此，我们直接进入start_listen_loop函数一探究竟。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/// 该函数循环监听信息</span></span><br><span class="line"><span class="keyword">void</span> net_plugin_impl::start_listen_loop() &#123;</span><br><span class="line">    <span class="keyword">auto</span> socket = <span class="built_in">std</span>::make_shared&lt;tcp::socket&gt;( <span class="built_in">std</span>::ref( app().get_io_service() ) );</span><br><span class="line">    acceptor-&gt;async_accept( *socket, [socket,<span class="keyword">this</span>]( boost::system::error_code ec ) &#123;</span><br><span class="line">        <span class="keyword">if</span>( !ec ) &#123;</span><br><span class="line">            <span class="keyword">uint32_t</span> visitors = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">uint32_t</span> from_addr = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">auto</span> paddr = socket-&gt;remote_endpoint(ec).address();</span><br><span class="line">            <span class="keyword">if</span> (ec) &#123;</span><br><span class="line">                fc_elog(logger,<span class="string">"Error getting remote endpoint: $&#123;m&#125;"</span>,(<span class="string">"m"</span>, ec.message()));</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">auto</span> &amp;conn : connections) &#123;</span><br><span class="line">                    <span class="keyword">if</span>(conn-&gt;socket-&gt;is_open()) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (conn-&gt;peer_addr.empty()) &#123;</span><br><span class="line">                        visitors++;</span><br><span class="line">                        boost::system::error_code ec;</span><br><span class="line">                        <span class="keyword">if</span> (paddr == conn-&gt;socket-&gt;remote_endpoint(ec).address()) &#123;</span><br><span class="line">                            from_addr++;</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (num_clients != visitors) &#123;</span><br><span class="line">                    ilog(<span class="string">"checking max client, visitors = $&#123;v&#125; num clients $&#123;n&#125;"</span>,(<span class="string">"v"</span>,visitors)(<span class="string">"n"</span>,num_clients));</span><br><span class="line">                    num_clients = visitors;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>( from_addr &lt; max_nodes_per_host &amp;&amp; (max_client_count == <span class="number">0</span> || num_clients &lt; max_client_count )) &#123;</span><br><span class="line">                    ++num_clients;</span><br><span class="line">                    connection_ptr c = <span class="built_in">std</span>::make_shared&lt;connection&gt;( socket );</span><br><span class="line">                    connections.insert( c );</span><br><span class="line">                    start_session( c );</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">if</span> (from_addr &gt;= max_nodes_per_host) &#123;</span><br><span class="line">                    fc_elog(logger, <span class="string">"Number of connections ($&#123;n&#125;) from $&#123;ra&#125; exceeds limit"</span>,</span><br><span class="line">                            (<span class="string">"n"</span>, from_addr+<span class="number">1</span>)(<span class="string">"ra"</span>,paddr.to_string()));</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span> &#123;</span><br><span class="line">                    fc_elog(logger, <span class="string">"Error max_client_count $&#123;m&#125; exceeded"</span>,</span><br><span class="line">                            ( <span class="string">"m"</span>, max_client_count) );</span><br><span class="line">                    &#125;</span><br><span class="line">                    socket-&gt;close();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            elog( <span class="string">"Error accepting connection: $&#123;m&#125;"</span>,( <span class="string">"m"</span>, ec.message() ) );</span><br><span class="line">            <span class="comment">// For the listed error codes below, recall start_listen_loop()</span></span><br><span class="line">            <span class="keyword">switch</span> (ec.value()) &#123;</span><br><span class="line">                <span class="keyword">case</span> ECONNABORTED:</span><br><span class="line">                <span class="keyword">case</span> EMFILE:</span><br><span class="line">                <span class="keyword">case</span> ENFILE:</span><br><span class="line">                <span class="keyword">case</span> ENOBUFS:</span><br><span class="line">                <span class="keyword">case</span> ENOMEM:</span><br><span class="line">                <span class="keyword">case</span> EPROTO:</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">default</span>:</span><br><span class="line">                    <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        start_listen_loop();</span><br><span class="line">        &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2019/03/26/2018~2019年上下半学期学习计划/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar2.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="hzx's Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/03/26/2018~2019年上下半学期学习计划/" class="post-title-link" itemprop="https://hzxGoForward.github.io/index.html">2018~2019年上下半学期学习计划</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建于：2019-03-26 16:19:00 / 更新于：18:10:01" itemprop="dateCreated datePublished" datetime="2019-03-26T16:19:00+08:00">2019-03-26</time>
-            
-
-            
-              
-
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/区块链技术研究/" itemprop="url" rel="index"><span itemprop="name">区块链技术研究</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="研究内容"><a href="#研究内容" class="headerlink" title="研究内容"></a>研究内容</h1><h2 id="1-区块链匿名性方面论文阅读"><a href="#1-区块链匿名性方面论文阅读" class="headerlink" title="1. 区块链匿名性方面论文阅读"></a>1. 区块链匿名性方面论文阅读</h2><h3 id="总目标：对匿名性研究方面有比较深入的了解"><a href="#总目标：对匿名性研究方面有比较深入的了解" class="headerlink" title="总目标：对匿名性研究方面有比较深入的了解"></a>总目标：对匿名性研究方面有比较深入的了解</h3><h3 id="量化方式：总结出匿名性方面的研究给出目前的主要研究方向以及方法，主要发表的期刊"><a href="#量化方式：总结出匿名性方面的研究给出目前的主要研究方向以及方法，主要发表的期刊" class="headerlink" title="量化方式：总结出匿名性方面的研究给出目前的主要研究方向以及方法，主要发表的期刊"></a>量化方式：总结出匿名性方面的研究给出目前的主要研究方向以及方法，主要发表的期刊</h3><h3 id="进度情况"><a href="#进度情况" class="headerlink" title="进度情况"></a>进度情况</h3><table>
-<thead>
-<tr>
-<th>时间</th>
-<th>论文</th>
-<th>完成情况</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>2019年3月17日</td>
-<td>An Empirical Analysis of Anonymity in Zcash</td>
-<td>完成</td>
-</tr>
-<tr>
-<td>2019年3月24日</td>
-<td>Extending the Anonymity of Zcash</td>
-<td>完成</td>
-</tr>
-<tr>
-<td>2019年3月30日</td>
-<td>A Traceability Analysis of Monero’s Blockchain</td>
-<td>进行中</td>
-</tr>
-</tbody>
-</table>
-<h2 id="2-日志异常检测工作"><a href="#2-日志异常检测工作" class="headerlink" title="2. 日志异常检测工作"></a>2. 日志异常检测工作</h2><h3 id="总目标：实现系统日志异常检测"><a href="#总目标：实现系统日志异常检测" class="headerlink" title="总目标：实现系统日志异常检测"></a>总目标：实现系统日志异常检测</h3><h3 id="进度情况-1"><a href="#进度情况-1" class="headerlink" title="进度情况"></a>进度情况</h3><table>
-<thead>
-<tr>
-<th>时间</th>
-<th>任务</th>
-<th>完成情况</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>2019年3月17日</td>
-<td>DeepLog论文思路理解</td>
-<td>完成</td>
-</tr>
-<tr>
-<td>2019年3月24日</td>
-<td>实现execute path anomaly detection</td>
-<td>完成</td>
-</tr>
-<tr>
-<td>2019年3月30日</td>
-<td>实现 parameters anomaly detection</td>
-<td>进行</td>
-</tr>
-</tbody>
-</table>
-<h2 id="3-EOS源码阅读计划"><a href="#3-EOS源码阅读计划" class="headerlink" title="3. EOS源码阅读计划"></a>3. EOS源码阅读计划</h2><h3 id="总目标：本学期结束时需对EOS中区块生产过程、用户交易发起到上链过程等重要过程有深入的理解"><a href="#总目标：本学期结束时需对EOS中区块生产过程、用户交易发起到上链过程等重要过程有深入的理解" class="headerlink" title="总目标：本学期结束时需对EOS中区块生产过程、用户交易发起到上链过程等重要过程有深入的理解"></a>总目标：本学期结束时需对EOS中区块生产过程、用户交易发起到上链过程等重要过程有深入的理解</h3><h3 id="量化方式：阅读源代码并撰写笔记"><a href="#量化方式：阅读源代码并撰写笔记" class="headerlink" title="量化方式：阅读源代码并撰写笔记"></a>量化方式：阅读源代码并撰写笔记</h3><table>
-<thead>
-<tr>
-<th>时间</th>
-<th>源码部分</th>
-<th>完成情况</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>3月10日~截止3月17日</td>
-<td>produccer_plugin类、abstract_plugin类</td>
-<td>已掌握</td>
-</tr>
-<tr>
-<td>3月18日~</td>
-<td>producer_plugin_impl类</td>
-<td>进行中</td>
-</tr>
-</tbody>
-</table>
 
           
         
@@ -1208,6 +973,241 @@
 <tr>
 <td>3月31日~4月13日</td>
 <td>net_plugin / net_plugin_impl类</td>
+<td>进行中</td>
+</tr>
+</tbody>
+</table>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2019/03/26/2018~2019年上下半学期学习计划/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hzx's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/26/2018~2019年上下半学期学习计划/" class="post-title-link" itemprop="https://hzxGoForward.github.io/index.html">2018~2019年上下半学期学习计划</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2019-03-26 16:19:00 / 更新于：18:10:01" itemprop="dateCreated datePublished" datetime="2019-03-26T16:19:00+08:00">2019-03-26</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/区块链技术研究/" itemprop="url" rel="index"><span itemprop="name">区块链技术研究</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="研究内容"><a href="#研究内容" class="headerlink" title="研究内容"></a>研究内容</h1><h2 id="1-区块链匿名性方面论文阅读"><a href="#1-区块链匿名性方面论文阅读" class="headerlink" title="1. 区块链匿名性方面论文阅读"></a>1. 区块链匿名性方面论文阅读</h2><h3 id="总目标：对匿名性研究方面有比较深入的了解"><a href="#总目标：对匿名性研究方面有比较深入的了解" class="headerlink" title="总目标：对匿名性研究方面有比较深入的了解"></a>总目标：对匿名性研究方面有比较深入的了解</h3><h3 id="量化方式：总结出匿名性方面的研究给出目前的主要研究方向以及方法，主要发表的期刊"><a href="#量化方式：总结出匿名性方面的研究给出目前的主要研究方向以及方法，主要发表的期刊" class="headerlink" title="量化方式：总结出匿名性方面的研究给出目前的主要研究方向以及方法，主要发表的期刊"></a>量化方式：总结出匿名性方面的研究给出目前的主要研究方向以及方法，主要发表的期刊</h3><h3 id="进度情况"><a href="#进度情况" class="headerlink" title="进度情况"></a>进度情况</h3><table>
+<thead>
+<tr>
+<th>时间</th>
+<th>论文</th>
+<th>完成情况</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2019年3月17日</td>
+<td>An Empirical Analysis of Anonymity in Zcash</td>
+<td>完成</td>
+</tr>
+<tr>
+<td>2019年3月24日</td>
+<td>Extending the Anonymity of Zcash</td>
+<td>完成</td>
+</tr>
+<tr>
+<td>2019年3月30日</td>
+<td>A Traceability Analysis of Monero’s Blockchain</td>
+<td>进行中</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-日志异常检测工作"><a href="#2-日志异常检测工作" class="headerlink" title="2. 日志异常检测工作"></a>2. 日志异常检测工作</h2><h3 id="总目标：实现系统日志异常检测"><a href="#总目标：实现系统日志异常检测" class="headerlink" title="总目标：实现系统日志异常检测"></a>总目标：实现系统日志异常检测</h3><h3 id="进度情况-1"><a href="#进度情况-1" class="headerlink" title="进度情况"></a>进度情况</h3><table>
+<thead>
+<tr>
+<th>时间</th>
+<th>任务</th>
+<th>完成情况</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2019年3月17日</td>
+<td>DeepLog论文思路理解</td>
+<td>完成</td>
+</tr>
+<tr>
+<td>2019年3月24日</td>
+<td>实现execute path anomaly detection</td>
+<td>完成</td>
+</tr>
+<tr>
+<td>2019年3月30日</td>
+<td>实现 parameters anomaly detection</td>
+<td>进行</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-EOS源码阅读计划"><a href="#3-EOS源码阅读计划" class="headerlink" title="3. EOS源码阅读计划"></a>3. EOS源码阅读计划</h2><h3 id="总目标：本学期结束时需对EOS中区块生产过程、用户交易发起到上链过程等重要过程有深入的理解"><a href="#总目标：本学期结束时需对EOS中区块生产过程、用户交易发起到上链过程等重要过程有深入的理解" class="headerlink" title="总目标：本学期结束时需对EOS中区块生产过程、用户交易发起到上链过程等重要过程有深入的理解"></a>总目标：本学期结束时需对EOS中区块生产过程、用户交易发起到上链过程等重要过程有深入的理解</h3><h3 id="量化方式：阅读源代码并撰写笔记"><a href="#量化方式：阅读源代码并撰写笔记" class="headerlink" title="量化方式：阅读源代码并撰写笔记"></a>量化方式：阅读源代码并撰写笔记</h3><table>
+<thead>
+<tr>
+<th>时间</th>
+<th>源码部分</th>
+<th>完成情况</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3月10日~截止3月17日</td>
+<td>produccer_plugin类、abstract_plugin类</td>
+<td>已掌握</td>
+</tr>
+<tr>
+<td>3月18日~</td>
+<td>producer_plugin_impl类</td>
 <td>进行中</td>
 </tr>
 </tbody>
