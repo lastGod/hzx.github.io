@@ -16,7 +16,7 @@
 
 <html class="theme-next pisces use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
@@ -115,12 +115,10 @@
 <meta property="og:site_name" content="hzx&#39;s Home">
 <meta property="og:description" content="以太坊中的智能合约（Smart Coantract）创建智能合约以太坊中的智能合约是运行在区块链上的一段代码，代码的逻辑定义了合约的内容。合约的账户保存了合约当前的运行状态，主要包含了4部分内容。  balance：当前余额 nonce：  交易次数 code：   合约代码 storge： 存储，是一棵MPT  智能合约一般使用Solidity语言进行编写，语法上与JavaScript相似。如">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20181124194719817.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70.png">
 <meta property="og:updated_time" content="2019-01-04T08:08:43.996Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="以太坊中的智能合约">
 <meta name="twitter:description" content="以太坊中的智能合约（Smart Coantract）创建智能合约以太坊中的智能合约是运行在区块链上的一段代码，代码的逻辑定义了合约的内容。合约的账户保存了合约当前的运行状态，主要包含了4部分内容。  balance：当前余额 nonce：  交易次数 code：   合约代码 storge： 存储，是一棵MPT  智能合约一般使用Solidity语言进行编写，语法上与JavaScript相似。如">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20181124194719817.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70.png">
 
 
 
@@ -175,7 +173,7 @@
       .logo-line-after i { right: initial; }
     }
   </style>
-</noscript>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
@@ -186,7 +184,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -477,7 +475,11 @@
 <li>矿工收到该交易后，本地执行该交易，将执行结果打包到区块中，发布区块。</li>
 </ul>
 <p>下图中的接收地址中填入了调用的智能合约地址，data域中填入了要调用的函数和参数的编码值，value为0。</p>
-<div align="center"><br><br><img src="https://img-blog.csdnimg.cn/20181124194719817.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70.png" alt="Alt text" title="optional title"><br><br></div>
+<div align="center">
+
+![Alt text](https://img-blog.csdnimg.cn/20181124194719817.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70.png  "optional title" )
+
+</div>
 
 <h3 id="智能合约账户调用智能合约"><a href="#智能合约账户调用智能合约" class="headerlink" title="智能合约账户调用智能合约"></a><strong>智能合约账户调用智能合约</strong></h3><p>智能合约之间的调用则不需要通过发布交易进行，而是直接使用代码进行交互，调用的方法一般分为2种：</p>
 <ol>
@@ -545,7 +547,8 @@ contract B{
 <li>智能合约调用的信息，全部是变量，而不是函数调用，括号中的类型，是这些变量的返回类型。</li>
 <li>msg.sender和tx.origin是有区别的，msg.sender表示调用当前合约的地址，不一定是交易的发起者。因为一笔交易中发起的合约A可以调用合约B，此时对于B来说，msg.sender是A，tx.origin是交易发起者。</li>
 </ul>
-<h3 id="智能合约中的地址类型"><a href="#智能合约中的地址类型" class="headerlink" title="智能合约中的地址类型"></a><strong>智能合约中的地址类型</strong></h3><table>
+<h3 id="智能合约中的地址类型"><a href="#智能合约中的地址类型" class="headerlink" title="智能合约中的地址类型"></a><strong>智能合约中的地址类型</strong></h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>变量</th>
@@ -592,6 +595,7 @@ contract B{
 </tr>
 </tbody>
 </table>
+</div>
 <p>注意：所有智能合约都可以显式的转换称地址类型。transfer和send以及call都可以用来进行转账，区别在于发送的汽油费不同。                                         </p>
 <h3 id="智能合约执行中的一些问题"><a href="#智能合约执行中的一些问题" class="headerlink" title="智能合约执行中的一些问题"></a><strong>智能合约执行中的一些问题</strong></h3><ul>
 <li><p>矿工执行某个调用智能合约的交易，执行过程中出错，是否需要发布到区块链上？</p>
@@ -725,7 +729,7 @@ contract B{
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1173,7 +1177,24 @@ contract B{
         }, 300)
       }).append(e)
     })
-  </script>
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
   

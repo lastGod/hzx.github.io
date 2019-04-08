@@ -16,7 +16,7 @@
 
 <html class="theme-next pisces use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
@@ -175,7 +175,7 @@
       .logo-line-after i { right: initial; }
     }
   </style>
-</noscript>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
@@ -186,7 +186,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -456,6 +456,7 @@
 <p>对于Dataset中的所有inputs，迭代使用Algorithm 2，假设所有inputs个数为N，而每个R的长度为L，那么总的算法复杂度为θ(LN²) 。</p>
 <h2 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a>Experiment</h2><h3 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a>Dataset</h3><p>   本文收集了从Monero区块链创世块(2014年4月18日)到2018年3月30日的区块，总共1541236个区块，工2612070笔非coinbase 交易。</p>
 <h3 id="Experiment-Result"><a href="#Experiment-Result" class="headerlink" title="Experiment Result"></a>Experiment Result</h3><p>将本文方法应用于Monero区块链分析，首先应用Cascade effect attack，发现其中16334967笔交易可追踪，而closed set总工追踪到了5752笔交易，因此总共追踪到70.52%的inputs。追踪结果如下表所示。总共找到3017个closed set，大小从2到55不等，总共包含了7478个public_keys，这些public keys已经被花销了，如果其他输入使用这些inputs作为mix-ins，那么是无效的。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -559,6 +560,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>最后还剩余6829778笔inputs仍然不可追踪，但是这些交易的匿名集已经大大减少，减少情况如下图所示。可以看到，很多之前inputs中地址很多，但是经过closed set分析之后币有多都可以识别，其中inputs你们集合是1的，当下有超过100万，想办法进一步进行分析，或许可以有更多收获。不过作者并没有进一步分析。</p>
 <p><img src="https://img-blog.csdnimg.cn/20190408163804418.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <p>此外，作者分别对Bytecoin和DigitalNote进行了同样的分析，分析的结果没有过多需要介绍的，因此这里略过。</p>
@@ -599,8 +601,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/28/EOS中plugin之net-plugin/" rel="next" title="EOS中plugin之net_plugin">
-                <i class="fa fa-chevron-left"></i> EOS中plugin之net_plugin
+              <a href="/2019/03/28/EOS中plugin之chain_plugin/" rel="next" title="EOS中plugin之chain_plugin">
+                <i class="fa fa-chevron-left"></i> EOS中plugin之chain_plugin
               </a>
             
           </div>
@@ -679,7 +681,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1127,7 +1129,24 @@
         }, 300)
       }).append(e)
     })
-  </script>
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
   

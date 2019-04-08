@@ -16,7 +16,7 @@
 
 <html class="theme-next pisces use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
@@ -188,7 +188,7 @@
       .logo-line-after i { right: initial; }
     }
   </style>
-</noscript>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
@@ -199,7 +199,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -443,7 +443,7 @@
 <p>二是起诉离婚，Alice想离而Bob不想离，这时Alice可以单方面强制关闭通道，将小本本最后一笔交易广播出去，只要矿工验证并打包进区块，这婚也算离了，代价是Alice并不能立马得到比特币，需要等待一定时间。本着劝和不劝分的原则，闪电协议设置了哈希时间锁定合约，单方面强制离婚（关闭交易通道）会受到延迟收到退款的惩罚，这是为了保证双方交易的稳定。</p>
 <p>以上最后一个过程是通道关闭。注意，不管是协议离婚还是起诉离婚，这都是要法院受理登记的。关闭通道一定要发起交易并广播到主网，最后矿工记录，所以还是要忍耐一定确认时间和支付手续费的，这与闪电网络无关。</p>
 <p>至此我们已经知道了Alice和Bob链下互相转账的那点事儿了，这就是所谓“双向支付通道”。开启通道需要在主链交易，这是锁定资金，关闭通道也需要在主链交易，这是释放资金。中间可以进行任意多次转账支付，是0确认0手续费的。</p>
-<ol start="2">
+<ol>
 <li><strong>将双向支付通道扩展成闪电网络</strong></li>
 </ol>
 <p>新问题来了，世界上除了这两位，还有Carol、Eric、Diana等等。设想Alice想转给Carol 1个BTC,她该怎么办呢？自然地，她俩可以再重复上述操作建立一个双向通道。但是，如果我们为了应用闪电网络，需要世界上每两个人之间都建立一条通道，这将是非常大的工作量且不切实际的。为了解决这一问题，我们需要将<strong>双向支付通道扩展成闪电网络</strong>。</p>
@@ -459,11 +459,11 @@
 <p>作为铺垫，我们需要讲解两个概念，哈希时间锁定和哈希密钥锁定。首先是哈希时间锁定，这是在交易脚本里面设置时钟，必须要等设定时间之后，才能用地址的私钥签名解锁地址里的比特币。例如Alice收到了一笔2 BTC转账，但是对方设定了1000个区块之后才能解锁，所以Alice必须等待1000个区块之后才能用自己的私钥签署交易,花费其中的BTC转给Bob。</p>
 <p><img src="https://fs.bitcoinmagazine.com/img/articles/understanding-the-lightning-network-part-building-a-bidirectional-payment-channel-74.jpg" alt=""></p>
 <p>其次是哈希密钥锁定。哈希函数可以把一串输入转换成256位固定长度的输出，计算过程称为一次哈希运算，其中输入称为密文，输出称为密文的哈希值。哈希函数具有单向性，即从密文可以算出哈希值，但是从哈希值反向算出密文几乎是不可行的。计算的办法是暴力破解，逐一输入密文进行哈希运算，验证运算结果是否为要求的哈希值。基于这种特性，可以把一个密文的哈希值放入交易的输出当中充当哈希密文锁，也就是必须得输入该哈希值对应的密文才能解锁脚本中的比特币。例如，例如Alice收到了一笔2BTC转账，但是对方设定了哈希值锁定，所以Alice必须得到交易方的密文，同时配合自己的密钥签名才能签署交易，花费其中的BTC转给Bob。</p>
-<p>!()[<a href="https://fs.bitcoinmagazine.com/img/articles/understanding-the-lightning-network-part-building-a-bidirectional-payment-channel-75.jpg]" target="_blank" rel="noopener">https://fs.bitcoinmagazine.com/img/articles/understanding-the-lightning-network-part-building-a-bidirectional-payment-channel-75.jpg]</a></p>
+<p>!()[<a href="https://fs.bitcoinmagazine.com/img/articles/understanding-the-lightning-network-part-building-a-bidirectional-payment-channel-75.jpg" target="_blank" rel="noopener">https://fs.bitcoinmagazine.com/img/articles/understanding-the-lightning-network-part-building-a-bidirectional-payment-channel-75.jpg</a>]</p>
 <p>有了这两个工具，让我们看看那群程序员天才们是如何构想出一个程序，使得互不相识的双方能够诚实记账的。</p>
 <p>在原理的白话版我们已经讲过了关于通道的三个步骤：开启通道，通道内交易，关闭通道。</p>
 <p>开启通道较为简单，Alice和Bob分别向多签地址1转入5个BTC。这是一个2/2地址，也就是必须两人都签名，此地址的比特币才可以转出去。</p>
-<p>!()[<a href="https://mmbiz.qpic.cn/mmbiz_png/ockBglTNBdSrmo2Cm0MKm0Nf2rXGTlXDR0TcR1ld98UzjmUuPAVgvxGrkmNdMGxGxsTv6kuNnIjyvWmibnAO3Jg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1]" target="_blank" rel="noopener">https://mmbiz.qpic.cn/mmbiz_png/ockBglTNBdSrmo2Cm0MKm0Nf2rXGTlXDR0TcR1ld98UzjmUuPAVgvxGrkmNdMGxGxsTv6kuNnIjyvWmibnAO3Jg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1]</a></p>
+<p>!()[<a href="https://mmbiz.qpic.cn/mmbiz_png/ockBglTNBdSrmo2Cm0MKm0Nf2rXGTlXDR0TcR1ld98UzjmUuPAVgvxGrkmNdMGxGxsTv6kuNnIjyvWmibnAO3Jg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" target="_blank" rel="noopener">https://mmbiz.qpic.cn/mmbiz_png/ockBglTNBdSrmo2Cm0MKm0Nf2rXGTlXDR0TcR1ld98UzjmUuPAVgvxGrkmNdMGxGxsTv6kuNnIjyvWmibnAO3Jg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1</a>]</p>
 <p>接下来是通道内交易，我们需要讲解Alice和Bob之间的两次交易才能完全明白双向支付通道的巧妙之处。第一次Alice需要向Bob支付1个BTC，第二次Bob需要向Alice支付1个比特币。</p>
 <p>第一次交易的流程是，Bob首先在自己电脑的闪电网络软件上构建交易，如下左图所示。</p>
 <p><img src="https://mmbiz.qpic.cn/mmbiz_png/ockBglTNBdSrmo2Cm0MKm0Nf2rXGTlXDd4dhf4icEe29vbw0pXibeMe9Mj2QVyOGkZRKiaRBH0tfkN9YdicicTHQNBw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt=""></p>
@@ -617,7 +617,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1065,7 +1065,24 @@
         }, 300)
       }).append(e)
     })
-  </script>
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
   

@@ -16,7 +16,7 @@
 
 <html class="theme-next pisces use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
@@ -169,7 +169,7 @@
       .logo-line-after i { right: initial; }
     }
   </style>
-</noscript>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
@@ -180,7 +180,7 @@
     
   
 
-  <div class="container sidebar-position-left 
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left 
   page-home">
     <div class="headband"></div>
 
@@ -302,6 +302,192 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2018/11/30/开餐馆问题/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hzx's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/11/30/开餐馆问题/" class="post-title-link" itemprop="https://hzxGoForward.github.io/page/3/index.html">开餐馆问题</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2018-11-30 15:00:40" itemprop="dateCreated datePublished" datetime="2018-11-30T15:00:40+08:00">2018-11-30</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2019-01-09 22:27:58" itemprop="dateModified" datetime="2019-01-09T22:27:58+08:00">2019-01-09</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法设计与分析/" itemprop="url" rel="index"><span itemprop="name">算法设计与分析</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a>
+<p>北大信息学院的同学小明毕业之后打算创业开餐馆.现在共有n 个地点可供选择。小明打算从中选择合适的位置开设一些餐馆。这 n 个地点排列在同一条直线上。我们用一个整数序列m1, m2, … mn 来表示他们的相对位置。由于地段关系,开餐馆的利润会有所不同。我们用pi 表示在mi 处开餐馆的利润。为了避免自己的餐馆的内部竞争,餐馆之间的距离必须大于k。请你帮助小明选择一个总利润最大的方案。</p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><h3 id="思路一：将问题专为话最长递增子序列的问题。"><a href="#思路一：将问题专为话最长递增子序列的问题。" class="headerlink" title="思路一：将问题专为话最长递增子序列的问题。"></a>思路一：将问题专为话最长递增子序列的问题。</h3><pre><code>- 假设dp[i]表示选定了第i个位置开餐馆的最大收益，此时递推公式为：
+F[i] = max(F[i], F[t]+profit[i]); 其中1&lt;t&lt;i 同时t和i之间的距离大于k
+</code></pre><p>在这种思路下，代码如下:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// pos[i]表示第i个餐馆的位置， profit[j]表示第j个位置开餐馆的利润</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">solution1</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; pos, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; profit, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; F(profit);</span><br><span class="line">	<span class="keyword">int</span> ans = profit[<span class="number">1</span>];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; pos.size(); ++i) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= i - <span class="number">1</span>; ++j) &#123;</span><br><span class="line">			<span class="keyword">if</span> (pos[i] - pos[j] &gt; k)</span><br><span class="line">				F[i] = max(F[i], F[j] + profit[i]);</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">		ans = max(ans, F[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> G;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;G) != EOF) &#123;</span><br><span class="line">		<span class="keyword">while</span> (<span class="number">0</span> &lt; G--) &#123;</span><br><span class="line">			<span class="keyword">int</span> n, k;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;n, &amp;k);</span><br><span class="line">			<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; pos(n + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">				<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;pos[i]);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; profit(n + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">				<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;profit[i]);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, solution1(pos, profit, k));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="思路二：将问题转化为0-1背包问题"><a href="#思路二：将问题转化为0-1背包问题" class="headerlink" title="思路二：将问题转化为0-1背包问题"></a>思路二：将问题转化为0-1背包问题</h3><pre><code>- 假设dp[i][j]在长度为pos[j]的范围内，考虑前i个餐馆的最大利润，此时递推公式如下：
+</code></pre><p>dp[i][j] = max(dp[i-1][j], dp[i-1][pos[i]-k-1]+profit[i]); </p>
+<p>上述递推公式虽然涉及到了i和j，但是对背包问题经过空间优化，可以使用1维的数组保留记录。最终代码如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">solution2</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; pos, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; profit, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">	<span class="comment">// F[i][j] 表示考虑前i个餐馆，前j个位置的最大距离</span></span><br><span class="line">	<span class="comment">// F[i] = max&#123;F[k]+profit[i]&#125;;</span></span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dp(pos.size(), <span class="number">0</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; pos.size(); ++i) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = pos.size()<span class="number">-1</span>; j&gt;=i; --j) &#123;</span><br><span class="line">			<span class="keyword">if</span> (pos[j] &gt;= pos[i])&#123;</span><br><span class="line">				<span class="keyword">int</span> index = i;</span><br><span class="line">				<span class="keyword">while</span>(pos[i] - pos[index] &lt;= k&amp;&amp;index &gt;<span class="number">0</span>)</span><br><span class="line">					--index;</span><br><span class="line">				dp[j] = max(dp[j], dp[index] + profit[i]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> dp[pos.size() - <span class="number">1</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> G;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;G) != EOF) &#123;</span><br><span class="line">		<span class="keyword">while</span> (<span class="number">0</span> &lt; G--) &#123;</span><br><span class="line">			<span class="keyword">int</span> n, k;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;n, &amp;k);</span><br><span class="line">			<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; pos(n + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">				<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;pos[i]);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; profit(n + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">				<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;profit[i]);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, solution2(pos, profit, k));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="时间复杂度分析"><a href="#时间复杂度分析" class="headerlink" title="时间复杂度分析"></a>时间复杂度分析</h2><ul>
+<li>第一种思路的方法，选定一个i的时候，需要向前遍历距离大于k的位置，因此时间复杂度为O(n^2)$。</li>
+<li>第二种思路的方法，看起来有三个循环，但是实际上第二个for循环和while循环加起来总共是O(n)的时间复杂度，所以时间复杂度也是O(n^2)。</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -712,7 +898,11 @@
 <li>矿工收到该交易后，本地执行该交易，将执行结果打包到区块中，发布区块。</li>
 </ul>
 <p>下图中的接收地址中填入了调用的智能合约地址，data域中填入了要调用的函数和参数的编码值，value为0。</p>
-<div align="center"><br><br><img src="https://img-blog.csdnimg.cn/20181124194719817.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70.png" alt="Alt text" title="optional title"><br><br></div>
+<div align="center">
+
+![Alt text](https://img-blog.csdnimg.cn/20181124194719817.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70.png  "optional title" )
+
+</div>
 
 <h3 id="智能合约账户调用智能合约"><a href="#智能合约账户调用智能合约" class="headerlink" title="智能合约账户调用智能合约"></a><strong>智能合约账户调用智能合约</strong></h3><p>智能合约之间的调用则不需要通过发布交易进行，而是直接使用代码进行交互，调用的方法一般分为2种：</p>
 <ol>
@@ -780,7 +970,8 @@ contract B{
 <li>智能合约调用的信息，全部是变量，而不是函数调用，括号中的类型，是这些变量的返回类型。</li>
 <li>msg.sender和tx.origin是有区别的，msg.sender表示调用当前合约的地址，不一定是交易的发起者。因为一笔交易中发起的合约A可以调用合约B，此时对于B来说，msg.sender是A，tx.origin是交易发起者。</li>
 </ul>
-<h3 id="智能合约中的地址类型"><a href="#智能合约中的地址类型" class="headerlink" title="智能合约中的地址类型"></a><strong>智能合约中的地址类型</strong></h3><table>
+<h3 id="智能合约中的地址类型"><a href="#智能合约中的地址类型" class="headerlink" title="智能合约中的地址类型"></a><strong>智能合约中的地址类型</strong></h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>变量</th>
@@ -827,6 +1018,7 @@ contract B{
 </tr>
 </tbody>
 </table>
+</div>
 <p>注意：所有智能合约都可以显式的转换称地址类型。transfer和send以及call都可以用来进行转账，区别在于发送的汽油费不同。                                         </p>
 <h3 id="智能合约执行中的一些问题"><a href="#智能合约执行中的一些问题" class="headerlink" title="智能合约执行中的一些问题"></a><strong>智能合约执行中的一些问题</strong></h3><ul>
 <li><p>矿工执行某个调用智能合约的交易，执行过程中出错，是否需要发布到区块链上？</p>
@@ -1023,8 +1215,8 @@ contract B{
             <a id="more"></a>
 <h1 id="Post-Office-修建问题。"><a href="#Post-Office-修建问题。" class="headerlink" title="Post Office 修建问题。"></a>Post Office 修建问题。</h1><p>地址： <a href="http://noi.openjudge.cn/ch0206/162/" target="_blank" rel="noopener">http://noi.openjudge.cn/ch0206/162/</a></p>
 <h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>设置F[p][v]表示V个village中修建p个邮局使得所有村庄到最近邮局的距离最近。<br>得到了如下递推公式：<br>F[p][v] = min{F[p][v], F[p-1][k-1]+ dis[k][v]};<br>为什么这样进行递推？这是因为本题目中以最后一个邮局所属的村庄进行划分，因为总有一些village到最后一个邮局的距离是最近的，但是这些村子的数量不知道，我们需要知道到底多少village划归到最后一个post office的时候是最优的。<br><!-- more --></p>
-<p>#####隐藏内容<br>但是我们知道，能够划分到最后一个post office的village，至少是第p个，修建之前的p-1个post office，至少需要p-1个village。因此有如下等式：</p>
-<center>p-1&lt;=k-1&lt;=v</center>
+<h5 id="隐藏内容"><a href="#隐藏内容" class="headerlink" title="隐藏内容"></a>隐藏内容</h5><p>但是我们知道，能够划分到最后一个post office的village，至少是第p个，修建之前的p-1个post office，至少需要p-1个village。因此有如下等式：</p>
+<center>p-1<=k-1<=v< center="">
 
 
 <p>递推式表示在前面k-1个village中修建p-1个post office，随后的第k个village到第v个village，修建最后一个post office， dis[k][v]表示在第k个village和第v个village中修建1个post office时各个village到这个post office的距离之和的最小值。</p>
@@ -1032,14 +1224,20 @@ contract B{
 <p>假设范围是i和j-1之间的中位数中修建了一个post office，最优值为dis[i][j-1],现在当新加入一个village j之后。假设i和j-1之间的中位数是K，新加入j之后选择L作为新的post office 位置。现在分情况讨论：</p>
 <ul>
 <li>如果原本i和j之间有奇数个village，新加入一个j之后，仍然可以取原来的K作为中位数，此时中位数位置不变，所以<br>  <center><br>  dis[i,j] = dis[i,j-1]+village[j] - village[(j+i)/2]  <center></center></center></li>
-<li>如果原本i和j之间有偶数个village，假设此时post office的修建地址设置为中位数中较大的数的位置，此时新加入j后，post office的位置不发生改变，那么仍然由如下计算公式：  <center><br>  dis[i,j] = dis[i,j-1]+village[j] - village[(j+i)/2]<br>  <center><br>综上，可以得出:<br>  <center><br>  dis[i,j] = dis[i,j-1]+village[j] - village[(j+i)/2]<br>  </center>
+<li>如果原本i和j之间有偶数个village，假设此时post office的修建地址设置为中位数中较大的数的位置，此时新加入j后，post office的位置不发生改变，那么仍然由如下计算公式：  <center>
+  dis[i,j] = dis[i,j-1]+village[j] - village[(j+i)/2]
+  <center>
+综上，可以得出:
+  <center>
+  dis[i,j] = dis[i,j-1]+village[j] - village[(j+i)/2]
+  </center>
 
 
 </center></center></li>
 </ul>
 <h2 id="源代码"><a href="#源代码" class="headerlink" title="源代码"></a>源代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;climits&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">solution</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; village, <span class="keyword">int</span> officeCount)</span> </span>&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; F(officeCount + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(village.size(), <span class="number">0</span>));</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; dis(village.size(), <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(village.size(), <span class="number">0</span>));</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; village.size(); ++i)&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = i+<span class="number">1</span>; j &lt; village.size(); ++j) &#123;</span><br><span class="line">			<span class="keyword">int</span> k1 = (i + j - <span class="number">1</span>) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">int</span>  k2 = (i + j) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">			dis[i][j] = dis[i][j - <span class="number">1</span>] + village[j] - village[(i+j)/<span class="number">2</span>];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> v = <span class="number">1</span>; v &lt; village.size(); ++v)</span><br><span class="line">		F[<span class="number">1</span>][v] = dis[<span class="number">1</span>][v];</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> p = <span class="number">2</span>; p &lt;= officeCount; ++p)&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> v = p; v &lt; village.size(); ++v) &#123;</span><br><span class="line">			F[p][v] = INT_MAX;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> k = p; k &lt;=v; ++k)</span><br><span class="line">				F[p][v] = min(F[p][v],F[p<span class="number">-1</span>][k<span class="number">-1</span>]+dis[k][v]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> F[officeCount][village.size() - <span class="number">1</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> V, P;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;V, &amp;P) != EOF) &#123;	</span><br><span class="line">		<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; village(V+<span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= V; ++i)</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;village[i]);</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,solution(village, P));</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h2><p>上述代码的时间复杂度为O(pV^2)</p>
-
+</=k-1<=v<></center>
           
         
       
@@ -1129,7 +1327,7 @@ contract B{
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1484,6 +1682,8 @@ contract B{
     
       
     
+      
+    
   
 
   
@@ -1565,7 +1765,24 @@ contract B{
         }, 300)
       }).append(e)
     })
-  </script>
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
   

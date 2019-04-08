@@ -108,24 +108,22 @@
 
 
 
-  <meta name="description" content="题目来源：http://bailian.openjudge.cn/practice/1062/ 解题思路：- 假设冒险家自身是第0号物品，可以将这道题目理解为经过一系列的物品的交换，花费最少的金币换得酋长的1号物品。 -将其看作图论，建图的时候，每次遇到一个物品及其原价，可以设置0号物品到该物品的距离为该物品的价值。即表明冒险家直接购买物品需要花费的金币。 - 对于某个物品的替代品，可以设置为替">
+  <meta name="keywords" content="区块链技术研究">
 <meta property="og:type" content="article">
-<meta property="og:title" content="昂贵的聘礼">
-<meta property="og:url" content="https://hzxGoForward.github.io/2019/01/09/昂贵的聘礼/index.html">
+<meta property="og:title" content="EOS中plugin之chain_plugin">
+<meta property="og:url" content="https://hzxGoForward.github.io/2019/03/28/EOS中plugin之chain_plugin/index.html">
 <meta property="og:site_name" content="hzx&#39;s Home">
-<meta property="og:description" content="题目来源：http://bailian.openjudge.cn/practice/1062/ 解题思路：- 假设冒险家自身是第0号物品，可以将这道题目理解为经过一系列的物品的交换，花费最少的金币换得酋长的1号物品。 -将其看作图论，建图的时候，每次遇到一个物品及其原价，可以设置0号物品到该物品的距离为该物品的价值。即表明冒险家直接购买物品需要花费的金币。 - 对于某个物品的替代品，可以设置为替">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-01-09T14:31:29.715Z">
+<meta property="og:updated_time" content="2019-04-08T12:41:47.027Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="昂贵的聘礼">
-<meta name="twitter:description" content="题目来源：http://bailian.openjudge.cn/practice/1062/ 解题思路：- 假设冒险家自身是第0号物品，可以将这道题目理解为经过一系列的物品的交换，花费最少的金币换得酋长的1号物品。 -将其看作图论，建图的时候，每次遇到一个物品及其原价，可以设置0号物品到该物品的距离为该物品的价值。即表明冒险家直接购买物品需要花费的金币。 - 对于某个物品的替代品，可以设置为替">
+<meta name="twitter:title" content="EOS中plugin之chain_plugin">
 
 
 
 
 
 
-  <link rel="canonical" href="https://hzxGoForward.github.io/2019/01/09/昂贵的聘礼/">
+  <link rel="canonical" href="https://hzxGoForward.github.io/2019/03/28/EOS中plugin之chain_plugin/">
 
 
 
@@ -135,7 +133,7 @@
   };
 </script>
 
-  <title>昂贵的聘礼 | hzx's Home</title>
+  <title>EOS中plugin之chain_plugin | hzx's Home</title>
   
 
 
@@ -321,7 +319,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2019/01/09/昂贵的聘礼/">
+    <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2019/03/28/EOS中plugin之chain_plugin/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="博主">
@@ -338,7 +336,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">昂贵的聘礼
+          <h1 class="post-title" itemprop="name headline">EOS中plugin之chain_plugin
               
             
           </h1>
@@ -363,34 +361,28 @@
                 
               
 
-              <time title="创建于：2019-01-09 21:58:31 / 更新于：22:31:29" itemprop="dateCreated datePublished" datetime="2019-01-09T21:58:31+08:00">2019-01-09</time>
+              <time title="创建于：2019-03-28 14:15:24" itemprop="dateCreated datePublished" datetime="2019-03-28T14:15:24+08:00">2019-03-28</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2019-04-08 20:41:47" itemprop="dateModified" datetime="2019-04-08T20:41:47+08:00">2019-04-08</time>
               
             
           </span>
 
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法设计与分析/" itemprop="url" rel="index"><span itemprop="name">算法设计与分析</span></a></span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -425,13 +417,7 @@
       
 
       
-        <a id="more"></a>
-<p>题目来源：<a href="http://bailian.openjudge.cn/practice/1062/" target="_blank" rel="noopener">http://bailian.openjudge.cn/practice/1062/</a></p>
-<h2 id="解题思路："><a href="#解题思路：" class="headerlink" title="解题思路："></a>解题思路：</h2><pre><code>- 假设冒险家自身是第0号物品，可以将这道题目理解为经过一系列的物品的交换，花费最少的金币换得酋长的1号物品。
--将其看作图论，建图的时候，每次遇到一个物品及其原价，可以设置0号物品到该物品的距离为该物品的价值。即表明冒险家直接购买物品需要花费的金币。
-- 对于某个物品的替代品，可以设置为替代品的编号到原物品编号之间的花费为“优惠价格”，无论经过多少次交换，最后必须和酋长进行交换，而酋长对冒险家交换过的物品等级有限制，假设酋长的地位为Q，可以忍受的等级差距为M，那么就可以枚举等级差距为M的等级范围。即[Q-M, Q],[Q-M+1, Q+1]...[Q, Q+M]。
-- 将所有等级限制范围内可以交换花费的最小金币求取最小值，即为最少花费的金币。
-</code></pre><h2 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;climits&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; VI;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span>&lt;VI&gt; VVI;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">const</span> <span class="keyword">int</span> CI;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Gift</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> level;</span><br><span class="line">	<span class="keyword">int</span> value;</span><br><span class="line">	Gift(<span class="keyword">int</span> l = <span class="number">0</span>, <span class="keyword">int</span> v = <span class="number">0</span>) :level(l), value(v) &#123;&#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> from, to;</span><br><span class="line">	<span class="keyword">int</span> dis;</span><br><span class="line">	Edge(<span class="keyword">int</span> f, <span class="keyword">int</span> t, <span class="keyword">int</span> d) :from(f), to(t), dis(d) &#123;&#125;</span><br><span class="line">	<span class="keyword">bool</span> <span class="keyword">operator</span>&lt;(<span class="keyword">const</span> Edge&amp; e)<span class="keyword">const</span> &#123; <span class="keyword">return</span> <span class="keyword">this</span>-&gt;dis &gt; e.dis; &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// dijkstra 算法，low和high分别表示等级范围</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">solution</span><span class="params">(<span class="keyword">const</span> VVI&amp; graph, <span class="keyword">const</span> <span class="built_in">vector</span>&lt;Gift&gt;&amp; gift, CI low, CI high)</span> </span>&#123;</span><br><span class="line">	<span class="function">VI <span class="title">dis</span><span class="params">(graph.size(), INT_MAX)</span></span>;</span><br><span class="line">	dis[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">	priority_queue&lt;Edge&gt; myQueue;</span><br><span class="line">    <span class="comment">// 每次加入边的时候考虑等级差距</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; graph.size(); ++i)&#123;</span><br><span class="line">		<span class="keyword">if</span> (gift[i].level &gt;= low&amp;&amp;gift[i].level &lt;= high)</span><br><span class="line">			dis[i] = graph[<span class="number">0</span>][i];</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			dis[i] = INT_MAX;</span><br><span class="line">		myQueue.push(Edge(<span class="number">0</span>, i, dis[i]));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function">VI <span class="title">visit</span><span class="params">(graph.size(), <span class="number">0</span>)</span></span>;</span><br><span class="line">	visit[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> (!myQueue.empty()) &#123;</span><br><span class="line">		Edge e = myQueue.top();</span><br><span class="line">		myQueue.pop();</span><br><span class="line">		<span class="keyword">if</span> (visit[e.to] == <span class="number">1</span>)</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		visit[e.to] = <span class="number">1</span>;</span><br><span class="line">		dis[e.to] = e.dis;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; graph.size(); ++j) &#123;</span><br><span class="line">            <span class="comment">// 每次加入边的时候考虑等级差距</span></span><br><span class="line">			<span class="keyword">if</span> (visit[j] == <span class="number">0</span> &amp;&amp; gift[j].level &gt;= low&amp;&amp;gift[j].level &lt;= high&amp;&amp;dis[e.to] &lt; dis[j] - graph[e.to][j])</span><br><span class="line">				myQueue.push(Edge(e.to, j, dis[e.to] + graph[e.to][j]));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> dis[<span class="number">1</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">	<span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">	<span class="keyword">int</span> M, N;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">cin</span> &gt;&gt; M &gt;&gt; N) &#123;</span><br><span class="line">		<span class="built_in">vector</span>&lt;Gift&gt; gift(N + <span class="number">1</span>);</span><br><span class="line">		</span><br><span class="line">		<span class="function">VVI <span class="title">graph</span><span class="params">(N + <span class="number">1</span>, VI(N + <span class="number">1</span>, INT_MAX))</span></span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N + <span class="number">1</span>; ++i)</span><br><span class="line">			graph[i][i] = <span class="number">0</span>;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= N; ++i) &#123;</span><br><span class="line">			<span class="keyword">int</span> alter;</span><br><span class="line">			<span class="built_in">cin</span> &gt;&gt; gift[i].value &gt;&gt; gift[i].level &gt;&gt; alter;</span><br><span class="line">			graph[<span class="number">0</span>][i] = gift[i].value;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; alter; ++j) &#123;</span><br><span class="line">				<span class="keyword">int</span> x, y;</span><br><span class="line">				<span class="built_in">cin</span> &gt;&gt; x &gt;&gt; y;</span><br><span class="line">				graph[x][i] = y;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		CI L = gift[<span class="number">1</span>].level;</span><br><span class="line">		<span class="keyword">int</span> ans = INT_MAX;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= M; ++i) &#123;</span><br><span class="line">			<span class="keyword">int</span> tmp = solution(graph, gift,  L - i, L - i + M);</span><br><span class="line">			ans = min(ans, tmp);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        
       
     </div>
 
@@ -452,6 +438,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/区块链技术研究/" rel="tag"># 区块链技术研究</a>
+          
+        </div>
+      
 
       
       
@@ -461,8 +453,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/11/测试数据集/" rel="next" title="Checking an Alibi 测试数据集">
-                <i class="fa fa-chevron-left"></i> Checking an Alibi 测试数据集
+              <a href="/2019/03/28/EOS中plugin之net-plugin/" rel="next" title="EOS中plugin之net_plugin">
+                <i class="fa fa-chevron-left"></i> EOS中plugin之net_plugin
               </a>
             
           </div>
@@ -471,8 +463,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/09/最小路径覆盖/" rel="prev" title="最小路径覆盖">
-                最小路径覆盖 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/08/New Empirical Traceability Analysis of CryptoNote-Style Blockchains/" rel="prev" title="New Empirical Traceability Analysis of CryptoNote-Style Blockchains阅读报告">
+                New Empirical Traceability Analysis of CryptoNote-Style Blockchains阅读报告 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -518,17 +510,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -676,22 +659,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#解题思路："><span class="nav-text">解题思路：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AC代码"><span class="nav-text">AC代码</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       

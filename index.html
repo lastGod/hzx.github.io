@@ -16,7 +16,7 @@
 
 <html class="theme-next pisces use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
@@ -169,7 +169,7 @@
       .logo-line-after i { right: initial; }
     }
   </style>
-</noscript>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
@@ -180,7 +180,7 @@
     
   
 
-  <div class="container sidebar-position-left 
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left 
   page-home">
     <div class="headband"></div>
 
@@ -453,6 +453,7 @@
 <p>对于Dataset中的所有inputs，迭代使用Algorithm 2，假设所有inputs个数为N，而每个R的长度为L，那么总的算法复杂度为θ(LN²) 。</p>
 <h2 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a>Experiment</h2><h3 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a>Dataset</h3><p>   本文收集了从Monero区块链创世块(2014年4月18日)到2018年3月30日的区块，总共1541236个区块，工2612070笔非coinbase 交易。</p>
 <h3 id="Experiment-Result"><a href="#Experiment-Result" class="headerlink" title="Experiment Result"></a>Experiment Result</h3><p>将本文方法应用于Monero区块链分析，首先应用Cascade effect attack，发现其中16334967笔交易可追踪，而closed set总工追踪到了5752笔交易，因此总共追踪到70.52%的inputs。追踪结果如下表所示。总共找到3017个closed set，大小从2到55不等，总共包含了7478个public_keys，这些public keys已经被花销了，如果其他输入使用这些inputs作为mix-ins，那么是无效的。</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -556,6 +557,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>最后还剩余6829778笔inputs仍然不可追踪，但是这些交易的匿名集已经大大减少，减少情况如下图所示。可以看到，很多之前inputs中地址很多，但是经过closed set分析之后币有多都可以识别，其中inputs你们集合是1的，当下有超过100万，想办法进一步进行分析，或许可以有更多收获。不过作者并没有进一步分析。</p>
 <p><img src="https://img-blog.csdnimg.cn/20190408163804418.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
 <p>此外，作者分别对Bytecoin和DigitalNote进行了同样的分析，分析的结果没有过多需要介绍的，因此这里略过。</p>
@@ -567,6 +569,162 @@
 </ul>
 <h2 id="Thinking"><a href="#Thinking" class="headerlink" title="Thinking"></a>Thinking</h2><p>这篇文章就提出了1种攻击方式，相比于其他文章来说，在内容和分析展示情况上都显示出比较单一，个人觉得提出的方法很好，但是并没有很好地挖掘这种方法之后的结果，这种方法已经将匿名集降低到1了，此时如果在坚持一下，或者在想想别的分析方法，那么就不是简单的发表在FC上了，可以冲击一下B类会议。</p>
 
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2019/03/28/EOS中plugin之chain_plugin/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hzx's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/03/28/EOS中plugin之chain_plugin/" class="post-title-link" itemprop="https://hzxGoForward.github.io/index.html">EOS中plugin之chain_plugin</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2019-03-28 14:15:24" itemprop="dateCreated datePublished" datetime="2019-03-28T14:15:24+08:00">2019-03-28</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2019-04-08 20:41:47" itemprop="dateModified" datetime="2019-04-08T20:41:47+08:00">2019-04-08</time>
+              
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
           
         
       
@@ -907,7 +1065,8 @@
       
         
           
-            <h1 id="研究内容"><a href="#研究内容" class="headerlink" title="研究内容"></a>研究内容</h1><h2 id="1-区块链匿名性方面论文阅读"><a href="#1-区块链匿名性方面论文阅读" class="headerlink" title="1. 区块链匿名性方面论文阅读"></a>1. 区块链匿名性方面论文阅读</h2><h3 id="总目标：对匿名性研究方面有比较深入的了解"><a href="#总目标：对匿名性研究方面有比较深入的了解" class="headerlink" title="总目标：对匿名性研究方面有比较深入的了解"></a>总目标：对匿名性研究方面有比较深入的了解</h3><h3 id="量化方式：总结出匿名性方面的研究给出目前的主要研究方向以及方法，主要发表的期刊"><a href="#量化方式：总结出匿名性方面的研究给出目前的主要研究方向以及方法，主要发表的期刊" class="headerlink" title="量化方式：总结出匿名性方面的研究给出目前的主要研究方向以及方法，主要发表的期刊"></a>量化方式：总结出匿名性方面的研究给出目前的主要研究方向以及方法，主要发表的期刊</h3><h3 id="进度情况"><a href="#进度情况" class="headerlink" title="进度情况"></a>进度情况</h3><table>
+            <h1 id="研究内容"><a href="#研究内容" class="headerlink" title="研究内容"></a>研究内容</h1><h2 id="1-区块链匿名性方面论文阅读"><a href="#1-区块链匿名性方面论文阅读" class="headerlink" title="1. 区块链匿名性方面论文阅读"></a>1. 区块链匿名性方面论文阅读</h2><h3 id="总目标：对匿名性研究方面有比较深入的了解"><a href="#总目标：对匿名性研究方面有比较深入的了解" class="headerlink" title="总目标：对匿名性研究方面有比较深入的了解"></a>总目标：对匿名性研究方面有比较深入的了解</h3><h3 id="量化方式：总结出匿名性方面的研究给出目前的主要研究方向以及方法，主要发表的期刊"><a href="#量化方式：总结出匿名性方面的研究给出目前的主要研究方向以及方法，主要发表的期刊" class="headerlink" title="量化方式：总结出匿名性方面的研究给出目前的主要研究方向以及方法，主要发表的期刊"></a>量化方式：总结出匿名性方面的研究给出目前的主要研究方向以及方法，主要发表的期刊</h3><h3 id="进度情况"><a href="#进度情况" class="headerlink" title="进度情况"></a>进度情况</h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>时间</th>
@@ -933,7 +1092,9 @@
 </tr>
 </tbody>
 </table>
-<h2 id="2-日志异常检测工作"><a href="#2-日志异常检测工作" class="headerlink" title="2. 日志异常检测工作"></a>2. 日志异常检测工作</h2><h3 id="总目标：实现系统日志异常检测"><a href="#总目标：实现系统日志异常检测" class="headerlink" title="总目标：实现系统日志异常检测"></a>总目标：实现系统日志异常检测</h3><h3 id="进度情况-1"><a href="#进度情况-1" class="headerlink" title="进度情况"></a>进度情况</h3><table>
+</div>
+<h2 id="2-日志异常检测工作"><a href="#2-日志异常检测工作" class="headerlink" title="2. 日志异常检测工作"></a>2. 日志异常检测工作</h2><h3 id="总目标：实现系统日志异常检测"><a href="#总目标：实现系统日志异常检测" class="headerlink" title="总目标：实现系统日志异常检测"></a>总目标：实现系统日志异常检测</h3><h3 id="进度情况-1"><a href="#进度情况-1" class="headerlink" title="进度情况"></a>进度情况</h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>时间</th>
@@ -959,7 +1120,9 @@
 </tr>
 </tbody>
 </table>
-<h2 id="3-EOS源码阅读计划"><a href="#3-EOS源码阅读计划" class="headerlink" title="3. EOS源码阅读计划"></a>3. EOS源码阅读计划</h2><h3 id="总目标：本学期结束时需对EOS中区块生产过程、用户交易发起到上链过程等重要过程有深入的理解"><a href="#总目标：本学期结束时需对EOS中区块生产过程、用户交易发起到上链过程等重要过程有深入的理解" class="headerlink" title="总目标：本学期结束时需对EOS中区块生产过程、用户交易发起到上链过程等重要过程有深入的理解"></a>总目标：本学期结束时需对EOS中区块生产过程、用户交易发起到上链过程等重要过程有深入的理解</h3><h3 id="量化方式：阅读源代码并撰写笔记"><a href="#量化方式：阅读源代码并撰写笔记" class="headerlink" title="量化方式：阅读源代码并撰写笔记"></a>量化方式：阅读源代码并撰写笔记</h3><table>
+</div>
+<h2 id="3-EOS源码阅读计划"><a href="#3-EOS源码阅读计划" class="headerlink" title="3. EOS源码阅读计划"></a>3. EOS源码阅读计划</h2><h3 id="总目标：本学期结束时需对EOS中区块生产过程、用户交易发起到上链过程等重要过程有深入的理解"><a href="#总目标：本学期结束时需对EOS中区块生产过程、用户交易发起到上链过程等重要过程有深入的理解" class="headerlink" title="总目标：本学期结束时需对EOS中区块生产过程、用户交易发起到上链过程等重要过程有深入的理解"></a>总目标：本学期结束时需对EOS中区块生产过程、用户交易发起到上链过程等重要过程有深入的理解</h3><h3 id="量化方式：阅读源代码并撰写笔记"><a href="#量化方式：阅读源代码并撰写笔记" class="headerlink" title="量化方式：阅读源代码并撰写笔记"></a>量化方式：阅读源代码并撰写笔记</h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>时间</th>
@@ -980,6 +1143,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 
           
         
@@ -1154,7 +1318,8 @@
       
         
           
-            <h1 id="研究内容"><a href="#研究内容" class="headerlink" title="研究内容"></a>研究内容</h1><h2 id="1-区块链匿名性方面论文阅读"><a href="#1-区块链匿名性方面论文阅读" class="headerlink" title="1. 区块链匿名性方面论文阅读"></a>1. 区块链匿名性方面论文阅读</h2><h3 id="总目标：对匿名性研究方面有比较深入的了解"><a href="#总目标：对匿名性研究方面有比较深入的了解" class="headerlink" title="总目标：对匿名性研究方面有比较深入的了解"></a>总目标：对匿名性研究方面有比较深入的了解</h3><h3 id="量化方式：总结出匿名性方面的研究给出目前的主要研究方向以及方法，主要发表的期刊"><a href="#量化方式：总结出匿名性方面的研究给出目前的主要研究方向以及方法，主要发表的期刊" class="headerlink" title="量化方式：总结出匿名性方面的研究给出目前的主要研究方向以及方法，主要发表的期刊"></a>量化方式：总结出匿名性方面的研究给出目前的主要研究方向以及方法，主要发表的期刊</h3><h3 id="进度情况"><a href="#进度情况" class="headerlink" title="进度情况"></a>进度情况</h3><table>
+            <h1 id="研究内容"><a href="#研究内容" class="headerlink" title="研究内容"></a>研究内容</h1><h2 id="1-区块链匿名性方面论文阅读"><a href="#1-区块链匿名性方面论文阅读" class="headerlink" title="1. 区块链匿名性方面论文阅读"></a>1. 区块链匿名性方面论文阅读</h2><h3 id="总目标：对匿名性研究方面有比较深入的了解"><a href="#总目标：对匿名性研究方面有比较深入的了解" class="headerlink" title="总目标：对匿名性研究方面有比较深入的了解"></a>总目标：对匿名性研究方面有比较深入的了解</h3><h3 id="量化方式：总结出匿名性方面的研究给出目前的主要研究方向以及方法，主要发表的期刊"><a href="#量化方式：总结出匿名性方面的研究给出目前的主要研究方向以及方法，主要发表的期刊" class="headerlink" title="量化方式：总结出匿名性方面的研究给出目前的主要研究方向以及方法，主要发表的期刊"></a>量化方式：总结出匿名性方面的研究给出目前的主要研究方向以及方法，主要发表的期刊</h3><h3 id="进度情况"><a href="#进度情况" class="headerlink" title="进度情况"></a>进度情况</h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>时间</th>
@@ -1185,7 +1350,9 @@
 </tr>
 </tbody>
 </table>
-<h2 id="2-日志异常检测工作"><a href="#2-日志异常检测工作" class="headerlink" title="2. 日志异常检测工作"></a>2. 日志异常检测工作</h2><h3 id="总目标：实现系统日志异常检测"><a href="#总目标：实现系统日志异常检测" class="headerlink" title="总目标：实现系统日志异常检测"></a>总目标：实现系统日志异常检测</h3><h3 id="进度情况-1"><a href="#进度情况-1" class="headerlink" title="进度情况"></a>进度情况</h3><table>
+</div>
+<h2 id="2-日志异常检测工作"><a href="#2-日志异常检测工作" class="headerlink" title="2. 日志异常检测工作"></a>2. 日志异常检测工作</h2><h3 id="总目标：实现系统日志异常检测"><a href="#总目标：实现系统日志异常检测" class="headerlink" title="总目标：实现系统日志异常检测"></a>总目标：实现系统日志异常检测</h3><h3 id="进度情况-1"><a href="#进度情况-1" class="headerlink" title="进度情况"></a>进度情况</h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>时间</th>
@@ -1211,7 +1378,9 @@
 </tr>
 </tbody>
 </table>
-<h2 id="3-EOS源码阅读计划"><a href="#3-EOS源码阅读计划" class="headerlink" title="3. EOS源码阅读计划"></a>3. EOS源码阅读计划</h2><h3 id="总目标：本学期结束时需对EOS中区块生产过程、用户交易发起到上链过程等重要过程有深入的理解"><a href="#总目标：本学期结束时需对EOS中区块生产过程、用户交易发起到上链过程等重要过程有深入的理解" class="headerlink" title="总目标：本学期结束时需对EOS中区块生产过程、用户交易发起到上链过程等重要过程有深入的理解"></a>总目标：本学期结束时需对EOS中区块生产过程、用户交易发起到上链过程等重要过程有深入的理解</h3><h3 id="量化方式：阅读源代码并撰写笔记"><a href="#量化方式：阅读源代码并撰写笔记" class="headerlink" title="量化方式：阅读源代码并撰写笔记"></a>量化方式：阅读源代码并撰写笔记</h3><table>
+</div>
+<h2 id="3-EOS源码阅读计划"><a href="#3-EOS源码阅读计划" class="headerlink" title="3. EOS源码阅读计划"></a>3. EOS源码阅读计划</h2><h3 id="总目标：本学期结束时需对EOS中区块生产过程、用户交易发起到上链过程等重要过程有深入的理解"><a href="#总目标：本学期结束时需对EOS中区块生产过程、用户交易发起到上链过程等重要过程有深入的理解" class="headerlink" title="总目标：本学期结束时需对EOS中区块生产过程、用户交易发起到上链过程等重要过程有深入的理解"></a>总目标：本学期结束时需对EOS中区块生产过程、用户交易发起到上链过程等重要过程有深入的理解</h3><h3 id="量化方式：阅读源代码并撰写笔记"><a href="#量化方式：阅读源代码并撰写笔记" class="headerlink" title="量化方式：阅读源代码并撰写笔记"></a>量化方式：阅读源代码并撰写笔记</h3><div class="table-container">
+<table>
 <thead>
 <tr>
 <th>时间</th>
@@ -1237,6 +1406,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 
           
         
@@ -1645,25 +1815,29 @@
         
           
             <h1 id="1-Zcash的相关知识介绍"><a href="#1-Zcash的相关知识介绍" class="headerlink" title="1. Zcash的相关知识介绍"></a>1. Zcash的相关知识介绍</h1><h2 id="1-1-Zcash的工作原理"><a href="#1-1-Zcash的工作原理" class="headerlink" title="1.1 Zcash的工作原理"></a>1.1 Zcash的工作原理</h2><p>Zcash是一种从Bitcoin中分叉出来的代币, 其目的在于解决bitcoin中交易在执行过程中可以利用区块追踪交易记录的问题,进而使得交易难以追踪以提高匿名性.<br>Zcash中的地址有两种,一种叫做transparent address,简称t-address,这种地址以t开头. 另外一种地址叫做shielded address, 这种地址以z开头.Zcash中大概有如下4种交易类型,如下图所示:</p>
-<center><br><br><img src="https://img-blog.csdnimg.cn/20190313141202670.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70"><br><br></center>
+<center>
+
+<img src="https://img-blog.csdnimg.cn/20190313141202670.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70">
+
+</center>
 
 <p>z-address 到z-address的转账称之为Private transactions, z-address 到t-address的转账称之为Deshielding transactions, t-address到z-address的转账叫做Shielded transactions, 而t-address到t-address的转账叫做transparent transactions. </p>
 <ol>
 <li><p><strong>t-to-t transaction</strong></p>
 <p>两个t-address之间的交易, 和Bitcoin中的交易完全相同,交易双方的地址, 交易费, 交易金额都是公开并且可以追踪的.一个典型的示例如下:</p>
-<p> <br> <img src="https://img-blog.csdnimg.cn/2019031314352632.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70"><br> 这笔交易中, 有一个输入,2个输出,输入和输出的地址都是t开头.</p>
+<p> &lt;/center&gt;<br> <img src="https://img-blog.csdnimg.cn/2019031314352632.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70">&lt;/center&gt;<br> 这笔交易中, 有一个输入,2个输出,输入和输出的地址都是t开头.</p>
 </li>
 <li><p><strong>t-to-z transaction</strong></p>
-<p> t-to-z transaction中,可以叫做shielded transaction, 只能看到输入地址, 即以t开头的地址,交易费等信息, 但是输出的具体地址以及地址个数是未知的.<br> <br> <img src="https://img-blog.csdnimg.cn/20190313144006733.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70"></p>
+<p> t-to-z transaction中,可以叫做shielded transaction, 只能看到输入地址, 即以t开头的地址,交易费等信息, 但是输出的具体地址以及地址个数是未知的.<br> &lt;/center&gt;<br> <img src="https://img-blog.csdnimg.cn/20190313144006733.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70">&lt;/center&gt;</p>
 <p> 这笔交易中,只有1个输入,输入代币总量以及交易费也是已知的,但是输出的地址以及输出地址的个数是未知的, 最终输入的其他ZEC流入了<strong>shielded pool</strong>中.</p>
 </li>
 <li><p><strong>z-to-t transaction</strong></p>
-<p> z-to-t transaction,又叫做 deshielded transaction,即从shielded pool中的代币转出至某个特定的t-address中.<br> <br> <img src="https://img-blog.csdnimg.cn/20190313144615912.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70"></p>
+<p> z-to-t transaction,又叫做 deshielded transaction,即从shielded pool中的代币转出至某个特定的t-address中.<br> &lt;/center&gt;<br> <img src="https://img-blog.csdnimg.cn/20190313144615912.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70">&lt;/center&gt;</p>
 <p> 上图中,交易的输入地址和输入地址的个数未知,但是知道输出地址的数量和具体信息,同时输出代币数和交易费用已知.</p>
 </li>
 <li><p><strong>z-to-z transaction</strong></p>
-<p> z-address 到z-address的转账称之为Private transactions,从z-toz交易中只能得知交易费。但是交易地址、地址数量以及交易的ZEC数目都是未知的。<br> </p>
-<pre><code>&lt;img src=&quot;https://img-blog.csdnimg.cn/20190313145010448.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70&quot; &gt;&lt;/center&gt;
+<p> z-address 到z-address的转账称之为Private transactions,从z-toz交易中只能得知交易费。但是交易地址、地址数量以及交易的ZEC数目都是未知的。<br> &lt;/center&gt;</p>
+<pre><code> &lt;img src=&quot;https://img-blog.csdnimg.cn/20190313145010448.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70&quot; &gt;&lt;/center&gt;
 </code></pre><p> 这笔交易中，输入地址和输出地址的数量以及具体信息都是未知的，唯一能确定的是交易费用。z-to-z地址之间的转换，就相当于在shielded pool中进行持续转账。所有z-address中的ZEC就组成了shielded pool.</p>
 </li>
 </ol>
@@ -1772,65 +1946,93 @@
 </ul>
 <h1 id="5-对文章分析方法的详细阅读解析"><a href="#5-对文章分析方法的详细阅读解析" class="headerlink" title="5. 对文章分析方法的详细阅读解析"></a>5. 对文章分析方法的详细阅读解析</h1><h2 id="5-1-Zcash的统计信息"><a href="#5-1-Zcash的统计信息" class="headerlink" title="5.1 Zcash的统计信息"></a>5.1 Zcash的统计信息</h2><p>作者这里所说的所有区块统计信息,都是以2018年1月21日为止.</p>
 <h3 id="5-1-1-区块生产信息"><a href="#5-1-1-区块生产信息" class="headerlink" title="5.1.1 区块生产信息"></a>5.1.1 区块生产信息</h3><p>作者使用zcashd客户端下载Zcash 区块链,将区块链载入Apache Spark中,随后使用pySpark包进行分析.截止2018年1月21日为止, 总共生产了258472个区块, 产生了31,06,043个ZEC, 其中矿工分得2,485,461, 创始人团队获得621,182 ZEC. 这里有个疑问是总共产生258472个区块,如果每个区块的reward为12.5, 那么总共应该产生3,230,900ZEC,但是实际上并没有这么多,这是因为最初的 20,000 个块的奖励很少，从第 1 个块开始到第 20,000 个块的奖励线性增加，在第 20,000 个块处奖励 12.5 个Zcash. 官方解释说这样做的目的是为防止早期的快速挖矿对 Zcash 系统造成伤害。 Zcash 系统每 2.5 分钟一个块，20,000 个块之后，每个块奖励 12.5 个Zcash。</p>
-<h3 id="5-1-2-交易-Transactions"><a href="#5-1-2-交易-Transactions" class="headerlink" title="5.1.2 交易(Transactions)"></a>5.1.2 交易(Transactions)</h3><p>所有区块总共2,242,847笔交易, 交易具体分布信息如Table.1 所示.<br>    <center><br>    <img src="https://img-blog.csdnimg.cn/20190313152246158.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70"><br>    </center><br>Table.1 中transparent指的是t-to-t交易的数量, Coingen指的是铸币交易, Deshielded指的是z-to-t的交易, shielded 指的是t-to-z交易.Mixed指的是混合交易,即一笔交易的输入或者输出中都包含t和z地址的交易. Private指的是z-to-z交易.<br>从表中显然可以看出, t-to-t交易仍然占有很大的比例,它与铸币交易总共占全部交易的85%, 与shielded pool有关的交易仅仅有335,630笔,总共占有14.96%的比例.</p>
+<h3 id="5-1-2-交易-Transactions"><a href="#5-1-2-交易-Transactions" class="headerlink" title="5.1.2 交易(Transactions)"></a>5.1.2 交易(Transactions)</h3><p>所有区块总共2,242,847笔交易, 交易具体分布信息如Table.1 所示.<br>    <center>
+    <img src="https://img-blog.csdnimg.cn/20190313152246158.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70">
+    </center><br>Table.1 中transparent指的是t-to-t交易的数量, Coingen指的是铸币交易, Deshielded指的是z-to-t的交易, shielded 指的是t-to-z交易.Mixed指的是混合交易,即一笔交易的输入或者输出中都包含t和z地址的交易. Private指的是z-to-z交易.<br>从表中显然可以看出, t-to-t交易仍然占有很大的比例,它与铸币交易总共占全部交易的85%, 与shielded pool有关的交易仅仅有335,630笔,总共占有14.96%的比例.</p>
 <p>在Fig.2中,展示了随着时间的增长, Zcash区块链中各种交易所占的比例变化趋势,图中可以看出, Coingen, shielded以及deshielded交易都呈现出线性增长的情况,将在后续分析中分析其成因.</p>
-<center><br><br><img src="https://img-blog.csdnimg.cn/20190313154343132.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70"><br></center><br>    Fig.3图揭示了随着时间增长,各种交易中涉及的ZEC比例变化趋势图. 从Fig.3 和Fig.2 的综合分析中, 可以看出与shielded pool的交易呈现出线性增长的趋势, 但是总ZEC的价值却呈现越来越小的比例, transparent交易的比例越来越高.<br><br><center><br><img src="https://img-blog.csdnimg.cn/20190313154215741.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70"><br></center>
+<center>
+
+<img src="https://img-blog.csdnimg.cn/20190313154343132.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70">
+</center>
+    Fig.3图揭示了随着时间增长,各种交易中涉及的ZEC比例变化趋势图. 从Fig.3 和Fig.2 的综合分析中, 可以看出与shielded pool的交易呈现出线性增长的趋势, 但是总ZEC的价值却呈现越来越小的比例, transparent交易的比例越来越高.
+
+<center>
+<img src="https://img-blog.csdnimg.cn/20190313154215741.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70">
+</center>
 
 <h3 id="5-1-3-地址-Addresses-统计信息"><a href="#5-1-3-地址-Addresses-统计信息" class="headerlink" title="5.1.3 地址(Addresses)统计信息"></a>5.1.3 地址(Addresses)统计信息</h3><p>在所有的交易中, 有1,740,378个t-address, 其中8727笔交易时t-to-z trx, 另外330,780笔交易时z-to-t trx. 这两种交易不对称行的原因,是由于矿池的一些操作导致.矿池使用极少数量的地址收集block reward, 但是分配block reward时需要分别转给矿池中的每个矿工.由于shielded pool的存在, 无法探知到具体有多少z-address的存在.</p>
 <p>Fig.4展示了shielded pool中ZEC随着时间增长的变化情况, 在图中有比较明显的震荡点, 而这是由于Zcash创始人的转账操作导致,后续会对这种情况给出更为具体的解释.截止到撰写本文的时间,<strong>shielded pool中总共有112, 235的ZEC.</strong></p>
-<center><br>    <img src="https://img-blog.csdnimg.cn/20190313155805593.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70"><br></center>
+<center>
+    <img src="https://img-blog.csdnimg.cn/20190313155805593.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70">
+</center>
 
 <p>分别对t-address中的地址拥有ZEC的数量进行排序, 可以发现其中只有25%的地址中的ZEC数量大于0, 而在这25%的地址中, 其中前1%的地址拥有78%的ZEC. <strong>拥有ZEC最多的账户拥有118,257.75个ZEC, 这比整个shielded pool中的ZEC还要多!</strong></p>
 <p>截止目前为止,论文作者主要介绍了ZCash中一些统计信息,使读者对整个ZCash有一个大概的了解, 下文中,对ZCash进行一些启发式的分析方法.</p>
 <h1 id="6-T-Address-Clustering"><a href="#6-T-Address-Clustering" class="headerlink" title="6. T-Address Clustering"></a>6. T-Address Clustering</h1><p>因为Zcash中从t-address地址发出的的交易与Bitcoin中的交易类似, Bitcoin中对同一笔交易中的多个输入聚类的方法同样可以用来对Zcash中同一笔交易的多个t-address进行聚类. 因此,论文提出Heuristic 1, 具体解释如下:</p>
 <h5 id="Heuristic-1-如果有多个t-address作为输入出现在同一笔交易中-无论这笔交易是t-to-z或者t-to-t抑或是Mixed交易-我们都认为这些地址受同一个实体的控制"><a href="#Heuristic-1-如果有多个t-address作为输入出现在同一笔交易中-无论这笔交易是t-to-z或者t-to-t抑或是Mixed交易-我们都认为这些地址受同一个实体的控制" class="headerlink" title="Heuristic 1: 如果有多个t-address作为输入出现在同一笔交易中,无论这笔交易是t-to-z或者t-to-t抑或是Mixed交易, 我们都认为这些地址受同一个实体的控制."></a>Heuristic 1: 如果有多个t-address作为输入出现在同一笔交易中,无论这笔交易是t-to-z或者t-to-t抑或是Mixed交易, 我们都认为这些地址受同一个实体的控制.</h5><p>鉴于这种启发式的方法已经在Bitcoin中采用, 而Zcash又是Bitcoin的一个分叉,因此认为这个论断基本上是可信的.随后作者按照该方法对Zcash中的所有交易进行了聚类,假设交易中的每个t-address是一个节点, 则对同一笔交易中的多个输入用一条无向边链接, 随后得到聚类结果.经过聚类后得到560, 319个cluster, 其中97,539个cluster包含至少2个t-address.</p>
 <p>这种启发式的方法可以发现由同一实体控制的多个地址,但是却不能有效的追踪常见的地址变换情况, 最常见的地址变换情况是一个sender使用地址Addr_A将ZEC发送给recipient,此外还有一部分的ZEC作为找零转到了自己的另外一个地址Addr_B上,随后如果sender仅仅将在一笔交易中心仅仅以Addr_B作为输入将剩余ZEC全部花出去时,上述启发式方法无法建立Addr_A和Addr_B之间实际上由同一实体控制的情况.</p>
-<h5 id="Heuristic-2-如果在一笔交易的JoinSplit的input中有一个或者多个地址是t-address-代号t-addr-A-而第二个input地址-代号t-addr-B-同时又是唯一的一个output-t-address-那么-t-addr-B和t-addr-A隶属于同一实体控制"><a href="#Heuristic-2-如果在一笔交易的JoinSplit的input中有一个或者多个地址是t-address-代号t-addr-A-而第二个input地址-代号t-addr-B-同时又是唯一的一个output-t-address-那么-t-addr-B和t-addr-A隶属于同一实体控制" class="headerlink" title="Heuristic 2: 如果在一笔交易的JoinSplit的input中有一个或者多个地址是t-address(代号t_addr_A), 而第二个input地址(代号t_addr_B)同时又是唯一的一个output t-address,那么 t_addr_B和t_addr_A隶属于同一实体控制."></a>Heuristic 2: 如果在一笔交易的JoinSplit的input中有一个或者多个地址是t-address(代号t_addr_A), 而第二个input地址(代号t_addr_B)同时又是唯一的一个output t-address,那么 t_addr_B和t_addr_A隶属于同一实体控制.</h5><p>这个假设实在是,作者先到了这个假设,但是实际上由于Zcash的一个钱包–zcash4win的存在,有些用户会给钱包开发者一些费用,因此这个可能是个例外,于是作者并没有采用这个方法.</p>
+<h5 id="Heuristic-2-如果在一笔交易的JoinSplit的input中有一个或者多个地址是t-address-代号t-addr-A-而第二个input地址-代号t-addr-B-同时又是唯一的一个output-t-address-那么-t-addr-B和t-addr-A隶属于同一实体控制"><a href="#Heuristic-2-如果在一笔交易的JoinSplit的input中有一个或者多个地址是t-address-代号t-addr-A-而第二个input地址-代号t-addr-B-同时又是唯一的一个output-t-address-那么-t-addr-B和t-addr-A隶属于同一实体控制" class="headerlink" title="Heuristic 2: 如果在一笔交易的JoinSplit的input中有一个或者多个地址是t-address(代号t_addr_A), 而第二个input地址(代号t_addr_B)同时又是唯一的一个output t-address,那么 t_addr_B和t_addr_A隶属于同一实体控制."></a>Heuristic 2: 如果在一笔交易的JoinSplit的input中有一个或者多个地址是t-address(代号t_addr_A), 而第二个input地址(代号t_addr_B)同时又是唯一的一个output t-address,那么 t_addr_B和t_addr_A隶属于同一实体控制.</h5><p>这个假设实在是,作者先到了这个假设,但是实际上由于Zcash的一个钱包—zcash4win的存在,有些用户会给钱包开发者一些费用,因此这个可能是个例外,于是作者并没有采用这个方法.</p>
 <h2 id="6-1-Tagging-address-标记各种地址"><a href="#6-1-Tagging-address-标记各种地址" class="headerlink" title="6.1 Tagging address(标记各种地址)"></a>6.1 Tagging address(标记各种地址)</h2><h3 id="6-1-1-标记交易所的地址"><a href="#6-1-1-标记交易所的地址" class="headerlink" title="6.1.1 标记交易所的地址"></a>6.1.1 标记交易所的地址</h3><p>根据已有的clusters, 作者下一步目标是对这些cluster进行标记,以确定他们是Zcash的4类用户中的哪一类. 首先对交易所进行标记, 作者首先根据20家交易所的市场占有率,选出其中的top-10交易所, 随后分别从这些交易所中购入一些Zcash,然后在交易所的地址和自己注册的Zcash地址之间多次进行转账,每次转账的时候都对相应的交易所的地址进行标记.这样就可以确定相应交易所所在的cluster, 文章作者分别对每个cluster进行了标记,以每个簇中地址的个数从大到小排序,最大的簇标记为0, 与top-10交易所之间的交易次数,随后确定的交易所在的簇的编号, 具体结果如Table. 2所示.其中ShapShift是一家公司, 用户可以通过这个账户进行币种转换.</p>
-<center><br><img src="https://img-blog.csdnimg.cn/20190313185947149.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70"><br></center>
+<center>
+<img src="https://img-blog.csdnimg.cn/20190313185947149.PNG?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70">
+</center>
 
 <h3 id="6-1-2-标记创始人和矿工的地址"><a href="#6-1-2-标记创始人和矿工的地址" class="headerlink" title="6.1.2  标记创始人和矿工的地址"></a>6.1.2  标记创始人和矿工的地址</h3><p>收集创始人已经公开的地址,同时从区块中标记矿工的地址, 验证矿工地址标记的正确性, 可以直接通过矿池网站查看矿池的为挖出区块的声明.</p>
 <h3 id="6-1-3-结果"><a href="#6-1-3-结果" class="headerlink" title="6.1.3 结果"></a>6.1.3 结果</h3><h5 id="矿工和创始人"><a href="#矿工和创始人" class="headerlink" title="矿工和创始人"></a>矿工和创始人</h5><p>其中发现有一些矿工的地址是交易所的地址,这说明有些矿工直接将所属交易所的地址用来接收block reward, 这样为的是方便提现, 同时有一些创始人的地址也隶属于交易所.<br>Table2中可以看出ShapeShift的使用频率非常高,已经收到超过1.1M 的ZEC, 同时发送的ZEC几乎是等量的.与交易所不同，它的集群包含相对较少数量的矿工地址（54），这与其用作转移资金的方式相符，而不是将其存放在钱包中。<br>尽管矿池和创始人在Zcash中非常活跃,但是由于他们只使用少部分的地址, 因此他们的地址形成的簇不太大.</p>
 <h5 id="公开的组织"><a href="#公开的组织" class="headerlink" title="公开的组织"></a>公开的组织</h5><p>另外,通过调查,发现了3个比较大的接收Zcash支付的组织:the Internet Archive, torservers.net以及Wikileaks. 其中torservers.net只通过z-address接收转账.因此无法识别出他们发起的交易. Wikileaks 也是只通过z-address接收转账.Internet Archive的31笔转账中总共转账17.3ZEC, 9笔交易是匿名的. Wikileaks的20笔转账交易全部是t-to-t交易,并且所有的地址单独成簇.</p>
 <h1 id="7-与Shielded-Pool的交互"><a href="#7-与Shielded-Pool的交互" class="headerlink" title="7. 与Shielded Pool的交互"></a>7. 与Shielded Pool的交互</h1><p>这部分分析t-to-z和z-to-t交易.随着时间增长,总共有3,901,124的ZEC进入pool中,随后又有3,788,889的ZEC从pool中取出.Fig 5描述了这一情况, 基本上存储和取回的数量持平,并且呈现对称形式.这表明很多用户存入pool之后会很快的取回他们的ZEC.另外,图中有很明显的4处尖峰.第一处尖峰发生在2016年12月份,由1笔pool中取回7135ZEC的交易, 这笔ZEC分别转给15个t-address,这15个账户属于创始人. 第二处尖峰发生在2017年12月25日, 在242642个区块上,10,000ZECX分别转给10个t-address, 每个t-address收到了1,000ZEC, 目前这10个账户并没有进行任何交易.另外两次的t-to-z的尖峰是, 每个t-address都单独成一个簇,在后续中会说明与创始人有关.</p>
-<center><br><img src="https://img-blog.csdnimg.cn/20190313194509493.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70"><br></center>
+<center>
+<img src="https://img-blog.csdnimg.cn/20190313194509493.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70">
+</center>
 
 <p>利用标记好的创始人信息和矿工的地址信息,分析这些包含创始人地址或者包含矿工地址的t-to-z转账交易, 得到Figure 6. 根据Figure 6可知矿工和创始人是往shielded pool 转账最多的人, 实际上占比可达76.7%. 而矿工占比达到63.7%, 这表明创始人并没有将很多ZEC放入pool中,毕竟创始人的ZEC是矿工的20%.</p>
-<center><br><img src="https://img-blog.csdnimg.cn/20190313200026398.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70"><br></center>
+<center>
+<img src="https://img-blog.csdnimg.cn/20190313200026398.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70">
+</center>
 
 <p>转账最多的用户,往pool转入超过10,000ZEC, 转账情况如图Figure 7所示.从这图可以看出来, pool中存款的大户仍然是创始人和矿工.</p>
-<center><br><img src="https://img-blog.csdnimg.cn/20190313200534852.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70"><br></center>
+<center>
+<img src="https://img-blog.csdnimg.cn/20190313200534852.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70">
+</center>
 
 <h2 id="7-1-t-to-z和z-to-t交易之间建立联系"><a href="#7-1-t-to-z和z-to-t交易之间建立联系" class="headerlink" title="7.1 t-to-z和z-to-t交易之间建立联系"></a>7.1 t-to-z和z-to-t交易之间建立联系</h2><p>shield pool的最大作用是提供了一个匿名集, 用户通过t-to-z的转账之后再从z-to-t中提款,这样其他人就无法追踪提的款来自于哪里.但是如果把t-to-z和z-to-t这两种交易之间能够联系起来,这样在未来发生z-to-t的转账时可以把已确定名单的交易排除出去,这样就能够减小匿名集的大小.</p>
 <p>最简单的方法是, 如果t-to-z中的t和z-to-t中的地址相同,那么就能排除一部分 shield pool 的匿名集合.于是实施这个想法的结果如图Figure 8a所示.实际上,通过这种方法,几乎没法将一些z-to-t交易和创始人的地址对应起来, 实际上,只能对应一部分矿工的地址.毕竟创始人不傻, 交易进入shield pool就是为了匿名,怎么可能再采用使用过的地址转出呢, 何况这个团队是以密码学为看家本领,所以不会犯这种错误,而只有对于矿工来说, 使用同样地址无所谓,因为对匿名性要求不高,能提款就好. 最终能与矿工地址对应起来的交易总共有49280笔,占所有z-to-t交易的13.3%.</p>
-<center><br><img src="https://img-blog.csdnimg.cn/20190313205049137.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70"><br></center>
+<center>
+<img src="https://img-blog.csdnimg.cn/20190313205049137.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70">
+</center>
 
 <h3 id="7-1-1-将z-to-t中创始人的t-address识别出来"><a href="#7-1-1-将z-to-t中创始人的t-address识别出来" class="headerlink" title="7.1.1 将z-to-t中创始人的t-address识别出来"></a>7.1.1 将z-to-t中创始人的t-address识别出来</h3><p>经过对创始人团队的地址分析,发现其中14个地址用于t-to-z的交易, 而其中每一笔t-to-z的交易每次转账都是249.9999ZEC, 这恰好是100个区块的奖励. 而另外只有5笔 249到251范围之间的t-to-z转账交易.基于这个特点,本来没法将t-to-z和z-to-t交易联系起来,但是这种模式给了作者灵感. 在所有的z-to-t交易中,没有发现249.9999的转账交易,但是发现了1953笔250.0001ZEC笔交易, 另外1969笔交易在249和251范围之间.于是作者检查了249.9999的t-to-z交易的频率,发现每笔交易之间间隔6~ 10个区块,再检查z-to-t的250.0001ZEC的交易时,发现1953中的1943笔交易的间隔大概是6~10个区块, t-to-z和z-to-t的交易,都像同一个模式, 这种模式的表现情况可以参看figure 9. </p>
-<center><img src="https://img-blog.csdnimg.cn/20190313204433761.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70"><br></center>
+<center><img src="https://img-blog.csdnimg.cn/20190313204433761.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70">
+</center>
 
 <p>基于Figure 9 的这种情况,作者大胆做出一个启发式方法:</p>
 <h5 id="Heuristic-3-任何z-to-t的交易中-如果转出250-0001ZEC-那么这笔交易是由创始人发起的"><a href="#Heuristic-3-任何z-to-t的交易中-如果转出250-0001ZEC-那么这笔交易是由创始人发起的" class="headerlink" title="Heuristic 3. 任何z-to-t的交易中,如果转出250.0001ZEC, 那么这笔交易是由创始人发起的."></a>Heuristic 3. 任何z-to-t的交易中,如果转出250.0001ZEC, 那么这笔交易是由创始人发起的.</h5><p>通过运行这个方法, 作者通过z-to-t交易, 额外发现了75个创始人的t-address, 这和之前的48个地址加起来,总共是123个地址.通过这一波操作, 可以找到创始人的z-to-t的交易, 对比之前的figure 8a, 此时得到的Fugire 8b.</p>
 <h3 id="7-1-2-将z-to-t中矿工的t-address识别出来"><a href="#7-1-2-将z-to-t中矿工的t-address识别出来" class="headerlink" title="7.1.2 将z-to-t中矿工的t-address识别出来"></a>7.1.2 将z-to-t中矿工的t-address识别出来</h3><p>Zcash协议规定铸币交易产生的ZEC,必须先进入shield pool, 然后才能更使用, 正因为此, 很多矿池或者个人矿工在铸币交易之后还需要将地址中的ZEC转入shield pool, 使用的时候再从shield pool中取回. 由于每个矿池网站会公布自己挖出的区块信息, 这样每个铸币交易时转账的地址就可以和矿池对应起来. 于是可以统计出每个矿池随着时间增长的情况下转往poll的ZEC值得变化情况.</p>
-<center><img src="https://img-blog.csdnimg.cn/20190313210152616.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70"><br></center>
+<center><img src="https://img-blog.csdnimg.cn/20190313210152616.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70">
+</center>
 
 <p>由于铸币交易存放在矿池的地址中, 矿池地址将ZEC转入pool之后把这些ZEC分发给自己的矿工, 每个矿池旗下都有很多个矿工,每个矿工都有自己的地址. 于是得出如下启发式方法.</p>
 <h5 id="Heuristic-4-如果一个z-to-t的交易中有超过100个输出地址-只要其中1个地址属于已知的一个矿池地址-那么则认为这笔交易是矿池的withdrawl交易-同时对其他输出地址标记为矿工的地址"><a href="#Heuristic-4-如果一个z-to-t的交易中有超过100个输出地址-只要其中1个地址属于已知的一个矿池地址-那么则认为这笔交易是矿池的withdrawl交易-同时对其他输出地址标记为矿工的地址" class="headerlink" title="Heuristic 4. 如果一个z-to-t的交易中有超过100个输出地址,只要其中1个地址属于已知的一个矿池地址,那么则认为这笔交易是矿池的withdrawl交易, 同时对其他输出地址标记为矿工的地址."></a>Heuristic 4. 如果一个z-to-t的交易中有超过100个输出地址,只要其中1个地址属于已知的一个矿池地址,那么则认为这笔交易是矿池的withdrawl交易, 同时对其他输出地址标记为矿工的地址.</h5><p>启用该方法分析后, 最终得到在z-to-t标记中,将110918个地址标记为矿工地址, 最终得到的结果如图Fig.8c所示. top10矿池的t-to-z和z-to-t交易的信息如Table 4所示.</p>
-<center><img src="https://img-blog.csdnimg.cn/20190313213901501.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70"><br></center>
+<center><img src="https://img-blog.csdnimg.cn/20190313213901501.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70">
+</center>
 
 <h3 id="7-1-3-识别其他实体交易"><a href="#7-1-3-识别其他实体交易" class="headerlink" title="7.1.3 识别其他实体交易"></a>7.1.3 识别其他实体交易</h3><h5 id="Heuristic-5-如果一个z-to-t的交易中包含价值v的转账-随后若干个区块时间间隔内的z-to-t的交易中的价值也是v-则认为这笔交易时round-trip-transaction"><a href="#Heuristic-5-如果一个z-to-t的交易中包含价值v的转账-随后若干个区块时间间隔内的z-to-t的交易中的价值也是v-则认为这笔交易时round-trip-transaction" class="headerlink" title="Heuristic 5. 如果一个z-to-t的交易中包含价值v的转账, 随后若干个区块时间间隔内的z-to-t的交易中的价值也是v, 则认为这笔交易时round-trip transaction."></a>Heuristic 5. 如果一个z-to-t的交易中包含价值v的转账, 随后若干个区块时间间隔内的z-to-t的交易中的价值也是v, 则认为这笔交易时round-trip transaction.</h5><p>这个假设看起来不那么靠谱,因为在若干个区块内t-to-z和z-to-t的两笔交易中的价值v相等的情况可能会很多,这种情况下没办法准确的将这些交易对应起来. 但是实际上经过分析发现,12,841笔不同面值的交易中, 其中9487笔交易的ZEC精确到了小数点后8位,其中的98.9%的交易,每笔交易的ZEC都精确到了小数点后3位.这些数据的特点,使得上述方法的实现成为了可能.</p>
 <p>使用上述分析方法,最后识别出12841笔不同ZEC值的z-to-t和t-to-z的交易,转账总价值为 1,094,513.23684 ZEC, 其中97%的ZEC来自于矿工和创始人. 执行Heuristic 5中, 区块间隔分别设置为1~100,运行结果如图Figure 11所示. 当设置为10个区块间隔时, 可以关联到70%的z-to-t和t-to-z转账交易.</p>
-<center><img src="https://img-blog.csdnimg.cn/2019031321532617.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70"><br></center>
+<center><img src="https://img-blog.csdnimg.cn/2019031321532617.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70">
+</center>
 
 <h2 id="8-Shielded-Pool内部的交互"><a href="#8-Shielded-Pool内部的交互" class="headerlink" title="8.Shielded Pool内部的交互"></a>8.Shielded Pool内部的交互</h2><p>文中作者分析了6,934笔z-to-z的交易, 其中包括8,444个JoinSplits.  其中93%的z-to-z交易仅仅使用1个JoinSplit作为输入. 1个JoinSplit中最多包括2个shield output作为input,  这表明大部分的z-to-z交易时以最多2个shielded output作为input. 作者不太确定 是不是一小部分用户进行了多次的交易,或者是很多用户仅仅做一次交易.这样的根本问题在于, shielded pool中z-address的个数有多少个, 并且控制他们的实体到底有多少. 实际上发现Bitclub Pool中t-to-z交易总共有196笔, 但是z-to-z交易有1516笔,这说明要么Bitclub Pool 在t-to-z之后进行了很多z-to-z的交易, 要么说明t-to-z之后还有返回的找零. 然而实际上BitClub总共只有200个z-to-t交易, 所以前者的概率更大.</p>
 <h2 id="9-案例分析-The-Shadow-Brokers"><a href="#9-案例分析-The-Shadow-Brokers" class="headerlink" title="9.案例分析:The Shadow Brokers"></a>9.案例分析:The Shadow Brokers</h2><p>The Shadow Brokers(TSB), 是一个2016年兴起的黑客组织, 主要贩售美国国家安全局(NSA)制作的软件, TSB起先值接收Bitcoin的转账, 随后开始接收Zcash的转账.</p>
 <p>作者首先翻看了TSB的博客(目前该博客的网址貌似打不开了), 在2017年5月, 该组织宣称他们开始接收Zcash作为他们的服务费, 2017年6月~8月收取Zcash和Monero, 但是9月份以后只收Zcash. Table 5展示了该组织从5月份开始到10月份,总共收到的ZEC.</p>
-<center><img src="https://img-blog.csdnimg.cn/20190313221915254.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70"><br></center>
+<center><img src="https://img-blog.csdnimg.cn/20190313221915254.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70">
+</center>
 
 <p>为了识别出有关该组织的t-to-z交易, 首先排除矿工和创始人存储的有关100, 200, 400, 500的t-to-z的交易, 所以对于TSB的客户,有下述两个假设:</p>
 <ul>
 <li>他们的ZEC不是来自于z-to-t交易, 并应该是来自t-to-t交易,因为可以从交易所购买币种.</li>
 <li>他们不是经常使用ZEC的人,因此假设这个账户的交易次数在250以内.(250这个参数估计作者根据数据定的阈值)</li>
-<li>改地址所属的较大的群在1个月以内存入pool不超过1 ZEC(老实说,这个假设我没看明白是啥意思)<br>最终得到24个疑似客户,结果如下Table 6所示.<center><img src="https://img-blog.csdnimg.cn/20190313225054124.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70"><br></center>
+<li>改地址所属的较大的群在1个月以内存入pool不超过1 ZEC(老实说,这个假设我没看明白是啥意思)<br>最终得到24个疑似客户,结果如下Table 6所示.<center><img src="https://img-blog.csdnimg.cn/20190313225054124.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70">
+</center>
 
 </li>
 </ul>
@@ -2000,7 +2202,7 @@
 <p>二是起诉离婚，Alice想离而Bob不想离，这时Alice可以单方面强制关闭通道，将小本本最后一笔交易广播出去，只要矿工验证并打包进区块，这婚也算离了，代价是Alice并不能立马得到比特币，需要等待一定时间。本着劝和不劝分的原则，闪电协议设置了哈希时间锁定合约，单方面强制离婚（关闭交易通道）会受到延迟收到退款的惩罚，这是为了保证双方交易的稳定。</p>
 <p>以上最后一个过程是通道关闭。注意，不管是协议离婚还是起诉离婚，这都是要法院受理登记的。关闭通道一定要发起交易并广播到主网，最后矿工记录，所以还是要忍耐一定确认时间和支付手续费的，这与闪电网络无关。</p>
 <p>至此我们已经知道了Alice和Bob链下互相转账的那点事儿了，这就是所谓“双向支付通道”。开启通道需要在主链交易，这是锁定资金，关闭通道也需要在主链交易，这是释放资金。中间可以进行任意多次转账支付，是0确认0手续费的。</p>
-<ol start="2">
+<ol>
 <li><strong>将双向支付通道扩展成闪电网络</strong></li>
 </ol>
 <p>新问题来了，世界上除了这两位，还有Carol、Eric、Diana等等。设想Alice想转给Carol 1个BTC,她该怎么办呢？自然地，她俩可以再重复上述操作建立一个双向通道。但是，如果我们为了应用闪电网络，需要世界上每两个人之间都建立一条通道，这将是非常大的工作量且不切实际的。为了解决这一问题，我们需要将<strong>双向支付通道扩展成闪电网络</strong>。</p>
@@ -2016,11 +2218,11 @@
 <p>作为铺垫，我们需要讲解两个概念，哈希时间锁定和哈希密钥锁定。首先是哈希时间锁定，这是在交易脚本里面设置时钟，必须要等设定时间之后，才能用地址的私钥签名解锁地址里的比特币。例如Alice收到了一笔2 BTC转账，但是对方设定了1000个区块之后才能解锁，所以Alice必须等待1000个区块之后才能用自己的私钥签署交易,花费其中的BTC转给Bob。</p>
 <p><img src="https://fs.bitcoinmagazine.com/img/articles/understanding-the-lightning-network-part-building-a-bidirectional-payment-channel-74.jpg" alt=""></p>
 <p>其次是哈希密钥锁定。哈希函数可以把一串输入转换成256位固定长度的输出，计算过程称为一次哈希运算，其中输入称为密文，输出称为密文的哈希值。哈希函数具有单向性，即从密文可以算出哈希值，但是从哈希值反向算出密文几乎是不可行的。计算的办法是暴力破解，逐一输入密文进行哈希运算，验证运算结果是否为要求的哈希值。基于这种特性，可以把一个密文的哈希值放入交易的输出当中充当哈希密文锁，也就是必须得输入该哈希值对应的密文才能解锁脚本中的比特币。例如，例如Alice收到了一笔2BTC转账，但是对方设定了哈希值锁定，所以Alice必须得到交易方的密文，同时配合自己的密钥签名才能签署交易，花费其中的BTC转给Bob。</p>
-<p>!()[<a href="https://fs.bitcoinmagazine.com/img/articles/understanding-the-lightning-network-part-building-a-bidirectional-payment-channel-75.jpg]" target="_blank" rel="noopener">https://fs.bitcoinmagazine.com/img/articles/understanding-the-lightning-network-part-building-a-bidirectional-payment-channel-75.jpg]</a></p>
+<p>!()[<a href="https://fs.bitcoinmagazine.com/img/articles/understanding-the-lightning-network-part-building-a-bidirectional-payment-channel-75.jpg" target="_blank" rel="noopener">https://fs.bitcoinmagazine.com/img/articles/understanding-the-lightning-network-part-building-a-bidirectional-payment-channel-75.jpg</a>]</p>
 <p>有了这两个工具，让我们看看那群程序员天才们是如何构想出一个程序，使得互不相识的双方能够诚实记账的。</p>
 <p>在原理的白话版我们已经讲过了关于通道的三个步骤：开启通道，通道内交易，关闭通道。</p>
 <p>开启通道较为简单，Alice和Bob分别向多签地址1转入5个BTC。这是一个2/2地址，也就是必须两人都签名，此地址的比特币才可以转出去。</p>
-<p>!()[<a href="https://mmbiz.qpic.cn/mmbiz_png/ockBglTNBdSrmo2Cm0MKm0Nf2rXGTlXDR0TcR1ld98UzjmUuPAVgvxGrkmNdMGxGxsTv6kuNnIjyvWmibnAO3Jg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1]" target="_blank" rel="noopener">https://mmbiz.qpic.cn/mmbiz_png/ockBglTNBdSrmo2Cm0MKm0Nf2rXGTlXDR0TcR1ld98UzjmUuPAVgvxGrkmNdMGxGxsTv6kuNnIjyvWmibnAO3Jg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1]</a></p>
+<p>!()[<a href="https://mmbiz.qpic.cn/mmbiz_png/ockBglTNBdSrmo2Cm0MKm0Nf2rXGTlXDR0TcR1ld98UzjmUuPAVgvxGrkmNdMGxGxsTv6kuNnIjyvWmibnAO3Jg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" target="_blank" rel="noopener">https://mmbiz.qpic.cn/mmbiz_png/ockBglTNBdSrmo2Cm0MKm0Nf2rXGTlXDR0TcR1ld98UzjmUuPAVgvxGrkmNdMGxGxsTv6kuNnIjyvWmibnAO3Jg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1</a>]</p>
 <p>接下来是通道内交易，我们需要讲解Alice和Bob之间的两次交易才能完全明白双向支付通道的巧妙之处。第一次Alice需要向Bob支付1个BTC，第二次Bob需要向Alice支付1个比特币。</p>
 <p>第一次交易的流程是，Bob首先在自己电脑的闪电网络软件上构建交易，如下左图所示。</p>
 <p><img src="https://mmbiz.qpic.cn/mmbiz_png/ockBglTNBdSrmo2Cm0MKm0Nf2rXGTlXDd4dhf4icEe29vbw0pXibeMe9Mj2QVyOGkZRKiaRBH0tfkN9YdicicTHQNBw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1&amp;wx_co=1" alt=""></p>
@@ -2412,6 +2614,7 @@
 <p>本文用于记录对EOS源代码的阅读记录,对其相关内容从源代码中追踪问迹,希望从源代码入手,对其设计原理有一个深入的认识,也用于本人学习研究之用.<br>如果对EOS不太了解, 还需要对EOS顶层的内容有一些了解.这里推荐<a href="https://github.com/EOSIO/Documentation" target="_blank" rel="noopener">EOS的白皮书</a>进行了解学习. </p>
 <p>对任何区块链相关技术的学习,首先应该从其区块的结构开始学起,因此,本文首先从区块源代码入手开始了解.</p>
 <h1 id="EOS区块链相关数据结构"><a href="#EOS区块链相关数据结构" class="headerlink" title="EOS区块链相关数据结构"></a>EOS区块链相关数据结构</h1><h2 id="block-header"><a href="#block-header" class="headerlink" title="block header"></a><strong>block header</strong></h2><p>block header的定义,来自于”chain\webassembly\block_header.hpp”文件中,其主要结构如下:</p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
@@ -2468,7 +2671,7 @@
 <td style="text-align:left">header_extensions</td>
 <td style="text-align:left">扩展类型</td>
 <td style="text-align:center">-</td>
-<td style="text-align:center">vector&lt;std::pair&lt;uint16_t,vector<char>&gt;&gt;</char></td>
+<td style="text-align:center">vector<std::pair<uint16_t,vector<char>&gt;&gt;</std::pair<uint16_t,vector<char></td>
 </tr>
 <tr>
 <td style="text-align:left">-</td>
@@ -2478,6 +2681,7 @@
 </tr>
 </tbody>
 </table>
+</div>
 <p>具体对于block_header的结构代码，可以参看下述代码。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">block_header</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    block_timestamp_type             timestamp;</span><br><span class="line">    account_name                     producer;</span><br><span class="line">    <span class="keyword">uint16_t</span>                         confirmed = <span class="number">1</span>;  </span><br><span class="line">    block_id_type                    previous;</span><br><span class="line">    checksum256_type                 transaction_mroot; <span class="comment">/// mroot of cycles_summary</span></span><br><span class="line">    checksum256_type                 action_mroot; <span class="comment">/// mroot of all delivered action receipts</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">uint32_t</span>                          schedule_version = <span class="number">0</span>;</span><br><span class="line">    optional&lt;producer_schedule_type&gt;  new_producers;</span><br><span class="line">    extensions_type                   header_extensions;</span><br><span class="line">    <span class="function">digest_type       <span class="title">digest</span><span class="params">()</span><span class="keyword">const</span></span>;   <span class="comment">// 求区块的摘要</span></span><br><span class="line">    <span class="function">block_id_type     <span class="title">id</span><span class="params">()</span> <span class="keyword">const</span></span>;      <span class="comment">// 获取区块id</span></span><br><span class="line">    <span class="keyword">uint32_t</span>          block_num() <span class="keyword">const</span> &#123; <span class="keyword">return</span> num_from_id(previous) + <span class="number">1</span>; &#125;     <span class="comment">//当前区块号 = 前一个区块号+1</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> uint32_t   <span class="title">num_from_id</span><span class="params">(<span class="keyword">const</span> block_id_type&amp; id)</span></span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>上述区块是没有对区块进行签名的区块，对区块进行签名之后，区块数据结构是signed_block_header，具体代码如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">signed_block_header</span> :</span> <span class="keyword">public</span> block_header</span><br><span class="line">&#123;</span><br><span class="line">   signature_type    producer_signature;<span class="comment">// 区块生产者的签名</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
@@ -2521,189 +2725,6 @@
 <h2 id="链控制器的主要过程"><a href="#链控制器的主要过程" class="headerlink" title="链控制器的主要过程"></a>链控制器的主要过程</h2><ul>
 <li>链控制器的初始化<br>链控制器的初始化是区块的起点,它的核心过程如下所示:<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">   controller_impl( <span class="keyword">const</span> controller::config&amp; cfg, controller&amp; s  )</span><br><span class="line">   :self(s),</span><br><span class="line">    db( cfg.state_dir,</span><br><span class="line">        cfg.read_only ? database::read_only : database::read_write,</span><br><span class="line">        cfg.state_size ),</span><br><span class="line">    reversible_blocks( cfg.blocks_dir/config::reversible_blocks_dir_name,</span><br><span class="line">        cfg.read_only ? database::read_only : database::read_write,</span><br><span class="line">        cfg.reversible_cache_size ),</span><br><span class="line">    blog( cfg.blocks_dir ),</span><br><span class="line">    fork_db( cfg.state_dir ),</span><br><span class="line">    wasmif( cfg.wasm_runtime ),</span><br><span class="line">    resource_limits( db ),</span><br><span class="line">    authorization( s, db ),</span><br><span class="line">    conf( cfg ),</span><br><span class="line">    chain_id( cfg.genesis.compute_chain_id() ),</span><br><span class="line">    read_mode( cfg.read_mode ),</span><br><span class="line">    thread_pool( cfg.thread_pool_size )</span><br><span class="line">   &#123;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SET_APP_HANDLER( receiver, contract, action) \</span></span><br><span class="line">   set_apply_handler( #receiver, #contract, #action, &amp;BOOST_PP_CAT(apply_, BOOST_PP_CAT(contract, BOOST_PP_CAT(_,action) ) ) )</span><br><span class="line"></span><br><span class="line">   SET_APP_HANDLER( eosio, eosio, newaccount );</span><br><span class="line">   SET_APP_HANDLER( eosio, eosio, setcode );</span><br><span class="line">   SET_APP_HANDLER( eosio, eosio, setabi );</span><br><span class="line">   SET_APP_HANDLER( eosio, eosio, updateauth );</span><br><span class="line">   SET_APP_HANDLER( eosio, eosio, deleteauth );</span><br><span class="line">   SET_APP_HANDLER( eosio, eosio, linkauth );</span><br><span class="line">   SET_APP_HANDLER( eosio, eosio, unlinkauth );</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">   SET_APP_HANDLER( eosio, eosio, postrecovery );</span></span><br><span class="line"><span class="comment">   SET_APP_HANDLER( eosio, eosio, passrecovery );</span></span><br><span class="line"><span class="comment">   SET_APP_HANDLER( eosio, eosio, vetorecovery );</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">   SET_APP_HANDLER( eosio, eosio, canceldelay );</span><br><span class="line"></span><br><span class="line">   fork_db.irreversible.connect( [&amp;]( <span class="keyword">auto</span> b ) &#123;</span><br><span class="line">                                 on_irreversible(b);</span><br><span class="line">                                 &#125;);</span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></li>
 </ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2019/01/21/算法设计模板总结/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar2.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="hzx's Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/01/21/算法设计模板总结/" class="post-title-link" itemprop="https://hzxGoForward.github.io/index.html">算法设计模板总结</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建于：2019-01-21 09:48:18" itemprop="dateCreated datePublished" datetime="2019-01-21T09:48:18+08:00">2019-01-21</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="更新于：2019-01-25 21:50:31" itemprop="dateModified" datetime="2019-01-25T21:50:31+08:00">2019-01-25</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法设计与分析/" itemprop="url" rel="index"><span itemprop="name">算法设计与分析</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="快速排序-分治法"><a href="#快速排序-分治法" class="headerlink" title="快速排序(分治法)"></a>快速排序(分治法)</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">partition</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; nums, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> base = nums[left];</span><br><span class="line">	<span class="keyword">while</span>(left&lt;right)&#123;</span><br><span class="line">		<span class="keyword">while</span>(left&lt;right&amp;&amp;nums[right]&gt;base)</span><br><span class="line">			right--;</span><br><span class="line">		nums[left] = nums[right];</span><br><span class="line">		<span class="keyword">while</span>(left&lt;right &amp;&amp; nums[left]&lt;=base)</span><br><span class="line">			++left;</span><br><span class="line">		nums[right] = nums[left];</span><br><span class="line">	&#125;</span><br><span class="line">	nums[left] = base;</span><br><span class="line">	<span class="keyword">return</span> left;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">quickSort</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; nums,<span class="keyword">const</span> <span class="keyword">int</span> left, <span class="keyword">const</span> <span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(left&lt;right)&#123;</span><br><span class="line">		<span class="keyword">int</span> index = partition(nums, left, right);</span><br><span class="line">		quickSort(nums, left, index);</span><br><span class="line">		quickSort(nums, index+<span class="number">1</span>, right);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="归并排序-分治法"><a href="#归并排序-分治法" class="headerlink" title="归并排序(分治法)"></a>归并排序(分治法)</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> LL;</span><br><span class="line"></span><br><span class="line"><span class="function">LL <span class="title">mergeSort</span><span class="params">(VI&amp; nums, <span class="keyword">const</span> <span class="keyword">int</span> low, <span class="keyword">const</span> <span class="keyword">int</span> high)</span> </span>&#123;</span><br><span class="line">	LL ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (high &lt;= low)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (high - low == <span class="number">1</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (nums[low] &gt; nums[high]) &#123;</span><br><span class="line">			swap(nums[low], nums[high]);</span><br><span class="line">			ans++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> ans;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> mid = low + (high - low) / <span class="number">2</span>;</span><br><span class="line">	LL left = mergeSort(nums, low, mid);</span><br><span class="line">	LL right = mergeSort(nums, mid + <span class="number">1</span>, high);</span><br><span class="line">	ans = left + right;</span><br><span class="line">	</span><br><span class="line">	<span class="function">VI <span class="title">leftNums</span><span class="params">(nums.begin() + low, nums.begin() + mid + <span class="number">1</span>)</span></span>;</span><br><span class="line">	<span class="function">VI <span class="title">rightNums</span><span class="params">(nums.begin() + mid + <span class="number">1</span>, nums.begin() + high + <span class="number">1</span>)</span></span>;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>, index = low;</span><br><span class="line">	<span class="keyword">while</span> (i &lt; leftNums.size() &amp;&amp; j &lt; rightNums.size()) &#123;</span><br><span class="line">		<span class="keyword">if</span> (leftNums[i] &lt;= rightNums[j])</span><br><span class="line">			nums[index++] = leftNums[i++];</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			nums[index++] = rightNums[j++];</span><br><span class="line">			ans += leftNums.size() - i;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span> (i &lt; leftNums.size())</span><br><span class="line">		nums[index++] = leftNums[i++];</span><br><span class="line">	<span class="keyword">while</span> (j &lt; rightNums.size())</span><br><span class="line">		nums[index++] = rightNums[j++];</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="数组中逆序对个数-分治法"><a href="#数组中逆序对个数-分治法" class="headerlink" title="数组中逆序对个数(分治法)"></a>数组中逆序对个数(分治法)</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int64_t</span> reverseNum(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; nums, <span class="keyword">int</span> low, <span class="keyword">int</span> high)&#123;</span><br><span class="line">	<span class="keyword">uint64_t</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>(low&gt;=high)</span><br><span class="line">		<span class="keyword">return</span> ans;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(high - low == <span class="number">1</span>)&#123;</span><br><span class="line">		<span class="keyword">if</span>(nums[low]&gt;nums[high])&#123;</span><br><span class="line">			swap(nums[low], nums[high]);</span><br><span class="line">			++ans;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> ans;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> mid = low + (high-low)/<span class="number">2</span>;</span><br><span class="line">	<span class="keyword">int64_t</span> left = reverseNum(nums, low, mid);</span><br><span class="line">	<span class="keyword">int64_t</span> right = reverseNum(nums, mid+<span class="number">1</span>, high);</span><br><span class="line">	ans += left + right;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; leftNums(nums.begin()+low, nums.begin()+mid+<span class="number">1</span>);</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; rightNums(nums.begin()+mid+<span class="number">1</span>, nums.begin()+high+<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>, index = low;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">while</span>( i&lt;leftNums.size() &amp;&amp; j&lt; rightNums.size() )&#123;</span><br><span class="line">		<span class="keyword">if</span>(leftNums[i]&lt;=rightNums[j])</span><br><span class="line">			nums[index++] = leftNums[i++];</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			nums[index++] = rightNums[j++];</span><br><span class="line">			ans += leftNums.size()-i;	<span class="comment">// </span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span>(i&lt;leftNums.size())</span><br><span class="line">		nums[index++] = leftNums[i++];</span><br><span class="line">	<span class="keyword">while</span>(j&lt;rightNums.size())</span><br><span class="line">		nums[index++] = rightNums[j++];</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="平面最近点对-分治法"><a href="#平面最近点对-分治法" class="headerlink" title="平面最近点对(分治法)"></a>平面最近点对(分治法)</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">minDistance</span><span class="params">(<span class="built_in">vector</span>&lt;Point&gt;&amp; points, CI low, CI high)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (low &gt;= high)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (low == high - <span class="number">1</span>) &#123;</span><br><span class="line">		<span class="keyword">double</span> dis = distance(points[low], points[high]);</span><br><span class="line">		<span class="keyword">if</span> (points[low].y &gt; points[high].y)</span><br><span class="line">			swap(points[low], points[high]);</span><br><span class="line">		<span class="keyword">return</span> dis;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> mid = low + (high - low) / <span class="number">2</span>;</span><br><span class="line">	<span class="keyword">int</span> middle = points[mid].x;</span><br><span class="line">	<span class="keyword">double</span> left = minDistance(points, low, mid);</span><br><span class="line">	<span class="keyword">double</span> right = minDistance(points, mid, high);</span><br><span class="line">	<span class="keyword">double</span> ans = min(left, right);</span><br><span class="line">	<span class="keyword">auto</span> f = [](<span class="keyword">const</span> Point&amp; p1, <span class="keyword">const</span> Point&amp; p2)-&gt;<span class="keyword">bool</span> &#123;<span class="keyword">return</span> p1.y &lt; p2.y; &#125;;</span><br><span class="line">	sort(points.begin() + low, points.begin() + high + <span class="number">1</span>, f);</span><br><span class="line">	<span class="built_in">vector</span>&lt;Point&gt; tmp;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = low; i &lt; high; ++i) &#123;</span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">abs</span>(points[i].x - middle) &lt;= ans)</span><br><span class="line">			tmp.emplace_back(points[i]);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; tmp.size(); ++i) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; min(<span class="keyword">static_cast</span>&lt;<span class="keyword">int</span>&gt;(tmp.size()), i + <span class="number">12</span>); ++j)</span><br><span class="line">			ans = min(ans, distance(tmp[i], tmp[j]));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="并查集"><a href="#并查集" class="headerlink" title="并查集"></a>并查集</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QuickUnion</span>&#123;</span></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; sz; <span class="comment">// 表示每个集合的大小</span></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; parent; <span class="comment">// 表示每个顶点最终的父节点</span></span><br><span class="line">                        <span class="comment">// 初始化每个顶点父节点是其自身</span></span><br><span class="line">    QuickUnion(<span class="keyword">const</span> <span class="keyword">int</span> size)&#123;</span><br><span class="line">        sz.assign(size, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">0</span>;i&lt;size;++i)</span><br><span class="line">            parent.push_back(i);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 找某个节点的父亲节点</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(x!=parent[x])</span><br><span class="line">            parent[x] = find(parent[x]);</span><br><span class="line">        <span class="keyword">return</span> parent[x];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 合并两个节点</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">merge</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> x, <span class="keyword">const</span> <span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> px = parent[x];</span><br><span class="line">        <span class="keyword">int</span> py = parent[y];</span><br><span class="line">        <span class="keyword">if</span>(px==py)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">if</span>(sz[px]&gt;=sz[py])&#123;</span><br><span class="line">            sz[px]+=sz[py];</span><br><span class="line">            parent[py] = px;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            sz[py]+=sz[px];</span><br><span class="line">            parent[px] = py;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h1 id="prime-算法"><a href="#prime-算法" class="headerlink" title="prime 算法"></a>prime 算法</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; VI;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span>&lt;VI&gt; VVI;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt; VD;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span>&lt;VD&gt; VVD;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 边的定义</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> from, to;</span><br><span class="line">	<span class="keyword">double</span> dis;</span><br><span class="line">	Edge(CI f, CI t, CD d) :from(f), to(t), dis(d) &#123;&#125;;</span><br><span class="line">	<span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> Edge&amp; e)<span class="keyword">const</span> &#123; <span class="keyword">return</span> <span class="keyword">this</span>-&gt;dis &gt; e.dis; &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 图用邻接矩阵存储的Prime算法</span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">MST</span><span class="params">(<span class="keyword">const</span> VVD&amp; graph)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">double</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="function">VI <span class="title">visit</span><span class="params">(graph.size(), <span class="number">0</span>)</span></span>;</span><br><span class="line">	priority_queue&lt;Edge&gt; myQueue;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; graph.size(); ++i) &#123;</span><br><span class="line">		myQueue.emplace(<span class="number">0</span>, i, graph[<span class="number">0</span>][i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function">VD <span class="title">dis</span><span class="params">(graph[<span class="number">0</span>])</span></span>;</span><br><span class="line">	<span class="keyword">while</span> (!myQueue.empty()) &#123;</span><br><span class="line">		Edge e = myQueue.top();</span><br><span class="line">		myQueue.pop();</span><br><span class="line">		<span class="keyword">if</span> (visit[e.to] == <span class="number">1</span>)</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		visit[e.to] = <span class="number">1</span>;</span><br><span class="line">		ans += e.dis;</span><br><span class="line">		dis[e.to] = e.dis;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; graph.size(); ++i)</span><br><span class="line">			<span class="keyword">if</span> (visit[i] == <span class="number">0</span> &amp;&amp; graph[e.to][i] &lt; dis[i])</span><br><span class="line">				myQueue.emplace(e.to, i, graph[e.to][i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="kruskal算法-贪心法"><a href="#kruskal算法-贪心法" class="headerlink" title="kruskal算法(贪心法)"></a>kruskal算法(贪心法)</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 边的定义</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> from, to;</span><br><span class="line">	<span class="keyword">double</span> dis;</span><br><span class="line">	Edge(CI f, CI t, CD d) :from(f), to(t), dis(d) &#123;&#125;;</span><br><span class="line">	<span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> Edge&amp; e)<span class="keyword">const</span> &#123; <span class="keyword">return</span> <span class="keyword">this</span>-&gt;dis &lt; e.dis; &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// kruskal算法,需要用到并查集</span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">MST</span><span class="params">(<span class="keyword">const</span> <span class="built_in">vector</span>&lt;Edge&gt; edgeVec,<span class="keyword">const</span> <span class="keyword">int</span> vertex)</span> </span>&#123;</span><br><span class="line">	sort(edgeVec.begin(), edgeVec.end());</span><br><span class="line"></span><br><span class="line">    <span class="function">QuickUnion <span class="title">qu</span><span class="params">(vertex)</span></span>;</span><br><span class="line">    <span class="keyword">double</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> edgCnt = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span>&amp;e :edgeVec)&#123;</span><br><span class="line">        <span class="keyword">if</span>(qu.merge(e.from, e.to))&#123;</span><br><span class="line">            ans += e.dis;</span><br><span class="line">            edgCnt++;</span><br><span class="line">            <span class="keyword">if</span>(edgCnt==vertex<span class="number">-1</span>)</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="dijkstra算法-贪心法"><a href="#dijkstra算法-贪心法" class="headerlink" title="dijkstra算法(贪心法)"></a>dijkstra算法(贪心法)</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; VI;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span>&lt;VI&gt; VVI;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 边的定义</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> from, to;</span><br><span class="line">	<span class="keyword">int</span> dis;</span><br><span class="line">	Edge(CI f, CI t, CD d) :from(f), to(t), dis(d) &#123;&#125;;</span><br><span class="line">	<span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> Edge&amp; e)<span class="keyword">const</span> &#123; <span class="keyword">return</span> <span class="keyword">this</span>-&gt;dis &gt; e.dis; &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 图用邻接矩阵存储的, 优先级队列实现,,计算start到target的最近距离</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dijkstra</span><span class="params">(<span class="keyword">const</span> VVI&amp; graph, <span class="keyword">const</span> <span class="keyword">int</span> start, <span class="keyword">const</span> <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">	<span class="function">VI <span class="title">dis</span><span class="params">(graph.size(), INT_MAX)</span></span>;</span><br><span class="line">	dis[start] = <span class="number">0</span>;</span><br><span class="line">	<span class="function">VI <span class="title">visit</span><span class="params">(graph.size(), <span class="number">0</span>)</span></span>;</span><br><span class="line">	priority_queue&lt;Edge&gt; myQueue;</span><br><span class="line">	myQueue.emplace(start, start, <span class="number">0</span>);</span><br><span class="line">	<span class="keyword">while</span>(!myQueue.empty())&#123;</span><br><span class="line">		Edge e = myQueue.top();</span><br><span class="line">		myQueue.pop();</span><br><span class="line">		<span class="keyword">if</span>(visit[e.to]==<span class="number">1</span>)</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		visit[e.to] = <span class="number">1</span>;</span><br><span class="line">		dis[e.to]= e.dis;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;graph.size();++i)&#123;</span><br><span class="line">			<span class="keyword">if</span>( visit[i]==<span class="number">0</span> &amp;&amp; dis[i]- graph[e.to][i]&gt; dis[e.to])</span><br><span class="line">				myQueue.emplace(e.to, i, dis[e.to]+ graph[e.to][i])</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> dis[target];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="spfa-动态规划"><a href="#spfa-动态规划" class="headerlink" title="spfa(动态规划)"></a>spfa(动态规划)</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; VI;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span>&lt;VI&gt; VVI;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 图用邻接矩阵存储, 队列实现的spfa算法,计算start到target的最近距离</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">spfa</span><span class="params">(<span class="keyword">const</span> VVI&amp; graph, <span class="keyword">const</span> <span class="keyword">int</span> start, <span class="keyword">const</span> <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dis(graph.size(), INT_MAX);</span><br><span class="line">	dis[start] = <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; myQueue;</span><br><span class="line">	<span class="function">VI <span class="title">enqueue</span><span class="params">(graph.size(), <span class="number">0</span>)</span></span>;</span><br><span class="line">	myQueue.push(start);</span><br><span class="line">	enqueue[start] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(!myQueue.empty())&#123;</span><br><span class="line">		<span class="keyword">int</span> topNode = myQueue.front();</span><br><span class="line">		myQueue.pop();</span><br><span class="line">		enqueue[topNode] = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;graph.size();++i)&#123;</span><br><span class="line">			<span class="keyword">if</span>(dis[i]- graph[topNode][i]&gt; dis[topNode])&#123;</span><br><span class="line">				dis[i] = dis[topNode]+graph[topNode][i];</span><br><span class="line">				<span class="keyword">if</span>(enqueue[i]==<span class="number">0</span>)&#123;</span><br><span class="line">					myQueue.emplace(i);</span><br><span class="line">					enqueue[i] = <span class="number">1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> dis[target];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
           
         
@@ -2794,7 +2815,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -3244,7 +3265,24 @@
         }, 300)
       }).append(e)
     })
-  </script>
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
   

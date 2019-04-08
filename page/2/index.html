@@ -16,7 +16,7 @@
 
 <html class="theme-next pisces use-motion" lang="zh-Hans">
 <head><meta name="generator" content="Hexo 3.8.0">
-  <meta charset="UTF-8">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
@@ -169,7 +169,7 @@
       .logo-line-after i { right: initial; }
     }
   </style>
-</noscript>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
@@ -180,7 +180,7 @@
     
   
 
-  <div class="container sidebar-position-left 
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left 
   page-home">
     <div class="headband"></div>
 
@@ -302,6 +302,189 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2019/01/21/算法设计模板总结/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hzx's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/01/21/算法设计模板总结/" class="post-title-link" itemprop="https://hzxGoForward.github.io/page/2/index.html">算法设计模板总结</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2019-01-21 09:48:18" itemprop="dateCreated datePublished" datetime="2019-01-21T09:48:18+08:00">2019-01-21</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2019-01-25 21:50:31" itemprop="dateModified" datetime="2019-01-25T21:50:31+08:00">2019-01-25</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法设计与分析/" itemprop="url" rel="index"><span itemprop="name">算法设计与分析</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="快速排序-分治法"><a href="#快速排序-分治法" class="headerlink" title="快速排序(分治法)"></a>快速排序(分治法)</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">partition</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; nums, <span class="keyword">int</span> left, <span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> base = nums[left];</span><br><span class="line">	<span class="keyword">while</span>(left&lt;right)&#123;</span><br><span class="line">		<span class="keyword">while</span>(left&lt;right&amp;&amp;nums[right]&gt;base)</span><br><span class="line">			right--;</span><br><span class="line">		nums[left] = nums[right];</span><br><span class="line">		<span class="keyword">while</span>(left&lt;right &amp;&amp; nums[left]&lt;=base)</span><br><span class="line">			++left;</span><br><span class="line">		nums[right] = nums[left];</span><br><span class="line">	&#125;</span><br><span class="line">	nums[left] = base;</span><br><span class="line">	<span class="keyword">return</span> left;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">quickSort</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; nums,<span class="keyword">const</span> <span class="keyword">int</span> left, <span class="keyword">const</span> <span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(left&lt;right)&#123;</span><br><span class="line">		<span class="keyword">int</span> index = partition(nums, left, right);</span><br><span class="line">		quickSort(nums, left, index);</span><br><span class="line">		quickSort(nums, index+<span class="number">1</span>, right);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="归并排序-分治法"><a href="#归并排序-分治法" class="headerlink" title="归并排序(分治法)"></a>归并排序(分治法)</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> LL;</span><br><span class="line"></span><br><span class="line"><span class="function">LL <span class="title">mergeSort</span><span class="params">(VI&amp; nums, <span class="keyword">const</span> <span class="keyword">int</span> low, <span class="keyword">const</span> <span class="keyword">int</span> high)</span> </span>&#123;</span><br><span class="line">	LL ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (high &lt;= low)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (high - low == <span class="number">1</span>) &#123;</span><br><span class="line">		<span class="keyword">if</span> (nums[low] &gt; nums[high]) &#123;</span><br><span class="line">			swap(nums[low], nums[high]);</span><br><span class="line">			ans++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> ans;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> mid = low + (high - low) / <span class="number">2</span>;</span><br><span class="line">	LL left = mergeSort(nums, low, mid);</span><br><span class="line">	LL right = mergeSort(nums, mid + <span class="number">1</span>, high);</span><br><span class="line">	ans = left + right;</span><br><span class="line">	</span><br><span class="line">	<span class="function">VI <span class="title">leftNums</span><span class="params">(nums.begin() + low, nums.begin() + mid + <span class="number">1</span>)</span></span>;</span><br><span class="line">	<span class="function">VI <span class="title">rightNums</span><span class="params">(nums.begin() + mid + <span class="number">1</span>, nums.begin() + high + <span class="number">1</span>)</span></span>;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>, index = low;</span><br><span class="line">	<span class="keyword">while</span> (i &lt; leftNums.size() &amp;&amp; j &lt; rightNums.size()) &#123;</span><br><span class="line">		<span class="keyword">if</span> (leftNums[i] &lt;= rightNums[j])</span><br><span class="line">			nums[index++] = leftNums[i++];</span><br><span class="line">		<span class="keyword">else</span> &#123;</span><br><span class="line">			nums[index++] = rightNums[j++];</span><br><span class="line">			ans += leftNums.size() - i;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span> (i &lt; leftNums.size())</span><br><span class="line">		nums[index++] = leftNums[i++];</span><br><span class="line">	<span class="keyword">while</span> (j &lt; rightNums.size())</span><br><span class="line">		nums[index++] = rightNums[j++];</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="数组中逆序对个数-分治法"><a href="#数组中逆序对个数-分治法" class="headerlink" title="数组中逆序对个数(分治法)"></a>数组中逆序对个数(分治法)</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int64_t</span> reverseNum(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; nums, <span class="keyword">int</span> low, <span class="keyword">int</span> high)&#123;</span><br><span class="line">	<span class="keyword">uint64_t</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span>(low&gt;=high)</span><br><span class="line">		<span class="keyword">return</span> ans;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span>(high - low == <span class="number">1</span>)&#123;</span><br><span class="line">		<span class="keyword">if</span>(nums[low]&gt;nums[high])&#123;</span><br><span class="line">			swap(nums[low], nums[high]);</span><br><span class="line">			++ans;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> ans;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> mid = low + (high-low)/<span class="number">2</span>;</span><br><span class="line">	<span class="keyword">int64_t</span> left = reverseNum(nums, low, mid);</span><br><span class="line">	<span class="keyword">int64_t</span> right = reverseNum(nums, mid+<span class="number">1</span>, high);</span><br><span class="line">	ans += left + right;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; leftNums(nums.begin()+low, nums.begin()+mid+<span class="number">1</span>);</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; rightNums(nums.begin()+mid+<span class="number">1</span>, nums.begin()+high+<span class="number">1</span>);</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>, index = low;</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">while</span>( i&lt;leftNums.size() &amp;&amp; j&lt; rightNums.size() )&#123;</span><br><span class="line">		<span class="keyword">if</span>(leftNums[i]&lt;=rightNums[j])</span><br><span class="line">			nums[index++] = leftNums[i++];</span><br><span class="line">		<span class="keyword">else</span>&#123;</span><br><span class="line">			nums[index++] = rightNums[j++];</span><br><span class="line">			ans += leftNums.size()-i;	<span class="comment">// </span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span>(i&lt;leftNums.size())</span><br><span class="line">		nums[index++] = leftNums[i++];</span><br><span class="line">	<span class="keyword">while</span>(j&lt;rightNums.size())</span><br><span class="line">		nums[index++] = rightNums[j++];</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="平面最近点对-分治法"><a href="#平面最近点对-分治法" class="headerlink" title="平面最近点对(分治法)"></a>平面最近点对(分治法)</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">minDistance</span><span class="params">(<span class="built_in">vector</span>&lt;Point&gt;&amp; points, CI low, CI high)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (low &gt;= high)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (low == high - <span class="number">1</span>) &#123;</span><br><span class="line">		<span class="keyword">double</span> dis = distance(points[low], points[high]);</span><br><span class="line">		<span class="keyword">if</span> (points[low].y &gt; points[high].y)</span><br><span class="line">			swap(points[low], points[high]);</span><br><span class="line">		<span class="keyword">return</span> dis;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">int</span> mid = low + (high - low) / <span class="number">2</span>;</span><br><span class="line">	<span class="keyword">int</span> middle = points[mid].x;</span><br><span class="line">	<span class="keyword">double</span> left = minDistance(points, low, mid);</span><br><span class="line">	<span class="keyword">double</span> right = minDistance(points, mid, high);</span><br><span class="line">	<span class="keyword">double</span> ans = min(left, right);</span><br><span class="line">	<span class="keyword">auto</span> f = [](<span class="keyword">const</span> Point&amp; p1, <span class="keyword">const</span> Point&amp; p2)-&gt;<span class="keyword">bool</span> &#123;<span class="keyword">return</span> p1.y &lt; p2.y; &#125;;</span><br><span class="line">	sort(points.begin() + low, points.begin() + high + <span class="number">1</span>, f);</span><br><span class="line">	<span class="built_in">vector</span>&lt;Point&gt; tmp;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = low; i &lt; high; ++i) &#123;</span><br><span class="line">		<span class="keyword">if</span> (<span class="built_in">abs</span>(points[i].x - middle) &lt;= ans)</span><br><span class="line">			tmp.emplace_back(points[i]);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; tmp.size(); ++i) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; min(<span class="keyword">static_cast</span>&lt;<span class="keyword">int</span>&gt;(tmp.size()), i + <span class="number">12</span>); ++j)</span><br><span class="line">			ans = min(ans, distance(tmp[i], tmp[j]));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="并查集"><a href="#并查集" class="headerlink" title="并查集"></a>并查集</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QuickUnion</span>&#123;</span></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; sz; <span class="comment">// 表示每个集合的大小</span></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; parent; <span class="comment">// 表示每个顶点最终的父节点</span></span><br><span class="line">                        <span class="comment">// 初始化每个顶点父节点是其自身</span></span><br><span class="line">    QuickUnion(<span class="keyword">const</span> <span class="keyword">int</span> size)&#123;</span><br><span class="line">        sz.assign(size, <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i =<span class="number">0</span>;i&lt;size;++i)</span><br><span class="line">            parent.push_back(i);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 找某个节点的父亲节点</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(x!=parent[x])</span><br><span class="line">            parent[x] = find(parent[x]);</span><br><span class="line">        <span class="keyword">return</span> parent[x];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 合并两个节点</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">merge</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> x, <span class="keyword">const</span> <span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> px = parent[x];</span><br><span class="line">        <span class="keyword">int</span> py = parent[y];</span><br><span class="line">        <span class="keyword">if</span>(px==py)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">if</span>(sz[px]&gt;=sz[py])&#123;</span><br><span class="line">            sz[px]+=sz[py];</span><br><span class="line">            parent[py] = px;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            sz[py]+=sz[px];</span><br><span class="line">            parent[px] = py;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h1 id="prime-算法"><a href="#prime-算法" class="headerlink" title="prime 算法"></a>prime 算法</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; VI;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span>&lt;VI&gt; VVI;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span>&lt;<span class="keyword">double</span>&gt; VD;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span>&lt;VD&gt; VVD;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 边的定义</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> from, to;</span><br><span class="line">	<span class="keyword">double</span> dis;</span><br><span class="line">	Edge(CI f, CI t, CD d) :from(f), to(t), dis(d) &#123;&#125;;</span><br><span class="line">	<span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> Edge&amp; e)<span class="keyword">const</span> &#123; <span class="keyword">return</span> <span class="keyword">this</span>-&gt;dis &gt; e.dis; &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 图用邻接矩阵存储的Prime算法</span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">MST</span><span class="params">(<span class="keyword">const</span> VVD&amp; graph)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">double</span> ans = <span class="number">0</span>;</span><br><span class="line">	<span class="function">VI <span class="title">visit</span><span class="params">(graph.size(), <span class="number">0</span>)</span></span>;</span><br><span class="line">	priority_queue&lt;Edge&gt; myQueue;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; graph.size(); ++i) &#123;</span><br><span class="line">		myQueue.emplace(<span class="number">0</span>, i, graph[<span class="number">0</span>][i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="function">VD <span class="title">dis</span><span class="params">(graph[<span class="number">0</span>])</span></span>;</span><br><span class="line">	<span class="keyword">while</span> (!myQueue.empty()) &#123;</span><br><span class="line">		Edge e = myQueue.top();</span><br><span class="line">		myQueue.pop();</span><br><span class="line">		<span class="keyword">if</span> (visit[e.to] == <span class="number">1</span>)</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		visit[e.to] = <span class="number">1</span>;</span><br><span class="line">		ans += e.dis;</span><br><span class="line">		dis[e.to] = e.dis;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; graph.size(); ++i)</span><br><span class="line">			<span class="keyword">if</span> (visit[i] == <span class="number">0</span> &amp;&amp; graph[e.to][i] &lt; dis[i])</span><br><span class="line">				myQueue.emplace(e.to, i, graph[e.to][i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="kruskal算法-贪心法"><a href="#kruskal算法-贪心法" class="headerlink" title="kruskal算法(贪心法)"></a>kruskal算法(贪心法)</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">// 边的定义</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> from, to;</span><br><span class="line">	<span class="keyword">double</span> dis;</span><br><span class="line">	Edge(CI f, CI t, CD d) :from(f), to(t), dis(d) &#123;&#125;;</span><br><span class="line">	<span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> Edge&amp; e)<span class="keyword">const</span> &#123; <span class="keyword">return</span> <span class="keyword">this</span>-&gt;dis &lt; e.dis; &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// kruskal算法,需要用到并查集</span></span><br><span class="line"><span class="function"><span class="keyword">double</span> <span class="title">MST</span><span class="params">(<span class="keyword">const</span> <span class="built_in">vector</span>&lt;Edge&gt; edgeVec,<span class="keyword">const</span> <span class="keyword">int</span> vertex)</span> </span>&#123;</span><br><span class="line">	sort(edgeVec.begin(), edgeVec.end());</span><br><span class="line"></span><br><span class="line">    <span class="function">QuickUnion <span class="title">qu</span><span class="params">(vertex)</span></span>;</span><br><span class="line">    <span class="keyword">double</span> ans = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> edgCnt = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span>&amp;e :edgeVec)&#123;</span><br><span class="line">        <span class="keyword">if</span>(qu.merge(e.from, e.to))&#123;</span><br><span class="line">            ans += e.dis;</span><br><span class="line">            edgCnt++;</span><br><span class="line">            <span class="keyword">if</span>(edgCnt==vertex<span class="number">-1</span>)</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="dijkstra算法-贪心法"><a href="#dijkstra算法-贪心法" class="headerlink" title="dijkstra算法(贪心法)"></a>dijkstra算法(贪心法)</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; VI;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span>&lt;VI&gt; VVI;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 边的定义</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Edge</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> from, to;</span><br><span class="line">	<span class="keyword">int</span> dis;</span><br><span class="line">	Edge(CI f, CI t, CD d) :from(f), to(t), dis(d) &#123;&#125;;</span><br><span class="line">	<span class="keyword">bool</span> <span class="keyword">operator</span> &lt; (<span class="keyword">const</span> Edge&amp; e)<span class="keyword">const</span> &#123; <span class="keyword">return</span> <span class="keyword">this</span>-&gt;dis &gt; e.dis; &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 图用邻接矩阵存储的, 优先级队列实现,,计算start到target的最近距离</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dijkstra</span><span class="params">(<span class="keyword">const</span> VVI&amp; graph, <span class="keyword">const</span> <span class="keyword">int</span> start, <span class="keyword">const</span> <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">	<span class="function">VI <span class="title">dis</span><span class="params">(graph.size(), INT_MAX)</span></span>;</span><br><span class="line">	dis[start] = <span class="number">0</span>;</span><br><span class="line">	<span class="function">VI <span class="title">visit</span><span class="params">(graph.size(), <span class="number">0</span>)</span></span>;</span><br><span class="line">	priority_queue&lt;Edge&gt; myQueue;</span><br><span class="line">	myQueue.emplace(start, start, <span class="number">0</span>);</span><br><span class="line">	<span class="keyword">while</span>(!myQueue.empty())&#123;</span><br><span class="line">		Edge e = myQueue.top();</span><br><span class="line">		myQueue.pop();</span><br><span class="line">		<span class="keyword">if</span>(visit[e.to]==<span class="number">1</span>)</span><br><span class="line">			<span class="keyword">continue</span>;</span><br><span class="line">		visit[e.to] = <span class="number">1</span>;</span><br><span class="line">		dis[e.to]= e.dis;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;graph.size();++i)&#123;</span><br><span class="line">			<span class="keyword">if</span>( visit[i]==<span class="number">0</span> &amp;&amp; dis[i]- graph[e.to][i]&gt; dis[e.to])</span><br><span class="line">				myQueue.emplace(e.to, i, dis[e.to]+ graph[e.to][i])</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> dis[target];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="spfa-动态规划"><a href="#spfa-动态规划" class="headerlink" title="spfa(动态规划)"></a>spfa(动态规划)</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; VI;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span>&lt;VI&gt; VVI;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 图用邻接矩阵存储, 队列实现的spfa算法,计算start到target的最近距离</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">spfa</span><span class="params">(<span class="keyword">const</span> VVI&amp; graph, <span class="keyword">const</span> <span class="keyword">int</span> start, <span class="keyword">const</span> <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dis(graph.size(), INT_MAX);</span><br><span class="line">	dis[start] = <span class="number">0</span>;</span><br><span class="line">	<span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; myQueue;</span><br><span class="line">	<span class="function">VI <span class="title">enqueue</span><span class="params">(graph.size(), <span class="number">0</span>)</span></span>;</span><br><span class="line">	myQueue.push(start);</span><br><span class="line">	enqueue[start] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span>(!myQueue.empty())&#123;</span><br><span class="line">		<span class="keyword">int</span> topNode = myQueue.front();</span><br><span class="line">		myQueue.pop();</span><br><span class="line">		enqueue[topNode] = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>;i&lt;graph.size();++i)&#123;</span><br><span class="line">			<span class="keyword">if</span>(dis[i]- graph[topNode][i]&gt; dis[topNode])&#123;</span><br><span class="line">				dis[i] = dis[topNode]+graph[topNode][i];</span><br><span class="line">				<span class="keyword">if</span>(enqueue[i]==<span class="number">0</span>)&#123;</span><br><span class="line">					myQueue.emplace(i);</span><br><span class="line">					enqueue[i] = <span class="number">1</span>;</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> dis[target];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
     
       
 
@@ -685,12 +868,24 @@
                 
               
 
-              <time title="创建于：2019-01-10 15:11:03 / 更新于：15:12:51" itemprop="dateCreated datePublished" datetime="2019-01-10T15:11:03+08:00">2019-01-10</time>
+              <time title="创建于：2019-01-10 15:11:03" itemprop="dateCreated datePublished" datetime="2019-01-10T15:11:03+08:00">2019-01-10</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2019-04-08 21:03:12" itemprop="dateModified" datetime="2019-04-08T21:03:12+08:00">2019-04-08</time>
               
             
           </span>
@@ -747,14 +942,95 @@
         
           
             <p></p><h2>逻辑回归(Logistic Regression)<h2><p></p>
-<h3>1. 回归(Regression)<h3><br><br>- 回归，我的理解来说，其直观的理解就是拟合的意思。我们以线性回归为例子，在二维平面上有一系列红色的点，我们想用一条直线来尽量拟合这些红色的点，这就是线性回归。回归的本质就是我们的预测结果尽量贴近实际观测的结果，或者说我们的求得一些参数，经过计算之后的预测结果尽可能接近真实值。<br><center> <image src="https://i.imgur.com/la7bDLS.jpg" width="50%"></image><br><br><h3>2. 逻辑回归的由来<h3><br><br>- 对于二类线性可分的数据集，使用线性感知器就可以很好的分类。如下图中红色和蓝色的点，我们使用一条直线$x_1 +x_2 = 3$就可以区分两种数据集，在直线上方的属于红色类，直线下方的属于蓝色类。<br><center> <image src="https://i.imgur.com/uPQ0xxk.jpg"></image></center><br><br>- 但是如果二类线性不可分的数据集，我们无法找到一条直线能够将两种类别很好的区分，即线性回归的分类法对于线性不可分的数据无法有效分类。例如下图中的红色点和蓝色点，我们无法使用一条直线很好的区分这两类，但是我们可以使用非线性分类器，如果我们使用${x_1}^2+{x_2}^2 = 1$，在圆外面的为红色类，在圆里面的一类为蓝色类。<br><br><center> <image src="https://i.imgur.com/TdJn8NO.jpg"></image></center><br><br>- 诚然，数据线性可分可以使用线性分类器，如果数据线性不可分，可以使用非线性分类器，这里似乎没有逻辑回归什么事情。但是如果我们想知道对于一个二类分类问题，对于具体的一个样例，我们不仅想知道该类属于某一类，而且还想知道该类属于某一类的概率多大,有什么办法呢？<br><br>- 线性回归和非线性回归的分类问题都不能给予解答，因为线性回归和非线性回归的问题，假设其分类函数如下：<br>                              $$y = wx+b$$<br><br>- y的阈值处于$（-\infty，+\infty）$，此时不能很好的给出属于某一类的概率，因为概率的范围是[0,1],我们需要一个更好的映射函数，能够将分类的结果很好的映射成为[0,1]之间的概率，并且这个函数能够具有很好的可微分性。在这种需求下，人们找到了这个映射函数，即逻辑斯谛函数，也就是我们常说的sigmoid函数，其形式如下：<br><br><br>   $$\frac{1}{1+e^{-z}}$$<br><br><br><br>- sigmoid函数图像如下图所示<br><br><center> <image src="https://i.imgur.com/T53inQT.png" width="50%"></image></center><br><br><br>- sigmoid函数完美的解决了上述需求，而且sigmoid函数连续可微分。<br>- 假设数据离散二类可分，分为0类和1类,如果概率值大于1/2，我们就将该类划分为1类，如果概率值低于1/2,我们就将该类划分为0类。当z取值为0的时候，概率值为1/2，这时候需要人为规定划分为哪一类。<br><br><br><h3>3. 逻辑回归的损失函数(Loss Function)和成本函数(Cost Function)<h3><br><br>- 在二类分类中，我们假定sigmoid输出结果表示属于1类的概率值，我们很容易想到用平方损失函数，即<br><center><br><image src="https://i.imgur.com/3C1RzcD.jpg " widh="50%" height="80"></image><br></center><br><br>- 在这种情况下，我们φ(z(i))表示sigmoid对第i个值的预测结果，我们将sigmoid函数带入上述成本函数中，绘制其图像，发现这个成本函数的函数图像是一个非凸函数，如下图所示，这个函数里面有很多极小值，如果采用梯度下降法，则会导致陷入局部最优解中,有没有一个凸函数的成本函数呢？<br><center><br><image src="https://i.imgur.com/R5r6LvC.jpg " width="50%"></image><br></center><br><br>- 假设sigmoid函数φ(z)表示属于1类的概率，于是做出如下的定义：<br><center><image src=" https://i.imgur.com/IBlS1zQ.jpg"></image></center><br><br><br>- 将两个式子综合来，可以改写为下式：<br><center><br><image src="https://i.imgur.com/KdpNVpf.jpg"></image><br><br>- 上式将分类为0和分类和1的概率计算公式合二为一。假设分类器分类足够准确，此时对于一个样本，如果它是属于1类，分类器求出的属于1类的概率应该尽可能大，即p(y=1lx)尽可能接近1；如果它是0类，分类器求出的属于0类的概率应该尽可能大，即p(y=0lx)尽可能接近1。<br><br>- 通过上述公式对二类分类的情况分析，可知我们的目的是求取参数w和b，使得p(ylx)对0类和1类的分类结果尽可能取最大值，然而实际上我们定义的损失函数的是求最小值，于是，很自然的，我们想到对p(ylx)式子加一个负号，就变成了求最小值的问题，这就得到了逻辑回归中的损失函数。<br><br>- 不过，为了计算方便，我们通常对上述式子取log，因而得到下式：<br><br><center><br><image src="https://i.imgur.com/Swgjn66.jpg " width="50%"></image><br><br>- 公式(1)是对概率公式取log，公式(2)是对公式(1)取相反数。上述公式的函数图像如下图所示。这是一个凸函数（斜率是非单调递减的函数即凸函数），因此可以用梯度下降法求其最小值。<br><center><br><image src="https://i.imgur.com/CAHBRdg.jpg "></image><br></center><br><br>- 根据损失函数是单个样本的预测值和实际值的误差，而成本函数是全部样本的预测值和实际值之间的误差，于是对所有样本的损失值取平均数，得到我们的成本函数：<br><center><br><image src="https://i.imgur.com/cNXT1Ev.jpg"></image><br></center><br><br>- 损失函数是凸函数，m个损失函数的和仍然是凸函数，因而可以用梯度下降法求最小值。<br><br><br><h3>4. 极大似然法求解逻辑回归</h3>
+<h3>1. 回归(Regression)<h3>
+
+- 回归，我的理解来说，其直观的理解就是拟合的意思。我们以线性回归为例子，在二维平面上有一系列红色的点，我们想用一条直线来尽量拟合这些红色的点，这就是线性回归。回归的本质就是我们的预测结果尽量贴近实际观测的结果，或者说我们的求得一些参数，经过计算之后的预测结果尽可能接近真实值。
+<center> <image src="https://i.imgur.com/la7bDLS.jpg" width="50%"></image>
+
+<h3>2. 逻辑回归的由来<h3>
+
+- 对于二类线性可分的数据集，使用线性感知器就可以很好的分类。如下图中红色和蓝色的点，我们使用一条直线$x_1 +x_2 = 3$就可以区分两种数据集，在直线上方的属于红色类，直线下方的属于蓝色类。
+<center> <image src="https://i.imgur.com/uPQ0xxk.jpg"></image></center>
+
+- 但是如果二类线性不可分的数据集，我们无法找到一条直线能够将两种类别很好的区分，即线性回归的分类法对于线性不可分的数据无法有效分类。例如下图中的红色点和蓝色点，我们无法使用一条直线很好的区分这两类，但是我们可以使用非线性分类器，如果我们使用${x_1}^2+{x_2}^2 = 1$，在圆外面的为红色类，在圆里面的一类为蓝色类。
+
+<center> <image src="https://i.imgur.com/TdJn8NO.jpg"></image></center>
+
+- 诚然，数据线性可分可以使用线性分类器，如果数据线性不可分，可以使用非线性分类器，这里似乎没有逻辑回归什么事情。但是如果我们想知道对于一个二类分类问题，对于具体的一个样例，我们不仅想知道该类属于某一类，而且还想知道该类属于某一类的概率多大,有什么办法呢？
+
+- 线性回归和非线性回归的分类问题都不能给予解答，因为线性回归和非线性回归的问题，假设其分类函数如下：
+                              $$y = wx+b$$   
+
+- y的阈值处于$（-\infty，+\infty）$，此时不能很好的给出属于某一类的概率，因为概率的范围是[0,1],我们需要一个更好的映射函数，能够将分类的结果很好的映射成为[0,1]之间的概率，并且这个函数能够具有很好的可微分性。在这种需求下，人们找到了这个映射函数，即逻辑斯谛函数，也就是我们常说的sigmoid函数，其形式如下：
+
+
+   $$\frac{1}{1+e^{-z}}$$   
+
+
+
+- sigmoid函数图像如下图所示
+
+<center> <image src="https://i.imgur.com/T53inQT.png" width="50%"></image></center>
+
+
+- sigmoid函数完美的解决了上述需求，而且sigmoid函数连续可微分。
+- 假设数据离散二类可分，分为0类和1类,如果概率值大于1/2，我们就将该类划分为1类，如果概率值低于1/2,我们就将该类划分为0类。当z取值为0的时候，概率值为1/2，这时候需要人为规定划分为哪一类。
+
+
+<h3>3. 逻辑回归的损失函数(Loss Function)和成本函数(Cost Function)<h3>
+
+- 在二类分类中，我们假定sigmoid输出结果表示属于1类的概率值，我们很容易想到用平方损失函数，即
+<center>
+<image src="https://i.imgur.com/3C1RzcD.jpg " widh="50%" height="80"></image>
+</center>
+
+- 在这种情况下，我们φ(z(i))表示sigmoid对第i个值的预测结果，我们将sigmoid函数带入上述成本函数中，绘制其图像，发现这个成本函数的函数图像是一个非凸函数，如下图所示，这个函数里面有很多极小值，如果采用梯度下降法，则会导致陷入局部最优解中,有没有一个凸函数的成本函数呢？
+<center>
+<image src="https://i.imgur.com/R5r6LvC.jpg " width="50%"></image>
+</center>
+
+- 假设sigmoid函数φ(z)表示属于1类的概率，于是做出如下的定义：
+<center><image src=" https://i.imgur.com/IBlS1zQ.jpg"></image></center>
+
+
+- 将两个式子综合来，可以改写为下式：
+<center>
+<image src="https://i.imgur.com/KdpNVpf.jpg"></image>
+
+- 上式将分类为0和分类和1的概率计算公式合二为一。假设分类器分类足够准确，此时对于一个样本，如果它是属于1类，分类器求出的属于1类的概率应该尽可能大，即p(y=1lx)尽可能接近1；如果它是0类，分类器求出的属于0类的概率应该尽可能大，即p(y=0lx)尽可能接近1。
+
+- 通过上述公式对二类分类的情况分析，可知我们的目的是求取参数w和b，使得p(ylx)对0类和1类的分类结果尽可能取最大值，然而实际上我们定义的损失函数的是求最小值，于是，很自然的，我们想到对p(ylx)式子加一个负号，就变成了求最小值的问题，这就得到了逻辑回归中的损失函数。
+
+- 不过，为了计算方便，我们通常对上述式子取log，因而得到下式：
+
+<center>
+<image src="https://i.imgur.com/Swgjn66.jpg " width="50%"></image>
+
+- 公式(1)是对概率公式取log，公式(2)是对公式(1)取相反数。上述公式的函数图像如下图所示。这是一个凸函数（斜率是非单调递减的函数即凸函数），因此可以用梯度下降法求其最小值。
+<center>
+<image src="https://i.imgur.com/CAHBRdg.jpg "></image>
+</center>
+
+- 根据损失函数是单个样本的预测值和实际值的误差，而成本函数是全部样本的预测值和实际值之间的误差，于是对所有样本的损失值取平均数，得到我们的成本函数：
+<center>
+<image src="https://i.imgur.com/cNXT1Ev.jpg"></image>
+</center>
+
+- 损失函数是凸函数，m个损失函数的和仍然是凸函数，因而可以用梯度下降法求最小值。
+
+
+<h3>4. 极大似然法求解逻辑回归</h3>
 
 <ul>
 <li><p>还可以用我们熟知的统计学知识——极大似然法估计逻辑回归中的参数w和b，上述得到的logp(y|w,x),假设目前有m组样本，分别为$(x_1,y_1),(x_2,y_2)…(x_m,y_m)$，其中xi表示第i个样本的特征，yi表示第i个样本的类别，yi = 0或者1，利用极大似然法的原则，假设所有训练样本独立同分布，则联合概率为所有样本概率的乘积，即：</p>
-<center><br><image src="https://i.imgur.com/kaGRRZc.jpg"></image><br></center>
+<center>
+<image src="https://i.imgur.com/kaGRRZc.jpg"></image>
+</center>
 </li>
 <li><p>对上述公式两边取对数，得到下述公式，是不是对这个公式优点熟悉呢？这个公式就是我们的成本函数的和，对于这个公式和成本函数来说，取平均值和不取平均值没有影响。</p>
-<center><br><image src="https://i.imgur.com/zHLnJJc.jpg"></image><br></center>
+<center>
+<image src="https://i.imgur.com/zHLnJJc.jpg"></image>
+</center>
 </li>
 <li><p>按照极大似然法求极值的方法，分别对w的每个参数求偏导数使其为0，得到对数似然方程组，求解该方程，便可以到的w的参数。只是如果参数很多，求解方程组就会很复杂，此时可以考虑梯度下降法来求解。</p>
 </li>
@@ -1964,7 +2240,7 @@
 </li>
 <li><strong><a href=" http://www.falcon-net.org." target="_blank" rel="noopener">Falcon Network</a></strong>：用于区块链的高性能广域互连网，Falcon Network通过最少的验证和直通路由实现了超越当前方法的收益。 客户端不需要特殊软件，它基本上比所有其他已知技术更快。</li>
 <li><strong>FLAC</strong>：实际应用程序通常根据动态计算做出授权决策。 如果攻击者可能不正确地影响授权计算，则系统的完整性可能会受到影响。 由于授权决策通常基于敏感数据（如成员列表和密码），因此授权也可能会影响机密性。 Flow-Limited Authorization Calculus（FLAC）既是用于推理动态授权的简单，富有表现力的模型，也是用于安全地实现各种授权机制的语言。 即使对于包含并实现丰富的动态授权机制的程序，FLAC也提供了强大的端到端信息安全保障。</li>
-<li><strong>去中心化理论与研究</strong>：这项工作探索了开放去中心化系统的安全性和稳定性的理论基础。 去中心化的好处包括抵抗多种攻击，多样性和权力分散。 比特币的新颖性和鼓舞人心的成功提供了新的证据，证明安全的去中心化系统比以前想象的更可行。  IC3和合作者刚刚发布了一份研究论文，分析了数字自治组织（DAO）及其投票机制。 本文确定了DAO机制设计中存在的问题，即激励投资者采取战略行为;这与他们的偏好真实投票不一致。<br>–<strong><a href="http://oblivm.com/hawk" target="_blank" rel="noopener">Hawk</a></strong>：隐私保护区块链和智能合约。现有的基于区块链的加密货币（如比特币和以太坊）将所有金融交易存储在区块链中。 这牺牲了金融交易的隐私，这在许多应用程序中都是必不可少的。 Hawk是一种基于区块链的智能合约系统，它在区块链上存储加密交易，并依靠加密技术来保留加密货币的安全性。</li>
+<li><strong>去中心化理论与研究</strong>：这项工作探索了开放去中心化系统的安全性和稳定性的理论基础。 去中心化的好处包括抵抗多种攻击，多样性和权力分散。 比特币的新颖性和鼓舞人心的成功提供了新的证据，证明安全的去中心化系统比以前想象的更可行。  IC3和合作者刚刚发布了一份研究论文，分析了数字自治组织（DAO）及其投票机制。 本文确定了DAO机制设计中存在的问题，即激励投资者采取战略行为;这与他们的偏好真实投票不一致。<br>—<strong><a href="http://oblivm.com/hawk" target="_blank" rel="noopener">Hawk</a></strong>：隐私保护区块链和智能合约。现有的基于区块链的加密货币（如比特币和以太坊）将所有金融交易存储在区块链中。 这牺牲了金融交易的隐私，这在许多应用程序中都是必不可少的。 Hawk是一种基于区块链的智能合约系统，它在区块链上存储加密交易，并依靠加密技术来保留加密货币的安全性。</li>
 <li><p><strong><a href="http://www.initc3.org/files/tc.pdf" target="_blank" rel="noopener">Town Crier</a></strong>：智能合约的认证数据源。为了推理现实世界，加密货币系统中的智能合约将依赖于我们称之为认证数据馈送（ADF）的信息输入; 此类信息可包括股票价格，气象报告，新闻和其他当前事件。 因此，在提供安全性以防止试图影响合同结果的攻击者操纵的意义上，重要的是ADF是值得信赖的。 通过利用可信硬件为客户合同提供可靠，数字签名的数据证明，Town Crier系统可以在对其运营商的最小信任假设下充当值得信赖的ADF。</p>
 </li>
 <li><p><strong><a href="http://virtual-notary.org" target="_blank" rel="noopener">虚拟公证</a></strong>：免费安全的电子证明服务。虚拟公证是一种证明网上事实的服务。虚拟公证人在比特币块链上发行独立证书和不可变记录。它已运行超过3年，并认证超过600000个事实。</p>
@@ -2206,192 +2482,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2018/11/30/开餐馆问题/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar2.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="hzx's Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/11/30/开餐馆问题/" class="post-title-link" itemprop="https://hzxGoForward.github.io/page/2/index.html">开餐馆问题</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建于：2018-11-30 15:00:40" itemprop="dateCreated datePublished" datetime="2018-11-30T15:00:40+08:00">2018-11-30</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="更新于：2019-01-09 22:27:58" itemprop="dateModified" datetime="2019-01-09T22:27:58+08:00">2019-01-09</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法设计与分析/" itemprop="url" rel="index"><span itemprop="name">算法设计与分析</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <a id="more"></a>
-<p>北大信息学院的同学小明毕业之后打算创业开餐馆.现在共有n 个地点可供选择。小明打算从中选择合适的位置开设一些餐馆。这 n 个地点排列在同一条直线上。我们用一个整数序列m1, m2, … mn 来表示他们的相对位置。由于地段关系,开餐馆的利润会有所不同。我们用pi 表示在mi 处开餐馆的利润。为了避免自己的餐馆的内部竞争,餐馆之间的距离必须大于k。请你帮助小明选择一个总利润最大的方案。</p>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><h3 id="思路一：将问题专为话最长递增子序列的问题。"><a href="#思路一：将问题专为话最长递增子序列的问题。" class="headerlink" title="思路一：将问题专为话最长递增子序列的问题。"></a>思路一：将问题专为话最长递增子序列的问题。</h3><pre><code>- 假设dp[i]表示选定了第i个位置开餐馆的最大收益，此时递推公式为：
-F[i] = max(F[i], F[t]+profit[i]); 其中1&lt;t&lt;i 同时t和i之间的距离大于k
-</code></pre><p>在这种思路下，代码如下:<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// pos[i]表示第i个餐馆的位置， profit[j]表示第j个位置开餐馆的利润</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">solution1</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; pos, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; profit, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; F(profit);</span><br><span class="line">	<span class="keyword">int</span> ans = profit[<span class="number">1</span>];</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; pos.size(); ++i) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= i - <span class="number">1</span>; ++j) &#123;</span><br><span class="line">			<span class="keyword">if</span> (pos[i] - pos[j] &gt; k)</span><br><span class="line">				F[i] = max(F[i], F[j] + profit[i]);</span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">		ans = max(ans, F[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> G;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;G) != EOF) &#123;</span><br><span class="line">		<span class="keyword">while</span> (<span class="number">0</span> &lt; G--) &#123;</span><br><span class="line">			<span class="keyword">int</span> n, k;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;n, &amp;k);</span><br><span class="line">			<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; pos(n + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">				<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;pos[i]);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; profit(n + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">				<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;profit[i]);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, solution1(pos, profit, k));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="思路二：将问题转化为0-1背包问题"><a href="#思路二：将问题转化为0-1背包问题" class="headerlink" title="思路二：将问题转化为0-1背包问题"></a>思路二：将问题转化为0-1背包问题</h3><pre><code>- 假设dp[i][j]在长度为pos[j]的范围内，考虑前i个餐馆的最大利润，此时递推公式如下：
-</code></pre><p>dp[i][j] = max(dp[i-1][j], dp[i-1][pos[i]-k-1]+profit[i]); </p>
-<p>上述递推公式虽然涉及到了i和j，但是对背包问题经过空间优化，可以使用1维的数组保留记录。最终代码如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">solution2</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; pos, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; profit, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">	<span class="comment">// F[i][j] 表示考虑前i个餐馆，前j个位置的最大距离</span></span><br><span class="line">	<span class="comment">// F[i] = max&#123;F[k]+profit[i]&#125;;</span></span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; dp(pos.size(), <span class="number">0</span>);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; pos.size(); ++i) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = pos.size()<span class="number">-1</span>; j&gt;=i; --j) &#123;</span><br><span class="line">			<span class="keyword">if</span> (pos[j] &gt;= pos[i])&#123;</span><br><span class="line">				<span class="keyword">int</span> index = i;</span><br><span class="line">				<span class="keyword">while</span>(pos[i] - pos[index] &lt;= k&amp;&amp;index &gt;<span class="number">0</span>)</span><br><span class="line">					--index;</span><br><span class="line">				dp[j] = max(dp[j], dp[index] + profit[i]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> dp[pos.size() - <span class="number">1</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> G;</span><br><span class="line">	<span class="keyword">while</span> (<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;G) != EOF) &#123;</span><br><span class="line">		<span class="keyword">while</span> (<span class="number">0</span> &lt; G--) &#123;</span><br><span class="line">			<span class="keyword">int</span> n, k;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%d %d"</span>, &amp;n, &amp;k);</span><br><span class="line">			<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; pos(n + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">				<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;pos[i]);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; profit(n + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">				<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;profit[i]);</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%d\n"</span>, solution2(pos, profit, k));</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="时间复杂度分析"><a href="#时间复杂度分析" class="headerlink" title="时间复杂度分析"></a>时间复杂度分析</h2><ul>
-<li>第一种思路的方法，选定一个i的时候，需要向前遍历距离大于k的位置，因此时间复杂度为O(n^2)$。</li>
-<li>第二种思路的方法，看起来有三个循环，但是实际上第二个for循环和while循环加起来总共是O(n)的时间复杂度，所以时间复杂度也是O(n^2)。</li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2441,7 +2531,7 @@ F[i] = max(F[i], F[t]+profit[i]); 其中1&lt;t&lt;i 同时t和i之间的距离�
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">23</span>
+                    <span class="site-state-item-count">24</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2795,6 +2885,8 @@ F[i] = max(F[i], F[t]+profit[i]); 其中1&lt;t&lt;i 同时t和i之间的距离�
       
     
       
+        
+      
     
       
     
@@ -2812,6 +2904,36 @@ F[i] = max(F[i], F[t]+profit[i]); 其中1&lt;t&lt;i 同时t和i之间的距离�
     
   
 
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+    overflow: auto hidden;
+}
+</style>
+
+    
   
 
 
@@ -2891,7 +3013,24 @@ F[i] = max(F[i], F[t]+profit[i]); 其中1&lt;t&lt;i 同时t和i之间的距离�
         }, 300)
       }).append(e)
     })
-  </script>
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 
   
