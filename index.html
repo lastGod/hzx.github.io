@@ -318,6 +318,242 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2019/04/08/A Traceability Analysis of Monero’s Blockchain/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hzx's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/04/08/A Traceability Analysis of Monero’s Blockchain/" class="post-title-link" itemprop="https://hzxGoForward.github.io/index.html">2018~2019年上下半学期学习计划</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2019-04-08 22:30:00 / 更新于：22:30:18" itemprop="dateCreated datePublished" datetime="2019-04-08T22:30:00+08:00">2019-04-08</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/区块链技术研究/" itemprop="url" rel="index"><span itemprop="name">区块链技术研究</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>Monero 以相比于Bitcoin而言更加具有匿名性，在本文中作者使用了3中启发式的方法对Monero 区块链中的交易进行分析，虽然Monero中使用了mix-in方式，实际上其中87%的交易地址仍然是可以被追踪的；再新的Monero版本中采用了RingCTs，但是启发式方法仍然有效。在这些可以被追踪的交易中，其中98%的交易中使用的mix-in地址都是最近新产生的output地址，作者使用了Monero用户的消费习惯并对交易分析，实际分析结果表明Monero中以triangle distribution选择mix-in输入的方法对提升交易追踪难度作用不大。<br>    在对Monero进行分析之前，首先对Monero区块链进行了分析，其中发现如下3个重要信息：</p>
+<ul>
+<li>超过65%的交易输出，没有采用mix-in，也就是说这些交易本身是可追踪的。Monero中将可追踪的交易做mix-in，顺藤摸瓜可以追踪其他交易，作者以此65%为基础，顺藤摸瓜追踪到了另外22%的交易地址。</li>
+<li>启发式方法二：一些minx-in中使用了某笔交易中的多个输出，这多个输出很有可能来自于同一人。以non-RingCTs的Monero区块链中87%的交易地址验证该启发式方法，真阳率为95%，鉴于此，推断出该方法仍然适用于RingCTs中的地址。</li>
+<li>启发式方法三：Monero区块链中的UTXO，存在的时间越久，被花费的概率越大。仍然以non-RingCTs的Monero区块链中87%的交易地址验证该启发式方法，真阳率为98.5%，推断出该方法仍然适用于RingCTs区块链中。</li>
+</ul>
+<h2 id="Monero"><a href="#Monero" class="headerlink" title="Monero"></a>Monero</h2><p>Monero(XMR) 于2014年4月18日上线，当前出块时间为120秒，使用CryptoNote进行挖矿，每个区块奖励不定，，目前Monero价格为67美元。<br>    Monero提升用户匿名性上，使用了autonomous和spontaneous的协议，在Monero中用户在交易过程中可以自发的进行混币，混币本身并不增加额外的时间延迟。Monero主要解决了两个问题：</p>
+<ul>
+<li>（1）    Unlinkability，对于任意两笔交易，无法证明这两笔交易是转发给同一个人。</li>
+<li>（2）    Untraceability，对于一笔交易中的输入，对应的赎回output应该隐藏在多个output中。</li>
+</ul>
+<p>对于Unlinkability，Monero中使用了one-time random address。每次进行交易时，发送方为接收方产生一个一次性的随机接收地址，而只有接收方才能花费接收地址中数字货币。这样的前提是每次产生接收地址时都有一个好的随机源，同时每个接收地址只使用一次。这就是Monero中的 <strong>Ring Signature</strong>。发送者（也是签名者）代表一组其他用户匿名签署交易（消息）。被赎回的实际输出在属于其他用户的选定输出集合中保持匿名。<br>2015年~2016年期间，Monero币价涨了将近27倍，到了2017年，Monero又采用了Ring Confidential Transaction(RingCTs)以提升其隐私性（隐藏交易真正的输出地址）。在RingCTs中隐藏了交易额。</p>
+<h3 id="Monero-System-Parameter"><a href="#Monero-System-Parameter" class="headerlink" title="Monero System Parameter"></a>Monero System Parameter</h3><p>Monero中采用了Ed25519 椭圆加密算法,在该加密算法中。Monero中的每个用户都有一个长期的公钥对和私钥对，记为 $(pk_{LT}^{user}, sk_{LT}^{user})$，其中公钥对是可以公开的，公钥对用于接收转账，私钥对用于发送转账，它们关系如下：</p>
+<ul>
+<li>$sk_{LT}^{user} = (a, b)$， 范围是[1, L-1], L是椭圆曲线上某个点G的素数阶。</li>
+<li>$pk_{LT}^{user} = (A, B)$, 其中A = aG， B= bG，其中<strong>G是标准的Ed25519基点</strong>。</li>
+</ul>
+<h3 id="Ensuring-Unlinkability"><a href="#Ensuring-Unlinkability" class="headerlink" title="Ensuring Unlinkability"></a>Ensuring Unlinkability</h3><p>Monero中发送方用接收方的公钥对随机产生一个一次性地址，然后将XMR发送至这个一次性地址，而只有接收方能够花费一次性地址中的XMR。假定发送方是Alice，接收方是Bob，Alice产生一次性地址的过程如下：</p>
+<ul>
+<li>获取Bob的$pk_{LT}^{Bob} = （A， B）$</li>
+<li>随机产生一个r，r∈[1, L-1]</li>
+<li>令R = rG， P = hash(rA)G+B</li>
+<li>Bob的接收地址是P<br>由于P = hash(rA)G+B, 根据B的公钥对和私钥对的关系(A = aG, B = bG),同时R =rG，替换P的表达式，得到：</li>
+<li><strong>P= hash(raG)G+bG = G(hash(aR)+b) = sG</strong></li>
+</ul>
+<p>而Alice转账给Bob的地址，Bob通过自己私钥中的(a, b)和R计算，因此只有Bob知道Alice环形签名中众多地址中真正转账给Bob的地址。<strong>在这笔转账中，除了Alice和Bob之外，没有人能知道真正转账给Bob的地址，这保证了Monero中交易的Unlinkability。</strong></p>
+<p>如果需要多个output，可以随机出多个接收转账的地址，每个交易的输出只能被相应的一次性随即地址识别出来。在Monero中，每次转账的输出地址是一次性的公钥，记为$pk_{OT}$。对应的私钥记为${sk_OT}$，它们的关系记为P = sG。</p>
+<h3 id="Ensuring-Untraceability"><a href="#Ensuring-Untraceability" class="headerlink" title="Ensuring Untraceability"></a>Ensuring Untraceability</h3><p>Monero中的不可追踪性是通过ring signatures(环形签名)实现的。环形签名使得用户可以在若干名用户形成的环上对消息进行签名。签名的用户只需要知道自己的私钥，签名后用户将其他用户的公钥放到环上。对于矿工或者接收方来说，他们只知道真正的签名者是环中的一员，但是无法确认是哪一个，发送方通过环签名的方法实现匿名。仍然以Alice 发送给Bob10 XMR为例说明环形签名的过程。</p>
+<ul>
+<li>Bob的$pk_{LT}^{Bob} = （A， B）$，然后随机产生发送地址P_Bob</li>
+<li>Alice选取Monero链上其他一些价值为10 XMR的output$(P_1，P_2,…)$</li>
+<li>令$S={\{P_1，P_2，…P_m\} }$,其中包括Alice自己的input $P_t = s_t G$</li>
+</ul>
+<p>Alice的input混合在其他价值为10的output中达到匿名的目的，而S称之为匿名集。Alcie使用自己的私钥s_t对消息进行签名。对于矿工和Bob来说，他们无法判断Alice这笔转账的支出来源地址，这就使得这笔转账的input具有了匿名性。S中其他用户的公钥称之为mix-ins，mix-ins越大，匿名性越好。</p>
+<h3 id="Resist-Double-Spending"><a href="#Resist-Double-Spending" class="headerlink" title="Resist Double Spending"></a>Resist Double Spending</h3><p>上述Alice给Bob的转账中，既然无法确定Alice具体转账的input地址，对于矿工来说，无法知道Alice是否会进行double spending。为了解决该问题，Monero中引入了key image（ζ）机制，即Alice的交易中需要提供一个key image，即:</p>
+<ul>
+<li>$ζ = s_tHash_p (P_t)$</li>
+</ul>
+<p>上述哈希函数中会得到椭圆曲线中一个点，这有区别于Hash函数。key image 是对转账的input的一个可识别的标记，矿工会对每个区块中每笔交易的key image进行记录，Alice进行双花时，矿工检测到生成的key image已经存在就能发现双花攻击。<br><strong>注意</strong>：Monero中具体进行交易检验的细节内容，暂时没有深入的了解，待后续调研。</p>
+<p>下图介绍了一个具体的Monero的交易信息，其中有多个输入，每个输入都会添加mix-ins，总共2个input和 3个output，每个input都有1个key image。第一个input使用了2个mix-in，第二个input使用了1个mix-ins。与Bitcoin一样，所有的input交易额之和应该等于所有的output交易额之和。<br><img src="https://img-blog.csdnimg.cn/20190408221604164.png" alt="在这里插入图片描述"></p>
+<h3 id="RingCTs"><a href="#RingCTs" class="headerlink" title="RingCTs"></a>RingCTs</h3><p>2017年1月10日，Monero中上线了一种新的交易类型，称之为ring confidential transaction(RingCTs). 在一个RingCTs中，不仅隐藏了交易的真正input，同时也隐藏了交易额，在RingCTs中，每个output的交易额都标记为0,验证inputs和outputs的交易额相等的方法称之为commitment scheme，这里不再具体涉及。使用RingCTs的好处就是，转账进行mix-ins时，不用找相同价值的output，而是其他任意output都可以作为mix-ins。</p>
+<h2 id="Monero-Network-Statics"><a href="#Monero-Network-Statics" class="headerlink" title="Monero Network Statics"></a>Monero Network Statics</h2><p>Monero区块链提供了Remote Procedure Calls(RPC)的方法，该论文通过RPC获取Monero区块链数据，RPC接口提供两个方法：getheight和getransactions，返回的JSON形式的文本。<br>    该论文分析的Monero区块链，截止时间为2017年1月10日，高度1240503，其中总共961463笔非coinbase交易，总共1339733个output，最大一笔输出为500000 XMR，其中85%的output的金额小于0.01 XMR。Monero区块链中output中XMR的分布图如下。</p>
+<p><img src="https://img-blog.csdnimg.cn/20190408221652783.png" alt="在这里插入图片描述"><br>在Monero中，规定output金额应该是A×10B的形式，其中1&lt;=A&lt;=9, B&gt;=-12。实际分析发现其中99.98%的output的金额并不符合Monero中output格式，同时其中92.8%的output金额在Monero中是唯一的，这些output总和是12231.27 XMR。Output金额不符合要求，是因为Monero中交易费用会根据交易大小而变化，交易的大小受mix-ins数量的影响，最终导致output值的不符合其规定。</p>
+<h3 id="Number-of-MIx-ins"><a href="#Number-of-MIx-ins" class="headerlink" title="Number of MIx-ins"></a>Number of MIx-ins</h3><p>Min-ins的使用，各个input有所不同，最小的mix-ins是0，最大的mix-ins为851。但是其中[0,4]范围的mix-ins占比96%。不同mix-ins的使用的累积分布图如下：<br><img src="https://img-blog.csdnimg.cn/20190408221722424.png" alt="在这里插入图片描述"><br>这里面作者猜想大部分交易都是用数量较低的mix-ins的原因有两个，一方面有可能找不到足够多的等价值的output作为mix-ins，另外一方面，mix-ins的数量越多，意味着交易越大，交易越大则交易费越高。为了进一步对这两个原因进行分析，作者统计了mix-ins在0～11范围内所有对应交易中可以使用更高数量mix-ins的比例，其结果如Table 2所示，其中最后一列表示相应数量的mix-ins中，可以使用更高mix-ins的交易所占的比例，例如在mix-ins为2的交易总共2908304笔，但是其中2902246笔可以使用大于2的mix-ins，<strong>这说明Monero中大量交易使用较低的mix-ins不是因为没有足够的mix-ins，而是为了避免高额的手续费</strong>。<br><img src="https://img-blog.csdnimg.cn/20190408221747981.png" alt="在这里插入图片描述"></p>
+<h3 id="Number-of-Inputs-and-Outputs"><a href="#Number-of-Inputs-and-Outputs" class="headerlink" title="Number of Inputs and Outputs"></a>Number of Inputs and Outputs</h3><p>在Monero区块链中input和output数量的变化情况如图4的统计所示。在Monero上线初期转账的时候，为了将output凑成A×10B的形式，因此会有很多输入和输出。Monero上线第一周，input和output的平均值分别为19和17，到第4周时input达到104，最后1周时下降到3，这是因为RingCTs技术的采用。<br><img src="https://img-blog.csdnimg.cn/2019040822182085.png" alt="在这里插入图片描述"><br>在采用RingCTs后，Monero中的output数量大幅下降，其平均值为2～4，然而input数量的变化却没有固定规律，主要是因为有很多input凑在一起支付的原因。在使用RingCTs后intput和output的情况如图5所示。<br><img src="https://img-blog.csdnimg.cn/20190408221839913.png" alt="在这里插入图片描述"></p>
+<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h3><p>对Monero区块链的统计分析情况，使用表3进行一个比较全面的总结。<br><img src="https://img-blog.csdnimg.cn/201904082219019.png" alt="在这里插入图片描述"></p>
+<h2 id="Traceability-Attacking"><a href="#Traceability-Attacking" class="headerlink" title="Traceability Attacking"></a>Traceability Attacking</h2><h3 id="Heuristic-I"><a href="#Heuristic-I" class="headerlink" title="Heuristic I"></a>Heuristic I</h3><p>前文经过分析，作者发现了在Monero中，有65%的交易没有采用mix-ins技术，这就意味着这些交易中的所有input，都非常明确他们作为output是何时被花费出去的。因此，如果其他交易中使用了这些交易中的input作为mix-ins，那么就可以确定其他交易中真正被花销出去的output是哪一个，在文中作者称之为Cascade Effect，其效果如图6所示。<br><img src="https://img-blog.csdnimg.cn/20190408221932254.png" alt="在这里插入图片描述"><br>作者使用这种分析方法，逐渐减小一些交易中的匿名集合，直到匿名集合数量为1，于是就能确定真正被花销出去的output，最后根据这种方法追踪到了额外22%的交易。作者的追踪算法详细内容如下：<br><img src="https://img-blog.csdnimg.cn/20190408221948776.png" alt="在这里插入图片描述"><br>图7展示了交易追踪算法分别迭代1、3、5次之后追踪到的结果。在Figure 7a中，分别表示在mix-ins为0～10中，迭代1次、3次、5次能够追踪到的交易的比例。Figure 7b表示不同数量的mix-ins，迭代次数分别为1、3、5次时追踪到的交易的比例变化情况；Figure 7c表示随着时间（Week为单位）增长，不同迭代次数追踪到的交易比例，随着Monero中采用了RingCTs技术之后，Heuristic I已经无法追踪其中的inputs。</p>
+<p><img src="https://img-blog.csdnimg.cn/20190408222003971.png" alt="在这里插入图片描述"><br>即使使用了Heuristic I，仍然有一些交易的input是无法追踪的，论文统计了mix-ins在-～1-范围内的情况，随着mix-ins数量增多，能准确追踪的input数量越来越少，针对mix-ins为10的input，其中24%的交易，其匿名集可以减少为2个input。统计情况如图8所示。</p>
+<p><img src="https://img-blog.csdnimg.cn/20190408222021708.png" alt="在这里插入图片描述"></p>
+<h3 id="Heuristic-II"><a href="#Heuristic-II" class="headerlink" title="Heuristic II"></a>Heuristic II</h3><p>Heuristic I的方法针对于没有使用RingCTs技术的Monero区块链分析有用，但是后续使用RingCTs的Monero区块链无能为力，于是作者使用了启发式方法II，该方法假设如果在交易Tx-a中，有2个input，其中一个input作为mix-ins，同时有2个输出O1和O2；如果在另外一笔交易Tx-b中，如果同时使用O1和O2作为input，那么则认为O1和O2隶属于同一个人；启发式方法2认为一笔交易中的inputs全部来自之前一笔交易的output的概率很低，如果出现这种情况，则认为这些input都会在这笔交易中被花出去。为了方便叙述，将Tx-a称之为source transaction，将Tx-b称之为 dest transaction，dest transaction的input中至少使用了source transaction中不少于2个的output。作者的假设可以参见图9。</p>
+<p><img src="https://img-blog.csdnimg.cn/20190408222049979.png" alt="在这里插入图片描述"><br>由于启发式方法2是基于假设，因此基于假设的结果未必会有结论，同时还会又一些错误，论文作者也承认这一点，但是还是基于此不太靠谱的假设强行展开了分析并设计了算法，求解Monero使用RingCTs后的交易中是否存在一些dest transaction 使用了至少2个其他交易中的output，算法如下：</p>
+<p><img src="https://img-blog.csdnimg.cn/20190408222105116.png" alt="在这里插入图片描述"><br>Algorithm 2 的运行情况有4种：</p>
+<p><img src="https://img-blog.csdnimg.cn/20190408222123639.png" alt="在这里插入图片描述"><br><strong>注意：我对这里面S2和S3的分类没有很明白有什么区别？找到several dest trx不是表明有给定的source，其output出现在多个dest 的input中吗？这和S3不就是一个意思吗？</strong></p>
+<p>其中S1说明方法没有奏效，S2说明方法在transaction level中存在false positive；S3情况说明方法在input level 存在false positive；S4才是真正说明source 的outputs在dest中确实被花费了。<br>    为了评价方法的效果，分别统计4种情况出现的比例，同时以Heuristic I中获得的87%的数据作为真实数据，应用Heuristic II方法。首先经过统计总共找到410237种source trx，这些占比所有trx的43%， 其中包括636 笔包含RingCTs的trx，这只占RingCTs交易数的1%。将Heuristic II方法应用到不包含RingCTs的409601笔 trx中，其中60%的source trx 有1个对应的dest trx，其中1笔source trx能找到的dest trx的最大数目为146，对一个给定的dest trx，寻找对应的dest trx，dest trx数量增多，对应的source trx的比例逐步下降，如图Figure 10a所示。<br><img src="https://img-blog.csdnimg.cn/2019040822215451.png" alt="在这里插入图片描述"></p>
+<p>Figure 10b中是将Heuristic II 的方法应用到 636笔RingCTs trx中，发现其中95.1%的source trx 仅仅对应1个dest trx。Figure 10c表示对应于non-RingCTs的交易，Heuristic II方法验证中，TP占有87.3%，而对于用户来说，Monero区块链采用RingCTs前后消费习惯没有多大变化，因此Heuristic II在RingCTs中的分析TP应该也占大部分的比例。</p>
+<p><img src="https://img-blog.csdnimg.cn/20190408222222748.png" alt="在这里插入图片描述"></p>
+<p>为了进一步说明在non-RingCTs中的结果比较可信，作者按照mix-ins的数量变化对Heuristic II方法的结果进行了统计，结果如图11所示，因为mix-ins数量增加，Heuristic I中可以追踪的交易数量大幅下降，因此针对Heuristic II中的结果，有一大部分是无法检测结果的正确性，但是即使如此，其中明确的False Positive几乎为0。</p>
+<h3 id="Heuristic-III"><a href="#Heuristic-III" class="headerlink" title="Heuristic III"></a>Heuristic III</h3><p>启发式方法3的中，作者认为一个UTXO，随着时间的增长，其被花费的概率会越来越大，因此作者认为，在一个环形签名的公钥中，真正的转账地址应该是所在区块高度最高的那个地址（听起来有几分道理，如果有几个地址高度相同呢？），作者抱着试一试的想法，将这个启发式方法应用到non-RingCTs中的交易中，发现作者的方法，精确率能达到98.1%（看起来虽然是个扯淡的猜想，但是居然make sense！）为了规避这个问题，Monero developer在2015年4月5号将原本的mix-ins采样算法从正态分布换成了triangle distribution，这种采样中，对一个input，会挑选最近的output作为其mix-ins以解决这个问题。为了验证这种Monero developer采用的新的采样方式的效果，作者对2015年4月5号以后的交易进行了Heuristic III的分析，与之前的正态分布的采样下的结果比对，结果如表5所示，表5的情况说明采用新的采样方法之后，对于Heuristic III方法的影响不大。</p>
+<p><img src="https://img-blog.csdnimg.cn/20190408222254166.png" alt="在这里插入图片描述"></p>
+<p>为了对Heuristic III的方法的假设进行进一步的验证，对Heuristic I中确定的87%的交易进行了统计，分别统计这些UTXO在输出之后分别在什么时候被花销出去，作者对用户消费习惯进行如下分类，其中占比分别为：</p>
+<ul>
+<li>在[0,9]个区块内被花费的UTXO占比0.17%</li>
+<li>在[10，100]范围内被花费的UTXO占比9.16%</li>
+<li>在[101, 1000]范围内被花费的UTXo占比28.4%</li>
+<li>[1000， +∞]范围内被花费的UTXO占比62.27%</li>
+</ul>
+<p>据此，分别计算得到一个概率密度图，如图12所示，作者建议依据此概率选择mix-ins更加合理。</p>
+<p><img src="https://img-blog.csdnimg.cn/20190408222348303.png" alt="在这里插入图片描述"></p>
+<h2 id="Releated-Work-amp-amp-Conclusion"><a href="#Releated-Work-amp-amp-Conclusion" class="headerlink" title="Releated Work &amp;&amp; Conclusion"></a>Releated Work &amp;&amp; Conclusion</h2><p>本文的工作基于Menero Lab的两篇公开的文献MRL-001和MRL-002MRL-004。其中Heuristic I来自于MRL-001。本文的Heuristic II和Heuristic III分别来自于Monero-004。<br>本文最重要的贡献在于利用Heuristic I方法能够追踪到Monero 区块链中87%的交易，同时对于Monero Lab中对Monero做的一些改进进行了验证，Heuristic II和Heuristic III分别指出了改进方法的不足，同时给出建议，Monero Developer在进行mix-ins采样时可以考虑用户花费UTXO的习惯以提升匿名性。</p>
+<h2 id="Thinking"><a href="#Thinking" class="headerlink" title="Thinking"></a>Thinking</h2><ul>
+<li>相比于ZCash这篇论文，这篇文章中的作者为什么不在Monero中自己注册多个账号，然后多次进行转账，如果RingCTs中某个用户也恰恰使用1个mix-ins并且选中了作者的账号，那么就可以同样适用Heuristic I的方法，我就后续进行一些调研以验证我的想法，如果可以的话，就可以根据这篇文章的不足继续推进一些分析工作，例如可以分析Monero在采用了RingCTs技术之后匿名性/可追踪行到底如何？</li>
+<li>本文的工作就量和质上与ZCash的那篇文章确有不及，这方面也令我看出发表一篇顶会，不仅需要原创、有效并且非常合理的想法，而且也需要有相当数量的分析工作，两者兼具，才能发到A类会议中。</li>
+<li>对于RingCTs的使用方法、以及Monero中是如何防止双花的细节，我比较好奇，后续会进行一些调研。</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2019/04/08/New Empirical Traceability Analysis of CryptoNote-Style Blockchains/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -686,11 +922,29 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2019-04-08 20:41:47" itemprop="dateModified" datetime="2019-04-08T20:41:47+08:00">2019-04-08</time>
+                <time title="更新于：2019-04-08 22:30:44" itemprop="dateModified" datetime="2019-04-08T22:30:44+08:00">2019-04-08</time>
               
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/区块链技术研究/" itemprop="url" rel="index"><span itemprop="name">区块链技术研究</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -842,11 +1096,29 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2019-04-08 20:08:05" itemprop="dateModified" datetime="2019-04-08T20:08:05+08:00">2019-04-08</time>
+                <time title="更新于：2019-04-08 22:31:11" itemprop="dateModified" datetime="2019-04-08T22:31:11+08:00">2019-04-08</time>
               
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/区块链技术研究/" itemprop="url" rel="index"><span itemprop="name">区块链技术研究</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1525,11 +1797,29 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2019-03-28 14:12:42" itemprop="dateModified" datetime="2019-03-28T14:12:42+08:00">2019-03-28</time>
+                <time title="更新于：2019-04-08 22:31:20" itemprop="dateModified" datetime="2019-04-08T22:31:20+08:00">2019-04-08</time>
               
             
           </span>
 
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/区块链技术研究/" itemprop="url" rel="index"><span itemprop="name">区块链技术研究</span></a></span>
+
+                
+                
+              
+            </span>
           
 
           
@@ -1591,7 +1881,7 @@
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">producer_plugin</span> :</span> <span class="keyword">public</span> appbase::plugin&lt;producer_plugin&gt; &#123;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">   APPBASE_PLUGIN_REQUIRES((chain_plugin)(http_client_plugin))</span><br><span class="line"></span><br><span class="line">   <span class="class"><span class="keyword">struct</span> <span class="title">runtime_options</span> &#123;</span></span><br><span class="line">      fc::optional&lt;<span class="keyword">int32_t</span>&gt; max_transaction_time;</span><br><span class="line">      fc::optional&lt;<span class="keyword">int32_t</span>&gt; max_irreversible_block_age;</span><br><span class="line">      fc::optional&lt;<span class="keyword">int32_t</span>&gt; produce_time_offset_us;</span><br><span class="line">      fc::optional&lt;<span class="keyword">int32_t</span>&gt; last_block_time_offset_us;</span><br><span class="line">      fc::optional&lt;<span class="keyword">int32_t</span>&gt; max_scheduled_transaction_time_per_block_ms;</span><br><span class="line">      fc::optional&lt;<span class="keyword">int32_t</span>&gt; subjective_cpu_leeway_us;</span><br><span class="line">      fc::optional&lt;<span class="keyword">double</span>&gt;  incoming_defer_ratio;</span><br><span class="line">   &#125;;</span><br><span class="line"></span><br><span class="line">   <span class="class"><span class="keyword">struct</span> <span class="title">whitelist_blacklist</span> &#123;</span></span><br><span class="line">      fc::optional&lt; flat_set&lt;account_name&gt; &gt; actor_whitelist;</span><br><span class="line">      fc::optional&lt; flat_set&lt;account_name&gt; &gt; actor_blacklist;</span><br><span class="line">      fc::optional&lt; flat_set&lt;account_name&gt; &gt; contract_whitelist;</span><br><span class="line">      fc::optional&lt; flat_set&lt;account_name&gt; &gt; contract_blacklist;</span><br><span class="line">      fc::optional&lt; flat_set&lt; <span class="built_in">std</span>::pair&lt;account_name, action_name&gt; &gt; &gt; action_blacklist;</span><br><span class="line">      fc::optional&lt; flat_set&lt;public_key_type&gt; &gt; key_blacklist;</span><br><span class="line">   &#125;;</span><br><span class="line"></span><br><span class="line">   <span class="class"><span class="keyword">struct</span> <span class="title">greylist_params</span> &#123;</span></span><br><span class="line">      <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;account_name&gt; accounts;</span><br><span class="line">   &#125;;</span><br><span class="line"></span><br><span class="line">   <span class="class"><span class="keyword">struct</span> <span class="title">integrity_hash_information</span> &#123;</span></span><br><span class="line">      chain::block_id_type head_block_id;</span><br><span class="line">      chain::digest_type   integrity_hash;</span><br><span class="line">   &#125;;</span><br><span class="line"></span><br><span class="line">   <span class="class"><span class="keyword">struct</span> <span class="title">snapshot_information</span> &#123;</span></span><br><span class="line">      chain::block_id_type head_block_id;</span><br><span class="line">      <span class="built_in">std</span>::<span class="built_in">string</span>          snapshot_name;</span><br><span class="line">   &#125;;</span><br><span class="line"></span><br><span class="line">   producer_plugin();</span><br><span class="line">   <span class="keyword">virtual</span> ~producer_plugin();</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">set_program_options</span><span class="params">(</span></span></span><br><span class="line"><span class="function"><span class="params">      boost::program_options::options_description &amp;command_line_options,</span></span></span><br><span class="line"><span class="function"><span class="params">      boost::program_options::options_description &amp;config_file_options</span></span></span><br><span class="line"><span class="function"><span class="params">      )</span> override</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   <span class="comment">// 判断一个公钥是否是当前区块生产者的公钥</span></span><br><span class="line">   <span class="function"><span class="keyword">bool</span>                   <span class="title">is_producer_key</span><span class="params">(<span class="keyword">const</span> chain::public_key_type&amp; key)</span> <span class="keyword">const</span></span>; </span><br><span class="line">   <span class="comment">// 应该是对摘要进行签名，这里面的key应该是私钥。        </span></span><br><span class="line">   chain::<span class="function">signature_type  <span class="title">sign_compact</span><span class="params">(<span class="keyword">const</span> chain::public_key_type&amp; key, <span class="keyword">const</span> fc::sha256&amp; digest)</span> <span class="keyword">const</span></span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment">// 对插件进行初始化</span></span><br><span class="line">   <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">plugin_initialize</span><span class="params">(<span class="keyword">const</span> boost::program_options::variables_map&amp; options)</span></span>;</span><br><span class="line">   <span class="comment">// 插件启动函数</span></span><br><span class="line">   <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">plugin_startup</span><span class="params">()</span></span>;</span><br><span class="line">   <span class="comment">// 插件关闭函数</span></span><br><span class="line">   <span class="function"><span class="keyword">virtual</span> <span class="keyword">void</span> <span class="title">plugin_shutdown</span><span class="params">()</span></span>;</span><br><span class="line">   <span class="comment">// 暂停运行和继续运行</span></span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">pause</span><span class="params">()</span></span>;</span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">resume</span><span class="params">()</span></span>;</span><br><span class="line">   <span class="comment">// 返回插件是否被暂停的状态</span></span><br><span class="line">   <span class="function"><span class="keyword">bool</span> <span class="title">paused</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment">// 更新运行的相关参数</span></span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">update_runtime_options</span><span class="params">(<span class="keyword">const</span> runtime_options&amp; options)</span></span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment">// 获取运行时的相关参数</span></span><br><span class="line">   <span class="function">runtime_options <span class="title">get_runtime_options</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment">// 增加grey_list</span></span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">add_greylist_accounts</span><span class="params">(<span class="keyword">const</span> greylist_params&amp; params)</span></span>;</span><br><span class="line">   <span class="comment">// 删除grey_list</span></span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">remove_greylist_accounts</span><span class="params">(<span class="keyword">const</span> greylist_params&amp; params)</span></span>;</span><br><span class="line">   <span class="comment">// 获取greylist</span></span><br><span class="line">   <span class="function">greylist_params <span class="title">get_greylist</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment">// 获取whitelist和设置whitelist</span></span><br><span class="line">   <span class="function">whitelist_blacklist <span class="title">get_whitelist_blacklist</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">set_whitelist_blacklist</span><span class="params">(<span class="keyword">const</span> whitelist_blacklist&amp; params)</span></span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment">// 获取integrity_hash_information</span></span><br><span class="line">   <span class="function">integrity_hash_information <span class="title">get_integrity_hash</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line">   </span><br><span class="line">   <span class="comment">// 创建一个快照，snapshot中文意思是快照</span></span><br><span class="line">   <span class="function">snapshot_information <span class="title">create_snapshot</span><span class="params">()</span> <span class="keyword">const</span></span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment">// 定义一个返回值为空，传入变量为const chain::producer_confirmation&amp;的signal</span></span><br><span class="line">   <span class="comment">// 这个信号用于区块的确认。</span></span><br><span class="line">   signal&lt;<span class="keyword">void</span>(<span class="keyword">const</span> chain::producer_confirmation&amp;)&gt; confirmed_block;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="comment">// producer_plugin_impl的指针,负责所有任务的执行</span></span><br><span class="line">    <span class="comment">// producer_plugin_impl类的定义在producer_plugin.cpp中</span></span><br><span class="line">   <span class="built_in">std</span>::<span class="built_in">shared_ptr</span>&lt;<span class="class"><span class="keyword">class</span> <span class="title">producer_plugin_impl</span>&gt; <span class="title">my</span>;</span> </span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>producer_plugin定义完毕之后第一个public函数就很恶心咯，这是什么鬼!!!仔细看看这些大写字母的定义，转换成小写字母，即appbase_plugin_requires,还记得前面说每个插件初始化或者启动的时候都要初始化或者启动它依赖的插件这个过程吗？这感觉应该是说producer_plugin类启动的时候依赖chain_plugin和http_client_plugin两个插件。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">APPBASE_PLUGIN_REQUIRES((chain_plugin)(http_client_plugin))</span><br></pre></td></tr></table></figure></p>
 <p>大写的显示，应该是说明这一个宏定义，果然，我们翻了一下，宏定义在plugin.hpp文件中，具体定义如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> APPBASE_PLUGIN_REQUIRES( PLUGINS )                               \</span></span><br><span class="line">   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Lambda&gt;                                           \</span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">plugin_requires</span><span class="params">( Lambda&amp;&amp; l )</span> </span>&#123;                                \</span><br><span class="line">      BOOST_PP_SEQ_FOR_EACH( APPBASE_PLUGIN_REQUIRES_VISIT, l, PLUGINS ) \</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> APPBASE_PLUGIN_REQUIRES_VISIT( r, visitor, elem ) \</span></span><br><span class="line">  visitor( appbase::app().register_plugin&lt;elem&gt;() );</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> APPBASE_PLUGIN_REQUIRES( PLUGINS )                               \</span></span><br><span class="line">   <span class="keyword">template</span>&lt;<span class="keyword">typename</span> Lambda&gt;                                           \</span><br><span class="line">   <span class="function"><span class="keyword">void</span> <span class="title">plugin_requires</span><span class="params">( Lambda&amp;&amp; l )</span> </span>&#123;                                \</span><br><span class="line">      BOOST_PP_SEQ_FOR_EACH( APPBASE_PLUGIN_REQUIRES_VISIT, l, PLUGINS ) \</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> APPBASE_PLUGIN_REQUIRES_VISIT( r, visitor, elem ) \</span></span><br><span class="line">  visitor( appbase::app().register_plugin&lt;elem&gt;() )</span><br></pre></td></tr></table></figure>
 <p>哇~~~，越来越恶心了,这个宏定义，指向一个模板函数，这个模板函数的参数是一个函数，里面用到了BOOST_PP_SEQ_FOR_EACH，这个一般如下用法：</p>
 <ul>
 <li>BOOST_PP_SEQ_FOR_EACH(macro, r, data)</li>
@@ -2477,295 +2767,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2019/02/21/EOS源码阅读/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar2.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="hzx's Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/02/21/EOS源码阅读/" class="post-title-link" itemprop="https://hzxGoForward.github.io/index.html">EOS中基本的数据结构解析</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建于：2019-02-21 18:48:14" itemprop="dateCreated datePublished" datetime="2019-02-21T18:48:14+08:00">2019-02-21</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="更新于：2019-03-08 19:38:55" itemprop="dateModified" datetime="2019-03-08T19:38:55+08:00">2019-03-08</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/区块链技术研究/" itemprop="url" rel="index"><span itemprop="name">区块链技术研究</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <a id="more"></a>
-<p>本文用于记录对EOS源代码的阅读记录,对其相关内容从源代码中追踪问迹,希望从源代码入手,对其设计原理有一个深入的认识,也用于本人学习研究之用.<br>如果对EOS不太了解, 还需要对EOS顶层的内容有一些了解.这里推荐<a href="https://github.com/EOSIO/Documentation" target="_blank" rel="noopener">EOS的白皮书</a>进行了解学习. </p>
-<p>对任何区块链相关技术的学习,首先应该从其区块的结构开始学起,因此,本文首先从区块源代码入手开始了解.</p>
-<h1 id="EOS区块链相关数据结构"><a href="#EOS区块链相关数据结构" class="headerlink" title="EOS区块链相关数据结构"></a>EOS区块链相关数据结构</h1><h2 id="block-header"><a href="#block-header" class="headerlink" title="block header"></a><strong>block header</strong></h2><p>block header的定义,来自于”chain\webassembly\block_header.hpp”文件中,其主要结构如下:</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:left">字段</th>
-<th style="text-align:left">名称</th>
-<th style="text-align:center">大小(Byte)</th>
-<th style="text-align:center">含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">timestamp</td>
-<td style="text-align:left">时间戳</td>
-<td style="text-align:center">4</td>
-<td style="text-align:center">生产区块的时间</td>
-</tr>
-<tr>
-<td style="text-align:left">producer</td>
-<td style="text-align:left">生产者</td>
-<td style="text-align:center">8</td>
-<td style="text-align:center">生产区块的超级节点</td>
-</tr>
-<tr>
-<td style="text-align:left">confirmed</td>
-<td style="text-align:left">确认数</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">区块的确认数</td>
-</tr>
-<tr>
-<td style="text-align:left">transaction_mroot</td>
-<td style="text-align:left">交易的Merkle Root</td>
-<td style="text-align:center">32</td>
-<td style="text-align:center">区块中全部交易的默克尔数的哈希值</td>
-</tr>
-<tr>
-<td style="text-align:left">action_mroot</td>
-<td style="text-align:left">action的Merkle Root</td>
-<td style="text-align:center">32</td>
-<td style="text-align:center">区块中全部action的默克尔数的哈希值</td>
-</tr>
-<tr>
-<td style="text-align:left">schedule_version</td>
-<td style="text-align:left">版本号</td>
-<td style="text-align:center">4</td>
-<td style="text-align:center">见证人排序版本号</td>
-</tr>
-<tr>
-<td style="text-align:left">new_producers</td>
-<td style="text-align:left">下一个见证人</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">区块的下一个见证人,可以为空</td>
-</tr>
-<tr>
-<td style="text-align:left">header_extensions</td>
-<td style="text-align:left">扩展类型</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">vector<std::pair<uint16_t,vector<char>&gt;&gt;</std::pair<uint16_t,vector<char></td>
-</tr>
-<tr>
-<td style="text-align:left">-</td>
-<td style="text-align:left">-</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>具体对于block_header的结构代码，可以参看下述代码。</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">block_header</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    block_timestamp_type             timestamp;</span><br><span class="line">    account_name                     producer;</span><br><span class="line">    <span class="keyword">uint16_t</span>                         confirmed = <span class="number">1</span>;  </span><br><span class="line">    block_id_type                    previous;</span><br><span class="line">    checksum256_type                 transaction_mroot; <span class="comment">/// mroot of cycles_summary</span></span><br><span class="line">    checksum256_type                 action_mroot; <span class="comment">/// mroot of all delivered action receipts</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">uint32_t</span>                          schedule_version = <span class="number">0</span>;</span><br><span class="line">    optional&lt;producer_schedule_type&gt;  new_producers;</span><br><span class="line">    extensions_type                   header_extensions;</span><br><span class="line">    <span class="function">digest_type       <span class="title">digest</span><span class="params">()</span><span class="keyword">const</span></span>;   <span class="comment">// 求区块的摘要</span></span><br><span class="line">    <span class="function">block_id_type     <span class="title">id</span><span class="params">()</span> <span class="keyword">const</span></span>;      <span class="comment">// 获取区块id</span></span><br><span class="line">    <span class="keyword">uint32_t</span>          block_num() <span class="keyword">const</span> &#123; <span class="keyword">return</span> num_from_id(previous) + <span class="number">1</span>; &#125;     <span class="comment">//当前区块号 = 前一个区块号+1</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> uint32_t   <span class="title">num_from_id</span><span class="params">(<span class="keyword">const</span> block_id_type&amp; id)</span></span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>上述区块是没有对区块进行签名的区块，对区块进行签名之后，区块数据结构是signed_block_header，具体代码如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">signed_block_header</span> :</span> <span class="keyword">public</span> block_header</span><br><span class="line">&#123;</span><br><span class="line">   signature_type    producer_signature;<span class="comment">// 区块生产者的签名</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<h2 id="block数据结构"><a href="#block数据结构" class="headerlink" title="block数据结构"></a>block数据结构</h2><p>EOS中block的数据结构如下,里面只有两个数据结构，即保存交易的vector和block_extensions。<br>block不能进行引用，只能进行复制。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">signed_block</span> :</span> <span class="keyword">public</span> signed_block_header</span><br><span class="line">&#123;</span><br><span class="line"> <span class="keyword">private</span>:</span><br><span class="line">   signed_block(<span class="keyword">const</span> signed_block &amp;) = <span class="keyword">default</span>;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">   signed_block() = <span class="keyword">default</span>;</span><br><span class="line">   explicit signed_block(const signed_block_header &amp;h) : signed_block_header(h) &#123;&#125;</span><br><span class="line">   signed_block(signed_block &amp;&amp;) = <span class="keyword">default</span>;</span><br><span class="line">   signed_block &amp;<span class="keyword">operator</span>=(<span class="keyword">const</span> signed_block &amp;) = <span class="keyword">delete</span>;</span><br><span class="line">   <span class="function">signed_block <span class="title">clone</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> *<span class="keyword">this</span>; &#125;</span><br><span class="line"></span><br><span class="line">   <span class="built_in">vector</span>&lt;transaction_receipt&gt; transactions; <span class="comment">/// new or generated transactions</span></span><br><span class="line">   extensions_type block_extensions;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<h2 id="Transaction-header数据结构"><a href="#Transaction-header数据结构" class="headerlink" title="Transaction_header数据结构"></a>Transaction_header数据结构</h2><p>transaction_header包含了固定大小的与每一笔交易都相关的一些数据，与transaction_body独立开来，这样在解析交易的时候不需要进行动态内存分配，这就加快了交易的解析过程。</p>
-<p>所有的transaction都有一个截止时间，超过这个截止时间之后不会记录在链上，一旦某个区块的时间戳大于某个交易的截止时间，那么这个交易就永远不会包含在区块中。</p>
-<p>其数据结构如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">transaction_header</span> &#123;</span></span><br><span class="line">   time_point_sec         expiration;   <span class="comment">///&lt; the time at which a transaction expires</span></span><br><span class="line">   <span class="keyword">uint16_t</span>               ref_block_num       = <span class="number">0U</span>; <span class="comment">///&lt; specifies a block num in the last 2^16 blocks. 2bytes</span></span><br><span class="line">   <span class="keyword">uint32_t</span>               ref_block_prefix    = <span class="number">0U</span>L; <span class="comment">///&lt; specifies the lower 32 bits of the blockid at get_ref_blocknum 区块号低4位的前缀 4bytes</span></span><br><span class="line">   fc::unsigned_int       max_net_usage_words = <span class="number">0U</span>L; <span class="comment">/// upper limit on total network bandwidth (in 8 byte words) billed for this transaction 4bytes</span></span><br><span class="line">   <span class="keyword">uint8_t</span>                max_cpu_usage_ms    = <span class="number">0</span>; <span class="comment">/// upper limit on the total CPU time billed for this transaction 1bytes</span></span><br><span class="line">   fc::unsigned_int       delay_sec           = <span class="number">0U</span>L; <span class="comment">/// number of seconds to delay this transaction for during which it may be canceled.4bytes</span></span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<h2 id="transaction"><a href="#transaction" class="headerlink" title="transaction"></a>transaction</h2><p>每一个transaction都包括了一系列的action，action中要么全部被执行，要么全部不执行，一个transaction的结构如下。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">transaction</span> :</span> <span class="keyword">public</span> transaction_header &#123;</span><br><span class="line">   <span class="built_in">vector</span>&lt;action&gt;         context_free_actions;</span><br><span class="line">   <span class="built_in">vector</span>&lt;action&gt;         actions;</span><br><span class="line">   extensions_type        transaction_extensions;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<h2 id="signed-transaction"><a href="#signed-transaction" class="headerlink" title="signed_transaction"></a>signed_transaction</h2><p>每一个signed_transaction继承于transaction，多了签名和一些其他数据，其数据结构如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">signed_transaction</span> :</span> <span class="keyword">public</span> transaction</span><br><span class="line">&#123;</span><br><span class="line">   <span class="built_in">vector</span>&lt;signature_type&gt;    signatures;<span class="comment">// 一笔交易可能需要多个签名</span></span><br><span class="line">   <span class="built_in">vector</span>&lt;bytes&gt;             context_free_data; <span class="comment">///&lt; for each context-free action, there is an entry here</span></span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="EOS中的操作-action"><a href="#EOS中的操作-action" class="headerlink" title="EOS中的操作(action)"></a>EOS中的操作(action)</h2><p>EOS区块链中的<strong>交易</strong>是由一个个<strong>操作</strong>组成的，操作可以理解成一个能够更改区块链全局状态的方法，操作的顺序是确定的，一个交易内的操作要么全部执行成功，要么都不执行，这与交易的本意(transaction)是一致的。操作是区块链的最底层逻辑，相当于区块链这个大脑的神经元，区块链的智能最终也是通过一个个操作的组合来实现的。</p>
-<h2 id="操作的设计思路"><a href="#操作的设计思路" class="headerlink" title="操作的设计思路"></a>操作的设计思路</h2><h3 id="操作的来源"><a href="#操作的来源" class="headerlink" title="操作的来源"></a>操作的来源</h3><p>一个操作可以通过两种途径产生：</p>
-<ul>
-<li>由一个账号产生，通过签名来授权，即显性方式。</li>
-<li>由代码生成，即隐形方式。</li>
-</ul>
-<h3 id="操作的底层逻辑"><a href="#操作的底层逻辑" class="headerlink" title="操作的底层逻辑"></a>操作的底层逻辑</h3><p>操作的设计遵循<a href="https://github.com/facebook/flux/tree/master/examples/flux-concepts" target="_blank" rel="noopener">React Flux设计模式</a>，简单的说就是每一个操作将会被赋予一个名称，然后被分发给一个或者多个handler。在EOS环境中，每个操作对应的handler是通过scope和name来定义的，默认的handler也可以再次将操作分发给下一级的多个handler。所以，每个EOS应用可以实现自己的handler，当操作被分发到这个应用时，相应的handler的代码就会被执行。</p>
-<p>操作的设计思路中另一重要概念是授权。每一个操作的执行都必须确保具备了指定账户的授权。授权通过许可(permission)的方式声明，对于一个授权动作，账户可以要求任意数量的许可，许可的验证是独立于代码执行的，只有所有规定的许可被成功验证之后，对应的代码才能够被执行。</p>
-<h3 id="操作的数据结构"><a href="#操作的数据结构" class="headerlink" title="操作的数据结构"></a>操作的数据结构</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">action</span> &#123;</span></span><br><span class="line">   account_name               account;<span class="comment">// 操作的来源</span></span><br><span class="line">   action_name                name;  <span class="comment">// 操作的名称</span></span><br><span class="line">   <span class="built_in">vector</span>&lt;permission_level&gt;   authorization;<span class="comment">// 执行操作的许可列表</span></span><br><span class="line">   bytes                      data;<span class="comment">// 执行action需要用到的数据</span></span><br><span class="line">   ...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>action中有一个permission_level，指的是权限级别一个账户可以将权限授予任意多个账户，同时每个账户可以有不同的权限名。权限级别的数据结构如下。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">permission_level</span> &#123;</span></span><br><span class="line">   account_name    actor;   <span class="comment">// 授予的账户名称</span></span><br><span class="line">   permission_name permission; <span class="comment">// 授予账户的权限</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p>关于许可的相关内容,可以参看<a href="https://github.com/BlockchainTranslator/EOS/blob/master/wiki/Accounts-%26-Permissions.md" target="_blank" rel="noopener">账户和权限</a></p>
-<h2 id="链控制器"><a href="#链控制器" class="headerlink" title="链控制器"></a>链控制器</h2><p>上述内容是内核的基本组成部分，如同一个机器的零部件，然而，要让机器运转起来，还需要把这些零部件串起来的控制中心，而链控制器(chain_controller)就是这个控制中心。下面我们来详细介绍EOS的链控制器。</p>
-<h2 id="链控制器的基本功能"><a href="#链控制器的基本功能" class="headerlink" title="链控制器的基本功能"></a>链控制器的基本功能</h2><p>首先，我们需要理解链控制器存在的主要目的是作为外部世界与区块链内核之间的交互界面，所以它有着承上启下的作用，承上为支撑区块链与外部的交互，启下为管理区块链内部的状态变更。所以，从理解的不同角度，链控制器可以被理解为以下两个概念：</p>
-<ul>
-<li><p>从外部视角，链控制器是一个<strong>数据库</strong>，这与链外对区块链的理解是一致的，从狭义的角度看，区块链就像一个不可更改的数据库，而链控制器可以看做这个数据库的管家，外部世界不用直接与区块链底层通信，而是通过这个管家来与区块链交互。</p>
-</li>
-<li><p>从内部视角，链控制器是一个<strong>协调者</strong>，区块链内部各个部件均独立运作，这与上述的设计原则是一致的，这样的话，各个部件之间如何调度与协调，就需要一个有全局视角的角色来统一管理，这就是链控制器的第二个作用.<br>用作者的原话来说，链控制器的目的是以一种可以扩展的方式来<strong>跟踪区块链的状态变化</strong>。</p>
-</li>
-</ul>
-<h2 id="链控制器的基本要素"><a href="#链控制器的基本要素" class="headerlink" title="链控制器的基本要素"></a>链控制器的基本要素</h2><p>为了维护可靠的区块链状态，链控制器管理着两个不用类型的数据库：</p>
-<ol>
-<li>区块日志。它的作用是存储已经经过验证的不可逆转的区块链主干。</li>
-<li>块数据库 这是一个带索引的可以增删改查的数据库。它的作用是维护和管理未经验证的区块链主干与分支两个子数据库，主干数据库存储的是当前长度最长的一条链，而分支存储的是因为不同分叉而造成的分支链，随着时间的推移，主链是有可能被分支替代的，每当一个新的区块要写入时，EOS都会重新计算各分支和主干的长度，并且决定要不要切换主干。最后，执行错误或者验证不通过的区块最终会被抛弃，并从数据库中清理出去。</li>
-</ol>
-<p>除了存储部分，链控制器还需精确维护一个消息机制，以保证对区块链中的其他成员广播最新的区块状态变更，这个消息机制是区块链网络能够正常和自主运行的基础。</p>
-<h2 id="事务处理机制"><a href="#事务处理机制" class="headerlink" title="事务处理机制"></a>事务处理机制</h2><p>熟悉数据库的读者一定知道，对于数据库的写入操作，维持一个事务的原子性是很关键的，也就是说，对于一批写入操作，要么全都成功执行，要么都不执行，一定不能出现只执行了其中一部分的情况，因为这样将导致数据的不一致性，这样的错误是致命的。EOS中对于块数据库的写操作采用同样的设计原则，事务的使用主要体现在两个层面：</p>
-<ol>
-<li><strong>区块</strong>. 整个区块的内容是一个整体，要么全都写入，要么都不写入</li>
-<li><strong>交易</strong>. 一个交易是一个整体，其中的操作要么都执行，要么都不执行<br>当事务中的某个步骤出现错误时，整个事务就会启动回滚机制，整个区块链将会恢复到这个事务发生之前的状态。</li>
-</ol>
-<h2 id="链控制器的主要过程"><a href="#链控制器的主要过程" class="headerlink" title="链控制器的主要过程"></a>链控制器的主要过程</h2><ul>
-<li>链控制器的初始化<br>链控制器的初始化是区块的起点,它的核心过程如下所示:<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">   controller_impl( <span class="keyword">const</span> controller::config&amp; cfg, controller&amp; s  )</span><br><span class="line">   :self(s),</span><br><span class="line">    db( cfg.state_dir,</span><br><span class="line">        cfg.read_only ? database::read_only : database::read_write,</span><br><span class="line">        cfg.state_size ),</span><br><span class="line">    reversible_blocks( cfg.blocks_dir/config::reversible_blocks_dir_name,</span><br><span class="line">        cfg.read_only ? database::read_only : database::read_write,</span><br><span class="line">        cfg.reversible_cache_size ),</span><br><span class="line">    blog( cfg.blocks_dir ),</span><br><span class="line">    fork_db( cfg.state_dir ),</span><br><span class="line">    wasmif( cfg.wasm_runtime ),</span><br><span class="line">    resource_limits( db ),</span><br><span class="line">    authorization( s, db ),</span><br><span class="line">    conf( cfg ),</span><br><span class="line">    chain_id( cfg.genesis.compute_chain_id() ),</span><br><span class="line">    read_mode( cfg.read_mode ),</span><br><span class="line">    thread_pool( cfg.thread_pool_size )</span><br><span class="line">   &#123;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SET_APP_HANDLER( receiver, contract, action) \</span></span><br><span class="line">   set_apply_handler( #receiver, #contract, #action, &amp;BOOST_PP_CAT(apply_, BOOST_PP_CAT(contract, BOOST_PP_CAT(_,action) ) ) )</span><br><span class="line"></span><br><span class="line">   SET_APP_HANDLER( eosio, eosio, newaccount );</span><br><span class="line">   SET_APP_HANDLER( eosio, eosio, setcode );</span><br><span class="line">   SET_APP_HANDLER( eosio, eosio, setabi );</span><br><span class="line">   SET_APP_HANDLER( eosio, eosio, updateauth );</span><br><span class="line">   SET_APP_HANDLER( eosio, eosio, deleteauth );</span><br><span class="line">   SET_APP_HANDLER( eosio, eosio, linkauth );</span><br><span class="line">   SET_APP_HANDLER( eosio, eosio, unlinkauth );</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">   SET_APP_HANDLER( eosio, eosio, postrecovery );</span></span><br><span class="line"><span class="comment">   SET_APP_HANDLER( eosio, eosio, passrecovery );</span></span><br><span class="line"><span class="comment">   SET_APP_HANDLER( eosio, eosio, vetorecovery );</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">   SET_APP_HANDLER( eosio, eosio, canceldelay );</span><br><span class="line"></span><br><span class="line">   fork_db.irreversible.connect( [&amp;]( <span class="keyword">auto</span> b ) &#123;</span><br><span class="line">                                 on_irreversible(b);</span><br><span class="line">                                 &#125;);</span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2815,7 +2816,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-count">25</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>

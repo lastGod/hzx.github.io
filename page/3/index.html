@@ -318,6 +318,194 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2018/12/02/带通配符的字符串匹配/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hzx's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2018/12/02/带通配符的字符串匹配/" class="post-title-link" itemprop="https://hzxGoForward.github.io/page/3/index.html">带通配符的字符串匹配</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2018-12-02 10:49:53" itemprop="dateCreated datePublished" datetime="2018-12-02T10:49:53+08:00">2018-12-02</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2019-01-09 22:30:55" itemprop="dateModified" datetime="2019-01-09T22:30:55+08:00">2019-01-09</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法设计与分析/" itemprop="url" rel="index"><span itemprop="name">算法设计与分析</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a>
+<p>题目来源： <a href="http://noi.openjudge.cn/ch0206/6252/" target="_blank" rel="noopener">http://noi.openjudge.cn/ch0206/6252/</a></p>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>通配符是一类键盘字符，当我们不知道真正字符或者不想键入完整名字时，常常使用通配符代替一个或多个真正字符。通配符有问号(?)和星号(*)等，其中，“?”可以代替一个字符，而“*”可以代替零个或多个字符。 </p>
+<p>你的任务是，给出一个带有通配符的字符串和一个不带通配符的字符串，判断他们是否能够匹配。 </p>
+<p>例如，1?456 可以匹配 12456、13456、1a456，但是却不能够匹配23456、1aa456；<br>2*77?8可以匹配 24457798、237708、27798。</p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>使用动态规划，即可，但是’*‘可以代表空字符串，一个字符串和多个字符串，所以遇到’*‘的时候需要额外的处理。<br>假设F[i][j]表示长度为i第一个字符串X和长度为j的第二个字符串Y进行匹配，长度为i对应的字符是X[i-1]（字符串下标从0开始计算）,长度为j对应于Y的字符Y[j-1]。</p>
+<ul>
+<li>如果X[i-1]是’?’，那么F[i][j] = F[i-1][j-1], 因为’?’可以匹配任意单个字符。</li>
+<li>如果X[i-1]是‘*’，由于’*‘可以表示任意多个字符，所以此时对应关系为：<ul>
+<li>F[i][j] = F[i-1][j] || F[i-1][j-1]||F[i][j-1]  ;三个关系式分别对应’*‘表示0、1、多个字符。</li>
+</ul>
+</li>
+<li>如果X[i-1]是普通字符，F[i][j] = X[i-1] == Y[j-1];</li>
+</ul>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">match</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; str1, <span class="keyword">const</span> <span class="built_in">string</span>&amp; str2)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;&gt; F(str1.size() + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;(str2.size() + <span class="number">1</span>, <span class="literal">false</span>));</span><br><span class="line">	<span class="comment">// 这里用于初始化，F[0][0] = true;F[i][0]是否为true需要看X[i-1]是否为'\*'</span></span><br><span class="line">	F[<span class="number">0</span>][<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= str1.size(); ++i) &#123;</span><br><span class="line">		<span class="keyword">if</span> (str1[i - <span class="number">1</span>] == <span class="string">'*'</span>)</span><br><span class="line">			F[i][<span class="number">0</span>] = F[i - <span class="number">1</span>][<span class="number">0</span>];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// F[i][j]表示长度为i的str1和长度为j的str2是否匹配</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= str1.size(); ++i) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= str2.size(); ++j) &#123;</span><br><span class="line">			<span class="keyword">if</span> (str1[i - <span class="number">1</span>] == <span class="string">'?'</span> || str1[i - <span class="number">1</span>] == str2[j - <span class="number">1</span>])</span><br><span class="line">				F[i][j] = F[i - <span class="number">1</span>][j - <span class="number">1</span>];</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span> (str1[i - <span class="number">1</span>] == <span class="string">'*'</span>) &#123;</span><br><span class="line">				F[i][j] = F[i - <span class="number">1</span>][j] || F[i][j - <span class="number">1</span>] || F[i - <span class="number">1</span>][j - <span class="number">1</span>];</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				F[i][j] = <span class="literal">false</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (F[str1.size()][str2.size()])</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"matched"</span>;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> <span class="string">"not matched"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 加了下面两句速度反而变慢了？ shit</span></span><br><span class="line">	ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">	<span class="built_in">string</span> str1, str2;</span><br><span class="line">	getline(<span class="built_in">cin</span>, str1);</span><br><span class="line">	getline(<span class="built_in">cin</span>, str2);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; match(str1, str2) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2018/11/30/开餐馆问题/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -804,7 +992,7 @@ F[i] = max(F[i], F[t]+profit[i]); 其中1&lt;t&lt;i 同时t和i之间的距离�
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2019-01-04 16:08:43" itemprop="dateModified" datetime="2019-01-04T16:08:43+08:00">2019-01-04</time>
+                <time title="更新于：2019-04-08 21:39:26" itemprop="dateModified" datetime="2019-04-08T21:39:26+08:00">2019-04-08</time>
               
             
           </span>
@@ -1327,7 +1515,7 @@ contract B{
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-count">25</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -1675,6 +1863,8 @@ contract B{
 
   
   
+    
+      
     
       
     

@@ -318,6 +318,295 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2019/02/21/EOS中基本数据结构的解析/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="博主">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar2.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hzx's Home">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/02/21/EOS中基本数据结构的解析/" class="post-title-link" itemprop="https://hzxGoForward.github.io/page/2/index.html">EOS中基本的数据结构解析</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建于：2019-02-21 18:48:14" itemprop="dateCreated datePublished" datetime="2019-02-21T18:48:14+08:00">2019-02-21</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="更新于：2019-04-08 21:44:43" itemprop="dateModified" datetime="2019-04-08T21:44:43+08:00">2019-04-08</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/区块链技术研究/" itemprop="url" rel="index"><span itemprop="name">区块链技术研究</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a>
+<p>本文用于记录对EOS源代码的阅读记录,对其相关内容从源代码中追踪问迹,希望从源代码入手,对其设计原理有一个深入的认识,也用于本人学习研究之用.<br>如果对EOS不太了解, 还需要对EOS顶层的内容有一些了解.这里推荐<a href="https://github.com/EOSIO/Documentation" target="_blank" rel="noopener">EOS的白皮书</a>进行了解学习. </p>
+<p>对任何区块链相关技术的学习,首先应该从其区块的结构开始学起,因此,本文首先从区块源代码入手开始了解.</p>
+<h1 id="EOS区块链相关数据结构"><a href="#EOS区块链相关数据结构" class="headerlink" title="EOS区块链相关数据结构"></a>EOS区块链相关数据结构</h1><h2 id="block-header"><a href="#block-header" class="headerlink" title="block header"></a><strong>block header</strong></h2><p>block header的定义,来自于”chain\webassembly\block_header.hpp”文件中,其主要结构如下:</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">字段</th>
+<th style="text-align:left">名称</th>
+<th style="text-align:center">大小(Byte)</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">timestamp</td>
+<td style="text-align:left">时间戳</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">生产区块的时间</td>
+</tr>
+<tr>
+<td style="text-align:left">producer</td>
+<td style="text-align:left">生产者</td>
+<td style="text-align:center">8</td>
+<td style="text-align:center">生产区块的超级节点</td>
+</tr>
+<tr>
+<td style="text-align:left">confirmed</td>
+<td style="text-align:left">确认数</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">区块的确认数</td>
+</tr>
+<tr>
+<td style="text-align:left">transaction_mroot</td>
+<td style="text-align:left">交易的Merkle Root</td>
+<td style="text-align:center">32</td>
+<td style="text-align:center">区块中全部交易的默克尔数的哈希值</td>
+</tr>
+<tr>
+<td style="text-align:left">action_mroot</td>
+<td style="text-align:left">action的Merkle Root</td>
+<td style="text-align:center">32</td>
+<td style="text-align:center">区块中全部action的默克尔数的哈希值</td>
+</tr>
+<tr>
+<td style="text-align:left">schedule_version</td>
+<td style="text-align:left">版本号</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">见证人排序版本号</td>
+</tr>
+<tr>
+<td style="text-align:left">new_producers</td>
+<td style="text-align:left">下一个见证人</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">区块的下一个见证人,可以为空</td>
+</tr>
+<tr>
+<td style="text-align:left">header_extensions</td>
+<td style="text-align:left">扩展类型</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">vector<std::pair<uint16_t,vector<char>&gt;&gt;</std::pair<uint16_t,vector<char></td>
+</tr>
+<tr>
+<td style="text-align:left">-</td>
+<td style="text-align:left">-</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">-</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>具体对于block_header的结构代码，可以参看下述代码。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">block_header</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    block_timestamp_type             timestamp;</span><br><span class="line">    account_name                     producer;</span><br><span class="line">    <span class="keyword">uint16_t</span>                         confirmed = <span class="number">1</span>;  </span><br><span class="line">    block_id_type                    previous;</span><br><span class="line">    checksum256_type                 transaction_mroot; <span class="comment">/// mroot of cycles_summary</span></span><br><span class="line">    checksum256_type                 action_mroot; <span class="comment">/// mroot of all delivered action receipts</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">uint32_t</span>                          schedule_version = <span class="number">0</span>;</span><br><span class="line">    optional&lt;producer_schedule_type&gt;  new_producers;</span><br><span class="line">    extensions_type                   header_extensions;</span><br><span class="line">    <span class="function">digest_type       <span class="title">digest</span><span class="params">()</span><span class="keyword">const</span></span>;   <span class="comment">// 求区块的摘要</span></span><br><span class="line">    <span class="function">block_id_type     <span class="title">id</span><span class="params">()</span> <span class="keyword">const</span></span>;      <span class="comment">// 获取区块id</span></span><br><span class="line">    <span class="keyword">uint32_t</span>          block_num() <span class="keyword">const</span> &#123; <span class="keyword">return</span> num_from_id(previous) + <span class="number">1</span>; &#125;     <span class="comment">//当前区块号 = 前一个区块号+1</span></span><br><span class="line">    <span class="function"><span class="keyword">static</span> uint32_t   <span class="title">num_from_id</span><span class="params">(<span class="keyword">const</span> block_id_type&amp; id)</span></span>;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>上述区块是没有对区块进行签名的区块，对区块进行签名之后，区块数据结构是signed_block_header，具体代码如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">signed_block_header</span> :</span> <span class="keyword">public</span> block_header</span><br><span class="line">&#123;</span><br><span class="line">   signature_type    producer_signature;<span class="comment">// 区块生产者的签名</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h2 id="block数据结构"><a href="#block数据结构" class="headerlink" title="block数据结构"></a>block数据结构</h2><p>EOS中block的数据结构如下,里面只有两个数据结构，即保存交易的vector和block_extensions。<br>block不能进行引用，只能进行复制。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">signed_block</span> :</span> <span class="keyword">public</span> signed_block_header</span><br><span class="line">&#123;</span><br><span class="line"> <span class="keyword">private</span>:</span><br><span class="line">   signed_block(<span class="keyword">const</span> signed_block &amp;) = <span class="keyword">default</span>;</span><br><span class="line"></span><br><span class="line"> <span class="keyword">public</span>:</span><br><span class="line">   signed_block() = <span class="keyword">default</span>;</span><br><span class="line">   explicit signed_block(const signed_block_header &amp;h) : signed_block_header(h) &#123;&#125;</span><br><span class="line">   signed_block(signed_block &amp;&amp;) = <span class="keyword">default</span>;</span><br><span class="line">   signed_block &amp;<span class="keyword">operator</span>=(<span class="keyword">const</span> signed_block &amp;) = <span class="keyword">delete</span>;</span><br><span class="line">   <span class="function">signed_block <span class="title">clone</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; <span class="keyword">return</span> *<span class="keyword">this</span>; &#125;</span><br><span class="line"></span><br><span class="line">   <span class="built_in">vector</span>&lt;transaction_receipt&gt; transactions; <span class="comment">/// new or generated transactions</span></span><br><span class="line">   extensions_type block_extensions;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Transaction-header数据结构"><a href="#Transaction-header数据结构" class="headerlink" title="Transaction_header数据结构"></a>Transaction_header数据结构</h2><p>transaction_header包含了固定大小的与每一笔交易都相关的一些数据，与transaction_body独立开来，这样在解析交易的时候不需要进行动态内存分配，这就加快了交易的解析过程。</p>
+<p>所有的transaction都有一个截止时间，超过这个截止时间之后不会记录在链上，一旦某个区块的时间戳大于某个交易的截止时间，那么这个交易就永远不会包含在区块中。</p>
+<p>其数据结构如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">transaction_header</span> &#123;</span></span><br><span class="line">   time_point_sec         expiration;   <span class="comment">///&lt; the time at which a transaction expires</span></span><br><span class="line">   <span class="keyword">uint16_t</span>               ref_block_num       = <span class="number">0U</span>; <span class="comment">///&lt; specifies a block num in the last 2^16 blocks. 2bytes</span></span><br><span class="line">   <span class="keyword">uint32_t</span>               ref_block_prefix    = <span class="number">0U</span>L; <span class="comment">///&lt; specifies the lower 32 bits of the blockid at get_ref_blocknum 区块号低4位的前缀 4bytes</span></span><br><span class="line">   fc::unsigned_int       max_net_usage_words = <span class="number">0U</span>L; <span class="comment">/// upper limit on total network bandwidth (in 8 byte words) billed for this transaction 4bytes</span></span><br><span class="line">   <span class="keyword">uint8_t</span>                max_cpu_usage_ms    = <span class="number">0</span>; <span class="comment">/// upper limit on the total CPU time billed for this transaction 1bytes</span></span><br><span class="line">   fc::unsigned_int       delay_sec           = <span class="number">0U</span>L; <span class="comment">/// number of seconds to delay this transaction for during which it may be canceled.4bytes</span></span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h2 id="transaction"><a href="#transaction" class="headerlink" title="transaction"></a>transaction</h2><p>每一个transaction都包括了一系列的action，action中要么全部被执行，要么全部不执行，一个transaction的结构如下。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">transaction</span> :</span> <span class="keyword">public</span> transaction_header &#123;</span><br><span class="line">   <span class="built_in">vector</span>&lt;action&gt;         context_free_actions;</span><br><span class="line">   <span class="built_in">vector</span>&lt;action&gt;         actions;</span><br><span class="line">   extensions_type        transaction_extensions;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h2 id="signed-transaction"><a href="#signed-transaction" class="headerlink" title="signed_transaction"></a>signed_transaction</h2><p>每一个signed_transaction继承于transaction，多了签名和一些其他数据，其数据结构如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">signed_transaction</span> :</span> <span class="keyword">public</span> transaction</span><br><span class="line">&#123;</span><br><span class="line">   <span class="built_in">vector</span>&lt;signature_type&gt;    signatures;<span class="comment">// 一笔交易可能需要多个签名</span></span><br><span class="line">   <span class="built_in">vector</span>&lt;bytes&gt;             context_free_data; <span class="comment">///&lt; for each context-free action, there is an entry here</span></span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="EOS中的操作-action"><a href="#EOS中的操作-action" class="headerlink" title="EOS中的操作(action)"></a>EOS中的操作(action)</h2><p>EOS区块链中的<strong>交易</strong>是由一个个<strong>操作</strong>组成的，操作可以理解成一个能够更改区块链全局状态的方法，操作的顺序是确定的，一个交易内的操作要么全部执行成功，要么都不执行，这与交易的本意(transaction)是一致的。操作是区块链的最底层逻辑，相当于区块链这个大脑的神经元，区块链的智能最终也是通过一个个操作的组合来实现的。</p>
+<h2 id="操作的设计思路"><a href="#操作的设计思路" class="headerlink" title="操作的设计思路"></a>操作的设计思路</h2><h3 id="操作的来源"><a href="#操作的来源" class="headerlink" title="操作的来源"></a>操作的来源</h3><p>一个操作可以通过两种途径产生：</p>
+<ul>
+<li>由一个账号产生，通过签名来授权，即显性方式。</li>
+<li>由代码生成，即隐形方式。</li>
+</ul>
+<h3 id="操作的底层逻辑"><a href="#操作的底层逻辑" class="headerlink" title="操作的底层逻辑"></a>操作的底层逻辑</h3><p>操作的设计遵循<a href="https://github.com/facebook/flux/tree/master/examples/flux-concepts" target="_blank" rel="noopener">React Flux设计模式</a>，简单的说就是每一个操作将会被赋予一个名称，然后被分发给一个或者多个handler。在EOS环境中，每个操作对应的handler是通过scope和name来定义的，默认的handler也可以再次将操作分发给下一级的多个handler。所以，每个EOS应用可以实现自己的handler，当操作被分发到这个应用时，相应的handler的代码就会被执行。</p>
+<p>操作的设计思路中另一重要概念是授权。每一个操作的执行都必须确保具备了指定账户的授权。授权通过许可(permission)的方式声明，对于一个授权动作，账户可以要求任意数量的许可，许可的验证是独立于代码执行的，只有所有规定的许可被成功验证之后，对应的代码才能够被执行。</p>
+<h3 id="操作的数据结构"><a href="#操作的数据结构" class="headerlink" title="操作的数据结构"></a>操作的数据结构</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">action</span> &#123;</span></span><br><span class="line">   account_name               account;<span class="comment">// 操作的来源</span></span><br><span class="line">   action_name                name;  <span class="comment">// 操作的名称</span></span><br><span class="line">   <span class="built_in">vector</span>&lt;permission_level&gt;   authorization;<span class="comment">// 执行操作的许可列表</span></span><br><span class="line">   bytes                      data;<span class="comment">// 执行action需要用到的数据</span></span><br><span class="line">   ...</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>action中有一个permission_level，指的是权限级别一个账户可以将权限授予任意多个账户，同时每个账户可以有不同的权限名。权限级别的数据结构如下。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">permission_level</span> &#123;</span></span><br><span class="line">   account_name    actor;   <span class="comment">// 授予的账户名称</span></span><br><span class="line">   permission_name permission; <span class="comment">// 授予账户的权限</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>关于许可的相关内容,可以参看<a href="https://github.com/BlockchainTranslator/EOS/blob/master/wiki/Accounts-%26-Permissions.md" target="_blank" rel="noopener">账户和权限</a></p>
+<h2 id="链控制器"><a href="#链控制器" class="headerlink" title="链控制器"></a>链控制器</h2><p>上述内容是内核的基本组成部分，如同一个机器的零部件，然而，要让机器运转起来，还需要把这些零部件串起来的控制中心，而链控制器(chain_controller)就是这个控制中心。下面我们来详细介绍EOS的链控制器。</p>
+<h2 id="链控制器的基本功能"><a href="#链控制器的基本功能" class="headerlink" title="链控制器的基本功能"></a>链控制器的基本功能</h2><p>首先，我们需要理解链控制器存在的主要目的是作为外部世界与区块链内核之间的交互界面，所以它有着承上启下的作用，承上为支撑区块链与外部的交互，启下为管理区块链内部的状态变更。所以，从理解的不同角度，链控制器可以被理解为以下两个概念：</p>
+<ul>
+<li><p>从外部视角，链控制器是一个<strong>数据库</strong>，这与链外对区块链的理解是一致的，从狭义的角度看，区块链就像一个不可更改的数据库，而链控制器可以看做这个数据库的管家，外部世界不用直接与区块链底层通信，而是通过这个管家来与区块链交互。</p>
+</li>
+<li><p>从内部视角，链控制器是一个<strong>协调者</strong>，区块链内部各个部件均独立运作，这与上述的设计原则是一致的，这样的话，各个部件之间如何调度与协调，就需要一个有全局视角的角色来统一管理，这就是链控制器的第二个作用.<br>用作者的原话来说，链控制器的目的是以一种可以扩展的方式来<strong>跟踪区块链的状态变化</strong>。</p>
+</li>
+</ul>
+<h2 id="链控制器的基本要素"><a href="#链控制器的基本要素" class="headerlink" title="链控制器的基本要素"></a>链控制器的基本要素</h2><p>为了维护可靠的区块链状态，链控制器管理着两个不用类型的数据库：</p>
+<ol>
+<li>区块日志。它的作用是存储已经经过验证的不可逆转的区块链主干。</li>
+<li>块数据库 这是一个带索引的可以增删改查的数据库。它的作用是维护和管理未经验证的区块链主干与分支两个子数据库，主干数据库存储的是当前长度最长的一条链，而分支存储的是因为不同分叉而造成的分支链，随着时间的推移，主链是有可能被分支替代的，每当一个新的区块要写入时，EOS都会重新计算各分支和主干的长度，并且决定要不要切换主干。最后，执行错误或者验证不通过的区块最终会被抛弃，并从数据库中清理出去。</li>
+</ol>
+<p>除了存储部分，链控制器还需精确维护一个消息机制，以保证对区块链中的其他成员广播最新的区块状态变更，这个消息机制是区块链网络能够正常和自主运行的基础。</p>
+<h2 id="事务处理机制"><a href="#事务处理机制" class="headerlink" title="事务处理机制"></a>事务处理机制</h2><p>熟悉数据库的读者一定知道，对于数据库的写入操作，维持一个事务的原子性是很关键的，也就是说，对于一批写入操作，要么全都成功执行，要么都不执行，一定不能出现只执行了其中一部分的情况，因为这样将导致数据的不一致性，这样的错误是致命的。EOS中对于块数据库的写操作采用同样的设计原则，事务的使用主要体现在两个层面：</p>
+<ol>
+<li><strong>区块</strong>. 整个区块的内容是一个整体，要么全都写入，要么都不写入</li>
+<li><strong>交易</strong>. 一个交易是一个整体，其中的操作要么都执行，要么都不执行<br>当事务中的某个步骤出现错误时，整个事务就会启动回滚机制，整个区块链将会恢复到这个事务发生之前的状态。</li>
+</ol>
+<h2 id="链控制器的主要过程"><a href="#链控制器的主要过程" class="headerlink" title="链控制器的主要过程"></a>链控制器的主要过程</h2><ul>
+<li>链控制器的初始化<br>链控制器的初始化是区块的起点,它的核心过程如下所示:<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">   controller_impl( <span class="keyword">const</span> controller::config&amp; cfg, controller&amp; s  )</span><br><span class="line">   :self(s),</span><br><span class="line">    db( cfg.state_dir,</span><br><span class="line">        cfg.read_only ? database::read_only : database::read_write,</span><br><span class="line">        cfg.state_size ),</span><br><span class="line">    reversible_blocks( cfg.blocks_dir/config::reversible_blocks_dir_name,</span><br><span class="line">        cfg.read_only ? database::read_only : database::read_write,</span><br><span class="line">        cfg.reversible_cache_size ),</span><br><span class="line">    blog( cfg.blocks_dir ),</span><br><span class="line">    fork_db( cfg.state_dir ),</span><br><span class="line">    wasmif( cfg.wasm_runtime ),</span><br><span class="line">    resource_limits( db ),</span><br><span class="line">    authorization( s, db ),</span><br><span class="line">    conf( cfg ),</span><br><span class="line">    chain_id( cfg.genesis.compute_chain_id() ),</span><br><span class="line">    read_mode( cfg.read_mode ),</span><br><span class="line">    thread_pool( cfg.thread_pool_size )</span><br><span class="line">   &#123;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SET_APP_HANDLER( receiver, contract, action) \</span></span><br><span class="line">   set_apply_handler( #receiver, #contract, #action, &amp;BOOST_PP_CAT(apply_, BOOST_PP_CAT(contract, BOOST_PP_CAT(_,action) ) ) )</span><br><span class="line"></span><br><span class="line">   SET_APP_HANDLER( eosio, eosio, newaccount );</span><br><span class="line">   SET_APP_HANDLER( eosio, eosio, setcode );</span><br><span class="line">   SET_APP_HANDLER( eosio, eosio, setabi );</span><br><span class="line">   SET_APP_HANDLER( eosio, eosio, updateauth );</span><br><span class="line">   SET_APP_HANDLER( eosio, eosio, deleteauth );</span><br><span class="line">   SET_APP_HANDLER( eosio, eosio, linkauth );</span><br><span class="line">   SET_APP_HANDLER( eosio, eosio, unlinkauth );</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">   SET_APP_HANDLER( eosio, eosio, postrecovery );</span></span><br><span class="line"><span class="comment">   SET_APP_HANDLER( eosio, eosio, passrecovery );</span></span><br><span class="line"><span class="comment">   SET_APP_HANDLER( eosio, eosio, vetorecovery );</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"></span><br><span class="line">   SET_APP_HANDLER( eosio, eosio, canceldelay );</span><br><span class="line"></span><br><span class="line">   fork_db.irreversible.connect( [&amp;]( <span class="keyword">auto</span> b ) &#123;</span><br><span class="line">                                 on_irreversible(b);</span><br><span class="line">                                 &#125;);</span><br><span class="line"></span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+       
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2019/01/21/算法设计模板总结/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
@@ -885,7 +1174,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="更新于：2019-04-08 21:03:12" itemprop="dateModified" datetime="2019-04-08T21:03:12+08:00">2019-04-08</time>
+                <time title="更新于：2019-04-08 21:32:05" itemprop="dateModified" datetime="2019-04-08T21:32:05+08:00">2019-04-08</time>
               
             
           </span>
@@ -941,102 +1230,97 @@
       
         
           
-            <p></p><h2>逻辑回归(Logistic Regression)<h2><p></p>
-<h3>1. 回归(Regression)<h3>
+            <h2 id="逻辑回归-Logistic-Regression"><a href="#逻辑回归-Logistic-Regression" class="headerlink" title="逻辑回归(Logistic Regression)"></a>逻辑回归(Logistic Regression)</h2><h3 id="1-回归-Regression"><a href="#1-回归-Regression" class="headerlink" title="1. 回归(Regression)"></a>1. 回归(Regression)</h3><ul>
+<li>回归，我的理解来说，其直观的理解就是拟合的意思。我们以线性回归为例子，在二维平面上有一系列红色的点，我们想用一条直线来尽量拟合这些红色的点，这就是线性回归。回归的本质就是我们的预测结果尽量贴近实际观测的结果，或者说我们的求得一些参数，经过计算之后的预测结果尽可能接近真实值。<center> <image src="https://i.imgur.com/la7bDLS.jpg" width="50%"></image></center>
 
-- 回归，我的理解来说，其直观的理解就是拟合的意思。我们以线性回归为例子，在二维平面上有一系列红色的点，我们想用一条直线来尽量拟合这些红色的点，这就是线性回归。回归的本质就是我们的预测结果尽量贴近实际观测的结果，或者说我们的求得一些参数，经过计算之后的预测结果尽可能接近真实值。
-<center> <image src="https://i.imgur.com/la7bDLS.jpg" width="50%"></image>
-
-<h3>2. 逻辑回归的由来<h3>
-
-- 对于二类线性可分的数据集，使用线性感知器就可以很好的分类。如下图中红色和蓝色的点，我们使用一条直线$x_1 +x_2 = 3$就可以区分两种数据集，在直线上方的属于红色类，直线下方的属于蓝色类。
+</li>
+</ul>
+<h3 id="2-逻辑回归的由来"><a href="#2-逻辑回归的由来" class="headerlink" title="2. 逻辑回归的由来"></a>2. 逻辑回归的由来</h3><ul>
+<li><p>对于二类线性可分的数据集，使用线性感知器就可以很好的分类。如下图中红色和蓝色的点，我们使用一条直线$x_1 +x_2 = 3$就可以区分两种数据集，在直线上方的属于红色类，直线下方的属于蓝色类。</p>
 <center> <image src="https://i.imgur.com/uPQ0xxk.jpg"></image></center>
-
-- 但是如果二类线性不可分的数据集，我们无法找到一条直线能够将两种类别很好的区分，即线性回归的分类法对于线性不可分的数据无法有效分类。例如下图中的红色点和蓝色点，我们无法使用一条直线很好的区分这两类，但是我们可以使用非线性分类器，如果我们使用${x_1}^2+{x_2}^2 = 1$，在圆外面的为红色类，在圆里面的一类为蓝色类。
-
+</li>
+<li><p>但是如果二类线性不可分的数据集，我们无法找到一条直线能够将两种类别很好的区分，即线性回归的分类法对于线性不可分的数据无法有效分类。例如下图中的红色点和蓝色点，我们无法使用一条直线很好的区分这两类，但是我们可以使用非线性分类器，如果我们使用${x_1}^2+{x_2}^2 = 1$，在圆外面的为红色类，在圆里面的一类为蓝色类。</p>
+</li>
+</ul>
 <center> <image src="https://i.imgur.com/TdJn8NO.jpg"></image></center>
 
-- 诚然，数据线性可分可以使用线性分类器，如果数据线性不可分，可以使用非线性分类器，这里似乎没有逻辑回归什么事情。但是如果我们想知道对于一个二类分类问题，对于具体的一个样例，我们不仅想知道该类属于某一类，而且还想知道该类属于某一类的概率多大,有什么办法呢？
-
-- 线性回归和非线性回归的分类问题都不能给予解答，因为线性回归和非线性回归的问题，假设其分类函数如下：
-                              $$y = wx+b$$   
-
-- y的阈值处于$（-\infty，+\infty）$，此时不能很好的给出属于某一类的概率，因为概率的范围是[0,1],我们需要一个更好的映射函数，能够将分类的结果很好的映射成为[0,1]之间的概率，并且这个函数能够具有很好的可微分性。在这种需求下，人们找到了这个映射函数，即逻辑斯谛函数，也就是我们常说的sigmoid函数，其形式如下：
-
-
-   $$\frac{1}{1+e^{-z}}$$   
-
-
-
-- sigmoid函数图像如下图所示
-
+<ul>
+<li><p>诚然，数据线性可分可以使用线性分类器，如果数据线性不可分，可以使用非线性分类器，这里似乎没有逻辑回归什么事情。但是如果我们想知道对于一个二类分类问题，对于具体的一个样例，我们不仅想知道该类属于某一类，而且还想知道该类属于某一类的概率多大,有什么办法呢？</p>
+</li>
+<li><p>线性回归和非线性回归的分类问题都不能给予解答，因为线性回归和非线性回归的问题，假设其分类函数如下：</p>
+<pre><code>                        $$ y = wx+b $$   
+</code></pre></li>
+<li><p>y的阈值处于$（-\infty，+\infty）$，此时不能很好的给出属于某一类的概率，因为概率的范围是[0,1],我们需要一个更好的映射函数，能够将分类的结果很好的映射成为[0,1]之间的概率，并且这个函数能够具有很好的可微分性。在这种需求下，人们找到了这个映射函数，即逻辑斯谛函数，也就是我们常说的sigmoid函数，其形式如下：</p>
+</li>
+</ul>
+<script type="math/tex; mode=display">\frac{1}{1+e^{-z} }</script><ul>
+<li>sigmoid函数图像如下图所示</li>
+</ul>
 <center> <image src="https://i.imgur.com/T53inQT.png" width="50%"></image></center>
 
 
-- sigmoid函数完美的解决了上述需求，而且sigmoid函数连续可微分。
-- 假设数据离散二类可分，分为0类和1类,如果概率值大于1/2，我们就将该类划分为1类，如果概率值低于1/2,我们就将该类划分为0类。当z取值为0的时候，概率值为1/2，这时候需要人为规定划分为哪一类。
-
-
-<h3>3. 逻辑回归的损失函数(Loss Function)和成本函数(Cost Function)<h3>
-
-- 在二类分类中，我们假定sigmoid输出结果表示属于1类的概率值，我们很容易想到用平方损失函数，即
+<ul>
+<li>sigmoid函数完美的解决了上述需求，而且sigmoid函数连续可微分。</li>
+<li>假设数据离散二类可分，分为0类和1类,如果概率值大于1/2，我们就将该类划分为1类，如果概率值低于1/2,我们就将该类划分为0类。当z取值为0的时候，概率值为1/2，这时候需要人为规定划分为哪一类。</li>
+</ul>
+<p></p><h3>3. 逻辑回归的损失函数(Loss Function)和成本函数(Cost Function)<h3><p></p>
+<ul>
+<li><p>在二类分类中，我们假定sigmoid输出结果表示属于1类的概率值，我们很容易想到用平方损失函数，即</p>
 <center>
 <image src="https://i.imgur.com/3C1RzcD.jpg " widh="50%" height="80"></image>
 </center>
-
-- 在这种情况下，我们φ(z(i))表示sigmoid对第i个值的预测结果，我们将sigmoid函数带入上述成本函数中，绘制其图像，发现这个成本函数的函数图像是一个非凸函数，如下图所示，这个函数里面有很多极小值，如果采用梯度下降法，则会导致陷入局部最优解中,有没有一个凸函数的成本函数呢？
+</li>
+<li><p>在这种情况下，我们φ(z(i))表示sigmoid对第i个值的预测结果，我们将sigmoid函数带入上述成本函数中，绘制其图像，发现这个成本函数的函数图像是一个非凸函数，如下图所示，这个函数里面有很多极小值，如果采用梯度下降法，则会导致陷入局部最优解中,有没有一个凸函数的成本函数呢？</p>
 <center>
 <image src="https://i.imgur.com/R5r6LvC.jpg " width="50%"></image>
 </center>
-
-- 假设sigmoid函数φ(z)表示属于1类的概率，于是做出如下的定义：
+</li>
+<li><p>假设sigmoid函数φ(z)表示属于1类的概率，于是做出如下的定义：</p>
 <center><image src=" https://i.imgur.com/IBlS1zQ.jpg"></image></center>
 
 
-- 将两个式子综合来，可以改写为下式：
-<center>
-<image src="https://i.imgur.com/KdpNVpf.jpg"></image>
-
-- 上式将分类为0和分类和1的概率计算公式合二为一。假设分类器分类足够准确，此时对于一个样本，如果它是属于1类，分类器求出的属于1类的概率应该尽可能大，即p(y=1lx)尽可能接近1；如果它是0类，分类器求出的属于0类的概率应该尽可能大，即p(y=0lx)尽可能接近1。
-
-- 通过上述公式对二类分类的情况分析，可知我们的目的是求取参数w和b，使得p(ylx)对0类和1类的分类结果尽可能取最大值，然而实际上我们定义的损失函数的是求最小值，于是，很自然的，我们想到对p(ylx)式子加一个负号，就变成了求最小值的问题，这就得到了逻辑回归中的损失函数。
-
-- 不过，为了计算方便，我们通常对上述式子取log，因而得到下式：
-
-<center>
-<image src="https://i.imgur.com/Swgjn66.jpg " width="50%"></image>
-
-- 公式(1)是对概率公式取log，公式(2)是对公式(1)取相反数。上述公式的函数图像如下图所示。这是一个凸函数（斜率是非单调递减的函数即凸函数），因此可以用梯度下降法求其最小值。
-<center>
-<image src="https://i.imgur.com/CAHBRdg.jpg "></image>
-</center>
-
-- 根据损失函数是单个样本的预测值和实际值的误差，而成本函数是全部样本的预测值和实际值之间的误差，于是对所有样本的损失值取平均数，得到我们的成本函数：
-<center>
-<image src="https://i.imgur.com/cNXT1Ev.jpg"></image>
-</center>
-
-- 损失函数是凸函数，m个损失函数的和仍然是凸函数，因而可以用梯度下降法求最小值。
-
-
-<h3>4. 极大似然法求解逻辑回归</h3>
-
-<ul>
-<li><p>还可以用我们熟知的统计学知识——极大似然法估计逻辑回归中的参数w和b，上述得到的logp(y|w,x),假设目前有m组样本，分别为$(x_1,y_1),(x_2,y_2)…(x_m,y_m)$，其中xi表示第i个样本的特征，yi表示第i个样本的类别，yi = 0或者1，利用极大似然法的原则，假设所有训练样本独立同分布，则联合概率为所有样本概率的乘积，即：</p>
-<center>
-<image src="https://i.imgur.com/kaGRRZc.jpg"></image>
-</center>
-</li>
-<li><p>对上述公式两边取对数，得到下述公式，是不是对这个公式优点熟悉呢？这个公式就是我们的成本函数的和，对于这个公式和成本函数来说，取平均值和不取平均值没有影响。</p>
-<center>
-<image src="https://i.imgur.com/zHLnJJc.jpg"></image>
-</center>
-</li>
-<li><p>按照极大似然法求极值的方法，分别对w的每个参数求偏导数使其为0，得到对数似然方程组，求解该方程，便可以到的w的参数。只是如果参数很多，求解方程组就会很复杂，此时可以考虑梯度下降法来求解。</p>
 </li>
 </ul>
-<p></p><h3>5. 总结</h3><p></p>
 <ul>
+<li><p>将两个式子综合来，可以改写为下式：</p>
+<center>
+<image src="https://i.imgur.com/KdpNVpf.jpg"></image></center>
+</li>
+<li><p>上式将分类为0和分类和1的概率计算公式合二为一。假设分类器分类足够准确，此时对于一个样本，如果它是属于1类，分类器求出的属于1类的概率应该尽可能大，即p(y=1lx)尽可能接近1；如果它是0类，分类器求出的属于0类的概率应该尽可能大，即p(y=0lx)尽可能接近1。</p>
+</li>
+<li><p>通过上述公式对二类分类的情况分析，可知我们的目的是求取参数w和b，使得p(ylx)对0类和1类的分类结果尽可能取最大值，然而实际上我们定义的损失函数的是求最小值，于是，很自然的，我们想到对p(ylx)式子加一个负号，就变成了求最小值的问题，这就得到了逻辑回归中的损失函数。</p>
+</li>
+<li><p>不过，为了计算方便，我们通常对上述式子取log，因而得到下式：</p>
+</li>
+</ul>
+<center>
+<image src="https://i.imgur.com/Swgjn66.jpg " width="50%"></image></center>
+
+<ul>
+<li>公式(1)是对概率公式取log，公式(2)是对公式(1)取相反数。上述公式的函数图像如下图所示。这是一个凸函数（斜率是非单调递减的函数即凸函数），因此可以用梯度下降法求其最小值。</li>
+</ul>
+<p><image src="https://i.imgur.com/CAHBRdg.jpg "></image>&lt;/center&gt;</p>
+<ul>
+<li>根据损失函数是单个样本的预测值和实际值的误差，而成本函数是全部样本的预测值和实际值之间的误差，于是对所有样本的损失值取平均数，得到我们的成本函数：</li>
+</ul>
+<p><image src="https://i.imgur.com/cNXT1Ev.jpg"></image> &lt;/center&gt;</p>
+<ul>
+<li>损失函数是凸函数，m个损失函数的和仍然是凸函数，因而可以用梯度下降法求最小值。</li>
+</ul>
+<h3 id="4-极大似然法求解逻辑回归"><a href="#4-极大似然法求解逻辑回归" class="headerlink" title="4.极大似然法求解逻辑回归"></a>4.极大似然法求解逻辑回归</h3><ul>
+<li>还可以用我们熟知的统计学知识——极大似然法估计逻辑回归中的参数w和b，上述得到的logp(y|w,x),假设目前有m组样本，分别为$(x_1,y_1),(x_2,y_2)…(x_m,y_m)$，其中xi表示第i个样本的特征，yi表示第i个样本的类别，yi = 0或者1，利用极大似然法的原则，假设所有训练样本独立同分布，则联合概率为所有样本概率的乘积，即：</li>
+</ul>
+<center><image src="https://i.imgur.com/kaGRRZc.jpg"></image></center>
+
+<ul>
+<li>对上述公式两边取对数，得到下述公式，是不是对这个公式优点熟悉呢？这个公式就是我们的成本函数的和，对于这个公式和成本函数来说，取平均值和不取平均值没有影响。</li>
+</ul>
+<center><image src="https://i.imgur.com/zHLnJJc.jpg"></image></center>
+
+<ul>
+<li>按照极大似然法求极值的方法，分别对w的每个参数求偏导数使其为0，得到对数似然方程组，求解该方程，便可以到的w的参数。只是如果参数很多，求解方程组就会很复杂，此时可以考虑梯度下降法来求解。</li>
+</ul>
+<h3 id="5-总结"><a href="#5-总结" class="headerlink" title="5. 总结"></a>5. 总结</h3><ul>
 <li><p>逻辑回归最大的优势在于它的输出结果不仅可以用于分类，还可以表征某个样本属于某类别的概率。</p>
 </li>
 <li><p>逻辑斯谛函数将原本输出结果从范围$（-\infty，+\infty）$ 映射到(0,1)，从而完成概率的估测。</p>
@@ -1046,8 +1330,12 @@
 <li><p>求解逻辑回归参数的传统方法是梯度下降，构造为凸函数的代价函数后，每次沿着偏导方向(下降速度最快方向)迈进一小部分，直至N次迭代后到达最低点。</p>
 </li>
 </ul>
-<p>参考：<br><a href="http://blog.csdn.net/han_xiaoyang/article/details/49123419" target="_blank" rel="noopener">http://blog.csdn.net/han_xiaoyang/article/details/49123419</a><br><a href="http://blog.csdn.net/zjuPeco/article/details/77165974" target="_blank" rel="noopener">http://blog.csdn.net/zjuPeco/article/details/77165974</a><br><a href="http://blog.csdn.net/star_liux/article/details/39666737" target="_blank" rel="noopener">http://blog.csdn.net/star_liux/article/details/39666737</a></p>
-</center></center></h3></h3></h3></h3></center></h3></h3></h2></h2>
+<h3 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h3><ul>
+<li><a href="http://blog.csdn.net/han_xiaoyang/article/details/49123419" target="_blank" rel="noopener">http://blog.csdn.net/han_xiaoyang/article/details/49123419</a></li>
+<li><a href="http://blog.csdn.net/zjuPeco/article/details/77165974" target="_blank" rel="noopener">http://blog.csdn.net/zjuPeco/article/details/77165974</a></li>
+<li><a href="http://blog.csdn.net/star_liux/article/details/39666737" target="_blank" rel="noopener">http://blog.csdn.net/star_liux/article/details/39666737</a></li>
+</ul>
+</h3></h3>
           
         
       
@@ -2294,194 +2582,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2018/12/02/带通配符的字符串匹配/">
-
-    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="博主">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar2.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="hzx's Home">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/12/02/带通配符的字符串匹配/" class="post-title-link" itemprop="https://hzxGoForward.github.io/page/2/index.html">带通配符的字符串匹配</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
-
-              <time title="创建于：2018-12-02 10:49:53" itemprop="dateCreated datePublished" datetime="2018-12-02T10:49:53+08:00">2018-12-02</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="更新于：2019-01-09 22:30:55" itemprop="dateModified" datetime="2019-01-09T22:30:55+08:00">2019-01-09</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/算法设计与分析/" itemprop="url" rel="index"><span itemprop="name">算法设计与分析</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <a id="more"></a>
-<p>题目来源： <a href="http://noi.openjudge.cn/ch0206/6252/" target="_blank" rel="noopener">http://noi.openjudge.cn/ch0206/6252/</a></p>
-<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>通配符是一类键盘字符，当我们不知道真正字符或者不想键入完整名字时，常常使用通配符代替一个或多个真正字符。通配符有问号(?)和星号(*)等，其中，“?”可以代替一个字符，而“*”可以代替零个或多个字符。 </p>
-<p>你的任务是，给出一个带有通配符的字符串和一个不带通配符的字符串，判断他们是否能够匹配。 </p>
-<p>例如，1?456 可以匹配 12456、13456、1a456，但是却不能够匹配23456、1aa456；<br>2*77?8可以匹配 24457798、237708、27798。</p>
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>使用动态规划，即可，但是’*‘可以代表空字符串，一个字符串和多个字符串，所以遇到’*‘的时候需要额外的处理。<br>假设F[i][j]表示长度为i第一个字符串X和长度为j的第二个字符串Y进行匹配，长度为i对应的字符是X[i-1]（字符串下标从0开始计算）,长度为j对应于Y的字符Y[j-1]。</p>
-<ul>
-<li>如果X[i-1]是’?’，那么F[i][j] = F[i-1][j-1], 因为’?’可以匹配任意单个字符。</li>
-<li>如果X[i-1]是‘*’，由于’*‘可以表示任意多个字符，所以此时对应关系为：<ul>
-<li>F[i][j] = F[i-1][j] || F[i-1][j-1]||F[i][j-1]  ;三个关系式分别对应’*‘表示0、1、多个字符。</li>
-</ul>
-</li>
-<li>如果X[i-1]是普通字符，F[i][j] = X[i-1] == Y[j-1];</li>
-</ul>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">match</span><span class="params">(<span class="keyword">const</span> <span class="built_in">string</span>&amp; str1, <span class="keyword">const</span> <span class="built_in">string</span>&amp; str2)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;&gt; F(str1.size() + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;(str2.size() + <span class="number">1</span>, <span class="literal">false</span>));</span><br><span class="line">	<span class="comment">// 这里用于初始化，F[0][0] = true;F[i][0]是否为true需要看X[i-1]是否为'\*'</span></span><br><span class="line">	F[<span class="number">0</span>][<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= str1.size(); ++i) &#123;</span><br><span class="line">		<span class="keyword">if</span> (str1[i - <span class="number">1</span>] == <span class="string">'*'</span>)</span><br><span class="line">			F[i][<span class="number">0</span>] = F[i - <span class="number">1</span>][<span class="number">0</span>];</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// F[i][j]表示长度为i的str1和长度为j的str2是否匹配</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= str1.size(); ++i) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= str2.size(); ++j) &#123;</span><br><span class="line">			<span class="keyword">if</span> (str1[i - <span class="number">1</span>] == <span class="string">'?'</span> || str1[i - <span class="number">1</span>] == str2[j - <span class="number">1</span>])</span><br><span class="line">				F[i][j] = F[i - <span class="number">1</span>][j - <span class="number">1</span>];</span><br><span class="line">			<span class="keyword">else</span> <span class="keyword">if</span> (str1[i - <span class="number">1</span>] == <span class="string">'*'</span>) &#123;</span><br><span class="line">				F[i][j] = F[i - <span class="number">1</span>][j] || F[i][j - <span class="number">1</span>] || F[i - <span class="number">1</span>][j - <span class="number">1</span>];</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="keyword">else</span> &#123;</span><br><span class="line">				F[i][j] = <span class="literal">false</span>;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (F[str1.size()][str2.size()])</span><br><span class="line">		<span class="keyword">return</span> <span class="string">"matched"</span>;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> <span class="string">"not matched"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 加了下面两句速度反而变慢了？ shit</span></span><br><span class="line">	ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">	<span class="built_in">std</span>::<span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line">	<span class="built_in">string</span> str1, str2;</span><br><span class="line">	getline(<span class="built_in">cin</span>, str1);</span><br><span class="line">	getline(<span class="built_in">cin</span>, str2);</span><br><span class="line">	<span class="built_in">cout</span> &lt;&lt; match(str1, str2) &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-
-    
-
-    
-    
-    
-
-    
-
-    
-       
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2531,7 +2631,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">24</span>
+                    <span class="site-state-item-count">25</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -2885,9 +2985,9 @@
       
     
       
-        
-      
     
+      
+        
       
     
       
