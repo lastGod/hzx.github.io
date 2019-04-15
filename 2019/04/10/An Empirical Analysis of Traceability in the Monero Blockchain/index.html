@@ -108,26 +108,35 @@
 
 
 
-  <meta name="description" content="发表于Financial Cryptography and Data Security 2019的一篇文章。文章链接：http://fc19.ifca.ai/preproceedings/69-preproceedings.pdf  摘要在（PETS’18）会议提出对Monero 不可追踪性的cascade effect 攻击已被开发者使用两个方法规避，其中之一是增加币环形签名(Ring Sign">
+  <meta name="description" content="AbstractThis paper empirically evaluate two weakness in Monero’s mixin sampling strategy.  About 62% of transaction inputs with one or more mixins are vulnerable to cascade effect so that the real inp">
 <meta property="og:type" content="article">
-<meta property="og:title" content="New Empirical Traceability Analysis of CryptoNote-Style Blockchains">
-<meta property="og:url" content="https://hzxGoForward.github.io/2019/04/08/New Empirical Traceability Analysis of CryptoNote-Style Blockchains/index.html">
+<meta property="og:title" content="An Empirical Analysis of Traceability in the Monero Blockchain">
+<meta property="og:url" content="https://hzxGoForward.github.io/2019/04/10/An Empirical Analysis of Traceability in the Monero Blockchain/index.html">
 <meta property="og:site_name" content="hzx&#39;s Home">
-<meta property="og:description" content="发表于Financial Cryptography and Data Security 2019的一篇文章。文章链接：http://fc19.ifca.ai/preproceedings/69-preproceedings.pdf  摘要在（PETS’18）会议提出对Monero 不可追踪性的cascade effect 攻击已被开发者使用两个方法规避，其中之一是增加币环形签名(Ring Sign">
+<meta property="og:description" content="AbstractThis paper empirically evaluate two weakness in Monero’s mixin sampling strategy.  About 62% of transaction inputs with one or more mixins are vulnerable to cascade effect so that the real inp">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://img-blog.csdnimg.cn/20190408163804418.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70">
-<meta property="og:updated_time" content="2019-04-08T14:40:19.897Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019041009332043.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190410094354625.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190410094947234.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2019041010321024.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190410110645176.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190410162056147.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190410162826490.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190410163723319.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190410164656232.png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20190410184941659.png">
+<meta property="og:updated_time" content="2019-04-10T11:27:10.274Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="New Empirical Traceability Analysis of CryptoNote-Style Blockchains">
-<meta name="twitter:description" content="发表于Financial Cryptography and Data Security 2019的一篇文章。文章链接：http://fc19.ifca.ai/preproceedings/69-preproceedings.pdf  摘要在（PETS’18）会议提出对Monero 不可追踪性的cascade effect 攻击已被开发者使用两个方法规避，其中之一是增加币环形签名(Ring Sign">
-<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20190408163804418.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70">
+<meta name="twitter:title" content="An Empirical Analysis of Traceability in the Monero Blockchain">
+<meta name="twitter:description" content="AbstractThis paper empirically evaluate two weakness in Monero’s mixin sampling strategy.  About 62% of transaction inputs with one or more mixins are vulnerable to cascade effect so that the real inp">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/2019041009332043.png">
 
 
 
 
 
 
-  <link rel="canonical" href="https://hzxGoForward.github.io/2019/04/08/New Empirical Traceability Analysis of CryptoNote-Style Blockchains/">
+  <link rel="canonical" href="https://hzxGoForward.github.io/2019/04/10/An Empirical Analysis of Traceability in the Monero Blockchain/">
 
 
 
@@ -137,7 +146,7 @@
   };
 </script>
 
-  <title>New Empirical Traceability Analysis of CryptoNote-Style Blockchains | hzx's Home</title>
+  <title>An Empirical Analysis of Traceability in the Monero Blockchain | hzx's Home</title>
   
 
 
@@ -323,7 +332,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2019/04/08/New Empirical Traceability Analysis of CryptoNote-Style Blockchains/">
+    <link itemprop="mainEntityOfPage" href="https://hzxGoForward.github.io/2019/04/10/An Empirical Analysis of Traceability in the Monero Blockchain/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="博主">
@@ -340,7 +349,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">New Empirical Traceability Analysis of CryptoNote-Style Blockchains
+          <h1 class="post-title" itemprop="name headline">An Empirical Analysis of Traceability in the Monero Blockchain
               
             
           </h1>
@@ -365,7 +374,7 @@
                 
               
 
-              <time title="创建于：2019-04-08 17:00:14 / 更新于：22:40:19" itemprop="dateCreated datePublished" datetime="2019-04-08T17:00:14+08:00">2019-04-08</time>
+              <time title="创建于：2019-04-10 18:56:14 / 更新于：19:27:10" itemprop="dateCreated datePublished" datetime="2019-04-10T18:56:14+08:00">2019-04-10</time>
             
 
             
@@ -427,150 +436,60 @@
       
 
       
-        <p>发表于Financial Cryptography and Data Security 2019的一篇文章。<br>文章链接：<a href="http://fc19.ifca.ai/preproceedings/69-preproceedings.pdf" target="_blank" rel="noopener">http://fc19.ifca.ai/preproceedings/69-preproceedings.pdf</a> </p>
-<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>在（PETS’18）会议提出对Monero 不可追踪性的cascade effect 攻击已被开发者使用两个方法规避，其中之一是增加币环形签名(Ring Signature)中mix-ins的个数，从 0.9.0版本中的3个增加到了0.12.0版本中的7个，同时增加了ring confidential transactions(ringCTs)以提升隐私性。然而，目前并没有人对Monero当前应对的策略的匿名性进行分析。 改论文提出一种统计学分析，对所有CryptoNote类型的加密货币进行closed set attack.随后对Monero、Bytecoin以及DigitalNOte进行这种攻击，实验表明，结合了cascade attack之后的closed set attack能够识别出Monero中70.52%的input、Bytecoin中74.25%的inputs以及DigitalNote中91.56%的input。<br>随后对该种攻击成功的概率进行理论分析，发现成功概率为 2^19，closed set attack近似于statiscal attacks，据此，文中分析认为Monero当前的系统设置可以抵御statiscal attacks，另外文章分析说明了mix-ins不是越大越好，而是其中未被花费的input比例越高越好。</p>
-<h2 id="Intruductioon"><a href="#Intruductioon" class="headerlink" title="Intruductioon"></a>Intruductioon</h2><p>   目前加密货币中用户的匿名性和隐私性都逐渐受到重视，因此出现了很多致力于保护用户隐私的加密货币，例如Monero、Bytecoin、Dash、DigitalNote、Boolberry等货币，这些货币都使用了CryptoNote 协议。在这些货币中，使用了ring signature(环形签名)技术，即在一笔交易的输入中，支付方会将自己的input地址和区块链中其他output地址混合起来形成一个环，这样做的目的是不让外界知道真正的input具体是哪一个，其他没有被花费的input称之为mix-ins。</p>
-<p>   然而实际上Monero区块链中有65%的用户在花销的时候，使用的mix-ins为0，而这些交易很容易被确定真正的input，随后其他一些用户使用了这些被追踪的input作为mix-ins之后也面临着被追踪的危险，也确实有文章进行了相关分析，经过分析后发现其中87%的input都能被追踪到。随后Monero开发团队也对其进行了升级，其中引入了RingCTs技术，RingCTs技术中即使是不同数目的输入也可以作为mix-ins，同时将mix-ins的数量从2提升到了6（2019年3月29日的0.12.0版本）。但是实际上这些货币匿名性如何呢？</p>
-<p>   本文中作者引入了closed set attack方式，简而言之就是如果有X个inputs的集合，其中恰好又有X个不同的地址，那么说明在这X个inputs中，不同的X个地址都已经被花销出去，因为每个inputs至少要消费一个地址。假若其他inputs中包含了这X中的地址，那么其他inputs的匿名集就可以减小，如果减小到1，就能够追踪到其中的交易。</p>
-<h2 id="Preliminary"><a href="#Preliminary" class="headerlink" title="Preliminary"></a>Preliminary</h2><h3 id="CryptoNote-protocol"><a href="#CryptoNote-protocol" class="headerlink" title="CryptoNote protocol"></a>CryptoNote protocol</h3><p>   CryptoNote协议致力于做两件事情：</p>
+        <h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>This paper empirically evaluate <strong>two weakness</strong> in Monero’s mixin sampling strategy.</p>
 <ul>
-<li><strong>Untraceability：</strong> 对于任何交易，真正被花费的地址应该是在一系列outputs中匿名的作为inputs</li>
-<li><p><strong>Unlinkability：</strong> 对于任意两个交易，不可能证明这两笔交易是发送给同一个用户的。</p>
-<p>为了实现unlinkability，CryptoNote中每次转账时使用一个一次性地址，而这个一次性地址来源于接受者的公钥和发送者生成的一个随机数。 为了实现untraceability，CryptoNote中使用了环形签名。</p>
+<li>About 62% of transaction inputs with one or more mixins are vulnerable to cascade effect so that the real input can be duduced by elimination</li>
+<li>Monero mixins are sampled in a way that mixins can be easily distinguished form the real input by their age distribution. Since the real input is always the newest input.</li>
+</ul>
+<p>The author use the 2th weakness to guess real input with a 80% accuracy over all transactions with one or more mixins.</p>
+<p>Besides, the author study the importance of mining pools and the former anonymous marketplace AlphaBay on the transaction volume. After removing mining pool activity, there remains a largte amount of potentially privacy-sensitive transactions that are affected by these weakness.</p>
+<p>To improve the anonymity of Monero, the author gives two contermeasures.</p>
+<ul>
+<li>A new mixins sampling method with two-parameter model (gama distribution)is proposed which can well approximate the user’s ‘spend-time’ distribution.</li>
+<li>Sampling mixins in ‘bins’, this method regardless of sampling distribution.</li>
+</ul>
+<h2 id="Deducible-Monero-Transactions"><a href="#Deducible-Monero-Transactions" class="headerlink" title="Deducible Monero Transactions"></a>Deducible Monero Transactions</h2><p>A significant number of Monero transactions do not contain any mixins at all, but instead explicityly identify the real TXO being spent. Since users are allowed to create zero-mixins transactions at the begining of Monero. These zero-mixins transaction present a hazard of deanonymization of transactions include them as mixins.</p>
+<p>At the time of April 15, 2017, a total of 12158814 transaction inputs have zero mixins.Figure 5 presents the fraction of transactions containing zero-mixin inputs over time.<br><img src="https://img-blog.csdnimg.cn/2019041009332043.png" alt="在这里插入图片描述"></p>
+<h3 id="implemention"><a href="#implemention" class="headerlink" title="implemention"></a>implemention</h3><p>The author extract Monero blackchain up to block 128774(April 15, 2017) and<br>stored it in a Neo4j graph database (11.5GB of data in total). the algorithm is the same as cascade effect(Amrit Kumar, Clément Fischer, Shruti Tople, and Prateek Saxena. A traceability analysis of Monero’s blockchain. In Simon N. Foley, Dieter Gollmann, and Einar Snekkenes, editors, Computer Security – ESORICS 2017: 22nd European Symposium on Research in Computer Security, Oslo, Norway, September 11-15, 2017, Proceedings, Part II, pages 153–173. Springer International Publishing, 2017.)</p>
+<h3 id="Results-on-Deducible-Transactions"><a href="#Results-on-Deducible-Transactions" class="headerlink" title="Results on Deducible Transactions"></a>Results on Deducible Transactions</h3><p>Table 2 presents the results, totaly there are about 63% Monero transaction inputs with more than one mixins were deduced.</p>
+<p><img src="https://img-blog.csdnimg.cn/20190410094354625.png" alt="在这里插入图片描述"><br>Figure 6 show the amount of vulnerable Monero transactions with the number of mixins, and it also shows transaction is less likely to be deducible with more mixins.<br><img src="https://img-blog.csdnimg.cn/20190410094947234.png" alt="在这里插入图片描述"></p>
+<h2 id="Tracing-With-Temporal-Analysis"><a href="#Tracing-With-Temporal-Analysis" class="headerlink" title="Tracing With Temporal Analysis"></a>Tracing With Temporal Analysis</h2><h3 id="Effective-Untracebility"><a href="#Effective-Untracebility" class="headerlink" title="Effective-Untracebility"></a>Effective-Untracebility</h3><p>To quantify the untraceability of a transaction input, the authors used <strong>guessing entropy</strong> to represent the expected number of gusses before guessing the real spent among a inputs. The transaction input’s guessing entropy is defined as </p>
+<script type="math/tex; mode=display">
+\mathrm{Ge}=\sum_{0 \leq i \leq M} i \cdot p_{i}</script><p> where Ge is guessing entropy,  $p = p_0, p_1, . . . , p_M$ are probabilities, sorted highest to lowest, that a <strong>referenced output</strong> is the real spend of a transaction input.</p>
+<p>The authors define <strong>effective-untraceability</strong> as $1+2Ge$.  if all referenced outputs of a transaction input are equally likely to be the real sepend, the effective-untraceabilty for that inputs is M+1.</p>
+<h2 id="The-Guess-Newest-Heuristic"><a href="#The-Guess-Newest-Heuristic" class="headerlink" title="The Guess-Newest Heuristic"></a>The Guess-Newest Heuristic</h2><p>The author proposed a heustric that among all the prior outpus referenced by a Monero transaction input, the real spend is usually the newest one. That point view came from the Figure 2.<br><img src="https://img-blog.csdnimg.cn/2019041010321024.png" alt="在这里插入图片描述"><br>The conclusion came from zero-mixin inputs and inputs deduced from zero-mixin inputs. The mixin’s spending time is quite different with the real input.This is because users spend coins soon after receiving them while the mixin’s sampling method do not take account of user’s spending behaviours.</p>
+<p>The authors found the 92% of the deducible inputs coule be gussed correctly in that way. The result is in Table 3.<br><img src="https://img-blog.csdnimg.cn/20190410110645176.png" alt="在这里插入图片描述"></p>
+<h2 id="Countermeasures"><a href="#Countermeasures" class="headerlink" title="Countermeasures"></a>Countermeasures</h2><ol>
+<li><strong>Improve the mixin-sampling procedure to match the real spend-time of MOnero users.</strong></li>
+<li><strong>introduce a countermeasure called binned mixin sampling which modifies the current mixin sampling procedure.</strong></li>
+</ol>
+<h3 id="Estimating-the-spend-time-distribution"><a href="#Estimating-the-spend-time-distribution" class="headerlink" title="Estimating the spend-time distribution"></a>Estimating the spend-time distribution</h3><p>Following Figure shows the CDF of Bitcoin blockchain and Monero blockchain.<br><img src="https://img-blog.csdnimg.cn/20190410162056147.png" alt="在这里插入图片描述"><br>The Bitcoin spend-time have a somewhat similar shape with Monero spend-time.The authors use R’s fitdistr function to fit a gama distribution(shape parameter19.28, rate parameter 1.61)</p>
+<h3 id="Sampling-mixins-using-the-spend-time-distribution"><a href="#Sampling-mixins-using-the-spend-time-distribution" class="headerlink" title="Sampling mixins using the spend-time distribution"></a>Sampling mixins using the spend-time distribution</h3><p>using the distribution above to sample mixins to matches the ideal spend-time. The author’s method is:</p>
+<pre><code>1. sample a target timestamp directly from the distribution
+2. Find the nearest block containing at least one RingCT output.
+3. sample uniformly among the transaction outputs in that block
+</code></pre><p>A more detail Algorithm is following<br><img src="https://img-blog.csdnimg.cn/20190410162826490.png" alt="在这里插入图片描述"></p>
+<h3 id="Monte-Carlo-Simulation"><a href="#Monte-Carlo-Simulation" class="headerlink" title="Monte Carlo Simulation"></a>Monte Carlo Simulation</h3><p>Following Figure shows the effective untraceability set under the current regime and the author’s proposed mixin sampling routine, the effective-untraceability set has significant increased.method performs slightly worse than ideal at 6 and 12 months out, although still much better than the current method, and stays within 75% of the ideal<br><img src="https://img-blog.csdnimg.cn/20190410163723319.png" alt="在这里插入图片描述"></p>
+<ul>
+<li>Preserve some untraceability even in the face of a highly compromised mixin sampling distribution.</li>
+</ul>
+<h3 id="Binned-mixin-sampling"><a href="#Binned-mixin-sampling" class="headerlink" title="Binned mixin sampling"></a>Binned mixin sampling</h3><p>Group outputs in the Monero blockchain into sets of some fixed size called bins such that ecah output in a bin is confirmed in the same block or a neighboring block as Figure 13.</p>
+<p><img src="https://img-blog.csdnimg.cn/20190410164656232.png" alt="在这里插入图片描述"><br>Any transaction input referencing a transaction output in a bin, either as a mixin or spend, must also reference all other outputs in that bin. Thus, a real spend cannot be distinguished by age from the other mixin outputs in the bin. Additionally, binned mixin sampling ensures that all the outputs in a bin cannot be deduced as spent until the last unspent output in the bin is spent, preventing deduction attacks from reducing the effectiveuntraceability of an output to less than the bin size.</p>
+<p>Sample Algorithm is showed in Algorithm 2.<br><img src="https://img-blog.csdnimg.cn/20190410184941659.png" alt="在这里插入图片描述"></p>
+<h2 id="Recommendations"><a href="#Recommendations" class="headerlink" title="Recommendations"></a>Recommendations</h2><ul>
+<li>The mixing sampling distribution should be modified to closer match the real distribution.</li>
+<li>Avoid including publicly deanonymized transaction outputs as mixins</li>
+<li>Monero users should be warned that their prior transactions are likely vulnerable to tracing analysis<br>The aothor launched a block explorer(<a href="https://monerolink.com" target="_blank" rel="noopener">https://monerolink.com</a>), which displays the linkages between transactions infered using our techniques, they recommend additionally developing a wallet tool that users can run locally to determine wheter their previous transactions are vulnerable.</li>
+</ul>
+<h2 id="Thinking"><a href="#Thinking" class="headerlink" title="Thinking"></a>Thinking</h2><p>There is some points in this paper:</p>
+<ul>
+<li><p>Since zero-mixins result in a short transaction and spend less fees, so the user choose to choose zero-mixins, but the author ignores if it is because there are not enough same denominations?  But the paper [A Traceability Analysis of Monero’s Blockchain] (<a href="https://blog.csdn.net/t46414704152abc/article/details/89175204" target="_blank" rel="noopener">https://blog.csdn.net/t46414704152abc/article/details/89175204</a>) presents a rigorious analysis.</p>
+</li>
+<li><p>The author said new transactions are immune is not because of the RingCT mechanism itself, rater because RingCTs was deployed after the mandatory 2-mixin was enforced. I came up with a doublt, why? but the author didn’t tell us the analysis support.</p>
+</li>
+<li><p>May be next time, we should analyse the untraceability of RingCTs.</p>
 </li>
 </ul>
-<h2 id="Closed-Set-Attack"><a href="#Closed-Set-Attack" class="headerlink" title="Closed Set Attack"></a>Closed Set Attack</h2><p>   为了说明攻击方法，用txi.in表示每笔交易的输入，假设当前有4笔交易，每笔交易中的inputs分别是：</p>
-<ul>
-<li>tx1.in = &#123;pk1, pk2, pk3&#125;;</li>
-<li>tx2.in = &#123;pk2, pk3&#125;;</li>
-<li>tx3.in = &#123;pk1, pk3&#125;;</li>
-<li>tx4.in = &#123;pk1, pk2, pk3, pk4&#125;.<br>其中pk表示public key， 即公钥。在tx1、tx2以及tx3中分别用到了pk1、pk2和pk3，而每个tx中都会花费一个pk，因此前3个交易必然是吧pk1、pk2和pk3已经花费掉了，在tx4中，很明显可以推出pk4是真正的花费地址。<br>应用理论分析应该是，在一系列交易中，所有的inputs的数量之和恰好等于这些inputs中不同地址的数目，那么其他应用这些不同地址作为mix-ins的交易，其匿名集中可以除去这些地址以减少其匿名集，如果匿名集和数量为1，那么这笔交易就成为可追踪交易了。</li>
-</ul>
-<h3 id="Definition-of-Cluster"><a href="#Definition-of-Cluster" class="headerlink" title="Definition of Cluster"></a>Definition of Cluster</h3><p>   那么这种攻击是如何进行的呢？文中定义一个Clus记为一个inputs的集合，Clus = &#123;R1， R2，…, Rn&#125;，每一个Clusetr中所有不同地址的集合，称之为PK_Clus，一个inputs我们使用R代表。假设已经存在一个Clus，那么一个inputs和Clus之间的差集定义为</p>
-<ul>
-<li>Dist(R, Clus)  = Dist(R, PK_Clus) = |R| - |PK_Clus∩R|<br>举例说明之，假设Clus = &#123;&#123;pk1, pk2&#125; ,  &#123;pk1, pk3&#125;, &#123;pk2, pk4&#125;&#125;, 那么PK_Clus = &#123;pk1,, pk2, pk3, pk4&#125;，假设某个R = &#123;pk1, pk3, pk5&#125;,  那么Dist(R, Clus) = 3-2 =1.</li>
-</ul>
-<h3 id="closed-set-Attack-Algorithm"><a href="#closed-set-Attack-Algorithm" class="headerlink" title="closed set Attack Algorithm"></a>closed set Attack Algorithm</h3><p>   为了进行closed set Attack，文中使用了一种聚类的方法，这种聚类的方法由两个算法构成，其中第二个算法调用了第1个算法。算法首先对所有的inputs应用Cascade-Effect攻击以减少其匿名集，随后对剩余的inputs集合输入到算法2中，Algorithm 2如下：</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>: Let DataSet be all transaction inputs in the blockchain.</span><br><span class="line"><span class="number">1.</span> Cascade-Effect(Dataset)</span><br><span class="line"><span class="number">2.</span> Flag = <span class="literal">true</span></span><br><span class="line"><span class="number">3.</span> <span class="keyword">while</span> Flag == <span class="literal">true</span> <span class="keyword">do</span></span><br><span class="line"><span class="number">4.</span>     Flag = <span class="literal">false</span></span><br><span class="line"><span class="number">5.</span>     <span class="keyword">for</span> each R ∈ DataSet <span class="keyword">do</span></span><br><span class="line"><span class="number">6.</span>     Clus_Form(R) -&gt; Clus		<span class="comment">// 调用了Algorithm 1</span></span><br><span class="line"><span class="number">7.</span>     <span class="keyword">if</span> Clus is a closed <span class="built_in">set</span> then</span><br><span class="line"><span class="number">8.</span>        Remove(Clus) -&gt;Flag  <span class="comment">// 删除Dataset中的Clus集合</span></span><br><span class="line"><span class="number">9.</span>        <span class="keyword">if</span> Flag == <span class="literal">true</span> then</span><br><span class="line"><span class="number">10.</span>           find traceable inputs</span><br><span class="line"><span class="number">11.</span>           check whether rings inside Clus are traceable</span><br></pre></td></tr></table></figure>
-<p>Algorithm 1算法如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>  Start with an input R, <span class="keyword">and</span> define the cluster as Clus = &amp;#<span class="number">123</span>;R&amp;#<span class="number">125</span>;</span><br><span class="line"><span class="number">2.</span> Let DataSet be all transaction inputs in the blockchain</span><br><span class="line"><span class="number">3.</span> <span class="function"><span class="keyword">for</span> each <span class="title">R1</span><span class="params">(≠ R)</span> 2 DataSet <span class="keyword">do</span></span></span><br><span class="line">4.     if Dist(R1， Clus) ≤ 1 then</span><br><span class="line"><span class="number">5.</span>         Clus = Clus ∪ &amp;#<span class="number">123</span>;R1&amp;#<span class="number">125</span>;</span><br><span class="line"><span class="number">6.</span> <span class="keyword">return</span> Clus</span><br></pre></td></tr></table></figure></p>
-<p>对于Dataset中的所有inputs，迭代使用Algorithm 2，假设所有inputs个数为N，而每个R的长度为L，那么总的算法复杂度为θ(LN²) 。</p>
-<h2 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a>Experiment</h2><h3 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a>Dataset</h3><p>   本文收集了从Monero区块链创世块(2014年4月18日)到2018年3月30日的区块，总共1541236个区块，工2612070笔非coinbase 交易。</p>
-<h3 id="Experiment-Result"><a href="#Experiment-Result" class="headerlink" title="Experiment Result"></a>Experiment Result</h3><p>将本文方法应用于Monero区块链分析，首先应用Cascade effect attack，发现其中16334967笔交易可追踪，而closed set总工追踪到了5752笔交易，因此总共追踪到70.52%的inputs。追踪结果如下表所示。总共找到3017个closed set，大小从2到55不等，总共包含了7478个public_keys，这些public keys已经被花销了，如果其他输入使用这些inputs作为mix-ins，那么是无效的。</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>mix-insg个数</th>
-<th>inputs数</th>
-<th>共可追踪inputs数</th>
-<th>Cascade Effect</th>
-<th>Closed set</th>
-<th>百分比</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>12209675</td>
-<td>12209675</td>
-<td>12209675</td>
-<td>0</td>
-<td>100</td>
-</tr>
-<tr>
-<td>1</td>
-<td>707786</td>
-<td>625641</td>
-<td>625264</td>
-<td>377</td>
-<td>88.39</td>
-</tr>
-<tr>
-<td>2</td>
-<td>4496490</td>
-<td>1779134</td>
-<td>1776192</td>
-<td>2942</td>
-<td>39.57</td>
-</tr>
-<tr>
-<td>3</td>
-<td>1486593</td>
-<td>952855</td>
-<td>951984</td>
-<td>871</td>
-<td>64.10</td>
-</tr>
-<tr>
-<td>4</td>
-<td>3242625</td>
-<td>451959</td>
-<td>451230</td>
-<td>729</td>
-<td>13.94</td>
-</tr>
-<tr>
-<td>5</td>
-<td>319352</td>
-<td>74186</td>
-<td>73980</td>
-<td>206</td>
-<td>23.23</td>
-</tr>
-<tr>
-<td>6</td>
-<td>432875</td>
-<td>202360</td>
-<td>202100</td>
-<td>260</td>
-<td>46.75</td>
-</tr>
-<tr>
-<td>7</td>
-<td>21528</td>
-<td>4296</td>
-<td>4282</td>
-<td>14</td>
-<td>19.96</td>
-</tr>
-<tr>
-<td>8</td>
-<td>30067</td>
-<td>3506</td>
-<td>3490</td>
-<td>16</td>
-<td>11.66</td>
-</tr>
-<tr>
-<td>9</td>
-<td>17724</td>
-<td>2178</td>
-<td>2162</td>
-<td>16</td>
-<td>12.29</td>
-</tr>
-<tr>
-<td>Total</td>
-<td>≥10</td>
-<td>200030</td>
-<td>29177</td>
-<td>28856</td>
-<td>321</td>
-<td>14.59</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>最后还剩余6829778笔inputs仍然不可追踪，但是这些交易的匿名集已经大大减少，减少情况如下图所示。可以看到，很多之前inputs中地址很多，但是经过closed set分析之后币有多都可以识别，其中inputs你们集合是1的，当下有超过100万，想办法进一步进行分析，或许可以有更多收获。不过作者并没有进一步分析。</p>
-<p><img src="https://img-blog.csdnimg.cn/20190408163804418.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3Q0NjQxNDcwNDE1MmFiYw==,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述"></p>
-<p>此外，作者分别对Bytecoin和DigitalNote进行了同样的分析，分析的结果没有过多需要介绍的，因此这里略过。</p>
-<h2 id="Observations-and-Recommendations"><a href="#Observations-and-Recommendations" class="headerlink" title="Observations and Recommendations"></a>Observations and Recommendations</h2><ul>
-<li><strong>Obervation 1：</strong> 区块链中outputs的使用率是匿名性中一个非常重要的因素，因为每个outputs毕竟只能被redeem 1次，因此低的使用量能提升匿名性。</li>
-<li><strong>Obervation 2：</strong> Closed sets与intpus的匿名性息息相关，找到Closed sets有助于减少匿名集和找到real spent，虽然其数量不多，但是仍然会威胁到匿名集。</li>
-<li><strong>Recommendation 1：</strong> 为了减少outputs的使用率，应该增加更多的outputs，建议用户增加一些价值为0 的输出。(PS:输出越多，花费的交易费越多，用户愿意吗？)</li>
-<li><strong>Recommendation 2：</strong> 不用使用无效的mix-ins。PS：如果用户知道的话，用户当然不会使用了。</li>
-</ul>
-<h2 id="Thinking"><a href="#Thinking" class="headerlink" title="Thinking"></a>Thinking</h2><p>这篇文章就提出了1种攻击方式，相比于其他文章来说，在内容和分析展示情况上都显示出比较单一，个人觉得提出的方法很好，但是并没有很好地挖掘这种方法之后的结果，这种方法已经将匿名集降低到1了，此时如果在坚持一下，或者在想想别的分析方法，那么就不是简单的发表在FC上了，可以冲击一下B类会议。</p>
 
       
     </div>
@@ -601,8 +520,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/28/EOS中plugin之net-plugin/" rel="next" title="EOS中plugin之net_plugin">
-                <i class="fa fa-chevron-left"></i> EOS中plugin之net_plugin
+              <a href="/2019/04/08/A Traceability Analysis of Monero’s Blockchain/" rel="next" title="A Traceability Analysis of Monero’s Blockchain">
+                <i class="fa fa-chevron-left"></i> A Traceability Analysis of Monero’s Blockchain
               </a>
             
           </div>
@@ -611,8 +530,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/04/08/A Traceability Analysis of Monero’s Blockchain/" rel="prev" title="A Traceability Analysis of Monero’s Blockchain">
-                A Traceability Analysis of Monero’s Blockchain <i class="fa fa-chevron-right"></i>
+              <a href="/2019/04/15/Dash-研究资料/" rel="prev" title="Dash 研究资料">
+                Dash 研究资料 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -826,7 +745,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要"><span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Intruductioon"><span class="nav-text">Intruductioon</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Preliminary"><span class="nav-text">Preliminary</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CryptoNote-protocol"><span class="nav-text">CryptoNote protocol</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Closed-Set-Attack"><span class="nav-text">Closed Set Attack</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Definition-of-Cluster"><span class="nav-text">Definition of Cluster</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#closed-set-Attack-Algorithm"><span class="nav-text">closed set Attack Algorithm</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Experiment"><span class="nav-text">Experiment</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dataset"><span class="nav-text">Dataset</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Experiment-Result"><span class="nav-text">Experiment Result</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Observations-and-Recommendations"><span class="nav-text">Observations and Recommendations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Thinking"><span class="nav-text">Thinking</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Abstract"><span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deducible-Monero-Transactions"><span class="nav-text">Deducible Monero Transactions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#implemention"><span class="nav-text">implemention</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Results-on-Deducible-Transactions"><span class="nav-text">Results on Deducible Transactions</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Tracing-With-Temporal-Analysis"><span class="nav-text">Tracing With Temporal Analysis</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Effective-Untracebility"><span class="nav-text">Effective-Untracebility</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Guess-Newest-Heuristic"><span class="nav-text">The Guess-Newest Heuristic</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Countermeasures"><span class="nav-text">Countermeasures</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Estimating-the-spend-time-distribution"><span class="nav-text">Estimating the spend-time distribution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sampling-mixins-using-the-spend-time-distribution"><span class="nav-text">Sampling mixins using the spend-time distribution</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Monte-Carlo-Simulation"><span class="nav-text">Monte Carlo Simulation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Binned-mixin-sampling"><span class="nav-text">Binned mixin sampling</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Recommendations"><span class="nav-text">Recommendations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Thinking"><span class="nav-text">Thinking</span></a></li></ol></div>
             
 
           </div>
@@ -1054,6 +973,36 @@
   
   
 
+  
+    
+      <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      },
+      TeX: {equationNumbers: { autoNumber: "AMS" }}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+    overflow: auto hidden;
+}
+</style>
+
+    
   
 
 
